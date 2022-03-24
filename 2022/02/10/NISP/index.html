@@ -1,0 +1,1079 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="国家信息安全水平考试 NISP 一级">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>NISP - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="NISP">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-10 15:43" pubdate>
+        2022年2月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      29.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      304
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">NISP</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 个月前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>国家信息安全水平考试 NISP 一级</p>
+<span id="more"></span>
+<hr>
+<h1 id="国家信息安全水平考试-NISP-一级"><a href="#国家信息安全水平考试-NISP-一级" class="headerlink" title="国家信息安全水平考试 NISP 一级"></a>国家信息安全水平考试 NISP 一级</h1><p>（仅用于个人阶段性学习的文章，侵删）</p>
+<h2 id="第一章-信息安全概述"><a href="#第一章-信息安全概述" class="headerlink" title="第一章 信息安全概述"></a>第一章 信息安全概述</h2><h3 id="1-1-信息与信息安全"><a href="#1-1-信息与信息安全" class="headerlink" title="1.1 信息与信息安全"></a>1.1 信息与信息安全</h3><h5 id="信息奠基人————香农"><a href="#信息奠基人————香农" class="headerlink" title="信息奠基人————香农"></a>信息奠基人————香农</h5><p>信息是用来消除随机不确定性的东西<br>信息是事物运动状态或存在方式的不确定性的描述<br>信息来源于物质，又不是物质本身;它从物质的运动中产生出来，又可以脱离源物质而寄生于媒体物质，相对独立地存在</p>
+<h5 id="信息的定义"><a href="#信息的定义" class="headerlink" title="信息的定义"></a>信息的定义</h5><p>信息是有意义的数据，它具有一定价值，是一种需要适当保护的资产。<br>数据是反映客观事物属性的记录，是信息的具体表现形式。<br>数据经过加工处理之后，就成为信息;而信息需要经过数字化处理转变成数据才能存储和传输。</p>
+<h5 id="信息的功能"><a href="#信息的功能" class="headerlink" title="信息的功能"></a>信息的功能</h5><p>反映事物内部属性、状态、结构、相互联系以及与外部环境的互动关系减少事物的不确定性</p>
+<h5 id="信息的表达"><a href="#信息的表达" class="headerlink" title="信息的表达"></a>信息的表达</h5><p>信息本身是无形的，借助于信息媒体以多种形式存在或传播</p>
+<h5 id="信息与消息"><a href="#信息与消息" class="headerlink" title="信息与消息"></a>信息与消息</h5><p>信息不同于消息，消息是信息的外壳，信息则是消息的内核，也可以说:消息是信息的笼统概念，信息则是消息的精确概念</p>
+<h5 id="信息与数据"><a href="#信息与数据" class="headerlink" title="信息与数据"></a>信息与数据</h5><p>信息不同于数据，数据是信息的符号表示，或称载体;信息是数据的内涵，是数据的语义解释。<br>数据是信息存在的一种形式，只有通过解释或处理才能成为有用的信息。<br>数据可用不同的形式表示，而信息不会随数据不同的形式而改变</p>
+<h5 id="信息技术"><a href="#信息技术" class="headerlink" title="信息技术"></a>信息技术</h5><p>用于管理和处理信息所采用的各种技术的总称  </p>
+<p>信息技术包括生产和应用两个方面</p>
+<h5 id="信息技术发展阶段"><a href="#信息技术发展阶段" class="headerlink" title="信息技术发展阶段"></a>信息技术发展阶段</h5><p>微电子、通信、计算机和网络是信息系统的核心技术，其发展进程大致可分为以下四个阶段:<br>第一阶段:电讯技术的发明<br>第二阶段:计算机技术的发展<br>第三阶段:互联网的使用<br>第四阶段:网络社会</p>
+<h5 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h5><p>在我国信息安全标准化委员会发布的GB/T 25069-2010信息安全技术术语》中<br>信息安全是指保持、维持信息的保密性、完整性和可用性，也可包括真实性、可核查性、抗抵赖性和可靠性等性质。</p>
+<h5 id="信息安全的目标和任务"><a href="#信息安全的目标和任务" class="headerlink" title="信息安全的目标和任务"></a>信息安全的目标和任务</h5><p>保证信息上述安全属性得到保持，不被破坏，从而对组织业务运行能力提供支撑</p>
+<p>保护信息资产（信息及信息系统）免受未经授权的访问使用、披露、破坏、修改、查看、记录及销毁</p>
+<h5 id="信息安全的属性"><a href="#信息安全的属性" class="headerlink" title="信息安全的属性"></a>信息安全的属性</h5><p>基本属性：完整性、机密性、可用性<br>其他属性：真实性、可控性、不可否认性</p>
+<p>消息层次：</p>
+<p>机密性：机密性也称保密性，控制信息资源的开放范围，确保信息在存储、使用、传输过程中不会泄漏给非授权用户、实体和进程，或被其利用;</p>
+<p>完整性:确保信息在存储、使用、传输过程中保持未经授权不能改变的特性，即对抗主动攻击，保持数据一致，防止数据被非法用户修改和破坏;</p>
+<p>不可否认性:又称抗抵赖性，即建立有效的责任机制，防止用户否认其发送信息的行为和信息的内容;</p>
+<p>网路层次：  </p>
+<p>可用性:确保授权用户、实体和进程对信息及资源的正常使用不会被不合理拒绝，允许其可靠而及时地访问信息及资源</p>
+<p>可控性:对信息的传播范围及内容具有控制能力,防止非法利用信息和信息系统</p>
+<h5 id="信息安全的特征"><a href="#信息安全的特征" class="headerlink" title="信息安全的特征"></a>信息安全的特征</h5><p>相对性<br>安全是相对的、动态的，没有绝对安全的系统。所以需要及时对系统安全问题进行跟踪处理，定期进行整体安全评估，及时发现问题并加以解决</p>
+<p>时效性<br>安全不能一劳永逸，需要根据安全风险，及时制定应对策略</p>
+<p>相对性<br>在更改配置等操作时，需对系统重新进行评估和同步更新安全措施</p>
+<p>不确定性<br>攻击发起的时间、地点、攻击者和攻击目标都具有不确定性，在制定安全应对措施时，要尽可能考量所有潜在的安全威胁</p>
+<p>复杂性<br>信息安全是一项系统工程，涉及到安全管理、教育、培训、立法、国际合作等领域</p>
+<p>与传统安全相比，信息安全的鲜明特征  </p>
+<p>系统性<br>系统地从技术、管理、工程和标准法规等各层面综合保障的信息安全  </p>
+<p>动态性<br>对信息安全不能抱有一劳永逸的思想，应该根据风险的变化，在信息系统的整个生命周期中采取相应的安全措施来控制风险    </p>
+<p>无边界性<br>信息系统安全威胁超越了现实地域和现实行业的限制  </p>
+<p>非传统性<br>与军事安全、政治安全等传统安全相比，信息安全涉及的领域和影响范围十分广泛</p>
+<h5 id="信息系统安全"><a href="#信息系统安全" class="headerlink" title="信息系统安全"></a>信息系统安全</h5><p>设备安全、数据安全、内容安全、行为安全</p>
+<h5 id="信息设备安全"><a href="#信息设备安全" class="headerlink" title="信息设备安全"></a>信息设备安全</h5><p>设备的稳定性、可靠性、可用性</p>
+<h5 id="数据安全"><a href="#数据安全" class="headerlink" title="数据安全"></a>数据安全</h5><p>数据的秘密性、真实性、完整性</p>
+<h5 id="内容安全"><a href="#内容安全" class="headerlink" title="内容安全"></a>内容安全</h5><p>内容安全是信息安全在法律、政治、道德层次的要求</p>
+<p>政治上健康<br>符合国家法律法规<br>符合中华民族道德规范</p>
+<h5 id="行为安全"><a href="#行为安全" class="headerlink" title="行为安全"></a>行为安全</h5><p>行为安全是信息安全的终极目的</p>
+<p>行为的秘密性、完整性、可控性</p>
+<h3 id="1-2-信息安全威胁"><a href="#1-2-信息安全威胁" class="headerlink" title="1.2 信息安全威胁"></a>1.2 信息安全威胁</h3><h5 id="我国面临的信息安全威胁"><a href="#我国面临的信息安全威胁" class="headerlink" title="我国面临的信息安全威胁"></a>我国面临的信息安全威胁</h5><p>国家威胁、组织威胁、个人威胁</p>
+<h5 id="信息安全问题产生的根源"><a href="#信息安全问题产生的根源" class="headerlink" title="信息安全问题产生的根源"></a>信息安全问题产生的根源</h5><p>内因：<br>系统自身的脆弱性</p>
+<p>系统的复杂性导致其脆弱性  </p>
+<p>外因：<br>人为威胁、环境威胁</p>
+<h3 id="1-3-信息安全发展阶段与形式"><a href="#1-3-信息安全发展阶段与形式" class="headerlink" title="1.3 信息安全发展阶段与形式"></a>1.3 信息安全发展阶段与形式</h3><h5 id="信息安全的发展阶段"><a href="#信息安全的发展阶段" class="headerlink" title="信息安全的发展阶段"></a>信息安全的发展阶段</h5><p>通信安全(COMSEC)<br>通过密码技术解决通信保密，保证数据的保密性和完整性<br>安全威胁：搭线窃听、密码学分析<br>安全措施：加密  </p>
+<p>计算机安全(COMPUSEC)<br>确保信息系统的保密性、完整性和可用性<br>安全威胁：非法访问、恶意代码、脆弱口令…<br>安全措施：安全操作系统设计技术（TCB）</p>
+<p>信息系统安全(INFOSEC)<br>确保信息在存储、处理和传输过程中免受偶然或恶意的泄密、非法访问或破坏<br>安全威胁：网络入侵、病毒破坏、信息对抗…<br>安全措施：防火墙、漏洞扫描、入侵检测、PKI、VPN…  </p>
+<p>信息安全保障(IA)<br>动态安全,保障信息系统的业务正常、稳定的运行<br>综合技术、管理、过程、人员<br>安全威胁：黑客、恐怖分子、信息战、自然灾害、电力中断…<br>安全措施：技术安全保障体系、安全管理体系、人员意识/培训/教育…</p>
+<h5 id="我国信息安全形势"><a href="#我国信息安全形势" class="headerlink" title="我国信息安全形势"></a>我国信息安全形势</h5><div class="hljs code-wrapper"><pre><code>2013年，“棱镜门”事件在全球持续发酵，隐藏在互联网背后的国家力量和无所不在的“监控”之手，引起舆论哗然和网络空间的连锁反应。
+全球范围内陡然上升的网络攻击威胁，导致各国对信息安全的重视程度急剧提高，越来越多的国家将信息安全列为国家核心安全利益。
+网络安全进一步成为大国竞争的战略基点，较量和博弈逐步深化升级。
+
+我国信息安全环境日趋复杂，网络安全问题对互联网的健康发展带来日益严峻的挑战，网络安全事件的影响力和破坏程度不断扩大。  
+针对网络信息的破坏活动日益严重，利用网络进行违法犯罪案件逐年上升。  
+安全漏洞和安全隐患增多，对信息安全构成严重威胁。黑客攻击、恶意代码对重要信息系统安全造成严重影响。  
+</code></pre></div>
+<h3 id="1-4-信息安全保障"><a href="#1-4-信息安全保障" class="headerlink" title="1.4 信息安全保障"></a>1.4 信息安全保障</h3><h5 id="信息安全保障含义"><a href="#信息安全保障含义" class="headerlink" title="信息安全保障含义"></a>信息安全保障含义</h5><p>信息安全保障是指采用技术、管理等综合手段保护信息和信息系统能够安全运行的防护性行为。<br>它通过保证信息和信息系统的可用性、完整性、机密性和不可否认性来保护并防御信息和信息系统的操作，包括通过综合保护、检测和响应等能力为信息系统提供修复。</p>
+<p><img src="/2022/02/10/NISP/1.4-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>具体应用  </p>
+<p>防止信息泄露、修改和破坏<br>检测入侵行为，计划和部署针对入侵行为的防御措施<br>采用安全措施和容错机制在遭受攻击的情况下保证机密性、私密性、完整性、抗抵赖性、真实性、可用性和可靠性<br>修复信息和信息系统所遭受的破坏  </p>
+<h6 id="信息安全保障与信息安全、信息系统安全的区别"><a href="#信息安全保障与信息安全、信息系统安全的区别" class="headerlink" title="信息安全保障与信息安全、信息系统安全的区别"></a>信息安全保障与信息安全、信息系统安全的区别</h6><p>信息安全的重点是保护和防御，而安全保障的重点是保护、检测和响应综合</p>
+<p>信息安全不太关注检测和响应，但是信息安全保障非常关注这两点  </p>
+<p>攻击后的修复不在传统信息安全概念的范围之内，但是它是信息安全保障的重要组成部分。  </p>
+<p>信息安全的目的是为了防止攻击的发生，而信息安全保障的目的是为了保证信息系统始终能保证维持特定水平的可用性、完整性、真实性、机密性和抗抵赖性。  </p>
+<h5 id="信息安全保障模型"><a href="#信息安全保障模型" class="headerlink" title="信息安全保障模型"></a>信息安全保障模型</h5><p>信息安全保障模型能准确描述安全的重要方面与系统行为的关系，提高对成功实现关键安全需求的理解层次，</p>
+<p>计划——执行——检测——改进（PDCA）模型</p>
+<p>和信息保障技术框架是信息安全管理和信息安全保障技术实施过程遵循的方法和思想。</p>
+<p>经典模型</p>
+<h6 id="防护——检测——响应模型（PDR）"><a href="#防护——检测——响应模型（PDR）" class="headerlink" title="防护——检测——响应模型（PDR）"></a>防护——检测——响应模型（PDR）</h6><p>基于对攻击技术的假设，所设计的静态防御模型，难以适应网络安全环境的快速变化</p>
+<h6 id="策略——防护——检测——响应模型（P2DR-PPDR）"><a href="#策略——防护——检测——响应模型（P2DR-PPDR）" class="headerlink" title="策略——防护——检测——响应模型（P2DR/PPDR）"></a>策略——防护——检测——响应模型（P2DR/PPDR）</h6><p>动态防御</p>
+<h6 id="防护——检测——响应模型（PDR）-1"><a href="#防护——检测——响应模型（PDR）-1" class="headerlink" title="防护——检测——响应模型（PDR）"></a>防护——检测——响应模型（PDR）</h6><p>基本思想是承认信息系统中存在漏洞，正视系统面临的威胁，通过适度防护并加强检测，落实安全事件响应，建立威胁源威慑，保障系统安全。该模型认为，任何安全防护措施都是基于时间的，超过该时间段，这种防护措施就可能被攻破。PDR模型直观、实用，但对系统的安全隐患和安全措施采取相对固定的假设前提，难以适应网络安全环境的快速变化。</p>
+<h6 id="策略——防护——检测——响应模型（P2DR-PPDR）-1"><a href="#策略——防护——检测——响应模型（P2DR-PPDR）-1" class="headerlink" title="策略——防护——检测——响应模型（P2DR/PPDR）"></a>策略——防护——检测——响应模型（P2DR/PPDR）</h6><p>即策略一防护―检测一响应。该模型的核心是信息系统所有防护、检测和响应都是依据安全策略实施的。</p>
+<h5 id="信息安全保障的作用"><a href="#信息安全保障的作用" class="headerlink" title="信息安全保障的作用"></a>信息安全保障的作用</h5><p>由于网络信息传播的开放性、跨界性、即时性、交互性等特点，互联网在为广大民众提供越来越多有益信息及其他信息服务的同时，也存在着一些虚假和错误导向的信息，以及直接危害公众利益、民族团结、国家统一、社会稳定和国家安全的违法与有害信息及活动。构建更加安全可靠、更加有用、更加可信的互联网，服务于建设小康社会和构建和谐社会，是我国加强信息安全保障的一个重要任务。</p>
+<p>在实施国家信息化发展战略中，要高度重视信息安全保障体系建设，实现信息化与信息安全协调发展<br>国家基础信息网络、重要信  息系统以及政府、企业和公民的信息活动的安全若不能得到切实保障，信息化带来的巨大经济与社会效益就难以有效发挥，信息化发展也会受到严重制约<br>加强信息安全保障的目的，就是要保障和促进信息化发展，而不是以牺牲信息化发展来换取信息安全  </p>
+<p>采取不上网、不共享、不互联互通等传统封闭的方式保安全，会严重影响甚至阻碍信息化发展，也不可能从粮本上解决信息安全保障问题。<br>只有继续大力推动信息化建设，全面提高信息化发展水平，才能为应对客种信息安全问题提供强有力的物质和技术保障。<br>全面推进信息化，只有高度重视信息安全保障建设，才能形成健康有序、安全稳定的信意网络秩序，穿能确保信息化进程稳步、快速地发展。</p>
+<p>为有效开展互联网治理工作，我国政府提出了互联网管理的基本原则，即积极促进互联网发展,并依法进行管理，鼓励行业自律和公众监督，旨在形成一个可信和安全的互联网信息空间。</p>
+<h3 id="1-5-信息系统安全保障"><a href="#1-5-信息系统安全保障" class="headerlink" title="1.5 信息系统安全保障"></a>1.5 信息系统安全保障</h3><h5 id="信息系统"><a href="#信息系统" class="headerlink" title="信息系统"></a>信息系统</h5><p>信息系统是具有集成性的系统，每一个组织中信息流动的总和构成一个信息系统。信息系统是根据一定的需要进行输入、系统控制、数据处理、数据存储与输出等活动而涉及到的所有因素的综合体。</p>
+<p><img src="/2022/02/10/NISP/1.5-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="信息系统安全保障的含义"><a href="#信息系统安全保障的含义" class="headerlink" title="信息系统安全保障的含义"></a>信息系统安全保障的含义</h5><p>信息系统安全保障是在信息系统的整个生命周期中，从技术、管理、工程和人员等方面提出安全保障要求，确保信息系统的保密性、完整性和可用性，降低安全风险到可接受的程度，从而保障系统实现组织机构的使命。</p>
+<p><img src="/2022/02/10/NISP/1.5-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>风险  </p>
+<p>信息安全风险产生的因素主要有信息系统自身存在的漏洞和来自系统外部的威胁。信息系统运行环境中存在具有特定威胁动机的威胁源，通过使用各种攻击方法，利用信息系统的各种脆弱性，对信息系统造成一定的不良影响，由此引发信息安全事件和问题。</p>
+<p>保障  </p>
+<p>为了降低信息安全风险，信息安全保障就是针对信息系统在运行环境中所面临的各种风险，制定信息安全保障策略，在策略指导下，设计并实现信息安全保障架构或模型，采取技术、管理等安全保障措施，将风险控制到可接受的范围和程度，从而实现其业务使命。</p>
+<p>使命  </p>
+<p>描述了信息系统从设计、开发、测试、部署、维护、废弃整个生命周期中运行的需求和目标。信息系统的使命与其安全保障密不可分，需要通过信息系统安全措施来保障目标正确执行。随着信息系统面临的威胁及运行环境的变化，安全保障也需要提供相应的保障措施，从而保障信息系统的正确运行。</p>
+<h5 id="信息系统安全保障模型"><a href="#信息系统安全保障模型" class="headerlink" title="信息系统安全保障模型"></a>信息系统安全保障模型</h5><p><img src="/2022/02/10/NISP/1.5-3.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<hr>
+<hr>
+<h2 id="第二章-信息安全基础技术"><a href="#第二章-信息安全基础技术" class="headerlink" title="第二章 信息安全基础技术"></a>第二章 信息安全基础技术</h2><h3 id="2-1-密码学"><a href="#2-1-密码学" class="headerlink" title="2.1 密码学"></a>2.1 密码学</h3><p><img src="/2022/02/10/NISP/2.1-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="密码学发展"><a href="#密码学发展" class="headerlink" title="密码学发展"></a>密码学发展</h5><p>古典密码——近代密码——现代密码——公钥密码</p>
+<p><img src="/2022/02/10/NISP/2.1-2.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h5><p>古典密码体制的安全性在于保持算法本身的保密性，受到算法限制。</p>
+<p>——不适合大规模生产<br>——不适合较大的或者人员变动较大的组织（间谍）<br>——用户无法了解算法的安全性  </p>
+<h5 id="近代密码"><a href="#近代密码" class="headerlink" title="近代密码"></a>近代密码</h5><p>主要标志是机械密码/机电密码，用机电代替手工  </p>
+<p>——近代密码体制是用机械或电动机械实现的，最著名的就是转轮机</p>
+<p><img src="/2022/02/10/NISP/2.1-3.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="现代密码"><a href="#现代密码" class="headerlink" title="现代密码"></a>现代密码</h5><p>数据的安全基于密钥而不是算法的保密。</p>
+<h5 id="公钥密码"><a href="#公钥密码" class="headerlink" title="公钥密码"></a>公钥密码</h5><p>公钥密码使得发送端和接收端无密钥传输的保密通信成为可能</p>
+<h5 id="加密与解密"><a href="#加密与解密" class="headerlink" title="加密与解密"></a>加密与解密</h5><p>明文(Plaintext)：原始消息、被隐蔽消息、未经加密的消息<br>密文(Ciphertext)或密报(Cryptogram)：明文经密码变换而成的一种隐蔽形式<br>加密员或密码员(Cryptographer)：对明文进行加密操作的人员  </p>
+<p><img src="/2022/02/10/NISP/2.1-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>加密( Encryption )：将明文变换为密文的过程<br>解密(Decryption )：由密文恢复出原明文的过程  </p>
+<p><img src="/2022/02/10/NISP/2.1-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>加密可以采用密码算法来实现，密码算法从密钥使用角度，可分为对称密码算法和非对称密码算法。</p>
+<h5 id="对称密码"><a href="#对称密码" class="headerlink" title="对称密码"></a>对称密码</h5><p>对称密码算法（也称单钥或私钥密码算法）∶加密密钥和解密密钥相同，或实质上等同，即从一个易于推出另一个。</p>
+<p>——DES、3DES、IDEA、AES<br>——密钥相对较短，一般采用128，192或者256比特</p>
+<p><img src="/2022/02/10/NISP/2.1-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>优点∶<br>效率高，算法简单，系统开销小-适合加密大量数据<br>明文长度与密文长度相等</p>
+<p>缺点∶<br>需要以安全方式进行密钥交换-密钥管理复杂<br>无法解决消息的篡改、否认等问题  </p>
+<h5 id="非对称密码"><a href="#非对称密码" class="headerlink" title="非对称密码"></a>非对称密码</h5><p>非对称密码算法︰加密密钥和解密密钥不同，从一个很难推出另一个。其中对外公开的密钥，称为公开密钥(public key)，简称公钥;必须保密的密钥称为私有密钥(private key)，简称私钥。又叫公钥密码算法 (Public-keycipher)。</p>
+<p>——RSA、ECC、EIGamal</p>
+<p>——公钥加密 私钥解密<br>——私钥加密 公钥解密<br>——密钥长度512-2048位</p>
+<p><img src="/2022/02/10/NISP/2.1-7.png" srcset="/img/loading.gif" lazyload></p>
+<p>优点：<br>密钥分发数目与参与者数目相同<br>在有大量参与者的情况下易于密钥管理<br>安全<br>支持数字签名和不可否认性<br>无需事先与对方建立关系，交换密钥  </p>
+<p>缺点：<br>速度相对较慢<br>可能比同等强度的对称密码算法慢10倍到100倍<br>加密后，密文变长  </p>
+<h5 id="混合加密"><a href="#混合加密" class="headerlink" title="混合加密"></a>混合加密</h5><p>加密过程：  </p>
+<p>用对称加密密文，用非对称加密对称密钥，同时传输两个密文</p>
+<p>用对称加密密文</p>
+<p><img src="/2022/02/10/NISP/2.1-8.png" srcset="/img/loading.gif" lazyload></p>
+<p>用非对称加密对称密钥</p>
+<p><img src="/2022/02/10/NISP/2.1-9.png" srcset="/img/loading.gif" lazyload></p>
+<p>解密过程：</p>
+<p>用非对称私钥解密对称密钥，再用对称密钥解密文</p>
+<p>用非对称私钥解密对称密钥</p>
+<p><img src="/2022/02/10/NISP/2.1-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>用对称密钥解密文</p>
+<p><img src="/2022/02/10/NISP/2.1-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>——保证安全性的同时，提高了效率</p>
+<h5 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h5><p>对称密码和非对称密码算法主要解决信息的机密性问题，而实际系统和网络还可能受到消息篡改等攻击。  </p>
+<p>篡改攻击主要包括:修改信息内容，改变程序使其不能正确运行等。哈希函数可以用来保证信息的完整性。  </p>
+<p>哈希(Hash)函数(也称为杂凑函数或单向散列函数)接受一个消息作为输入，产生一个称为哈希值的输出。输出的哈希值也可称为散列值、消息摘要(Message Digest,MD)</p>
+<p>————完整性</p>
+<p><img src="/2022/02/10/NISP/2.1-12.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="MD5算法"><a href="#MD5算法" class="headerlink" title="MD5算法"></a>MD5算法</h5><p>MD：Message Digest，消息摘要</p>
+<p>——输入：任意长度的消息<br>——输出：128位消息摘要<br>——处理：以512位输入数据块为单位</p>
+<h5 id="SHA-1算法"><a href="#SHA-1算法" class="headerlink" title="SHA-1算法"></a>SHA-1算法</h5><p>SHA (Secure Hash Algorithm，安全哈希算法)由美国国家标准技术研究所开发，1993年作为联邦信息处理标准发布，2008年又有更新。</p>
+<p>——输入：最大长度为264位的消息<br>——输出：160位消息摘要<br>——处理：输入以512位输入数据块为单位处理</p>
+<h5 id="比较SHA1-MD5"><a href="#比较SHA1-MD5" class="headerlink" title="比较SHA1/MD5"></a>比较SHA1/MD5</h5><p><img src="/2022/02/10/NISP/2.1-13.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h5><p><img src="/2022/02/10/NISP/2.1-14.png" srcset="/img/loading.gif" lazyload></p>
+<p>除了保护信息的机密性和完整性，密码学技术也可以解决信息的可鉴别性(真实性或认证性)和不可否认性。</p>
+<p><img src="/2022/02/10/NISP/2.1-15.png" srcset="/img/loading.gif" lazyload></p>
+<p>传统签名的基本特点：<br>一能与被签的文件在物理上不可分割<br>——签名者不能否认自己的签名<br>——签名不能被伪造<br>——容易被验证  </p>
+<p>数字签名是传统签名的数字化，基本要求：<br>一能与所签文件“绑定”<br>——签名者不能否认自己的签名<br>——签名不能被伪造<br>——容易被验证  </p>
+<p>数字签名的应用  </p>
+<p>(1)可信性:签名让文件的接收者相信签名者是慎重地在文件上签名的<br>(2)不可重用性:签名不可重用，即使同一消息在不同时刻的签名也是有区别的。如果将签名部分提取出来，附加在别的消息后面，验证签名会失败。这是因为签名和所签名消息之间是一一对应的，消息不同签名内容也不同，因此签名无法重复使用。<br>(3)数据完整性:在文件签名后，文件不能改变。<br>(4)不可伪造性:签名能够证明是签名者而不是其他人在文件上签名，任何人都不能伪造签名。<br>(5)不可否认性:在签名者否认自己的签名时，签名接收者可以请求可信第二方进行仲裁。  </p>
+<h5 id="对称密码体制和非对称密码体制的优缺点是什么"><a href="#对称密码体制和非对称密码体制的优缺点是什么" class="headerlink" title="对称密码体制和非对称密码体制的优缺点是什么?"></a>对称密码体制和非对称密码体制的优缺点是什么?</h5><p>对称<br>效率高、算法简单、系统开销小、适合对大量数据进行加密、明文长度和密文长度相等<br>需要以安全的方式进行密钥的交换、无法解决消息的篡改和否认</p>
+<p>非对称<br>密钥分发数目和参与者数目相同、安全性高、支持数字签名、有不可否认性、事先不需要建立连接来进行密钥交换<br>速度慢、效率低、相对于对称慢10-100倍、加密后密文变长</p>
+<h3 id="2-2-数字证书与公钥基础设施"><a href="#2-2-数字证书与公钥基础设施" class="headerlink" title="2.2 数字证书与公钥基础设施"></a>2.2 数字证书与公钥基础设施</h3><h5 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h5><p><img src="/2022/02/10/NISP/2.2-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="公钥基础设施"><a href="#公钥基础设施" class="headerlink" title="公钥基础设施"></a>公钥基础设施</h5><p>PKI : Public Key Infrastructure公钥基础设施</p>
+<p>——CA、RA、</p>
+<p>——利用公开密钥技术建立的提供信息安全服务的在线基础设施。它利用加密、数字签名、数字证书来保护应用、通信或事务处理的安全。<br>——是一个包括硬件、软件、人员、策略和规程的集合，用来实现基于公钥密码体制的密钥和数字证书的产生、管理、存储、分发和撤销等功能。<br>——如同电力基础设施为家用电器提供电力一样，PKI为各种应用提供安全保障，提供网络信任基础。</p>
+<h5 id="CA：认证权威机构"><a href="#CA：认证权威机构" class="headerlink" title="CA：认证权威机构"></a>CA：认证权威机构</h5><p>CA专门负责数字证书的产生、发放和管理，以保证数字证书真实可靠。它是公钥基础设施PKI的核心，CA负责管理P阳结构下的所有用户(包括各种应用程序)证书，把用户的公钥和用户的其他信息捆绑在一起，在网上验证用户的身份。</p>
+<p>CA的主要功能</p>
+<p><img src="/2022/02/10/NISP/2.2-2.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="RA：证书注册机构"><a href="#RA：证书注册机构" class="headerlink" title="RA：证书注册机构"></a>RA：证书注册机构</h5><p><img src="/2022/02/10/NISP/2.2-3.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="LDAP：目录服务"><a href="#LDAP：目录服务" class="headerlink" title="LDAP：目录服务"></a>LDAP：目录服务</h5><p>——证书的存储库，提供了证书的保存、修改、删除和获取的能力<br>——CA采用LDAP标准的目录服务存放证书，其作用与数据库相同，优点是在修改操作少的情况下，对于访问的效率比传统数据库要高</p>
+<h5 id="CRL：证书撤销列表"><a href="#CRL：证书撤销列表" class="headerlink" title="CRL：证书撤销列表"></a>CRL：证书撤销列表</h5><p>也称“证书黑名单”<br>——在证书的有效期期间，因为某种原因（如人员调动、私钥泄漏等等），导致相应的数字证书内容不再是真实可信，此时，进行证书撤销，说明该证书已是无效<br>——CRL中列出了被撤销的证书序列号</p>
+<h5 id="证书载体"><a href="#证书载体" class="headerlink" title="证书载体"></a>证书载体</h5><p>内存、IC卡、软盘、USB-KEY、U盘</p>
+<h5 id="PKL-CA技术的典型应用"><a href="#PKL-CA技术的典型应用" class="headerlink" title="PKL/CA技术的典型应用"></a>PKL/CA技术的典型应用</h5><p><img src="/2022/02/10/NISP/2.2-4.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="什么是数字证书？其作用是什么？"><a href="#什么是数字证书？其作用是什么？" class="headerlink" title="什么是数字证书？其作用是什么？"></a>什么是数字证书？其作用是什么？</h5><p>数字证书是一段经认证权威机构签名，包含拥有者身份信息和公开密钥的数据体。<br>数字证书和一对公私钥相对应，在电子商务和网络信息的交流中，解决互相信任的问题。</p>
+<h3 id="2-3-身份认证"><a href="#2-3-身份认证" class="headerlink" title="2.3 身份认证"></a>2.3 身份认证</h3><h5 id="身份认证的基本方法"><a href="#身份认证的基本方法" class="headerlink" title="身份认证的基本方法"></a>身份认证的基本方法</h5><p>身份认证是用户登录系统或网站面对的第一道安全防线，如输入账号口令来登录。  身份认证是在网络中确认操作者身份的过程。  </p>
+<p>身份认证一般依据以下三种基本情况或这三种情况的组合来鉴别用户身份。</p>
+<p>(1)用户所知道的东西，例如口令、密钥等;<br>(2)用户拥有的东西，例如印章、U盾(USB Key)等;<br>(3)用户所具有的生物特征:例如指纹、声音、虹膜、人脸等。</p>
+<h4 id="1-根据”用户所知”进行认证的方法有-静态口令认证、短信口令认证和动态口令认证等。"><a href="#1-根据”用户所知”进行认证的方法有-静态口令认证、短信口令认证和动态口令认证等。" class="headerlink" title="(1)根据”用户所知”进行认证的方法有:静态口令认证、短信口令认证和动态口令认证等。"></a>(1)根据”用户所知”进行认证的方法有:静态口令认证、短信口令认证和动态口令认证等。</h4><h5 id="静态口令认证"><a href="#静态口令认证" class="headerlink" title="静态口令认证"></a>静态口令认证</h5><p>静态口令<br>——口令固定不变，并且长期有效<br>——弱鉴别(weak authentication)</p>
+<p><img src="/2022/02/10/NISP/2.3-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="静态口令认证缺点"><a href="#静态口令认证缺点" class="headerlink" title="静态口令认证缺点"></a>静态口令认证缺点</h5><p>通信窃取——窃听获得明文的用户名和口令</p>
+<p>重放攻击——截获登录数据（明/密），重放攻击</p>
+<p>字典攻击——选择有意义的单词或数字作字典</p>
+<p>暴力攻击一穷举全部可能组合猜测口令</p>
+<p>外部泄漏——搜索存有口令的纸片或文件</p>
+<p>窥探——安装监视器或从背后窥探</p>
+<p>社交工程——冒充合法用户、假冒管理员，骗取口令</p>
+<h5 id="短信口令认证"><a href="#短信口令认证" class="headerlink" title="短信口令认证"></a>短信口令认证</h5><p>是利用移动网络动态口令的认证方式。短信口令验证以手机短信形式请求包含6位随机数的动态口令，身份认证系统以短信形式发送随机的6位动态口令到用户的手机上，用户在认证时输入此动态口令即可</p>
+<p>由于手机与用户绑定比较紧密，短信口令生成与使用场景是物理隔绝的，因此口令在通路上被截取几率较低。</p>
+<h5 id="动态口令认证"><a href="#动态口令认证" class="headerlink" title="动态口令认证"></a>动态口令认证</h5><p>一次性口令( One Time Password ,OTP )</p>
+<p>口令动态性–每次变化，无须人工干预<br>口令随机性–随机性强，难以猜测</p>
+<h4 id="2-根据”用户所有”进行认证的方法有-U盾-USB-Key-、电子印章等。"><a href="#2-根据”用户所有”进行认证的方法有-U盾-USB-Key-、电子印章等。" class="headerlink" title="(2)根据”用户所有”进行认证的方法有:U盾(USB Key)、电子印章等。"></a>(2)根据”用户所有”进行认证的方法有:U盾(USB Key)、电子印章等。</h4><p>USB Key认证:基于USB Key的认证方法是近几年发展起来的一种方便、安全的身份认证技术。它采用软硬件相结合的挑战/应答认证模式。USB Key是一种USB接口的硬件设备，它内置单片机或智能卡芯片，可以存储用户的密钥或数字证书，利用USB Key内置的密码算法实现对用户身份的认证。挑战/应答认证模式，即认证系统发送一个随机数(挑战)，用户使用USB Key 中的密钥和算法计算出一个数值(应答)，认证系统对该数值进行检验，若正确则认为是合法用户。</p>
+<h4 id="（3）基于生物特征的身份认证"><a href="#（3）基于生物特征的身份认证" class="headerlink" title="（3）基于生物特征的身份认证"></a>（3）基于生物特征的身份认证</h4><p>指纹，视网膜，声音，虹膜、语音、面部、签名等</p>
+<p>查询特征、存储特征——节省资源、快速查询</p>
+<p><img src="/2022/02/10/NISP/2.3-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/02/10/NISP/2.3-3.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="指纹识别的实现原理"><a href="#指纹识别的实现原理" class="headerlink" title="指纹识别的实现原理"></a>指纹识别的实现原理</h5><p>通过特殊的光电扫描和计算机图像处理技术，对指纹进行采集、分析和比对，自动、迅速、准确地认证出个人身份</p>
+<p>指纹识别的过程</p>
+<p>按照用户和姓名等信息将其存在指纹数据库中的模板指纹调出来，然后再用用户输入的指纹与该模板的指纹相匹配，以确定这两幅指纹是否出于同一幅指纹</p>
+<p><img src="/2022/02/10/NISP/2.3-4.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="虹膜识别的实现原理"><a href="#虹膜识别的实现原理" class="headerlink" title="虹膜识别的实现原理"></a>虹膜识别的实现原理</h5><p>虹膜是环绕在瞳孔四周有色彩的部分</p>
+<p>每一个虹膜都包含一个独一无二的基于像冠、水晶体、细丝、斑点、结构、凹点、射线、皱纹和条纹等特征的结构</p>
+<p>每一个人的虹膜各不相同，一个人的左眼和右眼就可能不一样，即使是双胞胎的虹膜也可能不一样</p>
+<p>人的虹膜在出生后6-18个月成型后终生不再发生变化</p>
+<h4 id="其他身份认证技术"><a href="#其他身份认证技术" class="headerlink" title="其他身份认证技术"></a>其他身份认证技术</h4><h5 id="单点登录-Sso-Single-Sign-on"><a href="#单点登录-Sso-Single-Sign-on" class="headerlink" title="单点登录(Sso ,Single Sign-on)"></a>单点登录(Sso ,Single Sign-on)</h5><p>用户只需在登录时进行一次注册，就可以访问多个系统，不必重复输入用户名和密码来确定身份</p>
+<h5 id="Kerberos提供了一个网络环境下的身份认证框架结构"><a href="#Kerberos提供了一个网络环境下的身份认证框架结构" class="headerlink" title="Kerberos提供了一个网络环境下的身份认证框架结构"></a>Kerberos提供了一个网络环境下的身份认证框架结构</h5><p>实现采用对称密钥加密技术<br>公开发布的Kerberos版本包括版本4和版本5-安全性、可靠性、可伸缩性、透明性</p>
+<h5 id="远程用户拨号认证系统-Remote-Authentication-Dial-In-UserService"><a href="#远程用户拨号认证系统-Remote-Authentication-Dial-In-UserService" class="headerlink" title="远程用户拨号认证系统( Remote Authentication Dial In UserService)"></a>远程用户拨号认证系统( Remote Authentication Dial In UserService)</h5><p>RADIUS是一种C/S结构的协议，它的客户端最初就是NAS (NetAccess Server)服务器，现在任何运行RADIUS客户端软件的计算机都可以成为RADIUS的客户端</p>
+<p>基本设计组件有认证、授权和记账(AAA)</p>
+<p>简单明确，可扩充</p>
+<p>使用UDP端口1812，1813</p>
+<h3 id="2-4-访问控制"><a href="#2-4-访问控制" class="headerlink" title="2.4 访问控制"></a>2.4 访问控制</h3><h5 id="访问控制︰针对越权使用资源的防御措施"><a href="#访问控制︰针对越权使用资源的防御措施" class="headerlink" title="访问控制︰针对越权使用资源的防御措施"></a>访问控制︰针对越权使用资源的防御措施</h5><p>目标︰<br>防止对任何资源（如计算资源、通信资源或信息资源）进行未授权的访问，从而使资源在授权范围内使用，决定用户能做什么，也决定代表一定用户利益的程序能做什么。</p>
+<p>未授权访问∶包括未经授权的使用、泄露、修改.销毁信息以及颁发指令等<br>非法用户对系统资源的使用-合法用户对系统资源的非法使用</p>
+<p>作用︰<br>机密性、完整性和可用性</p>
+<h5 id="主体与客体"><a href="#主体与客体" class="headerlink" title="主体与客体"></a>主体与客体</h5><p>主体：</p>
+<p>发起者，是一个主动的实体，可以操作被动实体的相关信息或数据<br>用户、程序、进程等</p>
+<p>客体：</p>
+<p>一种被动实体，被操作的对象，规定需要保护的资源<br>文件、存储介质、程序、进程等</p>
+<p>主体∶接收客体相关信息和数据，也可能改变客体相关信息<br>一个主体为了完成任务，可以创建另外的主体，这些子主体可以在网络上不同的计算机上运行，并由父主体控制它们</p>
+<p>客体∶始终是提供、驻留信息或数据的实体  </p>
+<p>主体和客体的关系是相对的，角色可以互换</p>
+<h5 id="控制策略"><a href="#控制策略" class="headerlink" title="控制策略"></a>控制策略</h5><p>是主体对客体的相关访问规则集合，即属性集合。访问策略体现了一种授权行为，也是客体对主体某些操作行为的默认。</p>
+<p>访问控制是主体依据某些控制策略或访问权限，对客体本身或其资源赋予不同访问权限的能力，从而保障数据资源在合法范围内得以有效使用和管理。</p>
+<p>访问控制安全策略实施遵循最小特权原则。在主体执行操作时，按照主体所需权利的最小化原则分配给主体权力。最大限度地限制主体实施授权行为，避免突发事件、操作错误和未授权主体等意外情况可能给系统造成的危险。</p>
+<h5 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h5><p>规定主体可以对客体执行的操作∶</p>
+<p>读、写、执行、拒绝访问</p>
+<h4 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h4><h5 id="自主访问控制"><a href="#自主访问控制" class="headerlink" title="自主访问控制"></a>自主访问控制</h5><p>自主访问控制(Discretionary Access Control.DAC)是一种广泛应用的访问控制方法。采用这种方法，资源的所有者(往往也是创建者)可以规定谁有权访问他们的资源，用户(或用户进程)可以选择与其他用户共享资源</p>
+<h6 id="访问控制矩阵"><a href="#访问控制矩阵" class="headerlink" title="访问控制矩阵"></a>访问控制矩阵</h6><p>矩阵元素︰规定了相应用户对应于相应的文件被准予的访问许可</p>
+<p><img src="/2022/02/10/NISP/2.4-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>优点：  </p>
+<p>根据主体的身份和访问权限进行决策<br>具有某种访问能力的主体能够自主地将访问权的某个子集授予其它主体<br>灵活性高，被大量采用  </p>
+<p>缺点：</p>
+<p>信息在传递过程中其访问权限关系会被改变</p>
+<h5 id="强制访问控制"><a href="#强制访问控制" class="headerlink" title="强制访问控制"></a>强制访问控制</h5><p>强制访问控制(Mandatory Access Con往01 ，MAC)是指主体和客体都有一个固定的安全属性，系统用该安全属性来决定一个主体是否可以访问某个客体。如果系统认为具有某一个安全属性的主体不适合访问某个客体，那么任何其他主体都无法使该主体具有访问该客体的权利</p>
+<p>主体和客体分配有一个安全属性<br>应用于军事等安全要求较高的系统<br>可与自主访问控制结合使用 </p>
+<h5 id="自主访问控制与强制访问控制的比较"><a href="#自主访问控制与强制访问控制的比较" class="headerlink" title="自主访问控制与强制访问控制的比较"></a>自主访问控制与强制访问控制的比较</h5><p><img src="/2022/02/10/NISP/2.4-2.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="基于角色的访问控制-RBAC"><a href="#基于角色的访问控制-RBAC" class="headerlink" title="基于角色的访问控制 (RBAC)"></a>基于角色的访问控制 (RBAC)</h5><p>RBAC的基本思想是根据用户所担任的角色来决定用户在系统中的访问权限。</p>
+<p>一个用户必须扮演某种角色，而且还必须激活这一角色，才能对一个对象进行访问或执行某种操作。</p>
+<p><img src="/2022/02/10/NISP/2.4-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>特点：  </p>
+<p>便于授权管理（角色的变动远远低于个体的变动)<br>便于处理工作分级，如文件等资源分级管理<br>利用安全约束，容易实现各种安全策略，如最小特权、职责分离等<br>便于任务分担，不同角色完成不同的任务</p>
+<h5 id="什么是访问控制"><a href="#什么是访问控制" class="headerlink" title="什么是访问控制"></a>什么是访问控制</h5><p>在信息系统中，访问控制是为了在系统资源提供最大限度的基础上，对用户的访问权限进行管理，防止对信息的非授权管理和滥用</p>
+<h5 id="访问控制的目的是什么"><a href="#访问控制的目的是什么" class="headerlink" title="访问控制的目的是什么"></a>访问控制的目的是什么</h5><p>对经过身份验证后的合法用户，提供所需要的经过授权的服务，拒绝非法用于越权的服务请求，同时拒绝非法用户非法授权的请求，保证用户在系统安全策略下安全的工作</p>
+<h3 id="2-5-安全审计"><a href="#2-5-安全审计" class="headerlink" title="2.5 安全审计"></a>2.5 安全审计</h3><p>即便是采取了很多方法来保障计算机或网络安全，但仍然不可避免系统感染病毒或数据安全受到威胁。受到威胁后，如何从安全事故中恢复过来，使系统尽快运作起来，需要预先采取一些措施。安全审计是提高安全性的重要工具，它能够再现问题，以帮助事后的责任追查和数据恢复等</p>
+<p>审计技术的出现早于计算机技术，它按照时间顺序产生、记录系统事牛，并对其进行检查。安全审计可以跟踪和监测系统中的异常事件，也可以监视系统中其他安全机制的运行情况</p>
+<h5 id="计算机安全审计"><a href="#计算机安全审计" class="headerlink" title="计算机安全审计"></a>计算机安全审计</h5><p>计算机安全审计(Audit)是指按照一定的安全策略，记录历史操作事件，并利用记录进行分析，发现系统漏洞、入侵行为等，并改善系统性能和安全性的一系列过程。安全审计是对访问控制的必要补充，它会对用户使用何种信息资源、使用的时间，以及如何使用(执行何种操作)进行记录与监控。通过对系统和用户进行充分和适当的审计，能够分析发现安全事件的原因，并提供相应的证据</p>
+<h5 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h5><p>日志是安全审计系统的主要组成部分。为了维护自身系统资源的运行状况，计算机系统一般都会有相应的日志系统，记录有关日常事件或者误操作警报的日期及时间</p>
+<p>受到可疑攻击或安全威胁后，可以通过查看事件安全日志来确认可疑或恶意的行为。例如，通过查看事件日志，发现非工作时间某个用户成功登录账户，则可能有人窃取了账号和口令:日志中有多次登录失败的记录则可能有攻击者尝试进入系统</p>
+<h5 id="主动-被动审计"><a href="#主动-被动审计" class="headerlink" title="主动/被动审计"></a>主动/被动审计</h5><p>安全审计可以分成被动式审计、主动式审计两种。</p>
+<p>被动式审计就是简单地记录一些活动，并不做处理。</p>
+<p>主动式审计一般包括:结束一个登录会话、拒绝一些主机的访问(包括WEB站点，FTP(File Transfer Protocol，文件传输协议)服务器和电子邮件服务器)、跟踪非法活动的源位置等行为。</p>
+<h5 id="安全审计的作用"><a href="#安全审计的作用" class="headerlink" title="安全审计的作用"></a>安全审计的作用</h5><p>(1)威慑和警告潜在的攻击者和滥用授权的合法用户。如果系统使用者知道他们的行为活动被记录在审计日志中，相应人员需要为自己的行为负责，他们就会审慎自己的行为，不太会违反安全策略和绕过安全控制措施</p>
+<p>(2)提供有价值的系统使用日志，帮助系统管理员及时发现系统入侵行为或潜在的系统漏洞。对审计的每一次记录进行分析，可实时发现或预防、检测入侵活动。实时入侵检测审计能及时发现非法授权者对系统的访问，也可以探测到病毒活动和网络攻击</p>
+<p>(3)在发生故障后，可以帮助评估故障损失、重建事件和数据恢复。通过审查系统活动，可以比较容易地评估故障损失，确定故障发生的时间、原因和过程。通过对审计日志进行分析可以帮助重建系统或事件，也能协助恢复数据文件。同时，还有助于避免再次发生此类故障</p>
+<p>(4)对系统控制、安全策略与规程中特定的改变做出评价和反馈，便于修订决策和部署</p>
+<h5 id="什么是安全审计"><a href="#什么是安全审计" class="headerlink" title="什么是安全审计"></a>什么是安全审计</h5><p>按照一定的安全策略，记录历史操作事件，并利用记录进行分析，发现系统漏洞、入侵行为等，并改善系统安全性的一系列的过程，是对访问控制的必要补充，对用户行为的记录和监控，通过对用户、系统行为进行审计，提供相应的安全事件的原因，并提供相应的证据</p>
+<h2 id="第三章-网络安全防护技术"><a href="#第三章-网络安全防护技术" class="headerlink" title="第三章 网络安全防护技术"></a>第三章 网络安全防护技术</h2><h3 id="3-1-网络基础知识"><a href="#3-1-网络基础知识" class="headerlink" title="3.1 网络基础知识"></a>3.1 网络基础知识</h3><h5 id="Internet和TCP-IP协议"><a href="#Internet和TCP-IP协议" class="headerlink" title="Internet和TCP/IP协议"></a>Internet和TCP/IP协议</h5><p>因特网( Internet )通过TCP/IP协议将遍布在全世界各地的计算机互联，从而形成超级计算机网络。</p>
+<h5 id="网络协议模型"><a href="#网络协议模型" class="headerlink" title="网络协议模型"></a>网络协议模型</h5><p><img src="/2022/02/10/NISP/3.1-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/02/10/NISP/3.1-2.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="计算机网络基础…"><a href="#计算机网络基础…" class="headerlink" title="计算机网络基础….."></a>计算机网络基础…..</h5><p>（这个就不写在这了）</p>
+<h3 id="3-2-网络安全威胁"><a href="#3-2-网络安全威胁" class="headerlink" title="3.2 网络安全威胁"></a>3.2 网络安全威胁</h3><p>——网络安全威胁主要来自攻击者对网络及信息系统的攻击。</p>
+<p>——网络嗅探、网络钓鱼、拒绝服务、远程控制、社会工程学</p>
+<p>——网络攻击手段，获得目标计算机的控制权，或获取有价值的数据和信息等。</p>
+<h5 id="网络嗅探"><a href="#网络嗅探" class="headerlink" title="网络嗅探"></a>网络嗅探</h5><p>网络嗅探是通过截获、分析网络中传输的数据而获取有用信息的行为。</p>
+<p>BurpSuite WireShark…</p>
+<h5 id="网络钓鱼"><a href="#网络钓鱼" class="headerlink" title="网络钓鱼"></a>网络钓鱼</h5><p>网络钓鱼是指攻击者利用伪造的网站或欺骗性的电子邮件进行的网络诈骗活动。</p>
+<p>常用手段：</p>
+<p>1.伪造相似域名的网站<br>2.显示IP地址而非域名<br>3.超链接欺骗<br>4.弹出窗口欺骗  </p>
+<h5 id="拒绝服务攻击Dos"><a href="#拒绝服务攻击Dos" class="headerlink" title="拒绝服务攻击Dos"></a>拒绝服务攻击Dos</h5><p>攻击者通过各种非法手段，占据大量的服务器资源，致使服务系统没有其他资源为合法用户提供服务，进而造成合法用户无法访问资源的攻击方式。严重时，导致服务器瘫痪</p>
+<p>1.拒绝服务攻击(Denial of Services , DoS )<br>2.分布式拒绝服务攻击(Distributed Denial of Services，DDoS )<br>3.同步泛洪攻击( Synchronizeflooding , SYN flooding )</p>
+<h5 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h5><p>攻击者通过各种非法手段成功入侵目标主机后，以实现对目标主机的远程控制。</p>
+<h5 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h5><p>社会工程学( Social Engineering ,SE )不是一门科学，而是一门综合运用信息收集，语言技巧、心理陷阱等多种手段，完成欺骗目的的方法。  </p>
+<p>社会工程学的概念是由凯文.米特尼克在其著作的《欺骗的艺术》一书中首次提出</p>
+<h5 id="第一个黑客-凯文-米特尼克"><a href="#第一个黑客-凯文-米特尼克" class="headerlink" title="第一个黑客 凯文.米特尼克"></a>第一个黑客 凯文.米特尼克</h5><p>第一个因入侵计算机系统入狱</p>
+<h3 id="3-3-网络安全防护与实践"><a href="#3-3-网络安全防护与实践" class="headerlink" title="3.3 网络安全防护与实践"></a>3.3 网络安全防护与实践</h3><h5 id="虚拟专用网络VPN"><a href="#虚拟专用网络VPN" class="headerlink" title="虚拟专用网络VPN"></a>虚拟专用网络VPN</h5><p>虚拟专用网络(Virtual Private Network ，VPN)是在公用网络上建立专用网络的技术。</p>
+<p>如：一家遍布世界各地的跨国企业建立企业内部私有网络</p>
+<p>VPN的特点</p>
+<p>1.成本低<br>2.安全性高<br>3.服务质量保证<br>4.可管理性<br>5.可扩展性  </p>
+<p>VPN常用协议</p>
+<p>IPSec协议、安全套接层协议SSL</p>
+<p>VPN的应用</p>
+<p>1.远程访问VPN，适用于企业内部人员流动频繁或远程办公的情况<br>2.内联网VPN，适用于相同企业内部异地互联的情况<br>3.外联网VPN，适用于不同企业之间互联的情况</p>
+<h5 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h5><p>计算机网络中所说的防火墙，是指设置在不同网络(如:可信任的内网和外网或专用网与不可信的共用网)之间的一系列包括软硬件;在内的部件组合。它在内网和外网之间构建一道保护屏障，网络内部和外部之间的所有数据流必须经过防火墙，只有符合安全标准的数据流才能通过防火墙。</p>
+<p>防火墙的功能</p>
+<p>1.数据包过滤<br>2.审计和报警机制<br>3.远程管理<br>4.网络地址转换<br>5.代理<br>6.流量控制、统计分析和流量计费  </p>
+<h3 id="3-4-无线局域网安全防护"><a href="#3-4-无线局域网安全防护" class="headerlink" title="3.4 无线局域网安全防护"></a>3.4 无线局域网安全防护</h3><h5 id="无线局域网安全防护概述"><a href="#无线局域网安全防护概述" class="headerlink" title="无线局域网安全防护概述"></a>无线局域网安全防护概述</h5><p>无线局域网(Wireless Local Area Networks, WLAN)技术可以非常使捷的以无线方式连接网络设备，相对于有线局域网它具有许多优点，如人们可以随时随地的访问网络资源。</p>
+<h5 id="增强无线网络安全性的措施"><a href="#增强无线网络安全性的措施" class="headerlink" title="增强无线网络安全性的措施"></a>增强无线网络安全性的措施</h5><p>1.修改admin密码<br>2.使用无线网络安全协议<br>3.禁用DHCP服务<br>4.禁止SSID广播<br>5.禁止远程管理<br>6.MAC地址过滤<br>7.合理放置无线AP</p>
+<h3 id="3-5-相关实验"><a href="#3-5-相关实验" class="headerlink" title="3.5 相关实验"></a>3.5 相关实验</h3><h5 id="网络管理基本命令"><a href="#网络管理基本命令" class="headerlink" title="网络管理基本命令"></a>网络管理基本命令</h5><p><img src="/2022/02/10/NISP/3.5-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/02/10/NISP/3.5-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/02/10/NISP/3.5-3.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="无线局域网安全配置"><a href="#无线局域网安全配置" class="headerlink" title="无线局域网安全配置"></a>无线局域网安全配置</h5><p><img src="/2022/02/10/NISP/3.5-4.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第四章-操作系统安全防护技术"><a href="#第四章-操作系统安全防护技术" class="headerlink" title="第四章 操作系统安全防护技术"></a>第四章 操作系统安全防护技术</h2><h3 id="4-1-操作系统概述"><a href="#4-1-操作系统概述" class="headerlink" title="4.1 操作系统概述"></a>4.1 操作系统概述</h3><p>世界上第一台计算机诞生于1946年<br>20世纪70年代中期开始出现了计算机操作系统</p>
+<h5 id="操作系统的位置"><a href="#操作系统的位置" class="headerlink" title="操作系统的位置"></a>操作系统的位置</h5><p>面向系统资源<br>——操作系统必须尽可能提高资源利用率  </p>
+<p>面向用户<br>——操作系统必须提供方便易用的用户界面  </p>
+<p><img src="/2022/02/10/NISP/4.1-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="操作系统的定义"><a href="#操作系统的定义" class="headerlink" title="操作系统的定义"></a>操作系统的定义</h5><p>一组控制和管理计算机硬件和软件资源<br>合理地对各类作业进行调度以及方便用户的程序集合直接运行在“裸机”上的最基本的系统软件<br>其他任何软件都必须在操作系统的支持下才能运行  </p>
+<p>可以说操作系统是连接用户和计算机硬件的接口。</p>
+<h5 id="操作系统的特征"><a href="#操作系统的特征" class="headerlink" title="操作系统的特征"></a>操作系统的特征</h5><p>并发、共享、虚拟、异步</p>
+<h5 id="操作系统的作用"><a href="#操作系统的作用" class="headerlink" title="操作系统的作用"></a>操作系统的作用</h5><p>管理系统中的各种资源</p>
+<p>CPU管理、存储管理、设备管理、文件管理、网络与通信管理</p>
+<p>为用户提供良好的界面</p>
+<p>操作系统为用户提供了两种接口∶<br>1.作业控制级接口<br>——联机用户接口<br>——脱机用户接口<br>⒉程序级接口</p>
+<h5 id="操作系统的分类"><a href="#操作系统的分类" class="headerlink" title="操作系统的分类"></a>操作系统的分类</h5><p>按机型分∶大型机、中、小型和微型机<br>按用户数目分∶单用户操作系统和多用户操作系统<br>按功能特征分︰批处理操作系统、实时操作系统、分时操作系统<br>按应用领域划分主要有三种∶桌面操作系统、服务器操作系统和嵌入式操作系统</p>
+<p>按应用领域划分：<br>桌面操作系统  </p>
+<ul>
+<li>Mac oS x、Linux发行版、Windows XP ，Windows Vista ，Windows 7 , Windows 8、Windows 10<br>服务器操作系统  </li>
+<li>Unix系列:IBM-AIX，HP-UX  </li>
+<li>Linux系列: Red Hat Linux ,CentOs ，Ubuntu  </li>
+<li>Windows系列: Windows Server 2003 ,Windows Server2008，Windows Server 2008 R2<br>嵌入式操作系统  </li>
+<li>Android、iOs、Symbian、Windows Phone和BlackBerry os</li>
+</ul>
+<h3 id="4-2-操作系统的安全威胁"><a href="#4-2-操作系统的安全威胁" class="headerlink" title="4.2 操作系统的安全威胁"></a>4.2 操作系统的安全威胁</h3><p>漏洞威胁、恶意代码威胁、端口扫描威胁</p>
+<h5 id="漏洞威胁"><a href="#漏洞威胁" class="headerlink" title="漏洞威胁"></a>漏洞威胁</h5><h5 id="漏洞"><a href="#漏洞" class="headerlink" title="漏洞"></a>漏洞</h5><p>系统漏洞，也可以称为系统脆弱性，是指计算机系统在硬件、软件、协议的设计、具体实现以及系统安全策略上存在的缺陷和不足。</p>
+<p>漏洞的特性</p>
+<p>1.漏洞的事件局限性<br>⒉漏洞的广泛性<br>3.漏洞的隐蔽性<br>4.漏洞的被发现性  </p>
+<p>漏洞产生的原因</p>
+<p>1、程序逻辑结构设计不合理，不严谨<br>2、除了程序逻辑结构设计漏洞之外，程序设计错误漏洞也是一个重要因素<br>3、由于目前硬件无法解决特定的问题，使编程人员只得通过软件设计来表现出硬件功能而产生的漏洞</p>
+<p>漏洞的生命周期</p>
+<p>漏洞生命周期的定义︰漏洞从客观存在到被发现、利用，到大规模危害和逐渐消失，这期间存在一个生命周期，概周期被称为漏洞生命周期</p>
+<p><img src="/2022/02/10/NISP/4.2-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>系统漏洞的防范</p>
+<p>1.提升防火墙技术<br>2.加强病毒防范措施<br>3.注重漏洞扫描技术的应用<br>4.强化端口解析以及加强数据备份工作   </p>
+<p>漏洞扫描</p>
+<p>漏洞扫描是对计算机系统或其他网络设备进行相关检测，找出安全隐患和可以被攻击者利用的漏洞。 </p>
+<p>漏洞扫描的必要性</p>
+<p>防火墙的局限性和脆弱性<br>针对IDS的逃避技术<br>网络隐患扫描系统浮出水面  </p>
+<p>扫描工具的选择</p>
+<p>1、漏洞库中的漏洞数量<br>2、扫描工具的易用性<br>3、是否可以生成漏洞报告<br>4、对于漏洞修复行为的分析和建议<br>5、安全性<br>6、工具的性能及价格  </p>
+<h5 id="恶意代码威胁"><a href="#恶意代码威胁" class="headerlink" title="恶意代码威胁"></a>恶意代码威胁</h5><p>恶意代码的定义</p>
+<p>恶意代码(Unwanted Code )是指故意编制或设置的、对网络或系统会产生威胁或潜在威胁的计算机代码。</p>
+<p>恶意代码的攻击机制</p>
+<p><img src="/2022/02/10/NISP/4.2-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>常见的恶意代码</p>
+<p>病毒、木马、蠕虫</p>
+<h5 id="计算机病毒-Computer-Virus-CV"><a href="#计算机病毒-Computer-Virus-CV" class="headerlink" title="计算机病毒( Computer Virus,CV )"></a>计算机病毒( Computer Virus,CV )</h5><p>指编制或者在计算机程序中插入的破坏计算机功能或者破坏数据，影响计算机使用并且能够自我复制的一组计算机指令或者程序代码</p>
+<p>计算机病毒的特性</p>
+<p>寄生性、传染性、潜伏性、隐蔽性、破坏性、可触发性</p>
+<p>计算机病毒的危害</p>
+<p>1、破坏操作系统的处理器管理功能<br>2、破坏操作系统的文件管理功能<br>3、破坏操作系统的存储管理功能<br>4、直接破坏计算机系统的硬件功能</p>
+<p>计算机病毒的表现</p>
+<p>机器不能正常启动<br>运行速度降低<br>内存空间迅速减小<br>文件内容和长度有所改变<br>经常出现“死机”现象<br>外部设备工作异常  </p>
+<p>计算机病毒的传播途径</p>
+<p>电脑的硬件设备、移动存储设备、计算机网络</p>
+<p>计算机病毒的防范</p>
+<p>1.建立良好的安全习惯<br>2.关闭或删除系统中不需要的服务<br>3.经常升级安全补丁<br>4.使用复杂的密码<br>5.迅速隔离受感染的计算机<br>6.了解一些病毒知识<br>7.最好安装专业的杀毒软件进行全面监控<br>8.用户还应该安装个人防火墙软件进行防黑<br>9.安全管理类软件</p>
+<h5 id="计算机木马"><a href="#计算机木马" class="headerlink" title="计算机木马"></a>计算机木马</h5><p>木马(Trojan )一词来源于希腊神话“特洛伊木马”，在计算机领域延伸为利用计算机程序漏洞侵入后窃取他人文件、财产与隐私的程序称为木马。计算机木马是一种后门程序，常被黑客用作控制远程计算机的工具。</p>
+<p>木马的组成</p>
+<p>一个完整的木马系统是由硬件部分、软件部分和具体连接部分组成<br>1.硬件部分<br>建立木马连接所必须的硬件实体<br>2.软件部分<br>实现远程控制所必须的软件程序<br>3.具体连接部分<br>通过INTERNET在服务端和控制端之间建立一条木马通道所必须的元素</p>
+<p>木马的传播</p>
+<p>1、通过电子邮件的附件传播<br>2、通过下载文件传播<br>3、通过网页传播<br>4、通过聊天工具传播</p>
+<p>木马的种类</p>
+<p>1.网络游戏木马<br>2.网银木马<br>3.即时通讯软件木马<br>4.网页点击类木马<br>5.下载类木马<br>6.代理类木马<br>7、隐藏类木马<br>8、FTP木马</p>
+<p>木马的危害</p>
+<p>1、盗取我们的网游账号，威胁我们的虚拟财产的安全<br>2、盗取我们的网银信息，威胁我们的真实财产的安全<br>3、利用即时通讯软件盗取我们的身份，传播木马病毒<br>4、给我们的电脑打开后门，使我们的电脑可能被黑客控制</p>
+<p>防治木马的措施</p>
+<p>第一，安装杀毒软件和个人防火墙，并及时升级<br>第二，把个人防火墙设置好安全等级，防止未知程序向外传送数据<br>第三，可以考虑使用安全性比较好的浏览器和电子邮件客户端工具<br>第四，如果使用IE浏览器，应该安装安全浏览器，防止恶意网站在自己电脑上安装不明软件和浏览器插件，以免被木马趁机侵入</p>
+<h5 id="蠕虫-Wrom"><a href="#蠕虫-Wrom" class="headerlink" title="蠕虫(Wrom)"></a>蠕虫(Wrom)</h5><p>蠕虫病毒是一种常见的计算机病毒。它是利用网络进行复制和传播，传染途径是通过网络和电子邮件。</p>
+<p>蠕虫病毒和普通病毒的区别</p>
+<p><img src="/2022/02/10/NISP/4.2-3.png" srcset="/img/loading.gif" lazyload></p>
+<p>蠕虫的基本程序结构</p>
+<p>传播模块∶负责蠕虫的传播<br>传播模块又可以分为三个基本模块∶扫描模块、攻击模块和复制模块  </p>
+<p>隐藏模块∶侵入主机后，隐藏蠕虫程序，防止被用户发现。  </p>
+<p>目的功能模块∶实现对计算机的控制、监视或破坏等功能。</p>
+<p>蠕虫的传播过程</p>
+<p>扫描︰由蠕虫的扫描功能模块负责探测存在漏洞的主机。当程序向某个主机发送探测漏洞的信息并收到成功的反馈信息后，就得到一个可传播的对象</p>
+<p>攻击:攻击模块按漏洞攻击步骤自动攻击步骤1中找到的对象，取得该主机的权限（一般为管理员权限），获得一个shell</p>
+<p>复制∶复制模块通过原主机和新主机的交互将蠕虫程序复制到新主机并启动</p>
+<p>蠕虫病毒的特点</p>
+<p>1、较强的独立性<br>2、利用漏洞主动攻击<br>3、传播更快更广</p>
+<p>蠕虫病毒的防范</p>
+<p>1、安装正版杀毒软件、个人防火墙等，并及时升级，上网时打开杀毒软件实时监控功能<br>2、使用“安全漏洞扫描”软件，弥补操作系统和应用程序的漏洞<br>3、不浏览不良网站，不随意下载安装可疑插件<br>4、不接收QQ、MSN、E-mail等传来的可疑文件和连接</p>
+<h5 id="端口扫描威胁"><a href="#端口扫描威胁" class="headerlink" title="端口扫描威胁"></a>端口扫描威胁</h5><p>端口扫描通常指对目标计算机的所有端口发送同一信息，然后根据返回端口状态来分析目标计算机的端口是否打开或可用</p>
+<p>端口扫描的目的</p>
+<p>1.判断目标主机上开放了哪些服务<br>2.判断目标主机的操作系统</p>
+<p>扫描器</p>
+<p>扫描器是一种自动检测远程或本地主机安全性弱点的程序，通过使用扫描器你可一不留痕迹的发现远程服务器的各种TCP端口的分配及提供的服务和它们的软件版本!这就能让我们间接的或直观的了解到远程主机所存在的安全问题</p>
+<p>为什么需要扫描器</p>
+<p>1、由于网络技术的飞速发展，网络规模迅速增长和计算机系统日益复杂，导致新的系统漏洞层出不穷<br>2、由于系统管理员的疏忽或缺乏经验，导致有的漏洞依然存在<br>3、许多人出于好奇或别有用心，不停地窥视网上资源</p>
+<p>扫描器的功能</p>
+<p>1、扫描目标主机识别其工作状态（开/关机)<br>2、识别目标主机端口的状态（监听/关闭)<br>3、识别目标主机系统及服务程序的类型和版本<br>4、根据已知漏洞信息，分析系统脆弱点<br>5、生成扫描结果报告</p>
+<h5 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h5><p>常见的服务端口有哪些?  </p>
+<p>HTTP是80;FTP是21;TELNET是23;远程桌面是3389等等。</p>
+<p>根据木马特点，如何应对木马攻击?</p>
+<p>木马的检测和查杀，除了依靠杀毒软件和安全防护软件等常用手段外。还可以通过全面检测系统的注册表、文件、网络连接、运行的进程等实现人工的分析。</p>
+<h3 id="4-3-操作系统安全防护"><a href="#4-3-操作系统安全防护" class="headerlink" title="4.3 操作系统安全防护"></a>4.3 操作系统安全防护</h3><h5 id="安全防护策略"><a href="#安全防护策略" class="headerlink" title="安全防护策略"></a>安全防护策略</h5><p>制定操作系统安全策略<br>关闭不必要的服务<br>关闭不必要的端口<br>开启审核策略<br>开启密码策略</p>
+<h5 id="补丁程序"><a href="#补丁程序" class="headerlink" title="补丁程序"></a>补丁程序</h5><p>分类</p>
+<p>一，“高危漏洞”的补丁<br>二，软件安全更新的补丁<br>三，可选的高危漏洞补丁<br>四，其他及功能性更新补丁<br>五，无效补丁</p>
+<h5 id="终端防护软件"><a href="#终端防护软件" class="headerlink" title="终端防护软件"></a>终端防护软件</h5><p>这里所说的防护软件一般是指计算机病毒防护软件。也就是我们常说的病毒防护软件或者杀毒软件</p>
+<p>终端防护软件的一些常识</p>
+<p>1.杀毒软件不可能查杀所有病毒<br>⒉.杀毒软件能查到的病毒，不一定能杀掉<br>3.一台电脑每个操作系统下不必同时安装两套或两套以上的杀毒软件<br>4.杀毒软件对被感染的文件杀毒有多种方式∶1清除，2删除，3禁止访问，4隔离，5不处理</p>
+<h5 id="个人防火墙-Personal-FireWall-，PFW"><a href="#个人防火墙-Personal-FireWall-，PFW" class="headerlink" title="个人防火墙(Personal FireWall ，PFW)"></a>个人防火墙(Personal FireWall ，PFW)</h5><p>不需要特定的网络设备，用户在计算机上安装即可，可以设置特定的规则组织来自外部网络的攻击保护操作系统的安全  </p>
+<p>通俗的讲，个人电脑上的带网络防护的杀毒软件、个人防火墙软件、windows或linux系统自带的防火墙，都算是个人防火墙</p>
+<p>防火墙的功能</p>
+<p>能过滤不安全的服务和非法用户,防止未授权的用户访问内部网络<br>能控制对内部网络的访问权，根据用户的安全策略，允许内部网络的一部分主机被外部网络访问，而另一部分被很好地保护<br>能对网络安全进行监控</p>
+<p>防火墙的分类</p>
+<p>按构件的性质<br>可以分为软件、硬件和芯片级防火墙三类</p>
+<p>按被应用部署的位置<br>可以分为边界、个人和混合防火墙三类</p>
+<p>按性能<br>可以分为百兆级和千兆级防火墙两类</p>
+<p>按采用的技术<br>可以分为包过滤、状态检测和应用代理三类</p>
+<h5 id="相关问题-1"><a href="#相关问题-1" class="headerlink" title="相关问题"></a>相关问题</h5><p>简述个人防火墙的优缺点  </p>
+<p>优点∶成本低，不需要额外的硬件源，可以抵挡内部的攻击<br>缺点:个人防火墙主要的缺点是对公共网络只有一个物理接口，个人防火墙本身可能会容易受到威胁</p>
+<h3 id="4-4-相关实验"><a href="#4-4-相关实验" class="headerlink" title="4.4 相关实验"></a>4.4 相关实验</h3><p><img src="/2022/02/10/NISP/4.4-1.png" srcset="/img/loading.gif" lazyload></p>
+<p>（同Linux系统命令设置）</p>
+<h2 id="第五章-应用与数据安全"><a href="#第五章-应用与数据安全" class="headerlink" title="第五章 应用与数据安全"></a>第五章 应用与数据安全</h2><h3 id="5-1-浏览器安全"><a href="#5-1-浏览器安全" class="headerlink" title="5.1 浏览器安全"></a>5.1 浏览器安全</h3><h5 id="服务器端和客户端"><a href="#服务器端和客户端" class="headerlink" title="服务器端和客户端"></a>服务器端和客户端</h5><p>服务器端、客户端</p>
+<h5 id="C-S架构"><a href="#C-S架构" class="headerlink" title="C/S架构"></a>C/S架构</h5><p>客户端/服务器结构(Client/Server，简称为C/S结构)是一种软件系统的体系结构。</p>
+<p>此结构中客户端程序和服务器端程序通常分布于两台计算机上，客户端程序的任务是将用户的要求提交给服务器端程序，再将服务器端程序返回的结果以特定的形式显示给用户。</p>
+<p>服务器端程序的任务是接收客户端程序提出的服务请求，并进行相应的处理，再将结果返回给客户端程序。</p>
+<h5 id="B-S架构"><a href="#B-S架构" class="headerlink" title="B/S架构"></a>B/S架构</h5><p>浏览器/服务器结构(Browser/Server，简称为B/S结构）中终端用户不需要安装专门的软件，只需要安装浏览器即可。</p>
+<p>这种结构将系统功能的核心部分集中到服务器上。</p>
+<h5 id="浏览器安全措施"><a href="#浏览器安全措施" class="headerlink" title="浏览器安全措施"></a>浏览器安全措施</h5><p>删除和管理Cookies、删除浏览器历史纪录、禁用ActiveX控件</p>
+<h6 id="删除和管理Cookies"><a href="#删除和管理Cookies" class="headerlink" title="删除和管理Cookies"></a>删除和管理Cookies</h6><p>Cookie是指网站放置在个人计算机上的小文件，用于存储用户信息和用户偏好的资料。Cookie可以记录用户访问某个网站的账户和口令，从而避免每次访问网站时都需要使用输入账户和口令登录</p>
+<p>Cookie给用户访问网站带来便利的同时，也存在一些安全隐患。因为Cookie中保存的信息中常含有一些个人隐私信息，如果攻击者获取这些Cookie信息，就会危及个人隐私安全。所以在公用计算机上使用浏览器后需删除Cookie信息</p>
+<h6 id="删除浏览器历史纪录"><a href="#删除浏览器历史纪录" class="headerlink" title="删除浏览器历史纪录"></a>删除浏览器历史纪录</h6><p>浏览历史记录是在用户浏览网页时，由浏览器记住并存储在计算机中的信息</p>
+<p>这些信息包括输入表单的信息、口令和访问的网站等，方便用户再次使用浏览器访问网站  </p>
+<p>如果用户使用公用计算机上网，而且不想让浏览器记住用户的浏览数据，用户可以有选择地删除浏览器历史记录</p>
+<h6 id="禁用ActiveX控件"><a href="#禁用ActiveX控件" class="headerlink" title="禁用ActiveX控件"></a>禁用ActiveX控件</h6><p>ActiveX控件是一些嵌入在网页中的小程序，网站可以使用这类小程序提供视频和游戏等内容  </p>
+<p>浏览网站服务器时，用户还可以使用这些小程序与工具栏和股票行情等内容进行交互  </p>
+<p>但是，ActiveX控件会导致一些安全隐患，攻击者可以使用ActiveX控件向用户提供不需要的服务  </p>
+<p>某些情况下，这些程序还可以用来收集用户计算机的个人信息、破坏计算机的信息，或者在未获取用户同意的情况下安装恶意软件  </p>
+<h5 id="相关问题-2"><a href="#相关问题-2" class="headerlink" title="相关问题"></a>相关问题</h5><p>C/S模式和B/S模式的区别是什么?</p>
+<p>C/S模式就是客户端(client)/服务器(server)模式，客户端的电脑也可以参与整个系统的事务处理，可以处理一些不需要服务器处理的事务<br>B/S模式就是浏览器(brower)/服务器(server)模式，浏览器端只能通过浏览程序（I正E等）访问服务器，显示服务器提供的信息，整个系统的事务处理都要由服务器来完成</p>
+<h3 id="5-2-网络金融交易安全"><a href="#5-2-网络金融交易安全" class="headerlink" title="5.2 网络金融交易安全"></a>5.2 网络金融交易安全</h3><p>网上金融交易是指用户通过因特网完成各种网络金融服务和网络电子商务支付。网络金融服务包括账户开户、查询、对帐、行内转账、跨行转账、信贷、网上证券、投资理财等服务项目，用户可以是不出户就完成各种金融业务<br>网络电子商务支付可以使用银行卡或者第三方支付平台完成网络购物，如购买飞机票和火车票等<br>为保障安全，网上金融交易一般不采用简单的账户/口令的验证方式来识别用户身份，多采取双因素身份认证识别用户身份，只有通过身份认证的用户才能通过网络完成各种转账、支付等操作</p>
+<h5 id="网上金融交易常用的安全措施"><a href="#网上金融交易常用的安全措施" class="headerlink" title="网上金融交易常用的安全措施"></a>网上金融交易常用的安全措施</h5><p>U盾(USB-Key)、手机短信验证、口令卡、采用安全超文本传输协议</p>
+<h5 id="U盾-USB-Key"><a href="#U盾-USB-Key" class="headerlink" title="U盾(USB-Key)"></a>U盾(USB-Key)</h5><p>U盾是用于网上电子银行签名和数字认证的工具，它内置微型智能卡处理器，采用非对称加密体制对网上数据进行加密、解密和数字签名<br>用户选择使用U盾后，所有涉及资金对外转移的网银操作，都必须使用U盾才能完成<br>使用U盾时，除了需要将U盾插入计算机，还需要输入设置的口令才能完成身份认证</p>
+<h5 id="手机短信验证"><a href="#手机短信验证" class="headerlink" title="手机短信验证"></a>手机短信验证</h5><p>用户向网络金融交易平台发出交易请求后，网络金融平台通过短信向用户绑定的手机号码发出一次性口令，只有在输入正确的用户口令和短信验证口令后，整个交易才能被确认并完成</p>
+<h5 id="口令卡"><a href="#口令卡" class="headerlink" title="口令卡"></a>口令卡</h5><p>口令卡相当于一种动态的电子银行口令<br>口令卡上以矩阵的形式印有若干字符串，用户在使用电子银行进行对外转账、缴费等支付交易时，电子银行系统就会随机给出一组口令卡坐标用户根据坐标从卡片中找到口令组合并输入<br>只有口令组合输入正确时，用户才能完成相关交易<br>这种口令组合是动态变化的，用户每次使用时输入的口令都不一样，交易结束后即失效，从而防止攻击者窃取用户口令  </p>
+<h5 id="安全超文本传输协议"><a href="#安全超文本传输协议" class="headerlink" title="安全超文本传输协议"></a>安全超文本传输协议</h5><p>安全超文本传输协议是以安全为目标的HTTP通道协议（ Hyper TextTransfer Protocol over Secure Socket Layer,HTTPS),是HTTP协议的安全版<br>HTTPS协议提供了身份验证与加密通信的方法，广泛用于因特网上安全敏感的通信，例如银行网站登录采用的是HTTPS方式，该安全协议可以很大程度上保障用户数据传输的安全</p>
+<h3 id="5-3-电子邮件安全"><a href="#5-3-电子邮件安全" class="headerlink" title="5.3 电子邮件安全"></a>5.3 电子邮件安全</h3><p>随着电子邮件的广泛应用，电子邮件面临的安全威胁越来越多。这些威胁包括邮件地址欺骗、垃圾邮件、邮件病毒、邮件炸弹、邮件拦截、邮箱用户信息泄露等</p>
+<h5 id="电子邮件安全威胁"><a href="#电子邮件安全威胁" class="headerlink" title="电子邮件安全威胁"></a>电子邮件安全威胁</h5><h6 id="邮件地址欺骗"><a href="#邮件地址欺骗" class="headerlink" title="邮件地址欺骗"></a>邮件地址欺骗</h6><p>邮件地址欺骗是黑客攻击和垃圾邮件制造者常用的方法。由于在SMTP协议中，邮件发送者可以指定SMTP发送者的发送账户、发送账户的显示名称、SMTP服务器域名等信息，如果接收端未对这些信息进行认证就可能放过一些刻意伪造的邮件。攻击者可以通过自行搭建SMTP服务器来发送伪造地址的邮件。目前，正规的邮件服务器都有黑名单和反向认证等机制，如检查邮件来源IP、检查邮件发送域、反向DNS查询、登录验证等。伪造邮件一般很难通过严格设置的邮件服务器，但用户还是要对邮件内容涉及敏感信息的邮件来源保持高度警惕</p>
+<h6 id="垃圾邮件"><a href="#垃圾邮件" class="headerlink" title="垃圾邮件"></a>垃圾邮件</h6><p>垃圾邮件是指未经用户许可就强行发送到用户邮箱的电子邮件。垃圾邮件一般具有批量发送的特征，其内容包括赚钱信息、成人广告、商业或个人网站广告、电子杂志、连环信等。垃圾邮件可以分为良性和恶性的。良性垃圾邮件是对收件人影响不大的信息邮件，例如各种宣传广告﹔恶性垃圾邮件是指具有破坏性的电子邮件，例如携带恶意代码的广告</p>
+<h6 id="邮件病毒"><a href="#邮件病毒" class="headerlink" title="邮件病毒"></a>邮件病毒</h6><p>邮件病毒和普通病毒在功能上是一样的，它们主要是通过电子邮件进行传播，因此被称为邮件病毒。一般通过邮件附件发送病毒接收者打开邮件，运行附件会使计算机中病毒</p>
+<h6 id="邮件炸弹"><a href="#邮件炸弹" class="headerlink" title="邮件炸弹"></a>邮件炸弹</h6><p>邮件炸弹指邮件发送者利用特殊的电子邮件软件，在很短的时间内连续不断地将邮件发送给同一收信人，由于用户邮箱存储空间有限，没有多余空间接收新邮件，新邮件将会丢失或被退回，从而造成收件人邮箱功能瘫痪。同时，邮件炸弹会大量消耗网络资源，常常导致网络阻塞，严重时可能影响到大量用户邮箱的使用</p>
+<h5 id="电子邮件安全防护技术"><a href="#电子邮件安全防护技术" class="headerlink" title="电子邮件安全防护技术"></a>电子邮件安全防护技术</h5><p>垃圾邮件过滤技术、邮件加密和解密</p>
+<h6 id="垃圾邮件过滤技术"><a href="#垃圾邮件过滤技术" class="headerlink" title="垃圾邮件过滤技术"></a>垃圾邮件过滤技术</h6><p>垃圾邮件过滤技术是应对垃圾邮件问题的有效手段之一。实时黑白名单过滤和智能内容过滤两种垃圾邮件过滤技术  </p>
+<p>黑白名单过滤</p>
+<p>黑白名单过滤采用最简单直接的方式对垃圾邮件进行过滤。由用户手动添加需要过滤的域名、发信人或发信IP地址等。对于常见的广告型垃圾邮件，此方法的防范效果较为明显。但此种方式属于被动防御，需要大量手工操作，每次需要对黑白名单手工添加</p>
+<p>内容过滤</p>
+<p>内容过滤主要针对邮件标题、邮件附件文件名和邮件附件大小等选项设定关键值。当邮件标题，邮件附件文件名和邮件附件大小等选项被认为是垃圾邮件，邮件系统就会将其直接删除</p>
+<h6 id="邮件加密和解密"><a href="#邮件加密和解密" class="headerlink" title="邮件加密和解密"></a>邮件加密和解密</h6><p>未经加密的邮件很容易被不怀好意的偷窥者看到，如果对带有敏感信息的邮件进行加密和签名，就可以大大提高安全性  </p>
+<p>用于电子邮件加密和签名的软件有许多，GnuPG ( GNU Privacy Guard)是其中常见的一种开源软件  </p>
+<p>GnuPG是一个基于RSA公钥密码体制的邮件加密软件，可以加密邮件以防止非授权者阅读，同时还可以对邮件加上数字签名，使收信人可以确认邮件发送者，并确认邮件没有被篡改  </p>
+<h3 id="5-4-数据安全"><a href="#5-4-数据安全" class="headerlink" title="5.4 数据安全"></a>5.4 数据安全</h3><p>数据备份、数据恢复、数据加密、数据删除</p>
+<h5 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h5><p>在系统运行和维护的过程中，常会有一些难以预料的因素导致数据丢失，如天灾人祸、硬件毁损、操作失误等。为确保数据的安全性，需对数据进行备份  </p>
+<p>数据备份是容灾的基础，是为防止系统出现操作失误或系统故障导致数据丢失，而将全部或部分数据集合，从应用主机的硬盘或阵列复制到其它异地存储介质或移动硬盘的过程  </p>
+<p>数据备份方式</p>
+<p>数据备份的方式有多种，传统方式是采用内置或外置的磁带机进行冷备份  </p>
+<p>备份后的磁带机数据保存在安全的位置，这种备份方式恢复数据的时间很长。随着技术的不断发展，海量数据的增加，不少企业开始采用网络备份。网络备份一般通过专业的数据存储管理软件结合相应的硬件和存储设备来实现  </p>
+<p>随着云计算和云技术的发展，越来越多人们常使用云备份的方式来保存重要资料。个人和企业可以将重要数据备份到云服务器上，需要使用时，从云服务器上下载到本地使用  </p>
+<h5 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h5><p>人们在日常生活和工作中会经常遇到数据丢失的情况，比如U盘误格式化、误删除某个文件、计算机硬件出现故障等，因此数据恢复引起越来越多地关注和重视。了解数据恢复原理并掌握一些常用的数据恢复工具，可以恢复各种丢失的数据，挽回用户的损失  </p>
+<p>如果不慎删除硬盘分区信息或者误格式化硬盘，造成系统信息区破坏，无法读取数据资料，首先应关机，不要轻易对硬盘数据资料进行写操作，否则会增加数据恢复的难度。重新开机后，再使用数据恢复工具恢复硬盘上的数据 </p>
+<p>数据恢复方式</p>
+<p>EasyRecovery是一款常用的数据恢复工具，当硬盘受病毒影响、格式化分区、误删除、断电或瞬间电流冲击造成的数据毁坏、程序的非正常操作或系统故障造成的数据毁坏等意外操作时，它可以帮助用户恢复丢失的数据以及重建文件系统  </p>
+<p>EasyRecovery不会向用户的原始驱动器写入任何数据，它的工作原理是在内存中重建文件分区表，然后将数据安全地传输到其他驱动器中。使用数据恢复软件找回数据文件的前提是硬盘中还保留有误删除文件的信息和数据块。当用户误删除文件或者误格式化U盘后，不要在该分区中写入任何文件，否则这些需要恢复的数据就有可能被写入的数据覆盖，恢复数据的难度就会加大。因此，为了恢复误删除的数据，就不能对要修复的分区或硬盘进行新的读写操作</p>
+<h5 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h5><p>数据加密是保护数据安全的主要手段之一，可以避免用户在传输或存储重要信息过程中，被第三方窃取信息。常见的数据加密工具可以分为硬件加密和软件加密  </p>
+<p>硬件加密工具直接通过硬件单元，如利用USB接口或者计算机并行口等对数据进行加密，加密后可以有效地保护用户信息、隐私或知识产权  </p>
+<p>软件加密工具主要有文件加密工具、光盘加密工具和磁盘加密工具。</p>
+<p>对单个文件或文件夹进行加密的工具有很多<br>例如，ZIP和RAR等压缩包可以用来加密大文件，压缩时可以设置密码，获取压缩包内的内容需要输入正确的口令才能解压。wPS.Word、PPT、PDF等也可以通过设置口令的方式来加密文件。光盘加密工具可以防止光盘数据被复制，可采用的方法很多。用户可以给光盘添加密码<br>例如，SecureBurn软件可以在正式刻录之前对光盘进行密码保护，然后通过软件内置的刻录功能即可直接获得有密码保护的光盘。用户也可以让文件只能在光盘中运行<br>又如，CD-Protector制作的加密光盘，他人无法通过直接复制文件获得光盘中的重要文件，即使把文件复制到硬盘再运行也会出现出错提示信息而不能使用。光盘加密工具可以对镜像文件进行可视化修改，隐藏光盘镜像文件。此外，还可以放大一般的文件，将普通目录改成文件目录，由此保护光盘中的机密文件和有关隐私的信息。磁盘加密工具则是对磁盘数据进行加密</p>
+<p>磁盘加密工具</p>
+<p>( 1 ) PGPDisk，该软件是美国PGP公司开发的PGP系列安全软件中的一个套件，它的核心思想是通过建立虚拟磁盘来存放并保护加密数据。用户在使用虚拟磁盘文件时需要输入口令，所有存放在虚拟磁盘中的文件都是加密的。如果用户不需要这个虚拟磁盘，可以删除  </p>
+<p>( 2 ) TrueCrypt，这是一款免费开源的加密软件，同时支持多种操作系统。该软件通过在计算机上产生一个或几个虚拟盘来存放敏感数据，每个虚拟磁盘使用高强度密码算法进行加解密，加解密过程全部自动实现，用户只要输入正确的口令，就能读取这些文件，否则不能读取数据</p>
+<p>为了数据安全，加密数据时应尽量保证︰</p>
+<p>(1)加密过程足够强壮并覆盖整个磁盘，包括剩余空间、交换文件等<br>(2)加密密钥足够长，能够抵御暴力破解攻击<br>(3 ）加密密钥自身的机密性能够得到保障，例如用于加密磁盘的密钥从不存储在被加密保护的磁盘中  </p>
+<p>除了采用数据加密保证数据的保密性，用户还可以通过对数据文件添加数字签名来保证数据文件的完整性和真实性，防止数据被篡改或伪造，也可避免可能存在的欺骗和抵赖。一些应用软件可以对数据文件进行签名，如Word、邮件客户端Foxmail等。</p>
+<h5 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h5><p>硬盘等存储介质作为数据存储和交换的媒体，在日常工作中使用频繁。这些介质的处置不当，往往使得不法分子有机会通过对存储介质进行数据恢复来窃取曾经存储的重要数据，导致涉密，这成为了信息安全的重要隐患。因此，如何彻底删除计算机数据，防止信息泄露，已成为当今信息安全技术的一个重要研究内容  </p>
+<p>在Windows系统中，系统的文件删除命令是“delete”，使用“delete删除文件以后，文件并没有真正删除，而是被移动到一个称为“回收站”的系统目录中，除非回收站满，或使用“shift+delete”组合键来删除，或当清空回收站时，才真正删除了文件。由于Windows操作系统只考虑了由操作系统本身对系统资源存取，因此无论是在文件分配表(FileAllocation Table ，FAT)还是新技术文件系统(New Technology FileSystem，NTFS)下，操作系统刷除文件的标准都是“对操作系统不可见”，事实上，只是对文件的目录作了删除标记，保证了文件在删除前所占用的空间确实得到释放，而文件实际存放在数据区的内容毫无改变。从以上原理可知，只要数据区没有被破坏，数据就没有完全删除，就存在被恢复的可能  </p>
+<h6 id="硬销毁"><a href="#硬销毁" class="headerlink" title="硬销毁"></a>硬销毁</h6><p>数据硬销毁即破坏性销毁，是指采用物理破坏或化学腐蚀的方法把记录涉密数据的物理载体完全破坏掉，从而从根本上删除数据的销毁方式，是对保护数据不被恢复的安全、彻底的方法。数据硬销毁可分为物理销毁和化学销毁两种方式。</p>
+<p>物理销毁又可分为消磁、熔炉中焚化和熔炼、借助外力粉碎及研磨磁盘表面等方法。物理销毁方法费时、费力，一般只适用于保密要求较高的场合。</p>
+<p>化学销毁是指采用化学药品（比如高腐蚀性的浓盐酸和浓硫酸等腐蚀、溶解、活化及剥离磁盘记录表面的数据销毁方法。化学销毁方法只能由专业人员在特定场所中进行。</p>
+<p>####### 软销毁</p>
+<p>软清除即逻辑销毁，是指通过软件编程实现对数据及其相关信息的反复覆盖擦除，达到不可恢复的安全删除目的，一般情况下，认为低级格式化以后，数据恢复的可能性依然存在</p>
+<p>要保证安全，必须通过多次写入新数据来覆盖旧数据才能真正达到数据安全删除的目的。数据软销毁通常采用数据覆写法。数据覆写是将非保密数据写入以前存有敏感数据的硬盘簇的过程，其技术原理是依据硬盘上的数据都是以二进制的“1”和“O”形式存储的，而使用预先定义的无意义、无规律的信息反复多次覆盖硬盘上原先存储的数据，就无法知道原先的数据，也就达到了销毁数据的目的</p>
+<p>由于经过数据覆写法处理后的硬盘可以循环使用，适用于密级要求不是很高的场合，特别是需要对某一具体文件进行销毁而其他文件不能破坏时，这种方法更为实用。</p>
+<p>现在常见的数据销毁软件，例如BCWipe,Eraser等，主要是针对文件、剩余空间和物理磁盘的销毁。所采用的方式都是通过软件对磁盘进行相应的覆写。数据覆写技术犹如碎纸机，是安全、经济的数据软销毁方式之一。</p>
+<h3 id="5-5-账户口令安全"><a href="#5-5-账户口令安全" class="headerlink" title="5.5 账户口令安全"></a>5.5 账户口令安全</h3><h5 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h5><p>暴力破解又称口令穷举，就是通过计算机对所有可能的口令组合进行穷举尝试。如果攻击者已知用户账户，用户的口令又比较简单，例如简单的数字组合，攻击者使用暴力破解工具可以很快破译口令。因此在一些安全性较高的系统，如网银系统，会限制口令的输入次数，降低暴力破解口令的成功率</p>
+<h5 id="键盘记录木马"><a href="#键盘记录木马" class="headerlink" title="键盘记录木马"></a>键盘记录木马</h5><p>如果用户的计算机被植入键盘记录木马，当用户通过键盘输入口令时，键盘记录木马程序会记住用户输入的口令，然后木马程序通过自带邮件发送功能把记录的口令发送到攻击者指定的邮箱</p>
+<h5 id="屏幕快照木马"><a href="#屏幕快照木马" class="headerlink" title="屏幕快照木马"></a>屏幕快照木马</h5><p>如果用户的计算机被植入屏幕快照木马，木马程序会通过屏幕快照将用户的登录界面连续保存为两张黑白图片，然后通过自带的发信模块将图片发送到指定邮箱。攻击者通过对照图片中鼠标的点击位置，就能破译出用户账号和口令</p>
+<p>用户在设置账户的口令时，应遵循以下原则∶<br>严禁使用空口令<br>严禁使用与账号相同或相似的口令<br>不要设置简单字母和数字组成的口令(如password1)<br>不要设置短于6个字符或仅包含字母或数字的口令<br>不要使用与个人有关的信息作为口令内容，如生日、身份证号码、亲人或者伴侣的姓名、宿舍号等</p>
+<p>为了保证口令的安全性，建议用户每隔一段时间更新一次账号口令。如果用户是在公共场所使用计算机上网，登录账户时不要选择保存口令和自动登录，离开时要清除使用过的记录</p>
+<h3 id="5-6-相关实验"><a href="#5-6-相关实验" class="headerlink" title="5.6 相关实验"></a>5.6 相关实验</h3><h5 id="文档加密和压缩"><a href="#文档加密和压缩" class="headerlink" title="文档加密和压缩"></a>文档加密和压缩</h5><h5 id="浏览器的安全设置"><a href="#浏览器的安全设置" class="headerlink" title="浏览器的安全设置"></a>浏览器的安全设置</h5><h5 id="垃圾邮件过滤"><a href="#垃圾邮件过滤" class="headerlink" title="垃圾邮件过滤"></a>垃圾邮件过滤</h5><p>Foxmail</p>
+<h5 id="数据恢复-1"><a href="#数据恢复-1" class="headerlink" title="数据恢复"></a>数据恢复</h5><p>recuva</p>
+<h2 id="第六章-移动智能终端安全防护"><a href="#第六章-移动智能终端安全防护" class="headerlink" title="第六章 移动智能终端安全防护"></a>第六章 移动智能终端安全防护</h2><h3 id="6-1-移动智能终端"><a href="#6-1-移动智能终端" class="headerlink" title="6.1 移动智能终端"></a>6.1 移动智能终端</h3><h5 id="移动智能终端的定义"><a href="#移动智能终端的定义" class="headerlink" title="移动智能终端的定义"></a>移动智能终端的定义</h5><p>移动智能终端是指具有独立操作系统、可安装应用程序、使用无线局域网或移动通信网访问因特网的设备，其典型代表如智能手机和平板电脑</p>
+<h5 id="移动智能终端的结构"><a href="#移动智能终端的结构" class="headerlink" title="移动智能终端的结构"></a>移动智能终端的结构</h5><p><img src="/2022/02/10/NISP/6.1-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="移动智能终端的分类"><a href="#移动智能终端的分类" class="headerlink" title="移动智能终端的分类"></a>移动智能终端的分类</h5><p>智能手机、平板电脑</p>
+<h5 id="移动智能终端的功能"><a href="#移动智能终端的功能" class="headerlink" title="移动智能终端的功能"></a>移动智能终端的功能</h5><p>能够访问不同模式的移动通信网络<br>能够通过不同的网络接口访问因特网<br>具有开放的API接口<br>支持多任务<br>具有哦多媒体功能具有GPS导航功能  </p>
+<h5 id="相关问题-3"><a href="#相关问题-3" class="headerlink" title="相关问题"></a>相关问题</h5><p>移动智能终端具有哪些特点？</p>
+<p>(1)具备一个具有开放性的操作系统平台,可以安装更多的应用程序,从而使智能终端的功能得到无限扩充<br>(2)具备PAD功能,包括PIM(个人信息管理)、日程记事、任务安排、多媒体应用、浏览网页等功能<br>(3)具备无线接入互联网的能力,即需要支持GSM网络下的GPRS或者CDMA网络下的CDMA1X或3G网络<br>(4)功能强大,扩展性强,支持多个第三方软件</p>
+<h3 id="6-2-移动智能终端安全威胁"><a href="#6-2-移动智能终端安全威胁" class="headerlink" title="6.2 移动智能终端安全威胁"></a>6.2 移动智能终端安全威胁</h3><h5 id="安全形势"><a href="#安全形势" class="headerlink" title="安全形势"></a>安全形势</h5><p>(1）智能终端操作系统敏感权限滥用<br>(2)应用软件难溯源<br>(3）智能终端操作系统漏洞<br>(4）智能终端操作系统后门  </p>
+<h5 id="安全威胁"><a href="#安全威胁" class="headerlink" title="安全威胁"></a>安全威胁</h5><p>(1)伪基站攻击<br>(2)二维码扫描<br>(3)移动终端遗失<br>(4)手机病毒<br>(5）恶意扣费软件  </p>
+<h6 id="伪基站攻击"><a href="#伪基站攻击" class="headerlink" title="伪基站攻击"></a>伪基站攻击</h6><p>“伪基站”即假基站，设备一般由主机和笔记本电脑或手机组成，通过短信群发器、短信发信机等相关设备能够搜取以其为中心、一定半径范围内的手机卡信息，利用2G移动通信的缺陷，通过伪装成运营商的基站，冒用他人手机号码强行向用户手机发送诈骗、广告推销等短信息</p>
+<p>伪基站工作流程</p>
+<p><img src="/2022/02/10/NISP/6.2-1.png" srcset="/img/loading.gif" lazyload></p>
+<h6 id="二维码扫描"><a href="#二维码扫描" class="headerlink" title="二维码扫描"></a>二维码扫描</h6><p>二维码（Two-Dimensional Code,TDC）是指在一维条码的基础上扩展出来的另一种具有可读性的条码。二维码使用黑白色矩形图案表示二进制数据</p>
+<p>二维码的基本特点</p>
+<p>(1）信息量大，编码范围广<br>(2）容错能力强，译码可靠性高<br>(3）编译简便，成本低</p>
+<p>二维码的安全问题</p>
+<p>1、成为病毒木马、钓鱼网站传播新渠道<br>2、二维码信息更容易泄露<br>3、对二维码的监管力度不够<br>4、二维码成为违法信息传播新方式<br>5、二维码与移动支付结合，成为金融诈骗新手段  </p>
+<h6 id="移动终端遗失"><a href="#移动终端遗失" class="headerlink" title="移动终端遗失"></a>移动终端遗失</h6><p>手机丢失后，先做这5件事</p>
+<p>1、致电运营商挂失手机号<br>2、致电银行冻结手机网银<br>3、微信用户登录110.qq.com冻结账号<br>4、修改微博、微信、QQ等密码<br>5、到手机运营商处补手机卡  </p>
+<h6 id="手机病毒"><a href="#手机病毒" class="headerlink" title="手机病毒"></a>手机病毒</h6><p>手机病毒是一种具有传染性、破坏性的手机程序。手机病毒可通过短信、彩信、电子邮件和蓝牙等方式进行传播，常常伪装成手机软件和系统程序诱骗用户下载</p>
+<p>手机病毒的危害</p>
+<p>1、窃取用户信息<br>2、用户信息丢失<br>3、破坏手机硬件<br>4、发送垃圾信息</p>
+<h6 id="恶意扣费软件"><a href="#恶意扣费软件" class="headerlink" title="恶意扣费软件"></a>恶意扣费软件</h6><p>恶意扣费软件是指没有对用户进行任何提示，通过发送短信或联网等方式强制扣除用户手机话费的软件。</p>
+<h5 id="相关问题-4"><a href="#相关问题-4" class="headerlink" title="相关问题"></a>相关问题</h5><p>伪基站发送的垃圾短信中发信人号码是可以任意伪造的吗?</p>
+<p>伪基站的主要特点，是可以随意更改发送的号码，可以选择尾号较好的号码，还可以使用尾数为10086或95588等号码，使手机用户误以为真的是移动公司或工商银行发送的短信</p>
+<p>如果只是扫描了位置来源的二维码，会造成手机中毒吗?</p>
+<p>二维码本身是没有病毒的,含有病毒的是二维码中的信息指向的网站或软件安装包等。只要在扫描完之后不盲目安装或访问网站,确保手机中安装有360等安全软件,就可以杜绝中毒、扣费等问题。</p>
+<h3 id="6-3-移动智能终端的安全使用"><a href="#6-3-移动智能终端的安全使用" class="headerlink" title="6.3 移动智能终端的安全使用"></a>6.3 移动智能终端的安全使用</h3><h5 id="移动智能终端安全使用建议"><a href="#移动智能终端安全使用建议" class="headerlink" title="移动智能终端安全使用建议"></a>移动智能终端安全使用建议</h5><p>1、注意隐私权限访问请求<br>2、慎重扫描二维码<br>a、不要“见码就扫”<br>b、不要随意“晒码”和丢弃含有二维码的票据<br>3、从正规渠道下载应用<br>4、安装安全防护软件<br>5、定期备份<br>6、不要登录到不安全的无线网络<br>7、尽量避免访问财务或银行信息<br>8、在网上浏览时不要选择“记住我”<br>9、清空历史记录和缓存内容<br>10、启动用户认证<br>11、谨慎对待陌生信息<br>12、注意安全管理终端</p>
+<h5 id="相关问题-5"><a href="#相关问题-5" class="headerlink" title="相关问题"></a>相关问题</h5><p>与台式机相比，移动智能终端面临的安全问题有哪些特点?  </p>
+<p>移动智能终端尺寸小，可移动性强。所处环境复杂而不确定，存储的信息大多是个人隐私信息。</p>
+<p>为了防止因手机丢失而造成信息泄密，可以对手机进行那些设置？</p>
+<p>为手机设置开机密码，安取下单独绑定手机的账户和密码，比如支付宝，qq，微信，尽量不要直接绑定登录修改成输入密码的方式。装手机安全软件</p>
+<h3 id="6-4-相关实验"><a href="#6-4-相关实验" class="headerlink" title="6.4 相关实验"></a>6.4 相关实验</h3><p>……</p>
+<p>第三方手机安全应用的主要功能</p>
+<p>1、手机系统垃圾一件清理、优化启动选项，减小手机存储负担<br>2、拦截电话信息，减少电话和短信的骚扰<br>3、流量监控<br>4、手机节点模式管理5、程序管理<br>6、隐私权限保护<br>7、密码保护器，牢记账号密码<br>8、程序锁<br>9、加密隐藏短信、通话记录和照片等信息，保护隐私  </p>
+<h2 id="第七章-信息安全管理"><a href="#第七章-信息安全管理" class="headerlink" title="第七章 信息安全管理"></a>第七章 信息安全管理</h2><h3 id="7-1-信息安全管理概述"><a href="#7-1-信息安全管理概述" class="headerlink" title="7.1 信息安全管理概述"></a>7.1 信息安全管理概述</h3><p>信息安全管理( Information Security Management, ISM)，是管理者为实现信息安全目标（如信息资产的CIA等特性、业务运行的持续性）而进行计划、组织、指挥、协调和控制的一系列活动。它的管理对象是组织的信息及相关资产，包括信息、人员、软件等，同时还包括信息安全目标、信息安全组织架构、信息安全策略规则等。管理的目的是保障组织的业务正常运转  </p>
+<h5 id="信息安全管理的关键因素"><a href="#信息安全管理的关键因素" class="headerlink" title="信息安全管理的关键因素"></a>信息安全管理的关键因素</h5><p>1.组织的活动能够反映组织的业务目标<br>2.组织所有级别的管理者能够给予信息安全实质性的、可见的支持和承诺  3.组织的管理者对信息安全需求、信息安全风险、风险评估及风险管理有正确深入的理解<br>4.向所有管理者、员工和其他相关方提供有效的信息安全宣传以提升信息安全意识<br>5.向所有管理者、员工和其他相关方分发、宣贯实行信息安全方针、策略和标准。使全员都对组织的信息安全方针、策略、标准的要求有深入的理解，是成功实施信息安全管理的重要基础<br>6.管理者为信息安全建设提供足够的资金。这是信息安全管理成功实施的必要保障<br>7.建立有效的信息安全事件管理过程<br>8.建立有效的信息安全测量体系  </p>
+<h5 id="相关问题-6"><a href="#相关问题-6" class="headerlink" title="相关问题"></a>相关问题</h5><p>简述信息安全管理的概念和作用</p>
+<p>信息安全管理是管理者为实现信息安全目标（如信息资产的CIA等特性、业务运行的持续性）而进行计划、组织、指挥、协调和控制的一系列活动<br>作用是保障组织的业务正常运转。</p>
+<h3 id="7-2-信息安全风险管理"><a href="#7-2-信息安全风险管理" class="headerlink" title="7.2 信息安全风险管理"></a>7.2 信息安全风险管理</h3><p>信息系统不可能达到绝对安全，但可以通过安全风险(以下简称”风险”)控制，来实现符合个人或单位目标的一定程度的安全。信息安全管理的核心思想是风险管理，关键在于如何控制、化解和规避风险。风险管理是信息安全管理的基本方法，通过对单位信息资产实施一定的安全管理措施来保障信息的保密性、完整性和可用性</p>
+<h5 id="信息风险"><a href="#信息风险" class="headerlink" title="信息风险"></a>信息风险</h5><p>风险是一种潜在的、负面的东西，处于未发生的状态，它是指遭受损害或损失的可能性。因此，风险一方面客观存在，另一方面其发生的时间具有不确定性，风险一旦发生，将会产生损失。风险强调的是损害的潜在可能性，而不是事实上的损害，风险是不能消除殆尽的</p>
+<p>威胁、脆弱性、影响、资产</p>
+<p><img src="/2022/02/10/NISP/7.2-1.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="风险管理"><a href="#风险管理" class="headerlink" title="风险管理"></a>风险管理</h5><p>风险管理是信息安全管理的基本方法，通过对组织信息资产实施一定的安全管理措施来保障信息的保密性、完整性和可用性。</p>
+<p>风险管理是组织机构识别、评估风险并采取相关活动，将风险降低到一个可接受级别的过程。它是单位管理活动的一部分，其管理的主要对象就是风险。以风险为驱动的信息安全管理，其核心就是通过识别风险、选择对策、消减风险</p>
+<p>风险管理基本步骤</p>
+<p>按照GB/Z 24364-2009《信息安全风险管理指南》，信息安全风险管理有四个基本步骤:</p>
+<p>1.背景建立<br>2.风险评估<br>3.风险处理<br>4.批准监督</p>
+<p>1.风险管理是一个动态发展、不断循环的过程，一次风险管理完成后，因为新的变化引起新的风险，或者因为业务本身的要求，都需要进入新一轮风险管理周期<br>2．以体系化的方式实施信息安全管理，才能实现并保持一定的信息安全水平</p>
+<h3 id="7-3-信息安全事件与应急响应"><a href="#7-3-信息安全事件与应急响应" class="headerlink" title="7.3 信息安全事件与应急响应"></a>7.3 信息安全事件与应急响应</h3><h5 id="信息安全事件"><a href="#信息安全事件" class="headerlink" title="信息安全事件"></a>信息安全事件</h5><p>信息安全事件，是指由于自然或者人为以及软硬件本身缺陷或故障的原因，对信息系统造成危害，或在信息系统内发生对社会造成负面影响的事件。至今尚没有任何一种信息安全策略或防护措施，能够对信息及信息系统提供绝对的保护，以完全避免信息安全事件的发生。对信息安全事件进行有效管理和响应，最小化事件所造成的损失和负面影响，是组织信息安全战略的一部分。应急响应是信息安全事件管理的重要内容</p>
+<p>信息安全事件可以是故意、过失或非人为原因引起的，可以分为有害程序事件、网络攻击事件、信息破坏事件、信怠内容安全事件、设备设施故障、灾害性事件和其他信息安全事件等7个基本分类。</p>
+<p>对信息安全事件的分级主要考虑三个要素:<br>1.信息系统的重要程度<br>2.系统损失<br>3.社会影响</p>
+<h5 id="信息安全应急响应"><a href="#信息安全应急响应" class="headerlink" title="信息安全应急响应"></a>信息安全应急响应</h5><p>信息安全应急响应，是指一个组织为了应对各种安全意外事件的发生所采取的防范措施，既包括预防性措施，也包括事件发生后的应对措施。实践证明，现实中难以发现和抵御所有威胁，安全事件具有突发性、复杂性，所以需要建立信息系统安全事件的快速响应机制。应急响应工作的主要任务是做好预先防范，安全事件发生后，尽快做出正确反应，及时阻止事件的继续发展，并减少损失，使系统恢复正常运行，同时采取追踪攻击者及必要的法律行动  </p>
+<p>信息安全应急响应作用</p>
+<p>未雨绸缪、亡羊补牢</p>
+<h5 id="应急响应组织"><a href="#应急响应组织" class="headerlink" title="应急响应组织"></a>应急响应组织</h5><p>应急响应组织是专门处理安全事件的组织。<br>常用的名字是∶<br>1.计算机网络安全事件应急组<br>2.计算机安全事件响应组( Computer Security Incident Response Team,CSIRT)<br>3.信息安全事件响应组( Information Security Incident Response Team,ISIRT)<br>4.事件响应组( Incident esponse Team, IRT)<br>通常，应急响应组织由管理、业务、技术和行政后勤等人员组成</p>
+<p>组织建立的内部应急响应组织应与外部的国内外应急响应组织、相关管理部门、设备设施及服务提供商(如电力供应、通信服务等)、利益相关方和新闻媒体等保持联系和协作，以确保在发生信息安全事件时能及时通报准确情况，并获得支持</p>
+<p>我国的应急响应组织</p>
+<p>1.国家计算机网络应急技术处理协调中心(National Computer Network Emergency Response Technical Team/CoordinationCenter of China,CN-CERT/CC )<br>2．国家计算机病毒应急处理中心<br>3．国家计算机网络入侵防范中心  </p>
+<p>信息安全应急响应管理过程</p>
+<p>应急响应方法和过程并不是唯一的，通常可以将应急响应管理过程分为如下6个阶段︰<br>1.准备<br>2.检测<br>3.遏制<br>4.根除<br>5.恢复<br>6.跟踪总结  </p>
+<h3 id="7-4-灾难备份"><a href="#7-4-灾难备份" class="headerlink" title="7.4 灾难备份"></a>7.4 灾难备份</h3><p>随着信息技术的发展和信息化的不断深入，特别是数据集中和业务集中以及由此产生的对信息系统越来越强的依赖性，导致信息系统相关事件对组织业务运营的影响越来越严重，从而使信息系统灾难备份和恢复越来越成为组织需要迫切解决的问题之一。对组织而言，信息系统失效无疑是一场灾难。在这种情况下，组织的业务无法正常运作，甚至可能陷入完全瘫痪。然而，有许多因素威胁着信息系统的正常运转，大到自然灾害(地震、洪水、飓风、火灾等)，小到失窃、断电乃至操作员不经意的失误，都会影响系统的正常运转甚至造成整个系统完全瘫痪。所以，由信息系统瘫痪造成的影响往往十分惊人</p>
+<h5 id="灾难备份概述"><a href="#灾难备份概述" class="headerlink" title="灾难备份概述"></a>灾难备份概述</h5><p>GB/T20988-2007《信息系统灾难恢复规范》定义，灾难是指由于人为或自然的原因，造成信息系统运行严重故障或瘫痪，使信息系统支持的业务功能停顿或服务水平不可接受，通常导致信息系统需要切换到备用场地运行的突发事件。典型的灾难事件包括自然灾难，如火灾、洪水、地震、飓风、龙卷风和台风等:还有技术风险，如设备故障、软件错误、通讯网络中断和电力故障等;人为因素往往也会酿成大祸，如操作员错误、破坏、植入有害代码和恐怖袭击等</p>
+<h5 id="灾难恢复"><a href="#灾难恢复" class="headerlink" title="灾难恢复"></a>灾难恢复</h5><p>使用如下两个业务参数表示灾难恢复系统的能力∶</p>
+<p>1.恢复时间目标<br>2.恢复点目标</p>
+<h5 id="灾难备份方法"><a href="#灾难备份方法" class="headerlink" title="灾难备份方法"></a>灾难备份方法</h5><p>灾难备份是指通过技术和管理手段，对信息系统和数据进行备份，以便灾难发生后信息系统及数据能够及时恢复，系统业务连续性得以保持。实施灾难备份前，应当根据信息系统的业务需求等实际情况，选择合适的备份策略</p>
+<p>1.本地备份和异地灾备<br>2.数据级灾备和系统级灾备<br>3.完全备份和不完全备份</p>
+<p>在实际工作中，根据不同业务对数据备份的时间窗口和灾难恢复的要求，结合备份软、硬件的实际情况，可以综合使用这三种备份方式，制定特定的备份策略，一种常用的策略设置方法如下</p>
+<p>1.执行完全备份<br>2.经常进行增量备份<br>3.定期执行差异备份</p>
+<h2 id="第八章-信息安全法律法规"><a href="#第八章-信息安全法律法规" class="headerlink" title="第八章 信息安全法律法规"></a>第八章 信息安全法律法规</h2><h3 id="8-1-信息保护相关法律法规"><a href="#8-1-信息保护相关法律法规" class="headerlink" title="8.1 信息保护相关法律法规"></a>8.1 信息保护相关法律法规</h3><p>国家、商业、个人</p>
+<h4 id="国家秘密"><a href="#国家秘密" class="headerlink" title="国家秘密"></a>国家秘密</h4><p>包括国家领土完整、主权独立不受侵犯:国家经济秩序、社会秩序不受破坏<br>公民生命、生活不受侵害;民族文化价值和传统不受破坏等<br>产生于政治、国防军事、外交外事、经济、科技和政法等领域的秘密事项  </p>
+<h5 id="国家秘密的密级"><a href="#国家秘密的密级" class="headerlink" title="国家秘密的密级"></a>国家秘密的密级</h5><p>绝密——最重要的国家秘密——使国家安全和利益遭受特别严重的损澎——破坏国家主权和领土完整，威胁国家政权巩固，使国家政治、经济遭受巨大损失——全局性，战略性  </p>
+<p>机密——重要旳国家秘密——使国家和利益遭受严重的损害——某一领域内的国家安全和利益遭受重大损失——较大范围</p>
+<p>秘密——一般的国家秘密——使国家安全和利益遭受损害——某一方面的国家安全利益遭受损失——局部性</p>
+<h5 id="危害国家秘密安全的行为"><a href="#危害国家秘密安全的行为" class="headerlink" title="危害国家秘密安全的行为"></a>危害国家秘密安全的行为</h5><p>严重违反保密规定行为<br>定密不当行为<br>公共信息网络运营商、服务商不履行保密义务的行为<br>保密行政管理部门工作人员的违法行为</p>
+<p>严重违反保密规定行为 </p>
+<p>1.违反涉密信息系统和信息设备保密管理规定的行为<br>2.违反国家秘密载体管理规定的行为<br>3.违反国家秘密信息管理规定的行为  </p>
+<p>定密不当行为</p>
+<p>定密不当包括对应当定密的事项不定密，或者对不应当定密的事项定密<br>对应当定密的事项不定密，可能导致国家秘密失去保护，造成泄密<br>对不应当定密的事项定密，会严重影响信息资源合理利用，可能造成较大负面影响</p>
+<p>公共信息网络运营商、服务商不履行保密义务的行为</p>
+<p>1.互联网及其他公共信息网络运营商、服务商没有履行配合公安机关、国家安全机关、检察机关对泄密案件进行调查的义务<br>2.发现发布的信息涉及泄露国家秘密，没有立即停止传输和保存客户发布信息的内容及有关情况记录，并及时向公安机关、国家安全机关、保密行政管理部门报告<br>3.没有按照公安机关、国家安全机关、保密行政管理部门要求，及时对互联网或公共信息网上发布的涉密信息予以删除，致使涉密信息继续扩散</p>
+<p>保密行政管理部门工作人员的违法行为</p>
+<p>保密行政管理部门的工作人员在履行保密管理职责时滥用职权、玩忽职守、衔私舞弊<br>滥用职权是指保密行政管理部门工作人员超越职权范围或者违背法律授权的宗旨、违反法律程序行使职权的行为<br>玩忽职守是指保密行政管理部门工作人员严重不负责任，不履行或不正确履行职责的行为<br>御私舞弊是指保密行政管理部门工作人员在履行职责过程中，利用职务之便，弄虚作假、衔私谋利的行为</p>
+<h5 id="危害国家秘密安全的犯罪行为"><a href="#危害国家秘密安全的犯罪行为" class="headerlink" title="危害国家秘密安全的犯罪行为"></a>危害国家秘密安全的犯罪行为</h5><p>危害国家安全的犯罪行为<br>妨碍社会管理秩序的犯罪行为<br>渎职的犯罪行为<br>军人违反职责的犯罪行为</p>
+<p>危害国家安全的犯罪行为 </p>
+<p>1.掌握国家秘密的国家工作人员在履行公务期间，擅离岗位，叛逃境外或者在境外叛逃<br>2.参加间谍组织或者接受间谍组织及其代理人的任务<br>3.为敌人指示轰击目标，为境外的机构、组织、人员窃取、刺探、收买、非法提供国家秘密或者情报  </p>
+<p>妨碍社会管理秩序的犯罪行为</p>
+<p>1.以窃取、刺探、收买方法，非法获取国家秘密<br>2.非法持有属于国家绝密、机密的文件、资料或者其他物品，拒不说明来源与用途  </p>
+<p>渎职的犯罪行为</p>
+<p>1.国家机关工作人员、非国家机关工作人员违反保守国家秘密法的规定，故意泄露国家秘密<br>2.国家机关工作人员、非国家机关工作人员违反保守国家秘密法的规定，过失泄露国家秘密</p>
+<p>军人违反职责的犯罪行为</p>
+<p>1.以窃取、刺探、收买方法，非法获取军事秘密<br>2.为境外的机构、组织、人员窃取、刺探、收买、非法提供军事秘密<br>3.违反保守国家秘密法规，故意泄露军事秘密(战时有此行为会受到从重处罚)<br>4.违反保守国家秘密法规，过失泄露军事秘密(战时有此行为会受到从重处罚)  </p>
+<h5 id="保护国家秘密相关法律"><a href="#保护国家秘密相关法律" class="headerlink" title="保护国家秘密相关法律"></a>保护国家秘密相关法律</h5><p>《保密法》</p>
+<p>2010 年10 月1日起正式施行的新《保密法》从四个方面明确了危害国家秘密安全的行为的法律责任，使查处泄密违法行为有据可依、有章可循</p>
+<p>严重违反保密规定的法律责任</p>
+<p>《中华人民共和国公务员法》、《中华人民共和国行政监察法》、《行政机关公务员处分条例》</p>
+<p>互联网及其他公共信息网络运营商、服务离的有关法律责任</p>
+<p>《中华人民共和国治安管理处罚法》、《中华人民共和国电信条例》、《计算机信息网络国际联网安全保护管理办法》、《互联网信息服务管理办法》</p>
+<h4 id="商业秘密"><a href="#商业秘密" class="headerlink" title="商业秘密"></a>商业秘密</h4><p>不为公众所知悉、能为权利人带来经济利益、具有实用性并由权利人采取保密措施的技术信息和经营信息。技术信息类商业秘密包括由单位研制开发或者以其他合法方式掌握的、未公开的设计、程序、产品配方、制作工艺、制作方法等信息，以及完整的技术方案、开发过程中的阶段性技术成果以及取得的有价值的技术数据，包括但不限于设计图纸(含草图)，试验结果和试验记录、样品、数据等，也包括针对技术问题的技术诀窍;经营信息类商业秘密包括经营策略、产销策略、管理诀窍、客户名单、货源情报、招投标中的标底及标书内容等信息</p>
+<h5 id="侵犯商业秘密的行为"><a href="#侵犯商业秘密的行为" class="headerlink" title="侵犯商业秘密的行为"></a>侵犯商业秘密的行为</h5><p>以盗窃、利诱、胁迫或者其他不正当手段获取权利人的商业秘密<br>披露、使用或者允许他人使用上述手段获取权利人的商业秘密<br>违反约定或者违反权利人有关保守商业秘密的要求，披露、使用或者允许他人使用其所掌握的商业秘密  </p>
+<p>权利人:是指商业秘密的所有人和经商业秘密所有人许可的商业秘密使用人</p>
+<h5 id="保护商业机密相关法律法规"><a href="#保护商业机密相关法律法规" class="headerlink" title="保护商业机密相关法律法规"></a>保护商业机密相关法律法规</h5><p>《中华人民共和国刑法》<br>《中华人民共和国反不正当竞争法》<br>《中华人民共和国合同法》<br>《中华人民共和国劳动合同法》  </p>
+<h4 id="个人秘密"><a href="#个人秘密" class="headerlink" title="个人秘密"></a>个人秘密</h4><h5 id="侵犯个人隐私信息行为"><a href="#侵犯个人隐私信息行为" class="headerlink" title="侵犯个人隐私信息行为"></a>侵犯个人隐私信息行为</h5><p>1.未经他人同意，擅自公布他人的隐私材料，或者以书面、口头形式宣扬他人隐私<br>2.窃取或者以其他非法方式获取公民个人电子信息<br>3.出售或者非法向他人提供公民个人电子信息<br>4.明络服务提供者和其他企业事业单位在业务活动中未经被收集者同意就收集、使用公民个人电子信息<br>5.对在业务活动中经被收集者同意收集的公民个人电子信息没有采取必要的保密措施<br>6.医疗机构及其医务人员泄露患者隐私或者未经患者同意，公开其病历资料、健康体检报告等行为  </p>
+<h5 id="侵犯个人隐私信息犯罪行为"><a href="#侵犯个人隐私信息犯罪行为" class="headerlink" title="侵犯个人隐私信息犯罪行为"></a>侵犯个人隐私信息犯罪行为</h5><p>1.隐匿、毁弃或者非法开拆他人信件，侵犯公民通信自由权利，情节严重的<br>2.邮政工作人员私自开拆或者隐匿、毁弃邮件、电报的<br>3.国家机关或者金融、电信、交通、教育、医疗等单位的工作人员，违反国家规定，将本单位在履行职责或者提供服务过程中获得的公民个人信息，出售或者非法提供给他人，情节严重的<br>4.窃取或者以其他方法非法获取公民个人信息，情节严重的<br>5.非法截获、篡改、删除他人电子邮件或者其他数据资料，情节严重的<br>6.人民警察泄露因制作、发放、查验、扣押居民身份证而知悉公民个人信息，情节严重的</p>
+<h3 id="8-2-打击网络违法犯罪相关法律法规"><a href="#8-2-打击网络违法犯罪相关法律法规" class="headerlink" title="8.2 打击网络违法犯罪相关法律法规"></a>8.2 打击网络违法犯罪相关法律法规</h3><h5 id="网络违法犯罪行为"><a href="#网络违法犯罪行为" class="headerlink" title="网络违法犯罪行为"></a>网络违法犯罪行为</h5><p>破坏互联网运行安全的行为<br>破坏国家安全和社会稳定的行为<br>破坏市场经济秩序和社会管理秩序的行为<br>侵犯个人、法人和其他组织的人身、财产等合法权利的行为  </p>
+<p>利用互联网实施以上四类所列行为以外的违法/犯罪行为</p>
+<h5 id="破坏互联网运行安全的行为"><a href="#破坏互联网运行安全的行为" class="headerlink" title="破坏互联网运行安全的行为"></a>破坏互联网运行安全的行为</h5><p>1.侵入国家事务、国防建设、尖端科学技术领域的计算机信息系统<br>2.违反国家规定，侵入计算机系统，造成危害<br>3.故意制作、传播计算机病毒等破坏程序，攻击计算机系统及通信网络，致使计算机系统及通信网络遭受损害<br>4.违反国家规定，擅自中断计算机网络或者通信服务，造成计算机网络或者通信系统不能正常运行<br>5.违反国家规定，对计算机信息系统功能进行删除、修改、增加、干扰，造成计算机信息系统不能正常运行<br>6.违反国家规定，对计算机信息系统中存储、处理、传输的数据和应用程序进行删除、修改、增加  </p>
+<h5 id="破坏国家安全和社会稳定的行为"><a href="#破坏国家安全和社会稳定的行为" class="headerlink" title="破坏国家安全和社会稳定的行为"></a>破坏国家安全和社会稳定的行为</h5><p>1.利用互联网造谣、诽谤或者发表、传播其他有害信息，煽动颠覆国家政权、推翻社会主义制度，或者煽动分裂国家、破坏国家统一<br>2.通过互联网窃取、泄露国家秘密、情报或者军事秘密<br>3.利用互联网煽动民族仇恨、民族歧视，破坏民族团结<br>4.利用互联网组织邪教组织、联络邪教组织成员，破坏国家法律、行政法规实施  </p>
+<h5 id="破坏市场经济秩序和社会管理秩序的行为"><a href="#破坏市场经济秩序和社会管理秩序的行为" class="headerlink" title="破坏市场经济秩序和社会管理秩序的行为"></a>破坏市场经济秩序和社会管理秩序的行为</h5><p>1.利用互联网销售伪劣产品或者对商品、服务作虚假宣传<br>2.利用互联网损坏他人商业信誉和商品声誉<br>3.利用互联网侵犯他人知识产权<br>4.利用互联网编造并传播影响证券、期货交易或者其他扰乱金融秩序的虚假信息<br>5.在互联网上建立淫秽网站、网页，提供淫秽站点链接服务，或者传播淫秽书刊、影片、音像、图片</p>
+<h5 id="侵犯个人、法人和其他组织的人身、财产等合法权利的行为"><a href="#侵犯个人、法人和其他组织的人身、财产等合法权利的行为" class="headerlink" title="侵犯个人、法人和其他组织的人身、财产等合法权利的行为"></a>侵犯个人、法人和其他组织的人身、财产等合法权利的行为</h5><p>1.利用互联网侮辱他人或者捏造事实诽谤他人<br>2.非法截获、篡改、删除他人电子邮件或者其他数据资料，侵犯公民通信自由和通信秘密<br>3.利用互联网进行盗窃、诈骗、敲诈勒索:利用网络写恐吓信或者以其他方法威胁他人人身安全的<br>4.利用网络捏造事实诬告陷害他人，企图使他人受到刑事追究或者受到治安管理处罚<br>5.利用网络对证人及其近亲属进行威胁、侮辱或者打击报复<br>6.利用网络多次发送淫秽、侮辱、恐吓或者其他信息，干扰他人正常生活<br>7.利用网络偷窥、偷拍、窃听、散布他人隐私<br>8.利用网络煽动民族仇恨、民族歧视，或者在网络中刊载民族歧视、侮辱内容  </p>
+<h5 id="打击网络违法犯罪的相关法律"><a href="#打击网络违法犯罪的相关法律" class="headerlink" title="打击网络违法犯罪的相关法律"></a>打击网络违法犯罪的相关法律</h5><p>《刑法》<br>《关于维护互联网安全的决定》<br>《治安管理处罚法》</p>
+<h3 id="8-3-信息安全管理相关法律法规"><a href="#8-3-信息安全管理相关法律法规" class="headerlink" title="8.3 信息安全管理相关法律法规"></a>8.3 信息安全管理相关法律法规</h3><h5 id="相关法律"><a href="#相关法律" class="headerlink" title="相关法律"></a>相关法律</h5><p>《中华人民共和国保守国家秘密法》<br>《中华人民共和国人民警察法》<br>《中华人民共和国电子签名法》</p>
+<h5 id="相关法律条例"><a href="#相关法律条例" class="headerlink" title="相关法律条例"></a>相关法律条例</h5><p>《中华人民共和国保守国家秘密法》</p>
+<p>在保护国家秘密方面，在第一章”总则”第五条、第六条中，对保密工作的监管进行了明确授权，由国家保密行政管理部门主管全国的保密工作:</p>
+<p>县级以上地方各级保密行政管理部门主管本行政区域的保密工作<br>国家机关和涉及国家秘密的单位管理本机关和本单位的保密工作<br>中央国家机关在其职权范围内，管理或者指导本系统的保密工作  </p>
+<p>国家保密行政管理部门的最高机构是国家保密局。</p>
+<p>在第四章“监督管理”第四十一条、第四十二条中规定:</p>
+<p>国家保密行政管理部门依照法律、行政法规的规定，制定保密规章和国家保密标准<br>保密行政管理部门依法组织开展保密宣传教育、保密检查、保密技术防护和泄密案件查处工作，对机关、单位的保密工作进行指导和监督  </p>
+<p>《中国人民共和国警察法》</p>
+<p>在维护公共安全方面，&lt;&lt;中华人民共和国人民警察法》进行了相应规定。《中华人民共和国人民警察法》第二章”职权”第六条规定，公安机关的人民警察按照职责分工，依法履行下列职责:预防、制止和侦查违法犯罪活动;维护社会治安秩序，制止危害社会治安秩序的行为:监督管理计算机信息系统的安全保护工作</p>
+<p>《中华人民共和国电子签名法》</p>
+<p>2004年8月28日通过并公布的《中华人民共和国电子签名法》在第三章”电子签名与认证””中，对电子认证服务提供者的监管进行了授权。在第十六条、第十八条中规定，电子签名需要第三方认证的，由依法设立的电子认证服务提供者提供认证服务;从事电子认证服务，应当向国务院信息产业主管部门提出申请，并提交符合规定条件的相关材料。国务院信息产业主管部门接到中请后经依法审查，征求国务院商务主管部门等有关部门的意见后，自接到申请之日起四十五日内作出许可或者不予许可的决定。予以许可的，颁发电子认证许可证书;不予许可的，应当书面通知申请人并告知理由。申请人应当持电子认证许可证书依法向工商行政管理部门办理企业登记手续。取得认证资格的电子认证服务提供者，应当按照国务院信息产业主管部门的规定在互联网上公布其名称、许可证号等信息</p>
+<h3 id="8-4-《网络安全法》"><a href="#8-4-《网络安全法》" class="headerlink" title="8.4 《网络安全法》"></a>8.4 《网络安全法》</h3><p>2017年6月1日，《中华人民共和国网络安全法》(以下简称《网络安全法》）正式实施。这是我国第一部全面规范网络空间安全管理方面问题的基础性法律，是互联网在法制轨道上安全、健康运行的重要保障  </p>
+<p>《网络安全法》提出网络主权原则、网络安全与信息化发展并重原则、共同治理原则。第一条即规定要维护我国网络空间主权，以“立法原则”的高度体现对网络空间主权的重视;第三条规定国家坚持网络安全与信息化并重，遵循积极利用、科学发展、依法管理、确保安全的方针，突出了《网络安全法》实施网络安全与信息化发展的原则;《网络安全法》要求政府、企业、社会组织、技术社群和公民等网络利益者共同参与网络空间安全的治理与维护，体现了共同治理的原则</p>
+<p>《网络安全法》提出了制定网络安全战略，明确网络空间治理目标。第四条提出国家制定并不断完善网络安全战略，明确保障网络安全的基本要求和主要目标;第七条规定我国致力于“推动构建和平、安全、开放、合作的网络空间，建立多边、民主、透明的网络治理体系。”</p>
+<p>《网络安全法》第8条规定，国家网信部门负责统筹协调网络安全工作和相关监督管理工作，国务院电信主管部门、公安部门和其他有关机关依法在各自职责范围内负责网络安全保护和监督管理工作。进一步明确了政府各部门的职责权限，完善了网络安全监管体制</p>
+<p>《网络安全法》第三章“网络运行安全”规范了网络运行安全，特别强调了要保障关键信息基础设施的运行安全，并通过明确关键信息基础设施运营者义务、国家审查、重要数据强制本地存储等法律措施，来确保信息基础设施的安全</p>
+<p>《网络安全法》完善了网络安全义务与责任，加大法律违法惩处力度将原来散见于各种法规、规章中的规定上升到法律层面。第四章“网络信息安全”对网络运营者等主体的法律义务和责任做了全面规定，并在第六章“法律责任”中提高了违法行为的处罚标准，加大了处罚力度</p>
+<p>《网络安全法》第五章“监测预警与应急措施”将监测预警与应急处置工作制度化、法制化，明确国家建立网络安全监测预警和信息通报制度，建立网络安全风险评估和应急工作机制，制定网络安全事件应急预案并定期演练。为建立统一高效的网络安全风险报告机制、情报共享机制、研判处置机制提供了法律依据，为深化网络安全防护体系，实现全天候全方位感知网络安全态势提供了法律保障</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/NISP/">NISP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/21/Unserialize-ways/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Unserialize-ways</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/04/MD5-%E6%AF%94%E8%BE%83/">
+                        <span class="hidden-mobile">MD5 比较</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
