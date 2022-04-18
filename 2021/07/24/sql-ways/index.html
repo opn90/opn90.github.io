@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      847 字
+      1.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      17
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 个月前
+                  本文最后更新于：4 天前
                 
               </p>
             
@@ -274,7 +274,17 @@ from ()#
 <div class="hljs code-wrapper"><pre><code>updatexml(1,concat(0x7e,(select语句),0x7e),1)
 </code></pre></div>
 <p>详见 buu-1mark [极客大挑战 2019]HardSQL  </p>
-<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><h1 id="盲注"><a href="#盲注" class="headerlink" title="盲注"></a>盲注</h1><p><strong>原理/核心：<br>存在T/F可区分的回显，对所需要的每一个字符进行T/F判断</strong>  </p>
+<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><p>extractvalue(目标xml文档，xml路径)</p>
+<p>函数的第二个参数是可以进行操作的地方，xml文件中查询使用的是/xx/xx/的格式，如果我们写成其他的格式，就会报错，并且会返回我们写入的非法格式内容，而这个非法格式的内容就是我们想要查询的内容</p>
+<p>注入姿势：</p>
+<div class="hljs code-wrapper"><pre><code>&#39; and extractvalue(1,concat(0x5c,(select database())))#
+
+&#39; and extractvalue(1,concat(0x5c,(select group_concat(table_name) from information_schema.tables where table_schema=&#39;&#39;)))#
+</code></pre></div>
+<h1 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h1><p>数据库的多条语句执行(;;;;;)</p>
+<p>实际应用场景中,堆叠注入遇到的会很少，大部分会在CTF比赛中遇到。主要原因是，堆叠注入的利用看起来很厉害但是其可能会受到 API、数据库引擎或者权限的控制。只有当调用函数库函数支持执行多条语句执行的时候才可以利用</p>
+<p>如利用mysql_multi_query()函数就支持多条SQL语句同时执行,实际情况中如PHP的防SQL注入机制,其使用的数据库函数为 “mysqli_query()”函数。 所以说堆叠注入的使用条件比较有局限性。但是一旦可以被使用，造成的伤害则是非常巨大的</p>
+<h1 id="盲注"><a href="#盲注" class="headerlink" title="盲注"></a>盲注</h1><p><strong>原理/核心：<br>存在T/F可区分的回显，对所需要的每一个字符进行T/F判断</strong>  </p>
 <p>所使用的函数：  </p>
 <p>取字符： <strong>substr</strong>///</p>
 <p>进行判断： <strong>ascii</strong>///<strong>char</strong>///<strong>ord</strong></p>
@@ -302,7 +312,7 @@ md5后，276f722736c95d99e921722cf9ed621c
 再转成字符串：&#39;or&#39;6
 </code></pre></div>
 <p><a target="_blank" rel="noopener" href="https://err0r.top/article/md5/?highlight=md5">附上一篇err0r师傅的md5比较：https://err0r.top/article/md5/?highlight=md5</a> </p>
-<h1 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kuiguowei/article/details/79045069">https://blog.csdn.net/kuiguowei/article/details/79045069</a></p>
+<h1 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h1><h1 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kuiguowei/article/details/79045069">https://blog.csdn.net/kuiguowei/article/details/79045069</a></p>
 <p>**原理：  **<br>后端语句对用户输入的数据进行严格的过滤<br>但对于从数据库中的搜索，提取的数据不进行过滤、判断<br>直接使用、代入数据库语句中使用<br>造成sql注入威胁  </p>
 <p><strong>操作步骤：</strong><br>1.将恶意数据插入数据库<br>2.调用恶意数据/使恶意数据在sql语句中起到非预期作用<br>3.回显/根据回显数据调整恶意数据的编写  </p>
 <p><strong>常见类型：</strong><br>注册-登录<br>添加某种数据类型-显示/展示详情    </p>
@@ -330,9 +340,17 @@ select `3` from(select 1,2,3 union select * from table_name)m;
 <h2 id="mysql默认存储引擎innoDB携带的表"><a href="#mysql默认存储引擎innoDB携带的表" class="headerlink" title="mysql默认存储引擎innoDB携带的表"></a>mysql默认存储引擎innoDB携带的表</h2><p>mysql.innodb_table_stats  </p>
 <p>mysql.innodb_index_stats  </p>
 <p>两表均有database_name和table_name字段，可以利用  </p>
-<p><img src="/2021/07/24/sql-ways/or-3.png" srcset="/img/loading.gif" lazyload> 
-    </p>
-
+<p><img src="/2021/07/24/sql-ways/or-3.png" srcset="/img/loading.gif" lazyload> </p>
+<hr>
+<hr>
+<hr>
+<h1 id="水平-平行越权和垂直越权"><a href="#水平-平行越权和垂直越权" class="headerlink" title="水平/平行越权和垂直越权"></a>水平/平行越权和垂直越权</h1><p>平行越权 (访问控制攻击) ：同等级的用户之间的越权操作</p>
+<p>垂直越权 (跨级别越权) ：低等级用户获取高等级用户的权限</p>
+<h1 id="mysql-UDF-提权"><a href="#mysql-UDF-提权" class="headerlink" title="mysql UDF 提权"></a>mysql UDF 提权</h1><h2 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h2><p>user defined function  </p>
+<p>用户自定义函数</p>
+<p>用户可以添加自定义的新函数到 Mysql 中 </p>
+<h2 id="UDF-在渗透中的作用"><a href="#UDF-在渗透中的作用" class="headerlink" title="UDF 在渗透中的作用"></a>UDF 在渗透中的作用</h2><p>在一般渗透过程中，拿下一台windows服务器的webshell时，由于webshell权限较低，有些操作无法进行，而此时本地恰好存在mysql数据库，那么udf可能就派上用场了；由于windows安装的mysql进程一般都拥有管理员权限，这就意味着用户自定义的函数也拥有管理员权限，我们也就拥有了执行管理员命令的权限，这时新建管理员用户等操作也就轻而易举了，大多数人称为这一操作为udf提权，其实表达不够准确，应该称为通过mysql获得管理员权限</p>
+<h2 id><a href="#" class="headerlink" title></a></h2>
             </div>
             <hr>
             <div>

