@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.8k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      22
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 天前
+                  本文最后更新于：6 天前
                 
               </p>
             
@@ -284,7 +284,7 @@ from ()#
 <h1 id="堆叠注入"><a href="#堆叠注入" class="headerlink" title="堆叠注入"></a>堆叠注入</h1><p>数据库的多条语句执行(;;;;;)</p>
 <p>实际应用场景中,堆叠注入遇到的会很少，大部分会在CTF比赛中遇到。主要原因是，堆叠注入的利用看起来很厉害但是其可能会受到 API、数据库引擎或者权限的控制。只有当调用函数库函数支持执行多条语句执行的时候才可以利用</p>
 <p>如利用mysql_multi_query()函数就支持多条SQL语句同时执行,实际情况中如PHP的防SQL注入机制,其使用的数据库函数为 “mysqli_query()”函数。 所以说堆叠注入的使用条件比较有局限性。但是一旦可以被使用，造成的伤害则是非常巨大的</p>
-<h1 id="盲注"><a href="#盲注" class="headerlink" title="盲注"></a>盲注</h1><p><strong>原理/核心：<br>存在T/F可区分的回显，对所需要的每一个字符进行T/F判断</strong>  </p>
+<h1 id="布尔盲注"><a href="#布尔盲注" class="headerlink" title="布尔盲注"></a>布尔盲注</h1><p><strong>原理/核心：<br>存在T/F可区分的回显，对所需要的每一个字符进行T/F判断</strong>  </p>
 <p>所使用的函数：  </p>
 <p>取字符： <strong>substr</strong>///</p>
 <p>进行判断： <strong>ascii</strong>///<strong>char</strong>///<strong>ord</strong></p>
@@ -344,13 +344,21 @@ select `3` from(select 1,2,3 union select * from table_name)m;
 <hr>
 <hr>
 <hr>
+<h1 id="mysql-写文件"><a href="#mysql-写文件" class="headerlink" title="mysql 写文件"></a>mysql 写文件</h1><div class="hljs code-wrapper"><pre><code>//将数据导出到&#39;&#39;文件中------需要一个登录服务器的账号
+select * from xxx_table
+into outfile &#39;&#39;;
+</code></pre></div>
 <h1 id="水平-平行越权和垂直越权"><a href="#水平-平行越权和垂直越权" class="headerlink" title="水平/平行越权和垂直越权"></a>水平/平行越权和垂直越权</h1><p>平行越权 (访问控制攻击) ：同等级的用户之间的越权操作</p>
 <p>垂直越权 (跨级别越权) ：低等级用户获取高等级用户的权限</p>
 <h1 id="mysql-UDF-提权"><a href="#mysql-UDF-提权" class="headerlink" title="mysql UDF 提权"></a>mysql UDF 提权</h1><h2 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h2><p>user defined function  </p>
 <p>用户自定义函数</p>
 <p>用户可以添加自定义的新函数到 Mysql 中 </p>
-<h2 id="UDF-在渗透中的作用"><a href="#UDF-在渗透中的作用" class="headerlink" title="UDF 在渗透中的作用"></a>UDF 在渗透中的作用</h2><p>在一般渗透过程中，拿下一台windows服务器的webshell时，由于webshell权限较低，有些操作无法进行，而此时本地恰好存在mysql数据库，那么udf可能就派上用场了；由于windows安装的mysql进程一般都拥有管理员权限，这就意味着用户自定义的函数也拥有管理员权限，我们也就拥有了执行管理员命令的权限，这时新建管理员用户等操作也就轻而易举了，大多数人称为这一操作为udf提权，其实表达不够准确，应该称为通过mysql获得管理员权限</p>
-<h2 id><a href="#" class="headerlink" title></a></h2>
+<h2 id="UDF-在渗透中的作用"><a href="#UDF-在渗透中的作用" class="headerlink" title="UDF 在渗透中的作用"></a>UDF 在渗透中的作用</h2><p>拿到服务器的shell（权限低） –&gt; 服务器配置了mysql –&gt; 自定义的函数拥有管理员权限 –&gt; 管理员的权限</p>
+<p>在一般渗透过程中，拿下一台windows服务器的webshell时，由于webshell权限较低，有些操作无法进行，而此时本地恰好存在mysql数据库，那么udf可能就派上用场了；由于windows安装的mysql进程一般都拥有管理员权限，这就意味着用户自定义的函数也拥有管理员权限，我们也就拥有了执行管理员命令的权限，这时新建管理员用户等操作也就轻而易举了，大多数人称为这一操作为udf提权，其实表达不够准确，应该称为通过mysql获得管理员权限</p>
+<h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><p>1、mysql配置文件secure_file_priv项设置为空，（如果为NULL或/tmp/等指定目录，即无法自定义udf文件导出位置，则无法利用）；</p>
+<p>2、CREATE权限、FILE权限（root用户默认拥有所有权限）</p>
+<p>3、INSERT权限、UPDATE权限、DELETE权限</p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="1、查看可导出文件位置"><a href="#1、查看可导出文件位置" class="headerlink" title="1、查看可导出文件位置"></a>1、查看可导出文件位置</h3><h3 id="2、查看当前数据库用户权限"><a href="#2、查看当前数据库用户权限" class="headerlink" title="2、查看当前数据库用户权限"></a>2、查看当前数据库用户权限</h3><h3 id="3、确定mysql安装位置"><a href="#3、确定mysql安装位置" class="headerlink" title="3、确定mysql安装位置"></a>3、确定mysql安装位置</h3><h3 id="4、通过主机版本及架构确定mysql位数来选用udf文件"><a href="#4、通过主机版本及架构确定mysql位数来选用udf文件" class="headerlink" title="4、通过主机版本及架构确定mysql位数来选用udf文件"></a>4、通过主机版本及架构确定mysql位数来选用udf文件</h3><h3 id="5、查看数据库版本，判断udf文件写入位置"><a href="#5、查看数据库版本，判断udf文件写入位置" class="headerlink" title="5、查看数据库版本，判断udf文件写入位置"></a>5、查看数据库版本，判断udf文件写入位置</h3><h4 id="5-1-mysql大于5-1版本时"><a href="#5-1-mysql大于5-1版本时" class="headerlink" title="5.1 mysql大于5.1版本时"></a>5.1 mysql大于5.1版本时</h4><h5 id="5-1-1-查看-plugin-目录，存在-lib-plugin-目录且有webshell时，直接上传udf文件"><a href="#5-1-1-查看-plugin-目录，存在-lib-plugin-目录且有webshell时，直接上传udf文件" class="headerlink" title="5.1.1 查看 plugin 目录，存在 lib\plugin 目录且有webshell时，直接上传udf文件"></a>5.1.1 查看 plugin 目录，存在 lib\plugin 目录且有webshell时，直接上传udf文件</h5><h5 id="5-1-2-查看-plugin-目录，存在-lib-plugin-目录但没有webshell时，则需要以16进制编码写入udf文件"><a href="#5-1-2-查看-plugin-目录，存在-lib-plugin-目录但没有webshell时，则需要以16进制编码写入udf文件" class="headerlink" title="5.1.2 查看 plugin 目录，存在 lib\plugin 目录但没有webshell时，则需要以16进制编码写入udf文件"></a>5.1.2 查看 plugin 目录，存在 lib\plugin 目录但没有webshell时，则需要以16进制编码写入udf文件</h5><h5 id="5-1-3-查看-plugin-目录，不存在-lib-plugin-目录但有webshell，可使用webshell创建-lib-plugin目录"><a href="#5-1-3-查看-plugin-目录，不存在-lib-plugin-目录但有webshell，可使用webshell创建-lib-plugin目录" class="headerlink" title="5.1.3 查看 plugin 目录，不存在 lib\plugin 目录但有webshell，可使用webshell创建 lib\plugin目录"></a>5.1.3 查看 plugin 目录，不存在 lib\plugin 目录但有webshell，可使用webshell创建 lib\plugin目录</h5><h5 id="5-1-4-查看-plugin-目录，不存在-lib-plugin-目录也没有webshell，此时就要使用网传ADS文件流创建目录的方法了"><a href="#5-1-4-查看-plugin-目录，不存在-lib-plugin-目录也没有webshell，此时就要使用网传ADS文件流创建目录的方法了" class="headerlink" title="5.1.4 查看 plugin 目录，不存在 lib\plugin 目录也没有webshell，此时就要使用网传ADS文件流创建目录的方法了"></a>5.1.4 查看 plugin 目录，不存在 lib\plugin 目录也没有webshell，此时就要使用网传ADS文件流创建目录的方法了</h5><h4 id="5-2-mysql小于5-1版本时"><a href="#5-2-mysql小于5-1版本时" class="headerlink" title="5.2 mysql小于5.1版本时"></a>5.2 mysql小于5.1版本时</h4><h5 id="5-2-1-有webshell时，通过webshell上传udf文件"><a href="#5-2-1-有webshell时，通过webshell上传udf文件" class="headerlink" title="5.2.1 有webshell时，通过webshell上传udf文件"></a>5.2.1 有webshell时，通过webshell上传udf文件</h5><h5 id="5-2-2-无webshell时，使用dumpfile通过16进制数据流写入udf文件"><a href="#5-2-2-无webshell时，使用dumpfile通过16进制数据流写入udf文件" class="headerlink" title="5.2.2 无webshell时，使用dumpfile通过16进制数据流写入udf文件"></a>5.2.2 无webshell时，使用dumpfile通过16进制数据流写入udf文件</h5><h3 id="6、创建命令执行函数"><a href="#6、创建命令执行函数" class="headerlink" title="6、创建命令执行函数"></a>6、创建命令执行函数</h3><h3 id="7、命令执行"><a href="#7、命令执行" class="headerlink" title="7、命令执行"></a>7、命令执行</h3>
             </div>
             <hr>
             <div>
