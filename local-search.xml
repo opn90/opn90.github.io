@@ -4,25 +4,6 @@
   
   
   <entry>
-    <title>csrf</title>
-    <link href="/2022/05/05/csrf/"/>
-    <url>/2022/05/05/csrf/</url>
-    
-    <content type="html"><![CDATA[<p>CSRF跨站请求伪造 学习记录</p><span id="more"></span><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><p>CSRF（Cross-site request forgery）跨站请求伪造，是一种常见的web安全漏洞，概括地说就是指，攻击者通过浏览器保存的Cookie盗用了你的身份，以你的名义给某个网站发送恶意请求，这些恶意请求包括但不限于发邮件、修改账户信息、购买商品、转账等等，从而泄露了个人的隐私安全和财产安全</p><h1 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h1><p>浏览并登录受信网站WebA<br>验证通过，浏览器端产生WebA的cookie<br>用户在没有登出WebA的前提下访问了危险网站Web<br>Web发出一个对WebA的恶意请求<br>根据4中的请求，浏览器带着还未失效的cookie访问WebA<br>WebA并不知道该请求是用户发出的还是WebB发出的，当权限校验通过后，WebB就达到了模拟用户操作的目的 </p><p><a href="https://www.cnblogs.com/bin1121/p/12464266.html">https://www.cnblogs.com/bin1121/p/12464266.html</a></p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>web csrf</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>LeetCode</title>
     <link href="/2022/04/10/LeetCode/"/>
     <url>/2022/04/10/LeetCode/</url>
@@ -34,6 +15,25 @@
     <tags>
       
       <tag>LeetCode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CSRF跨站请求伪造</title>
+    <link href="/2022/03/25/csrf/"/>
+    <url>/2022/03/25/csrf/</url>
+    
+    <content type="html"><![CDATA[<p>CSRF跨站请求伪造 学习记录</p><span id="more"></span><h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><p>CSRF（Cross-site request forgery）跨站请求伪造，是一种常见的web安全漏洞，概括地说就是指，攻击者通过浏览器保存的Cookie盗用了你的身份，以你的名义给某个网站发送恶意请求，这些恶意请求包括但不限于发邮件、修改账户信息、购买商品、转账等等，从而泄露了个人的隐私安全和财产安全</p><h1 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h1><p>浏览并登录受信网站WebA<br>验证通过，浏览器端产生WebA的cookie<br>用户在没有登出WebA的前提下访问了危险网站Web<br>Web发出一个对WebA的恶意请求<br>根据4中的请求，浏览器带着还未失效的cookie访问WebA<br>WebA并不知道该请求是用户发出的还是WebB发出的，当权限校验通过后，WebB就达到了模拟用户操作的目的 </p><p><a href="https://www.cnblogs.com/bin1121/p/12464266.html">https://www.cnblogs.com/bin1121/p/12464266.html</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web csrf</tag>
       
     </tags>
     
@@ -61,7 +61,7 @@
   
   
   <entry>
-    <title>xss</title>
+    <title>XSS跨站脚本攻击</title>
     <link href="/2022/03/23/xss/"/>
     <url>/2022/03/23/xss/</url>
     
