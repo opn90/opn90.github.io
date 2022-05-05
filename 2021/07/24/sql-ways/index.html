@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      2k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      24
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：6 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -312,7 +312,11 @@ md5后，276f722736c95d99e921722cf9ed621c
 再转成字符串：&#39;or&#39;6
 </code></pre></div>
 <p><a target="_blank" rel="noopener" href="https://err0r.top/article/md5/?highlight=md5">附上一篇err0r师傅的md5比较：https://err0r.top/article/md5/?highlight=md5</a> </p>
-<h1 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h1><h1 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kuiguowei/article/details/79045069">https://blog.csdn.net/kuiguowei/article/details/79045069</a></p>
+<h1 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h1><p>利用编码方式的不同，借用转义函数，将转义函数添加的\转换为宽字节，造成’的逃逸</p>
+<p>%df’ =&gt; %df&#39; =&gt; %df%5c’ =&gt; 運’ =&gt; 造成’的逃逸</p>
+<p>转义函数<br>addslashes，mysql_real_escape_string，mysql_escape_string</p>
+<p>宽字节注入指的是 mysql 数据库在使用宽字节（GBK）编码时，会认为两个字符是一个汉字（前一个ascii码要大于128（比如%df），才到汉字的范围），而且当我们输入单引号时，mysql会调用转义函数，将单引号变为’，其中\的十六进制是%5c,mysql的GBK编码，会认为%df%5c是一个宽字节，也就是’運’，从而使单引号闭合（逃逸），进行注入攻击</p>
+<h1 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kuiguowei/article/details/79045069">https://blog.csdn.net/kuiguowei/article/details/79045069</a></p>
 <p>**原理：  **<br>后端语句对用户输入的数据进行严格的过滤<br>但对于从数据库中的搜索，提取的数据不进行过滤、判断<br>直接使用、代入数据库语句中使用<br>造成sql注入威胁  </p>
 <p><strong>操作步骤：</strong><br>1.将恶意数据插入数据库<br>2.调用恶意数据/使恶意数据在sql语句中起到非预期作用<br>3.回显/根据回显数据调整恶意数据的编写  </p>
 <p><strong>常见类型：</strong><br>注册-登录<br>添加某种数据类型-显示/展示详情    </p>
