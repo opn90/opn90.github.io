@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      246 字
+      282 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：11 分钟前
                 
               </p>
             
@@ -248,6 +248,9 @@
 <h1 id="CSRF跨站请求伪造"><a href="#CSRF跨站请求伪造" class="headerlink" title="CSRF跨站请求伪造"></a>CSRF跨站请求伪造</h1><p>CSRF（Cross-site request forgery）跨站请求伪造，是一种常见的web安全漏洞，概括地说就是指，攻击者通过浏览器保存的Cookie盗用了你的身份，以你的名义给某个网站发送恶意请求，这些恶意请求包括但不限于发邮件、修改账户信息、购买商品、转账等等，从而泄露了个人的隐私安全和财产安全</p>
 <h1 id="CSRF原理"><a href="#CSRF原理" class="headerlink" title="CSRF原理"></a>CSRF原理</h1><p>浏览并登录受信网站WebA<br>验证通过，浏览器端产生WebA的cookie<br>用户在没有登出WebA的前提下访问了危险网站Web<br>Web发出一个对WebA的恶意请求<br>根据4中的请求，浏览器带着还未失效的cookie访问WebA<br>WebA并不知道该请求是用户发出的还是WebB发出的，当权限校验通过后，WebB就达到了模拟用户操作的目的 </p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bin1121/p/12464266.html">https://www.cnblogs.com/bin1121/p/12464266.html</a></p>
+<h1 id="CSRF防御"><a href="#CSRF防御" class="headerlink" title="CSRF防御"></a>CSRF防御</h1><p>（1）验证 HTTP Referer 字段</p>
+<p>（2）在请求地址中添加 token 并验证</p>
+<p>（3）在 HTTP 头中自定义属性并验证</p>
 
             </div>
             <hr>

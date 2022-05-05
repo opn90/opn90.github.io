@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      973 字
+      1.2k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      13
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 个月前
+                  本文最后更新于：3 分钟前
                 
               </p>
             
@@ -245,9 +245,7 @@
               <p>SSRF服务器端伪造请求 学习记录</p>
 <span id="more"></span>
 
-<h1 id="SSRF-服务器端伪造请求"><a href="#SSRF-服务器端伪造请求" class="headerlink" title="SSRF-服务器端伪造请求"></a>SSRF-服务器端伪造请求</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>SSRF(Server-Side Request Forgery)，服务器端请求伪造，利用漏洞伪造服务器端发起请求，从而突破客户端限制</p>
-<p>对外发起网络请求的地方都可能存在SSRF漏洞</p>
-<p>一般用于外网探测或攻击内网服务</p>
+<h1 id="SSRF-服务器端伪造请求"><a href="#SSRF-服务器端伪造请求" class="headerlink" title="SSRF-服务器端伪造请求"></a>SSRF-服务器端伪造请求</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>SSRF(Server-Side Request Forgery)，服务器端请求伪造，利用漏洞伪造服务器端发起请求，从而突破客户端限制<br>通俗地来讲就是在未能取得服务器所有权限时，利用服务器漏洞以服务器的身份向服务器所在内网发送一条信息<br>对外发起网络请求的地方都可能存在SSRF漏洞<br>一般用于外网探测或攻击内网服务</p>
 <p><img src="/2022/03/15/ssrf/ssrf-0.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><div class="hljs code-wrapper"><pre><code>1、可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息
@@ -255,6 +253,13 @@
 3、对内网Web应用进行指纹识别，通过访问默认文件实现
 4、攻击内外网的Web应用，主要是使用Get参数就可以实现的攻击（比如Struts2漏洞利用，SQL注入等）
 5、利用file协议读取文件
+</code></pre></div>
+<hr>
+<h3 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h3><div class="hljs code-wrapper"><pre><code>1、过滤返回的信息，如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准
+2、统一错误信息，避免用户可以根据错误信息来判断远程服务器的端口状态
+3、限制请求的端口，比如80,443,8080,8090
+4、禁止不常用的协议，仅仅允许http和https请求。可以防止类似于file:///,gopher://,ftp://等引起的问题
+5、使用DNS缓存或者Host白名单的方式
 </code></pre></div>
 <hr>
 <h3 id="常见情景"><a href="#常见情景" class="headerlink" title="常见情景"></a>常见情景</h3><div class="hljs code-wrapper"><pre><code>1、能够对外发起网络请求的地方，就可能存在 SSRF 漏洞

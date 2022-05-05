@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      526 字
+      670 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      7
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：8 分钟前
                 
               </p>
             
@@ -251,6 +251,9 @@
 <h1 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h1><p>存储型：一般出现在留言板上，评论处，个人资料填写，等需要用户可以对网站写入数据的地方，比如一个论坛处由于对用户输入过滤不严格，导致攻击者在写入一段窃取cookie的恶意JavaScript代码到评论处，这段恶意代码会写入数据库中，当其他用户浏览写入代码的页面时，网站从数据库中读取恶意代码显示到网页中被浏览器执行，导致用户的cookie被窃取攻击者无需受害者密码既可以登陆账户，所以也被成为持久性xss，持久性xss比反射性xss危害性大得多</p>
 <h1 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h1><p>Dom型xss DOM xss是基于dom文件对象模型的，前端脚本通过dom动态修改页面，由于不予服务端运行交互，而且代码是可见的，从前端获取dom中的数据在本地执行。常见的可以操作的dom对象有：url、location、referrer等。dom型的xss比较特殊，是一种基于dom树的xss，服务器端经常使用document.body.innertHtml等动态函数生成HTML页面，如果这些函数在引用某些变量时没有进行过滤检查，就会产生dom型的xss。dom型的xss可能是存储型的也可能是反射性的</p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pursue-security/p/15260757.html">https://www.cnblogs.com/pursue-security/p/15260757.html</a></p>
+<h1 id="XSS防御手段"><a href="#XSS防御手段" class="headerlink" title="XSS防御手段"></a>XSS防御手段</h1><p>（1）对于输出到html的输入内容，采用过滤关键词的方式，把预设的关键词转换成字符实体，例如将&lt; &gt;转换成&lt; 和 &gt;<br>（2）Content-Security-Policy（内容安全策略） 简称 csp<br>即只允许页面向我们允许的域名发起跨域请求，而不符合策略的恶意攻击则被阻挡。csp需要在Response Headers中添加</p>
+<p>采用CSP（Content-Security-Policy） 一定程度上，可以大大减少xss</p>
+<p>《内容安全策略CSP（Content-Security-Policy）》<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_45406092/article/details/114115404">https://blog.csdn.net/m0_45406092/article/details/114115404</a></p>
 
             </div>
             <hr>
