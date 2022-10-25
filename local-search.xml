@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>GIS</title>
+    <link href="/2022/10/24/GIS/"/>
+    <url>/2022/10/24/GIS/</url>
+    
+    <content type="html"><![CDATA[<p>基于GIS的开发与学习</p><span id="more"></span><h1 id="GIS"><a href="#GIS" class="headerlink" title="GIS"></a>GIS</h1><h2 id="什么是GIS"><a href="#什么是GIS" class="headerlink" title="什么是GIS"></a>什么是GIS</h2><p>GIS: Geographic lnformation System 地理信息系统</p><p>地理信息系统（GIS，Geographic Information System）是一门综合性学科结合了地理学与地图学以及遥感和计算机科学</p><p>GIS开发通常分为  </p><ul><li>桌面端开发  </li><li>web端开发  </li><li>移动端开发  </li></ul><h2 id="C-S-amp-B-S"><a href="#C-S-amp-B-S" class="headerlink" title="C/S &amp; B/S"></a>C/S &amp; B/S</h2><h5 id="C-S-架构"><a href="#C-S-架构" class="headerlink" title="C/S 架构"></a>C/S 架构</h5><p>客户机-服务器，即Client-Server(C/S)结构<br>C/S结构通常采取两层结构<br>服务器负责数据的管理，客户机负责完成与用户的交互任务   </p><h5 id="B-S-架构"><a href="#B-S-架构" class="headerlink" title="B/S 架构"></a>B/S 架构</h5><p>浏览器-服务器，Browser/Server<br>主要应用于广域网中  </p><p>三层：  </p><ul><li>Browser客户端  </li><li>webapp服务器端  </li><li>DB（数据库）端  </li></ul><h2 id="webGIS"><a href="#webGIS" class="headerlink" title="webGIS"></a>webGIS</h2><p>webGIS<br>将前端可视化技术与GIS技术结合,提供更好的信息展示和用户交互</p><p>HTML –&gt; vue/react –&gt; openlayers/cesium</p><p>GIS框架本质上来讲,使用的依然是JavaScript做为编程语言,结合HTML和CSS在地图场景的具体应用</p><h2 id="webGIS-地图组成结构"><a href="#webGIS-地图组成结构" class="headerlink" title="webGIS - 地图组成结构"></a>webGIS - 地图组成结构</h2><p><img src="/2022/10/24/GIS/gis-1.png"></p><h3 id="图层-Layer"><a href="#图层-Layer" class="headerlink" title="图层 - Layer"></a>图层 - Layer</h3><p>图层是指能够在视觉上覆盖一定地图范围，用来描述全部或者部分现实世界区域内的地图要素的抽象概念  </p><p>标准图层、卫星图层、路网图层、路况图层</p><h3 id="矢量图形-Vector-Overlays"><a href="#矢量图形-Vector-Overlays" class="headerlink" title="矢量图形 - Vector Overlays"></a>矢量图形 - Vector Overlays</h3><p>矢量图形，一般覆盖于底图图层之上，通过矢量的方式(路径或者实际大小)来描述其形状，用几何的方式来展示真实的地图要素，会随着地图缩放而发生视觉大小的变化，但其代表的实际路径或范围不变</p><h3 id="点标记-Markers"><a href="#点标记-Markers" class="headerlink" title="点标记 - Markers"></a>点标记 - Markers</h3><p>点标记是用来标示某个位置点信息的一种地图要素，覆盖于图层之上</p><p>点要素</p><h3 id="地图控件-Map-Controls"><a href="#地图控件-Map-Controls" class="headerlink" title="地图控件 - Map Controls"></a>地图控件 - Map Controls</h3><p>控件浮在所有图层和地图要素之上，用于满足一定的交互或提示功能</p><h2 id="地图名词"><a href="#地图名词" class="headerlink" title="地图名词"></a>地图名词</h2><h3 id="地图级别-ZoomLevel"><a href="#地图级别-ZoomLevel" class="headerlink" title="地图级别 ZoomLevel"></a>地图级别 ZoomLevel</h3><p>级别与地图的比例尺成正比，每增大一级，地图的比例尺也增大一倍，地图显示的越详细</p><p>Web地图的最小级别通常为3级，最大级别各家略有不同，高德地图JSAPI目前最大级别为20级</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web java GIS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python-XPath</title>
     <link href="/2022/09/14/Python-XPath/"/>
     <url>/2022/09/14/Python-XPath/</url>
