@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      557 字
+      1.5k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      18
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 分钟前
+                  本文最后更新于：7 分钟前
                 
               </p>
             
@@ -272,8 +272,103 @@
 <h3 id="点标记-Markers"><a href="#点标记-Markers" class="headerlink" title="点标记 - Markers"></a>点标记 - Markers</h3><p>点标记是用来标示某个位置点信息的一种地图要素，覆盖于图层之上</p>
 <p>点要素</p>
 <h3 id="地图控件-Map-Controls"><a href="#地图控件-Map-Controls" class="headerlink" title="地图控件 - Map Controls"></a>地图控件 - Map Controls</h3><p>控件浮在所有图层和地图要素之上，用于满足一定的交互或提示功能</p>
-<h2 id="地图名词"><a href="#地图名词" class="headerlink" title="地图名词"></a>地图名词</h2><h3 id="地图级别-ZoomLevel"><a href="#地图级别-ZoomLevel" class="headerlink" title="地图级别 ZoomLevel"></a>地图级别 ZoomLevel</h3><p>级别与地图的比例尺成正比，每增大一级，地图的比例尺也增大一倍，地图显示的越详细</p>
-<p>Web地图的最小级别通常为3级，最大级别各家略有不同，高德地图JSAPI目前最大级别为20级</p>
+<h2 id="地图名词"><a href="#地图名词" class="headerlink" title="地图名词"></a>地图名词</h2><h3 id="地图级别-ZoomLevel"><a href="#地图级别-ZoomLevel" class="headerlink" title="地图级别 - ZoomLevel"></a>地图级别 - ZoomLevel</h3><p>级别与地图的比例尺成正比，每增大一级，地图的比例尺也增大一倍，地图显示的越详细</p>
+<p>Web地图的最小级别通常为3级，最大级别各家略有不同，高德地图JSAPI目前最大级别为20级 </p>
+<h3 id="经纬度-LngLat"><a href="#经纬度-LngLat" class="headerlink" title="经纬度 - LngLat"></a>经纬度 - LngLat</h3><p>坐标通常指经纬度坐标，高德地图的坐标范围大致为:<br>东西经180度(-180——180，西半球为负，东半球为正)<br>南北纬85度(-85———85，北半球为正，南半球为负）  </p>
+<h3 id="底图-BaseLayer"><a href="#底图-BaseLayer" class="headerlink" title="底图 - BaseLayer"></a>底图 - BaseLayer</h3><p>严格意义上，底图指处于所有图层和图形最下方的一个图层，通常不透明。可以是单一图层，比如官方标准图层，也可以是图层组合，比如卫星图层和路网图层组合</p>
+<h3 id="地图要素-Map-Features"><a href="#地图要素-Map-Features" class="headerlink" title="地图要素 - Map Features"></a>地图要素 - Map Features</h3><p>严格意义的地图要素指的是展示在地图上的地理要素，包括道路、区域面、建筑、POI标注、路名等  </p>
+<p>开发者自定义的点标记、矢量图形也可以看做是一种地图要素  </p>
+<h3 id="标注-Labels"><a href="#标注-Labels" class="headerlink" title="标注 - Labels"></a>标注 - Labels</h3><p>将底图上自带的标示一定信息的文字或图标称为标注，比如POI标注，道路名称标注等 </p>
+<p>不同地图级别存在不同标注</p>
+<h3 id="地图平面像素坐标-Plane-Coordinates"><a href="#地图平面像素坐标-Plane-Coordinates" class="headerlink" title="地图平面像素坐标 - Plane Coordinates"></a>地图平面像素坐标 - Plane Coordinates</h3><p>地图平面像素坐标指投影为平面之后的地图上的平面像素坐标 </p>
+<p>高德地图使用的Web墨卡托投影，在3级时，平面坐标范围为横纵0-256*2的3次方像素，每级别扩大一倍，即第n级的平面坐标范围为0-256*2的n次方像素 </p>
+<h3 id="投影-Projection"><a href="#投影-Projection" class="headerlink" title="投影 - Projection"></a>投影 - Projection</h3><p>地图投影指的是将地球球面的经纬度坐标映射到地图平面坐标的变换和映射关系  </p>
+<p>高德地图使用Web 墨卡托投影，即采用EPSG:3857坐标系统</p>
+<h2 id="高德开放平台"><a href="#高德开放平台" class="headerlink" title="高德开放平台"></a>高德开放平台</h2><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/">高德开放平台官网：https://lbs.amap.com/</a></p>
+<h3 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare</a></p>
+<p><img src="/2022/10/24/GIS/gis-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/10/24/GIS/gis-3.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;!--引入高德脚本--&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        window._AMapSecurityConfig = &#123;
+            securityJsCode:&#39;您申请的安全密钥&#39;,
+        &#125;
+    &lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; 
+        src=&quot;https://webapi.amap.com/maps?v=2.0&amp;key=您申请的key值&quot;&gt;
+    &lt;/script&gt; 
+
+    &lt;!--设置地图样式--&gt;
+
+    &lt;style&gt;
+        #container&#123;
+            width: 700px;
+            height: 700px;
+            &#125;
+    &lt;/style&gt;
+  &lt;head&gt;
+  &lt;body&gt;
+
+    &lt;!--创建地图容器--&gt;
+
+    &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+        //定义一个变量，保存/加载对象
+        var map = new AMap.Map(&#39;container&#39;)
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/2022/10/24/GIS/gis-4.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="地图参数"><a href="#地图参数" class="headerlink" title="地图参数"></a>地图参数</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/documentation#map">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/documentation#map</a></p>
+<p><img src="/2022/10/24/GIS/gis-5.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>var map = new AMap.Map(&#39;map&#39;, &#123;
+      viewMode: &#39;3D&#39;,
+      center: [116.397083, 39.874531],
+      layers: [AMap.createDefaultLayer()],  // layers 字段为空或者不赋值将会自动创建默认底图。
+      zoom: 12,
+&#125;)
+</code></pre></div>
+<h3 id="地图图层"><a href="#地图图层" class="headerlink" title="地图图层"></a>地图图层</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/layers/official-layers">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/layers/official-layers</a></p>
+<p><img src="/2022/10/24/GIS/gis-7.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="例–按钮—-gt-实时路况"><a href="#例–按钮—-gt-实时路况" class="headerlink" title="例–按钮—&gt;实时路况"></a>例–按钮—&gt;实时路况</h4><p><img src="/2022/10/24/GIS/gis-8.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>&lt;body&gt;
+    &lt;button onclick=&quot;add()&quot;&gt;显示实时路况&lt;/button&gt;
+    &lt;button onclick=&quot;remove()&quot;&gt;隐藏实时路况&lt;/button&gt;
+
+    &lt;!--创建地图容器--&gt;
+    &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+        //定义一个变量，保存/加载对象
+        var map = new AMap.Map(&#39;container&#39;,&#123;
+            zoom: 10,  //设置地图显示的缩放级别
+            center: [116.397428, 39.90923],//设置地图中心点坐标
+            viewMode: &#39;2D&#39;,  //设置地图模式
+        &#125;);
+
+        var traffic = new AMap.TileLayer.Traffic(&#123;
+            &#39;autoRefresh&#39;: true,     //是否自动刷新，默认为false
+            &#39;interval&#39;: 180,         //刷新间隔，默认180s
+        &#125;);
+
+        //map.add(traffic); //通过add方法添加图层
+        //map.remove(traffic) //需要时可以移除
+
+        function add()
+        &#123;map.add(traffic)&#125; 
+        function remove()
+        &#123;map.remove(traffic)&#125;
+    &lt;/script&gt;
+  &lt;/body&gt;
+</code></pre></div>
+<h3 id="地图控件"><a href="#地图控件" class="headerlink" title="地图控件"></a>地图控件</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/overlays/toolbar">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/overlays/toolbar</a></p>
 
             </div>
             <hr>
