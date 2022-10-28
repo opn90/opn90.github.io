@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      3.1k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      42
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：13 分钟前
+                  本文最后更新于：3 分钟前
                 
               </p>
             
@@ -401,7 +401,207 @@
         &#125;)
 </code></pre></div>
 <p><img src="/2022/10/24/GIS/gis-10.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="点标记-Marker"><a href="#点标记-Marker" class="headerlink" title="点标记 Marker"></a>点标记 Marker</h3>
+<h3 id="点标记-Marker"><a href="#点标记-Marker" class="headerlink" title="点标记 Marker"></a>点标记 Marker</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/overlays/marker">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/overlays/marker</a></p>
+<h4 id="基于经纬度绘制点—"><a href="#基于经纬度绘制点—" class="headerlink" title="基于经纬度绘制点—"></a>基于经纬度绘制点—</h4><div class="hljs code-wrapper"><pre><code>         //基于经纬度绘制点
+        var marker = new AMap.Marker(&#123;
+            position: new AMap.LngLat(116.39, 39.9),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+            title: &#39;北京&#39;
+        &#125;);
+
+        // 将创建的点标记添加到已有的地图实例：
+        map.add(marker);
+
+        // 移除已创建的 marker
+        //map.remove(marker);
+</code></pre></div>
+<p>点图标无法正常显示，需附带本地路径+图片</p>
+<div class="hljs code-wrapper"><pre><code>    offset: new AMap.Pixel(-10, -10), //相对点的偏移位置
+    icon: &#39;2.png&#39;, // 添加 Icon 图标 URL
+</code></pre></div>
+<h4 id="交互式绘制点"><a href="#交互式绘制点" class="headerlink" title="交互式绘制点"></a>交互式绘制点</h4><div class="hljs code-wrapper"><pre><code>//交互式绘制点
+       map.on(&#39;click&#39;,function(event)&#123;
+            //控制台输出当前点击具体信息
+            console.log(event)
+
+            //输出经纬度
+            console.log(`经度：$&#123;event.lnglat.lng&#125;,纬度：$&#123;event.lnglat.lat&#125;`)
+
+            var marker = new AMap.Marker(&#123;
+            position: event.lnglat,   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+            offset: new AMap.Pixel(-10, -10),
+            icon: &#39;2.png&#39;, // 添加 Icon 图标 URL
+            title: &#39;北京&#39;
+        &#125;);
+
+        // 将创建的点标记添加到已有的地图实例：
+        map.add(marker);
+        &#125;)
+</code></pre></div>
+<p>点图标无法正常显示，需附带本地路径+图片</p>
+<h4 id="自定义Icon图标"><a href="#自定义Icon图标" class="headerlink" title="自定义Icon图标"></a>自定义Icon图标</h4><div class="hljs code-wrapper"><pre><code> icon: &#39;2.png&#39;, // 添加 Icon 图标 URL
+
+var icon = new AMap.Icon(&#123;
+    size: new AMap.Size(40, 50),    // 图标尺寸
+    image: &#39;//webapi.amap.com/theme/v1.3/images/newpc/way_btn2.png&#39;,  // Icon的图像
+    imageOffset: new AMap.Pixel(0, -60),  // 图像相对展示区域的偏移量，适于雪碧图等
+    imageSize: new AMap.Size(40, 50)   // 根据所设置的大小拉伸或压缩图片
+&#125;);
+icon：icon
+</code></pre></div>
+<h4 id="圆点标记—标注省会"><a href="#圆点标记—标注省会" class="headerlink" title="圆点标记—标注省会"></a>圆点标记—标注省会</h4><div class="hljs code-wrapper"><pre><code>  &lt;script type=&quot;text/javascript&quot; src=&#39;https://a.amap.com/jsapi_demos/static/resource/capitals.js&#39;&gt;&lt;/script&gt;
+
+for(var i=0;i&lt;capitals.length;i+=1)&#123;
+    var center = capitals[i].center;
+    var circleMarker = new AMap.CircleMarker(&#123;
+          center:center,
+          radius:10+Math.random()*10,//3D视图下，CircleMarker半径不要超过64px
+          strokeColor:&#39;white&#39;,
+          strokeWeight:2,
+          strokeOpacity:0.5,
+          fillColor:&#39;rgba(0,0,255,1)&#39;,
+          fillOpacity:0.5,
+          zIndex:10,
+          bubble:true,
+          cursor:&#39;pointer&#39;,
+          clickable: true
+        &#125;)
+    circleMarker.setMap(map)
+  &#125;
+</code></pre></div>
+<h4 id="纯文本标记"><a href="#纯文本标记" class="headerlink" title="纯文本标记"></a>纯文本标记</h4><div class="hljs code-wrapper"><pre><code>&lt;!--纯文本标记--&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css&quot;/&gt;
+
+// 创建纯文本标记
+        var text = new AMap.Text(&#123;
+            text:&#39;111111&#39;,
+            anchor:&#39;center&#39;, // 设置文本标记锚点
+            draggable:true,
+            cursor:&#39;pointer&#39;,
+            angle:10,
+            style:&#123;
+                &#39;padding&#39;: &#39;.75rem 1.25rem&#39;,
+                &#39;margin-bottom&#39;: &#39;1rem&#39;,
+                &#39;border-radius&#39;: &#39;.25rem&#39;,
+                &#39;background-color&#39;: &#39;white&#39;,
+                &#39;width&#39;: &#39;15rem&#39;,
+                &#39;border-width&#39;: 0,
+                &#39;box-shadow&#39;: &#39;0 2px 6px 0 rgba(114, 124, 245, .5)&#39;,
+                &#39;text-align&#39;: &#39;center&#39;,
+                &#39;font-size&#39;: &#39;20px&#39;,
+                &#39;color&#39;: &#39;blue&#39;
+            &#125;,
+        position: [116.396923,39.918203]
+    &#125;);
+
+    text.setMap(map);
+</code></pre></div>
+<h3 id="矢量图形"><a href="#矢量图形" class="headerlink" title="矢量图形"></a>矢量图形</h3><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/overlays/vector-overlay">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/overlays/vector-overlay</a></p>
+<h4 id="折线-Polyline"><a href="#折线-Polyline" class="headerlink" title="折线 Polyline"></a>折线 Polyline</h4><div class="hljs code-wrapper"><pre><code>// 折线的节点坐标数组，每个元素为 AMap.LngLat 对象
+var path = [
+    new AMap.LngLat(116.368904,39.913423),
+    new AMap.LngLat(116.382122,39.901176),
+    new AMap.LngLat(116.387271,39.912501),
+    new AMap.LngLat(116.398258,39.904600)
+];
+
+// 创建折线实例
+var polyline = new AMap.Polyline(&#123;
+    path: path,  
+    borderWeight: 2, // 线条宽度，默认为 1
+    strokeColor: &#39;red&#39;, // 线条颜色
+    lineJoin: &#39;round&#39; // 折线拐点连接处样式
+&#125;);
+
+// 将折线添加至地图实例
+map.add(polyline);
+</code></pre></div>
+<h4 id="多边形-Polygon-、圆形-Circle-、矩形-Rectangle-、-椭圆形-Ellipse"><a href="#多边形-Polygon-、圆形-Circle-、矩形-Rectangle-、-椭圆形-Ellipse" class="headerlink" title="多边形 Polygon 、圆形 Circle 、矩形 Rectangle 、 椭圆形 Ellipse"></a>多边形 Polygon 、圆形 Circle 、矩形 Rectangle 、 椭圆形 Ellipse</h4><h3 id="几何计算"><a href="#几何计算" class="headerlink" title="几何计算"></a>几何计算</h3><h4 id="距离、长度、面积"><a href="#距离、长度、面积" class="headerlink" title="距离、长度、面积"></a>距离、长度、面积</h4><p><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/jsapi-v2/guide/geometry/geometry">高德开放平台官网：https://lbs.amap.com/api/jsapi-v2/guide/geometry/geometry</a></p>
+<ul>
+<li>计算两点间的实际距离 AMap.GeometryUtil.distance</li>
+<li>计算点到线段的最短距离 AMap.GeometryUtil.distanceToSegment</li>
+<li>计算点到路径的最短距离  AMap.GeometryUtil.distanceToLine</li>
+<li>计算路径的实际长度 AMap.GeometryUtil.distanceOfLine</li>
+<li>计算封闭区域的面积 AMap.GeometryUtil.ringArea</li>
+</ul>
+<h4 id="计算两点间的实际距离"><a href="#计算两点间的实际距离" class="headerlink" title="计算两点间的实际距离"></a>计算两点间的实际距离</h4><p>当需要计算两个地理位置间的实际地面距离时，可以使用静态方法 AMap.GeometryUtil.distance，返回数据以米为单位</p>
+<div class="hljs code-wrapper"><pre><code>var p1 = [116.434027, 39.941037];
+var p2 = [116.461665, 39.941564];
+// 返回 p1 到 p2 间的地面距离，单位：米
+var dis = AMap.GeometryUtil.distance(p1, p2);
+</code></pre></div>
+<h4 id="可移动两点的直线距离"><a href="#可移动两点的直线距离" class="headerlink" title="可移动两点的直线距离"></a>可移动两点的直线距离</h4><ol>
+<li>创建两个点，设置可以拖动</li>
+<li>准备一条线段</li>
+<li>准备一个文本</li>
+<li>计算</li>
+</ol>
+<p>(定位点—武汉)</p>
+<div class="hljs code-wrapper"><pre><code>    // 可移动两点的直线距离
+       //1. 创建两个点，设置可以拖动
+       var m1= new AMap.Marker(&#123;
+        map:map,        //将m1这个点添加到AMap中
+        draggable:true, //设置该点可以拖动
+        position:new AMap.LngLat(114.255,30.621),
+        icon: &#39;2.png&#39;, // 添加 Icon 图标 URL
+       &#125;)
+
+       var m2= new AMap.Marker(&#123;
+        map:map,        //将m1这个点添加到AMap中
+        draggable:true, //设置该点可以拖动
+        position:new AMap.LngLat(114.334,30.579),
+        icon: &#39;2.png&#39;, // 添加 Icon 图标 URL
+       &#125;)
+
+       //让地图根据覆盖物调整地图显示区域
+       map.setFitView()
+
+       //2. 准备一条线段
+       var line= new AMap.Polyline(&#123;
+        strokeColor:&#39;#80d8ff&#39;,  //描边的颜色
+        isOutline:true,         //包含轮廓
+        outerlineColor:&#39;white&#39;  //轮廓颜色
+       &#125;)
+       line.setMap(map)
+
+       //3. 准备一个文本
+       var text = new AMap.Text(&#123;
+            text:&#39;&#39;,
+            style:&#123;
+                &#39;background-color&#39;:&#39;#29b6f6&#39;,
+                &#39;border-color&#39;:&#39;#e1f5fe&#39;,
+                &#39;font-size&#39;:&#39;16px&#39;,
+            &#125;, 
+       &#125;)
+       text.setMap(map)
+   
+       //4.计算
+       function compute()&#123;
+            //得到m1,m2的经纬度
+            var p1 = m1.getPosition()
+            var p2 = m2.getPosition()
+
+            //希望文本显示在两个经纬度的中间
+            //divideBy() 除法
+            var textPos = p1.divideBy(2).add(p2.divideBy(2))//(p1+p2)/2
+
+            //distance() 计算两点的直线距离
+            //Math.round() 取整
+            var distance = Math.round(p1.distance(p2))
+
+            //定义路径
+            var path = [p1,p2]
+            line.setPath(path)  //绘制线段，根据p1,p2的坐标
+
+            //为text填充值
+            text.setText(&#39;距离为&#39;+distance+&#39;米&#39;)
+            //设置文字的显示区域
+            text.setPosition(textPos)
+       &#125;
+       compute()
+       m1.on(&#39;dragging&#39;,compute)
+       m2.on(&#39;dragging&#39;,compute)
+</code></pre></div>
+
             </div>
             <hr>
             <div>
