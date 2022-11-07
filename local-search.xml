@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Java</title>
+    <link href="/2022/11/07/Java/"/>
+    <url>/2022/11/07/Java/</url>
+    
+    <content type="html"><![CDATA[<p>基于java的学习</p><span id="more"></span><h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="IDEA项目结构"><a href="#IDEA项目结构" class="headerlink" title="IDEA项目结构"></a>IDEA项目结构</h2><p>project(项目)<br>————model(模块)<br>————————package(包)<br>————————————class(类)</p><h2 id="IDEA-上手"><a href="#IDEA-上手" class="headerlink" title="IDEA 上手"></a>IDEA 上手</h2><p>新建模块-新建包-新建类</p><p>在类中编写</p><p><img src="/2022/11/07/Java/Java-1.png"></p><h3 id="HelloWorld"><a href="#HelloWorld" class="headerlink" title="HelloWorld"></a>HelloWorld</h3><div class="hljs code-wrapper"><pre><code>package top.opn90;public class HelloWorld &#123;    public static void main(String[] args) &#123;    //psvm        System.out.println(&quot;HelloWorld&quot;);       //sout    &#125;&#125;</code></pre></div><h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>在进行运算时，需要先将数据类型统一才能进行运算</p><p>隐式转换</p><p>小的变为大的 保留数据</p><p>强制转换</p><div class="hljs code-wrapper"><pre><code>double a=1.23;int b = (int)a;</code></pre></div><h3 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h3><h5 id="Scanner相关的功能"><a href="#Scanner相关的功能" class="headerlink" title="Scanner相关的功能"></a>Scanner相关的功能</h5><div class="hljs code-wrapper"><pre><code>//输入整数import java.util.Scanner;public class GetIn &#123;    public static void main(String[] args) &#123;        Scanner scanner = new Scanner(System.in);        int a = scanner.nextInt();    //int        System.out.println(a);    &#125;&#125;//输入字符串String a = scanner.next();//输入多个字符串String a = scanner.nextLine();</code></pre></div><h5 id="System相关的功能"><a href="#System相关的功能" class="headerlink" title="System相关的功能"></a>System相关的功能</h5><h5 id="使用命令行相关设置"><a href="#使用命令行相关设置" class="headerlink" title="使用命令行相关设置"></a>使用命令行相关设置</h5><h5 id="JOptionPane相关功能"><a href="#JOptionPane相关功能" class="headerlink" title="JOptionPane相关功能"></a>JOptionPane相关功能</h5><h3 id="String-回文数"><a href="#String-回文数" class="headerlink" title="String - 回文数"></a>String - 回文数</h3><div class="hljs code-wrapper"><pre><code>package top.opn90;import java.util.Scanner;//回文数public class ReturnNum &#123;    public static void main(String[] args) &#123;        Scanner scanner = new Scanner(System.in);        int a = scanner.nextInt();        String str= Integer.toString(a);        char[] arr= str.toCharArray();        int i = str.length();        //System.out.println(i);        for(int p=0;2*p&lt;=i;p++)&#123;            if(arr[p]==arr[i-p-1])&#123;                continue;            &#125;            else&#123;                System.out.println(str+&quot;不是回文数&quot;);                return;            &#125;        &#125;        System.out.println(str+&quot;是回文数&quot;);    &#125;&#125;</code></pre></div><h5 id="类型转换-1"><a href="#类型转换-1" class="headerlink" title="类型转换"></a>类型转换</h5><div class="hljs code-wrapper"><pre><code>//int ——&gt; StringString.valueOf(int i)Interger.toString(int i)i+&quot;&quot;//String ——&gt; char[]String str= &quot;&quot;;char[] arr= str.toCharArray();</code></pre></div><h3 id="方法-函数"><a href="#方法-函数" class="headerlink" title="方法/函数"></a>方法/函数</h3><div class="hljs code-wrapper"><pre><code>public static 返回值类型 方法名 (参数)&#123;    方法体;    return 返回值;/void —— null&#125;</code></pre></div><h5 id="方法的重载"><a href="#方法的重载" class="headerlink" title="方法的重载"></a>方法的重载</h5><p>同个类中，方法名相同，参数不同的方法，与返回值无关</p><h3 id="面向对象-面向过程"><a href="#面向对象-面向过程" class="headerlink" title="面向对象/面向过程"></a>面向对象/面向过程</h3><p>面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用就可以了；面向对象是把构成问题事务分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描叙某个事物在整个解决问题的步骤中的行为</p><h5 id="面向过程就是自上向下的编程"><a href="#面向过程就是自上向下的编程" class="headerlink" title="面向过程就是自上向下的编程"></a>面向过程就是自上向下的编程</h5><p>性能比面向对象高，因为类调用时需要实例化，开销比较大</p><p>没有面向对象易维护，易复用，易扩展。可维护性差，不易修改</p><h5 id="面向对象就是高度实物抽象化"><a href="#面向对象就是高度实物抽象化" class="headerlink" title="面向对象就是高度实物抽象化"></a>面向对象就是高度实物抽象化</h5><p>易维护，易复用，易扩展</p><p>由于面向对象由封装，继承，多态性的特性，可以设计出耦合度低的系统，使系统更加灵活，更加易于维护 </p><p>缺点是性能比面向过程低</p><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><div class="hljs code-wrapper"><pre><code>public class cl&#123;    //属性    //方法&#125;</code></pre></div><h5 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h5><div class="hljs code-wrapper"><pre><code>public class cl&#123;    public cl()&#123;&#125;    public cl(int a,int b)&#123;&#125;&#125;</code></pre></div><p>无论是否使用，都手动书写无参数构造方法，和带全部参数的构造方法</p><h5 id="标准JavaBean"><a href="#标准JavaBean" class="headerlink" title="标准JavaBean"></a>标准JavaBean</h5><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>interface</p><div class="hljs code-wrapper"><pre><code>//定义接口public interface 接口名&#123;&#125;//实现接口public class 类名 implements 接口名1,接口名2&#123;&#125;//实现类可以在继承类的同时实现多个接口public class 类名 extends 父类 implements 接口名1,接口名2&#123;&#125;</code></pre></div><h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>GIS</title>
     <link href="/2022/10/24/GIS/"/>
     <url>/2022/10/24/GIS/</url>
@@ -14,7 +33,7 @@
     
     <tags>
       
-      <tag>web java GIS</tag>
+      <tag>web GIS</tag>
       
     </tags>
     
