@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29
+      30
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -619,16 +619,22 @@ executeUpdate()/executeQuery()
 <p>JavaEE三层架构:表现层、业务层、持久层</p>
 <h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型</p>
 <p>在框架的基础之上构建软件编写更加高效、规范、通用、可扩展</p>
-<h2 id="JDBC-缺点"><a href="#JDBC-缺点" class="headerlink" title="JDBC 缺点"></a>JDBC 缺点</h2><p>1、硬编码</p>
+<h3 id="JDBC-缺点"><a href="#JDBC-缺点" class="headerlink" title="JDBC 缺点"></a>JDBC 缺点</h3><p>1、硬编码</p>
 <p>注册驱动，获取连接</p>
 <p>SQL语句</p>
 <p>2、操作繁琐</p>
 <p>手动设置参数</p>
 <p>手动封装结果集</p>
-<h2 id="MyBatis-简化"><a href="#MyBatis-简化" class="headerlink" title="MyBatis 简化"></a>MyBatis 简化</h2><p>1、硬编码—&gt;配置文件</p>
+<h3 id="MyBatis-简化"><a href="#MyBatis-简化" class="headerlink" title="MyBatis 简化"></a>MyBatis 简化</h3><p>1、硬编码—&gt;配置文件</p>
 <p>2、操作繁琐—&gt;自动完成</p>
 <p>MyBatis 免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作</p>
-
+<h2 id="MyBatis-基础步骤"><a href="#MyBatis-基础步骤" class="headerlink" title="MyBatis 基础步骤"></a>MyBatis 基础步骤</h2><p>MyBatis 快速入门<br><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/getting-started.html">https://mybatis.org/mybatis-3/zh/getting-started.html</a></p>
+<p>创建模块，导入坐标</p>
+<p>编写配置文件</p>
+<p>编写SQL映射文件</p>
+<p>编码</p>
+<p>1、定义pojo类<br>2、加载核心配置文件，获取SqlSessionFactory 对象<br>3、获取SqISession对象，执行SQL语句<br>4、释放资源</p>
+<h3 id="IDEA-连接-mysql数据库"><a href="#IDEA-连接-mysql数据库" class="headerlink" title="IDEA 连接 mysql数据库"></a>IDEA 连接 mysql数据库</h3><h2 id="Mapper代理开发"><a href="#Mapper代理开发" class="headerlink" title="Mapper代理开发"></a>Mapper代理开发</h2>
             </div>
             <hr>
             <div>
