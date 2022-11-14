@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      29
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：4 分钟前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
@@ -499,6 +499,135 @@ String 列的名称
         System.out.println(i2);
     &#125;
 </code></pre></div>
+<h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><p>数据类</p>
+<div class="hljs code-wrapper"><pre><code>public class javasum &#123;
+    private int id;
+    private int sum;
+&#125;
+
+// Alt + Insert ---&gt;     Getter和Setter
+
+--- getId()、setId()、getSum()、setSum()
+
+// Alt + Insert ---&gt;     toString()
+
+public String toString() &#123;&#125;
+</code></pre></div>
+<p>使用</p>
+<div class="hljs code-wrapper"><pre><code>//创建集合
+List&lt;javasum&gt; list = new ArrayList&lt;&gt;();
+
+//处理结果
+while(rs.next())
+&#123;
+     javasum test = new javasum();
+
+     int id = rs.getInt(&quot;id&quot;);
+     int sum = rs.getInt(&quot;sum&quot;);
+
+     test.setId(id);
+     test.setSum(sum);
+
+     list.add(test);
+ &#125;
+
+ System.out.println(list);
+</code></pre></div>
+<h3 id="JDBC-API-–-PreparedStatement"><a href="#JDBC-API-–-PreparedStatement" class="headerlink" title="JDBC API – PreparedStatement"></a>JDBC API – PreparedStatement</h3><p>预编译sql语句并执行</p>
+<p>预防sql注入</p>
+<p>使用</p>
+<div class="hljs code-wrapper"><pre><code>1、获取PreparedStatement对象
+
+//sql语句中的参数值用 ? 占位符替代
+String sql=&quot;select * from users where id = ? and password = ?;&quot;;
+PreparedStatement pstmt = conn.PreparedStatement(sql);
+
+2、设置参数值
+
+setXxx(参数1,参数2) 给 ? 赋值
+参数1：? 的位置
+参数2：? 的值
+
+3、执行sql
+
+executeUpdate()/executeQuery()
+    
+</code></pre></div>
+<p>例</p>
+<div class="hljs code-wrapper"><pre><code>    //3.定义sql语句
+     String sql=&quot;select sum from javasum where id =?&quot;;
+
+    //4.获取执行sql的对象 Statement
+     PreparedStatement ptmt=conn.prepareStatement(sql);
+
+    ptmt.setInt(1,1);
+    //5.执行sql
+    ResultSet rs = ptmt.executeQuery();
+
+    //6.处理结果
+    while(rs.next())
+    &#123;
+        int sum = rs.getInt(1);
+        System.out.println(sum);
+    &#125;
+</code></pre></div>
+<h3 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h3><p>标准接口 ： DataSource</p>
+<p>getConnection</p>
+<h5 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h5><p>配置文件</p>
+<div class="hljs code-wrapper"><pre><code>//加载配置文件
+    Properties prop = new Properties();
+    prop.load(new FileInputStream(&quot;&quot;));
+
+    //获取连接池对象
+    DataSource datasource = DruidDataSourceFactory.createDataSource(prop);
+
+    //获取连接池对象
+    Connection conn = datasource.getConnection();
+</code></pre></div>
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Maven是专门用于管理和构建Java项目的工具</p>
+<h5 id="提供了一套标准的项目结构"><a href="#提供了一套标准的项目结构" class="headerlink" title="提供了一套标准的项目结构"></a>提供了一套标准的项目结构</h5><p><img src="/2022/11/08/JavaWeb/javaweb-4.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="提供了一套标准化的构造流程（编译，测试，打包，发布……）"><a href="#提供了一套标准化的构造流程（编译，测试，打包，发布……）" class="headerlink" title="提供了一套标准化的构造流程（编译，测试，打包，发布……）"></a>提供了一套标准化的构造流程（编译，测试，打包，发布……）</h5><p>Maven提供了一套简单的命令来完成项目构建</p>
+<h5 id="提供了一套依赖管理机制"><a href="#提供了一套依赖管理机制" class="headerlink" title="提供了一套依赖管理机制"></a>提供了一套依赖管理机制</h5><p>依赖管理其实就是管理项目所依赖的第三方资源(jar包、插件…)</p>
+<p>手动导入—&gt;坐标管理配置</p>
+<h5 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h5><p>本地仓库—中央仓库—远程仓库(私服)</p>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>安装包</p>
+<p>配置环境变量</p>
+<p>配置本地仓库</p>
+<p>修改conf/settings.xml中的<localRepository>为一个指定目录</localRepository></p>
+<p>配置阿里云私服</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="IDEA-配置-Maven"><a href="#IDEA-配置-Maven" class="headerlink" title="IDEA 配置 Maven"></a>IDEA 配置 Maven</h3><p>Setting—Maven</p>
+<h3 id="IDEA-创建-Maven项目"><a href="#IDEA-创建-Maven项目" class="headerlink" title="IDEA 创建 Maven项目"></a>IDEA 创建 Maven项目</h3><p>构建系统–Maven</p>
+<h3 id="IDEA-导入-Maven项目"><a href="#IDEA-导入-Maven项目" class="headerlink" title="IDEA 导入 Maven项目"></a>IDEA 导入 Maven项目</h3><p>导入其pml文件</p>
+<h3 id="依赖范围"><a href="#依赖范围" class="headerlink" title="依赖范围"></a>依赖范围</h3><p>通过设置坐标的依赖范围(scope)，可以设置对应jar包的作用范围:</p>
+<p>编译环境、测试环境、运行环境</p>
+<h2 id="Maven-坐标"><a href="#Maven-坐标" class="headerlink" title="Maven 坐标"></a>Maven 坐标</h2><p>Maven中的坐标是资源的唯一标识</p>
+<p>使用坐标来定义项目或引入项目中需要的依赖</p>
+<h3 id="Maven-坐标-组成"><a href="#Maven-坐标-组成" class="headerlink" title="Maven 坐标 组成"></a>Maven 坐标 组成</h3><p>groupld:定义当前Maven项目隶属组织名称</p>
+<p>artifactld:定义当前Maven项目名称</p>
+<p>version:定义当前项目版本号</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;5.1.46&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre></div>
+<p>Alt–Insert–dependencies–搜索</p>
+<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><p>MyBatis是一款优秀的持久层框架，用于简化JDBC开发</p>
+<h3 id="持久层"><a href="#持久层" class="headerlink" title="持久层"></a>持久层</h3><p>负责将数据到保存到数据库的那一层代码</p>
+<p>JavaEE三层架构:表现层、业务层、持久层</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>框架就是一个半成品软件，是一套可重用的、通用的、软件基础代码模型</p>
+<p>在框架的基础之上构建软件编写更加高效、规范、通用、可扩展</p>
+<h2 id="JDBC-缺点"><a href="#JDBC-缺点" class="headerlink" title="JDBC 缺点"></a>JDBC 缺点</h2><p>1、硬编码</p>
+<p>注册驱动，获取连接</p>
+<p>SQL语句</p>
+<p>2、操作繁琐</p>
+<p>手动设置参数</p>
+<p>手动封装结果集</p>
+<h2 id="MyBatis-简化"><a href="#MyBatis-简化" class="headerlink" title="MyBatis 简化"></a>MyBatis 简化</h2><p>1、硬编码—&gt;配置文件</p>
+<p>2、操作繁琐—&gt;自动完成</p>
+<p>MyBatis 免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作</p>
 
             </div>
             <hr>
