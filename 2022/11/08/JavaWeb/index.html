@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      2.7k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      34
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：32 分钟前
                 
               </p>
             
@@ -634,7 +634,28 @@ executeUpdate()/executeQuery()
 <p>编写SQL映射文件</p>
 <p>编码</p>
 <p>1、定义pojo类<br>2、加载核心配置文件，获取SqlSessionFactory 对象<br>3、获取SqISession对象，执行SQL语句<br>4、释放资源</p>
-<h3 id="IDEA-连接-mysql数据库"><a href="#IDEA-连接-mysql数据库" class="headerlink" title="IDEA 连接 mysql数据库"></a>IDEA 连接 mysql数据库</h3><h2 id="Mapper代理开发"><a href="#Mapper代理开发" class="headerlink" title="Mapper代理开发"></a>Mapper代理开发</h2>
+<h3 id="IDEA-连接-mysql数据库"><a href="#IDEA-连接-mysql数据库" class="headerlink" title="IDEA 连接 mysql数据库"></a>IDEA 连接 mysql数据库</h3><h2 id="Mapper代理开发"><a href="#Mapper代理开发" class="headerlink" title="Mapper代理开发"></a>Mapper代理开发</h2><p>目的：</p>
+<p>解决原生方式中的硬编码</p>
+<p>简化后期执行SQL</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>1、定义与SQL映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放置在同一目录下<br>2、设置SQL映射文件的namespace属性为Mapper接口全限定名<br>3、在Mapper接口中定义方法，方法名就是SQL映射文件中sql语句的id，并保持参数类型和返回值类型一致<br>4、编码 ——-<br>通过SqIlSession的 getMapper方法获取 Mapper接口的代理对象调用对应方法完成sql的执行</p>
+<div class="hljs code-wrapper"><pre><code>//获取mapper的代理对象
+UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+List&lt;User&gt; users = userMapper.selectAll();
+
+sqlSession.close() 
+</code></pre></div>
+<p>创建目录—–com.opn—&gt;com/opn</p>
+<p>如果Mapper接口名称和sql映射文件名称相同，并在同一目录下，可以用包扫描的方式简化sql映射文件的加载</p>
+<div class="hljs code-wrapper"><pre><code>&lt;mappers&gt;
+
+    //&lt;mapper resource=&quot;com/opn/mapper/UserMapper.xml&quot;/&gt;
+
+    &lt;package name=&quot;com.opn&quot;&gt;
+
+&lt;/mappers&gt;
+</code></pre></div>
+<h3 id="Mybatis核心配置文件"><a href="#Mybatis核心配置文件" class="headerlink" title="Mybatis核心配置文件"></a>Mybatis核心配置文件</h3><p>environments:<br>配置数据库连按环境信息。可以配置多个environment，通过defqult属性切换不同的environment</p>
+
             </div>
             <hr>
             <div>
