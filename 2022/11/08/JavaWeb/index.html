@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      34
+      38
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：32 分钟前
+                  本文最后更新于：18 天前
                 
               </p>
             
@@ -655,6 +655,52 @@ sqlSession.close()
 &lt;/mappers&gt;
 </code></pre></div>
 <h3 id="Mybatis核心配置文件"><a href="#Mybatis核心配置文件" class="headerlink" title="Mybatis核心配置文件"></a>Mybatis核心配置文件</h3><p>environments:<br>配置数据库连按环境信息。可以配置多个environment，通过defqult属性切换不同的environment</p>
+<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><h2 id="Apache-Tomcat"><a href="#Apache-Tomcat" class="headerlink" title="Apache Tomcat"></a>Apache Tomcat</h2><p>开源免费轻量级的 web 服务器</p>
+<p>tomcat.apache.org</p>
+<h3 id="Tomcat-基本使用"><a href="#Tomcat-基本使用" class="headerlink" title="Tomcat 基本使用"></a>Tomcat 基本使用</h3><div class="hljs code-wrapper"><pre><code>bin/startup.bat 启动
+
+webapps 运行目录、部署项目
+
+conf/server.xml    修改启动端口号
+&lt;Connector port=&quot;8080&quot;&gt;
+
+
+java包压缩成war包--在webapps目录下自动解压
+</code></pre></div>
+<h3 id="在IDEA中创建-Maven-Web项目"><a href="#在IDEA中创建-Maven-Web项目" class="headerlink" title="在IDEA中创建 Maven Web项目"></a>在IDEA中创建 Maven Web项目</h3><h4 id="web项目结构"><a href="#web项目结构" class="headerlink" title="web项目结构"></a>web项目结构</h4><p>1、Maven Web项目结构：开发中的项目</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-5.png" srcset="/img/loading.gif" lazyload></p>
+<p>2、部署的JavaWeb项目结构：开发完成、可部署的项目</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>WEB-INF — classes  </p>
+<p>编译后的java字节码文件和resources的资源文件</p>
+<p>WEB-INF — lib  </p>
+<p>pom.xml中依赖坐标对应的jar包</p>
+<p>3、打包 package</p>
+<p>webapp中的内容，web项目打包</p>
+<p>在target目录下生成打包文件</p>
+<p>打包的方式</p>
+<p>pom.xml</p>
+<p><packaging>war</packaging></p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-7.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="IDEA中创建Maven-Web项目"><a href="#IDEA中创建Maven-Web项目" class="headerlink" title="IDEA中创建Maven Web项目"></a>IDEA中创建Maven Web项目</h4><p>一、使用骨架</p>
+<p>1、选择web项目骨架，创建项目</p>
+<p>maven-archetype-webapp</p>
+<p>2、删除pom.xml中多余的坐标</p>
+<p>3、补齐缺失的目录结构</p>
+<p>二、不使用骨架</p>
+<p>1、选择web项目骨架，创建项目</p>
+<p>2、pom.xml中添加打包方式为war</p>
+<p>3、补齐缺失的目录结构：webapp</p>
+<h4 id="IDEA中使用Tomcat"><a href="#IDEA中使用Tomcat" class="headerlink" title="IDEA中使用Tomcat"></a>IDEA中使用Tomcat</h4><p>将本地Tomcat集成到IDEA中，然后进行项目部署</p>
+<p>使用Tomcat的 Maven 插件</p>
+<div class="hljs code-wrapper"><pre><code>&lt;plugin&gt;
+    &lt;groupld&gt;org.apache.tomcat.maven&lt;/groupld&gt;
+    &lt;artifactld&gt;tomcat7-maven-plugin&lt;/artifactld&gt;
+    &lt;version&gt;2.2&lt;/version&gt;
+&lt;/plugin&gt;
+</code></pre></div>
+<p>使用Maven Helper插件快速启动项目，选中项目，右键–&gt; Run Maven –&gt; tomcat7:run
+    </p>
 
             </div>
             <hr>
