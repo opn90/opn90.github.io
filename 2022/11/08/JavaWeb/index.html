@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      38
+      43
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：18 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -699,9 +699,53 @@ java包压缩成war包--在webapps目录下自动解压
     &lt;version&gt;2.2&lt;/version&gt;
 &lt;/plugin&gt;
 </code></pre></div>
-<p>使用Maven Helper插件快速启动项目，选中项目，右键–&gt; Run Maven –&gt; tomcat7:run
-    </p>
+<p>使用Maven Helper插件快速启动项目，选中项目，右键–&gt; Run Maven –&gt; tomcat7:run</p>
+<h1 id="Servlet-动态web资源"><a href="#Servlet-动态web资源" class="headerlink" title="Servlet 动态web资源"></a>Servlet 动态web资源</h1><p>Servlet是Java提供的一门动态web资源开发技术</p>
+<p>Servlet是JavaEE 规范之一，其实就是一个接口，将来我们需要定义Servlet类实现Servlet接口，并由web服务器运行Servlet  </p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p><img src="/2022/11/08/JavaWeb/javaweb-8.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h3><p>init 初始化时调用</p>
+<p>service 提供服务</p>
+<p>destory 销毁时调用</p>
+<p>getServletConfig 获取ServletConfig对象</p>
+<p>getServletinfo 获取Servlet信息</p>
+<h3 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h3><p><img src="/2022/11/08/JavaWeb/javaweb-9.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="HttpServlet"><a href="#HttpServlet" class="headerlink" title="HttpServlet"></a>HttpServlet</h3><p>区分请求方式</p>
+<p>对servlet方法进行封装</p>
+<p>doGet —  doPost</p>
+<p>使用</p>
+<p>声明类，继承HttpServlet</p>
+<p>复写doGet和doPost方法</p>
+<h3 id="urlPattern-配置"><a href="#urlPattern-配置" class="headerlink" title="urlPattern 配置"></a>urlPattern 配置</h3><p>路径</p>
+<p>一个servlet可配置多个urlPattern</p>
+<p>匹配规则</p>
+<p>精确匹配</p>
+<p>目录匹配</p>
+<p>扩展名匹配</p>
+<p>任意匹配</p>
+<h3 id="XML配置Servlet"><a href="#XML配置Servlet" class="headerlink" title="XML配置Servlet"></a>XML配置Servlet</h3><h1 id="Request-amp-Response"><a href="#Request-amp-Response" class="headerlink" title="Request&amp;Response"></a>Request&amp;Response</h1><p>请求&amp;响应</p>
+<p>doGet</p>
+<div class="hljs code-wrapper"><pre><code>//使用request对象， 获取请求数据
+String name = request.getParameter(&quot;name&quot;)
+//————&gt;url?name=xxx
 
+//使用response对象， 设置响应数据
+response.setHeader(&quot;&quot;,&quot;&quot;);
+response.getWriter.write(&quot;&lt;h1&gt;&quot;+name+&quot;&lt;/h1&gt;&quot;)
+</code></pre></div>
+<p>效果</p>
+<p>get请求?name=xxx<br>返回界面  xxx</p>
+<h3 id="Get-Post-获取数据"><a href="#Get-Post-获取数据" class="headerlink" title="Get/Post 获取数据"></a>Get/Post 获取数据</h3><p>get获取字符串<br>.toString()</p>
+<p>post获取字符流<br>Buffer<br>toLine  </p>
+<h3 id="Request通用方式获取请求参数"><a href="#Request通用方式获取请求参数" class="headerlink" title="Request通用方式获取请求参数"></a>Request通用方式获取请求参数</h3><p>Map集合<br>&lt;String（参数）,String[]（值）&gt;</p>
+<p>getParameterMap()<br>获取所有参数 Map集合</p>
+<p>getParameterValues()<br>根据名称获取参数值(数组)</p>
+<p>getParameter()<br>根据名称获取参数值(单个值)</p>
+<h3 id="POST中文乱码"><a href="#POST中文乱码" class="headerlink" title="POST中文乱码"></a>POST中文乱码</h3><div class="hljs code-wrapper"><pre><code>request.setCharacterEncoding(&quot;UTF-8&quot;);
+</code></pre></div>
+<h3 id="GET中文乱码"><a href="#GET中文乱码" class="headerlink" title="GET中文乱码"></a>GET中文乱码</h3><div class="hljs code-wrapper"><pre><code>//tomcat7为ISO形成乱码，tomcat8+不存在
+username = new String(username.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
+</code></pre></div>
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3>
             </div>
             <hr>
             <div>
