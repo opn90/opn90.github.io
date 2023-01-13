@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.4k 字
+      4.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43
+      59
        分钟
     </span>
   
@@ -734,18 +734,240 @@ response.getWriter.write(&quot;&lt;h1&gt;&quot;+name+&quot;&lt;/h1&gt;&quot;)
 </code></pre></div>
 <p>效果</p>
 <p>get请求?name=xxx<br>返回界面  xxx</p>
-<h3 id="Get-Post-获取数据"><a href="#Get-Post-获取数据" class="headerlink" title="Get/Post 获取数据"></a>Get/Post 获取数据</h3><p>get获取字符串<br>.toString()</p>
-<p>post获取字符流<br>Buffer<br>toLine  </p>
-<h3 id="Request通用方式获取请求参数"><a href="#Request通用方式获取请求参数" class="headerlink" title="Request通用方式获取请求参数"></a>Request通用方式获取请求参数</h3><p>Map集合<br>&lt;String（参数）,String[]（值）&gt;</p>
-<p>getParameterMap()<br>获取所有参数 Map集合</p>
-<p>getParameterValues()<br>根据名称获取参数值(数组)</p>
-<p>getParameter()<br>根据名称获取参数值(单个值)</p>
+<h3 id="Get-Post-获取数据"><a href="#Get-Post-获取数据" class="headerlink" title="Get/Post 获取数据"></a>Get/Post 获取数据</h3><div class="hljs code-wrapper"><pre><code>get获取字符串  
+.toString()
+
+
+post获取字符流  
+Buffer  
+toLine  
+</code></pre></div>
+<h3 id="Request通用方式获取请求参数"><a href="#Request通用方式获取请求参数" class="headerlink" title="Request通用方式获取请求参数"></a>Request通用方式获取请求参数</h3><div class="hljs code-wrapper"><pre><code>Map集合  
+&lt;String（参数）,String[]（值）&gt;
+
+getParameterMap()
+获取所有参数 Map集合
+
+getParameterValues()  
+根据名称获取参数值(数组)
+
+getParameter()  
+根据名称获取参数值(单个值)
+</code></pre></div>
 <h3 id="POST中文乱码"><a href="#POST中文乱码" class="headerlink" title="POST中文乱码"></a>POST中文乱码</h3><div class="hljs code-wrapper"><pre><code>request.setCharacterEncoding(&quot;UTF-8&quot;);
 </code></pre></div>
 <h3 id="GET中文乱码"><a href="#GET中文乱码" class="headerlink" title="GET中文乱码"></a>GET中文乱码</h3><div class="hljs code-wrapper"><pre><code>//tomcat7为ISO形成乱码，tomcat8+不存在
 username = new String(username.getBytes(StandardCharsets.ISO_8859_1),StandardCharsets.UTF_8);
 </code></pre></div>
-<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3>
+<h3 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h3><p>在服务器内部 资源跳转的方式</p>
+<div class="hljs code-wrapper"><pre><code>req.getRequestDispatcher(&quot;资源B路径&quot;).forward(req,resp);
+</code></pre></div>
+<p>请求转发资源间共享数据：使用Request对象</p>
+<div class="hljs code-wrapper"><pre><code>setAttribute(String name,Object o)
+存储数据到Request域中
+
+getAttribute(String name)
+根据key，获取值
+
+removeAttribute(String name)
+根据key，删除该键值对
+</code></pre></div>
+<p>特点</p>
+<p>地址栏不发生变化<br>仅服务器内部资源<br>发生一次请求</p>
+<h3 id="Response完成重定向"><a href="#Response完成重定向" class="headerlink" title="Response完成重定向"></a>Response完成重定向</h3><p>资源跳转方式</p>
+<div class="hljs code-wrapper"><pre><code>resp.setStatus(302);
+resp.setHeader(&quot;location&quot;,&quot;资源路径B&quot;);
+
+//简化
+resp.sendRedirect(&quot;资源路径&quot;);
+</code></pre></div>
+<p>特点  </p>
+<p>url变化<br>可重定向到任意位置资源<br>两次请求  </p>
+<h3 id="Response响应字符数据"><a href="#Response响应字符数据" class="headerlink" title="Response响应字符数据"></a>Response响应字符数据</h3><p>PrintWriter对象/字符输出流</p>
+<div class="hljs code-wrapper"><pre><code>//设置响应数据格式
+response.setContentType(&quot;text/html;charset=utf-8&quot;);
+
+//获取流
+PrintWriter write = resp.getWriter();
+
+//头信息
+response.setHeader(&quot;content-type&quot;,&quot;text/html&quot;);
+
+//响应数据
+write.write(&quot;aaa&quot;);
+</code></pre></div>
+<p>流不需要关闭，随response对象自动销毁</p>
+<h3 id="Response响应字节数据"><a href="#Response响应字节数据" class="headerlink" title="Response响应字节数据"></a>Response响应字节数据</h3><p>图片/数据/音频</p>
+<div class="hljs code-wrapper"><pre><code>//1.读取文件
+FileInputStream fis = new FileInputStream(&quot;文件路径&quot;);
+
+//2.获取response字节输出流
+ServletOutStream os = response.getOutputStream();
+
+//3.完成流的copy
+byte[] buff = new byte[1024];
+int len = 0;
+while((len=fis.read(buff))!=-1)
+&#123;
+    os.write(buff,0,len)
+&#125;
+
+//3.流的对拷    commons-io 2.6 工具类
+IOUtils.copy(fis,os);
+
+fis.close();
+</code></pre></div>
+<h3 id="登录示例"><a href="#登录示例" class="headerlink" title="登录示例"></a>登录示例</h3><p>流程：<br>1.前端界面<br>2.LoginServlet<br>3.UserMapper接口<br>4.Mysql数据库  </p>
+<p>准备工作：<br>1.静态界面<br>2.Mysql tb_user表<br>3.创建User实体类  — com.opn.pojo 下的user实体类<br>3.导入MyBatis坐标 — resources 下的 mybatis-config.xml<br>4.UserMapper.xml 映射文件 — resources com.opn.mapper 下UserMapper.xml<br>5.UserMapper接口</p>
+<p>目录结构</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-10.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>UserMapper接口
+
+public interface UserMapper &#123;
+    @Select(&quot;select * from tb_user where username = #&#123;username&#125; and password = #&#123;password&#125;&quot;)
+    User select(@Param(&quot;username&quot;) String username, @Param(&quot;password&quot;) String password);
+
+    @Select(&quot;select * from tb_user where username = #&#123;username&#125;&quot;)
+    User selectUsername(String username);
+
+    @Insert(&quot;insert into tb_user values (null,#&#123;username&#125;,#&#123;password&#125;)&quot;)
+    void add(@Param(&quot;username&quot;) String username, @Param(&quot;password&quot;) String password);
+&#125;
+
+
+loginServlet - Servlet
+
+@WebServlet(&quot;/loginServlet&quot;)
+public class LoginServlet extends HttpServlet &#123;
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;
+        System.out.println(&quot;loginServlet...&quot;);
+        //接受用户名-密码
+        String username = request.getParameter(&quot;username&quot;);
+        String password = request.getParameter(&quot;password&quot;);
+
+        //调用Mybatis完成查询
+        //获取SqlSessionFactory对象
+        String resource=&quot;mybatis-config.xml&quot;;
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //获取SqlSession对象
+        SqlSession sqlSession= sqlSessionFactory.openSession();
+
+        //获取Mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //调用方法
+        User user = userMapper.select(username,password);
+
+        sqlSession.close();
+
+        //设置响应数据格式
+        response.setContentType(&quot;text/html;charset=utf-8&quot;);
+        //获取流
+        PrintWriter write = response.getWriter();
+        //头信息
+        response.setHeader(&quot;content-type&quot;,&quot;text/html&quot;);
+
+        //判断user是否为null
+        if (user!=null)write.write(&quot;登录成功&quot;);
+            else write.write(&quot;登录失败&quot;);
+    &#125;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws     ServletException, IOException &#123;
+        this.doGet(request,response);
+    &#125;
+&#125;
+</code></pre></div>
+<h3 id="注册示例"><a href="#注册示例" class="headerlink" title="注册示例"></a>注册示例</h3><div class="hljs code-wrapper"><pre><code>RegisterServlet
+
+@WebServlet(&quot;/registerServlet&quot;)
+public class RegisterServlet extends HttpServlet &#123;
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;
+        //接受用户名-密码
+        String username = request.getParameter(&quot;username&quot;);
+        String password = request.getParameter(&quot;password&quot;);
+
+        //调用Mybatis完成查询
+        //获取SqlSessionFactory对象
+        String resource=&quot;mybatis-config.xml&quot;;
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //获取SqlSession对象
+        SqlSession sqlSession= sqlSessionFactory.openSession();
+
+        //获取Mapper
+           UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        //调用方法
+        User user = userMapper.selectUsername(username);
+
+        //设置响应数据格式
+        response.setContentType(&quot;text/html;charset=utf-8&quot;);
+        //获取流
+        PrintWriter write = response.getWriter();
+        //头信息
+        response.setHeader(&quot;content-type&quot;,&quot;text/html&quot;);
+
+        //判断user是否为null
+        if (user==null)
+        &#123;
+            userMapper.add(username,password);
+            //提交事务
+            sqlSession.commit();
+            write.write(&quot;注册成功&quot;);
+        &#125;
+        else write.write(&quot;注册失败&quot;);
+
+        sqlSession.close();
+    &#125;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;
+        this.doGet(request,response);
+    &#125;
+&#125;
+</code></pre></div>
+<h3 id="SqlSessionFactory-代码优化"><a href="#SqlSessionFactory-代码优化" class="headerlink" title="SqlSessionFactory 代码优化"></a>SqlSessionFactory 代码优化</h3><div class="hljs code-wrapper"><pre><code>//获取SqlSessionFactory对象
+        String resource=&quot;mybatis-config.xml&quot;;
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+</code></pre></div>
+<p>代码重复  — 工具类</p>
+<p>SqlSessionFactory重复创建，浪费资源 — 静态代码块</p>
+<div class="hljs code-wrapper"><pre><code>package com.opn.util;
+
+public class SqlSessionFactoryUtils &#123;
+
+    private static  SqlSessionFactory sqlSessionFactory;
+
+    static &#123;
+        //静态代码块随类的加载自动执行，且只执行一次
+
+        try&#123;
+            //获取SqlSessionFactory对象
+            String resource = &quot;mybatis-config.xml&quot;;
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        &#125; catch (IOException e)
+        &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    public static  SqlSessionFactory getSqlSessionFactory()
+    &#123;
+        return sqlSessionFactory;
+    &#125;
+&#125;
+</code></pre></div>
+<h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><p>Java Server Pages </p>
+<p>Java服务端界面</p>
+
             </div>
             <hr>
             <div>
