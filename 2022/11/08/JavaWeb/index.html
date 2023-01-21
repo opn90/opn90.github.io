@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      6.8k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      85
+      91
        分钟
     </span>
   
@@ -982,6 +982,13 @@ public class SqlSessionFactoryUtils &#123;
     &#125;
 &#125;
 </code></pre></div>
+<p>调用</p>
+<div class="hljs code-wrapper"><pre><code>    //调用静态类
+    SqlSessionFactory sqlSessionFactory= SqlSessionFactoryUtils.getSqlSessionFactory();
+
+    //获取SqlSession对象
+    SqlSession sqlSession= sqlSessionFactory.openSession();
+</code></pre></div>
 <h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><p>Java Server Pages </p>
 <p>Java服务端界面</p>
 <p>一种动态的网页技术，其中既可以定义HTML、JS、CSS等静态内容，也可以定义Java代码的动态内容</p>
@@ -1175,6 +1182,11 @@ $&#123;a&#125; 获取域中存储的key为a的数据
 </code></pre></div>
 <p>  }</p>
 </li>
+<li><p>JSP el表达式 使用cookie值</p>
+<p>  Cookie c_username = new Cookie(“username”,username);</p>
+<p>  //el表达式使用cookie<br>  ${cookie.username.name}<br>  ${cookie.password.value}</p>
+<p>  ${cookie.key.value}</p>
+</li>
 </ul>
 <h3 id="Cookie原理"><a href="#Cookie原理" class="headerlink" title="Cookie原理"></a>Cookie原理</h3><p>Cookie的实现是基于HTTP协议的</p>
 <p>服务器向客户端发送—让客户端建立cookie<br>响应头:se-cookie</p>
@@ -1245,6 +1257,51 @@ void removeAttribute(String name)
 <li>存储时间:Cookie可以长期存储，Session 默认30分钟</li>
 <li>服务器性能:Cookie不占服务器资源，Session占用服务器资源</li>
 </ul>
+<h3 id="示例：保存个人信息"><a href="#示例：保存个人信息" class="headerlink" title="示例：保存个人信息"></a>示例：保存个人信息</h3><div class="hljs code-wrapper"><pre><code>loginServlet
+
+
+if (user!=null)&#123;
+        Cookie c_username = new Cookie(&quot;username&quot;,username);
+        response.addCookie(c_username);
+        //判断用户是否勾选选项--记住我
+        if(remember==1)
+        &#123;
+            c_username.setMaxAge(1000);
+            String checked = &quot;true&quot;;
+            Cookie c_password = new Cookie(&quot;password&quot;,password);
+            c_password.setMaxAge(1000);
+            response.addCookie(c_password);
+            Cookie c_checked = new Cookie(&quot;checked&quot;,checked);
+            c_checked.setMaxAge(1000);
+            response.addCookie(c_checked);
+        &#125;
+        else &#123;
+            Cookie[] cookies = request.getCookies();
+            for(Cookie cookie:cookies)&#123;
+                String name = cookie.getName();
+                if(&quot;password&quot;.equals(name)|&quot;checked&quot;.equals(name))&#123;
+                    cookie.setMaxAge(0);
+                &#125;
+            &#125;
+        &#125;
+        request.getRequestDispatcher(&quot;/index.jsp&quot;).forward(request,response);
+
+    &#125;
+    else &#123;
+        request.setAttribute(&quot;log_msg&quot;,&quot;登录失败&quot;);
+        request.getRequestDispatcher(&quot;/login.jsp&quot;).forward(request,response);
+    &#125;
+
+前端界面---login.jsp
+
+&lt;form action=&quot;/Tdemo/loginServlet&quot; id=&quot;form&quot;&gt;
+    &lt;h1 id=&quot;loginMsg&quot;&gt;LOGIN IN&lt;/h1&gt;
+    &lt;h1 &gt;$&#123;log_msg&#125;&lt;/h1&gt;
+    &lt;p&gt;Username:&lt;input id=&quot;username&quot; name=&quot;username&quot; type=&quot;text&quot; value=$&#123;cookie.username.value&#125;&gt;&lt;/p&gt;
+    &lt;p&gt;Password:&lt;input id=&quot;password&quot; name=&quot;password&quot; type=&quot;password&quot; value=$&#123;cookie.password.value&#125;&gt;&lt;/p&gt;
+    &lt;p&gt;Remember:&lt;input id=&quot;remember&quot; name=&quot;remember&quot; value=&quot;1&quot; type=&quot;checkbox&quot; checked=$&#123;cookie.checked.value&#125;&gt;&lt;/p&gt;
+</code></pre></div>
+<h3 id="示例：验证码"><a href="#示例：验证码" class="headerlink" title="示例：验证码"></a>示例：验证码</h3><p>验证码是java代码生成的图片</p>
 
             </div>
             <hr>
