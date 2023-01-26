@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.8k 字
+      7.4k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      91
+      100
        分钟
     </span>
   
@@ -1222,6 +1222,7 @@ HttpSession session = request.getSession();
 //2.Session对象功能
 
 //存储数据到Session域中
+session.setAttribute();
 void setAttribute(String name,Object o)
 
 //根据key值，获取value
@@ -1303,7 +1304,98 @@ if (user!=null)&#123;
 </code></pre></div>
 <h3 id="示例：验证码"><a href="#示例：验证码" class="headerlink" title="示例：验证码"></a>示例：验证码</h3><p>验证码是java代码生成的图片</p>
 <p><a href="https://opn90.top/2023/01/21/JavaWeb-Verification-code/">https://opn90.top/2023/01/21/JavaWeb-Verification-code/</a></p>
-<h1 id="Filter过滤器"><a href="#Filter过滤器" class="headerlink" title="Filter过滤器"></a>Filter过滤器</h1>
+<h1 id="Filter过滤器"><a href="#Filter过滤器" class="headerlink" title="Filter过滤器"></a>Filter过滤器</h1><p>Filter 表示 过滤器 是JavaWeb 三大组件 （Servlet，Filter，Listener）之一</p>
+<p>过滤器可以把对资源的请求拦截下来，从而实现一些特殊的功能</p>
+<p>通用的操作  —  权限控制，统一编码处理，敏感字符处理</p>
+<h3 id="Filter快速入门"><a href="#Filter快速入门" class="headerlink" title="Filter快速入门"></a>Filter快速入门</h3><ol>
+<li><p>定义类，实现Filter接口，并重写所有方法</p>
+<div class="hljs code-wrapper"><pre><code> //javax.servlet的Filter接口
+
+ public class FilterDemo implements Filter &#123;
+     @Override
+     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException &#123;
+     &#125;
+     @Override
+     public void init(FilterConfig filterConfig) throws ServletException &#123;&#125;
+     @Override
+     public void destroy() &#123;&#125;
+ &#125;
+</code></pre></div>
+</li>
+<li><p>配置Filter让拦截资源的路径：在类上定义@WebFilter注解</p>
+</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code>    //在FilterDemo类上方添加
+    @WebFilter(&quot;/*&quot;)    
+</code></pre></div>
+<ol start="3">
+<li><p>在doFilter方法中进行相关处理，并放行</p>
+<p> @Override<br> public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {</p>
+<div class="hljs code-wrapper"><pre><code> System.out.println(&quot;Filter~~~&quot;);
+
+ //放行
+ filterChain.doFilter(servletRequest,servletResponse);
+</code></pre></div>
+<p> }</p>
+</li>
+</ol>
+<h3 id="Filter执行逻辑"><a href="#Filter执行逻辑" class="headerlink" title="Filter执行逻辑"></a>Filter执行逻辑</h3><p><img src="/2022/11/08/JavaWeb/javaweb-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>web端请求—&gt;放行前逻辑—&gt;放行—&gt;访问web资源、服务器端处理—&gt;放行后逻辑—&gt;返回响应  </p>
+<div class="hljs code-wrapper"><pre><code>//放行
+    filterChain.doFilter(servletRequest,servletResponse);
+</code></pre></div>
+<p>当url请求时，先执行Filter的放行前逻辑，再访问web资源，然后执行放行后逻辑，最后返回响应</p>
+<p>放行前，对request数据进行处理<br>放行<br>放行后，对response数据进行处理</p>
+<h3 id="Filter拦截路径配置"><a href="#Filter拦截路径配置" class="headerlink" title="Filter拦截路径配置"></a>Filter拦截路径配置</h3><div class="hljs code-wrapper"><pre><code>@WebFilter(&quot;/*&quot;)
+</code></pre></div>
+<p>拦截具体的资源   /index.jsp  — 前面不带项目名称，直接/文件<br>目录拦截   /user/*<br>后缀名拦截下   <em>.jsp<br>拦截所有   /</em></p>
+<h3 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h3><p>一个Web应用，可以配置多个过滤器，这多个过滤器称为过滤器链</p>
+<p>filter1，filter2</p>
+<p>请求–1.前–1.放行–2.前–2.放行–资源–2.后–1.后–响应</p>
+<p>注解配置的Filter，优先级按照过滤器类名（字符串）的自然排序</p>
+<h3 id="登录验证-示例"><a href="#登录验证-示例" class="headerlink" title="登录验证 示例"></a>登录验证 示例</h3><p>判断url<br>开放访问登录、注册的界面<br>限制访问其他界面</p>
+<p>LoginServlet</p>
+<div class="hljs code-wrapper"><pre><code>        //登录验证
+            HttpSession session = request.getSession();
+            session.setAttribute(&quot;islogin&quot;,&quot;1&quot;);
+</code></pre></div>
+<p>FilterDemo</p>
+<div class="hljs code-wrapper"><pre><code>//强制转化为HttpRequest
+    HttpServletRequest req = (HttpServletRequest)servletRequest;
+
+    //********** 判断访问资源路径是否和登录注册相关
+    String[] urls = &#123;&quot;/login.jsp&quot;,&quot;/imgs&quot;,&quot;/css&quot;,&quot;/loginServlet&quot;,&quot;/register.jsp&quot;,&quot;/registerServlet&quot;,&quot;/checkCodeServlet&quot;&#125;;
+    //获取当前访问的资源路径
+    String url = req.getRequestURL().toString();
+
+    //循环判断
+    for (String u :urls) &#123;
+        if(url.contains(u)) &#123;
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        &#125;
+    &#125;
+
+    //********** 和登录不相关的url,判断登录后跳转到登录界面
+    HttpSession session = req.getSession();
+    Object islogin = session.getAttribute(&quot;islogin&quot;);
+    System.out.println(islogin);
+
+    if(islogin!=null)&#123;
+        System.out.println(&quot;islogin!=null&quot;+islogin);
+        if(Objects.equals(islogin.toString(), &quot;1&quot;))
+        &#123;
+            System.out.println(&quot;islogin==1&quot;+islogin);
+            filterChain.doFilter(servletRequest,servletResponse);
+        &#125;
+    &#125;
+    else
+    &#123;
+        System.out.println(&quot;islogin==null&quot;);
+        req.getRequestDispatcher(&quot;/login.jsp&quot;).forward(servletRequest,servletResponse);
+    &#125;
+</code></pre></div>
+
             </div>
             <hr>
             <div>
