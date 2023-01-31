@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.4k 字
+      9.2k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      100
+      125
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：8 分钟前
                 
               </p>
             
@@ -1395,6 +1395,273 @@ if (user!=null)&#123;
         req.getRequestDispatcher(&quot;/login.jsp&quot;).forward(servletRequest,servletResponse);
     &#125;
 </code></pre></div>
+<h1 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h1><p>监听器</p>
+<p>JavaWeb三大组件之一</p>
+<p>监听器可以监听在application，session，request三个对象的创建、销毁或者向其中添加修改删除属性时  自动执行代码的功能组件</p>
+<p>Listener分类</p>
+<p>JavaWeb中提供了8个监听器</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p>1、定义类，实现ServletContextListener接口<br>复写方法</p>
+<p>2、在类上添加@WebListener注解<br>无需配备路径，自动监听</p>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><p>Asynchronous JavaScript And Xml</p>
+<p>异步的HavaScript和XML</p>
+<p>作用：</p>
+<p>1、与服务器进行数据交换，通过AJAX可以给服务器发送请求，并获取服务器响应的数据</p>
+<p>使用了AJAX和服务器进行通信，就可以用HTML+AJAX来替换JSP界面</p>
+<p>前端工程师–html+ajax</p>
+<p>后端纯java</p>
+<p>在此之前，后端需要写jsp+java(不友好,分工不明确)</p>
+<p>2、异步交互，可以在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页</p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>不加载整个界面</p>
+<p>在服务器端处理时，客户端可以进行其他的操作</p>
+<h3 id="AJAX-快速入门"><a href="#AJAX-快速入门" class="headerlink" title="AJAX 快速入门"></a>AJAX 快速入门</h3><p>1、编写AjaxServlet，并使用response输出字符串</p>
+<p>2、创建XMLHttpRequest对象，用于和服务器交换数据</p>
+<p>3、向服务器发送请求</p>
+<p>4、获取服务器响应数据</p>
+<p>2<br><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/js/_ajax/_http.asp">https://www.w3school.com.cn/js/js\_ajax\_http.asp</a><br>3<br><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/js/_ajax/_http/_send.asp">https://www.w3school.com.cn/js/js\_ajax\_http\_send.asp</a><br>4<br><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/js/_ajax/_http/_response.asp">https://www.w3school.com.cn/js/js\_ajax\_http\_response.asp</a>  </p>
+<div class="hljs code-wrapper"><pre><code>服务端//1.响应数据
+    response.getWriter().write(&quot;Hello AJAX&quot;);
+
+
+客户端
+&lt;script&gt;
+//1.创建核心对象
+var xhttp;
+if (window.XMLHttpRequest) &#123;
+    xhttp = new XMLHttpRequest();
+&#125; else &#123;
+    // code for IE6, IE5
+    xhttp = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+&#125;
+//2.发送请求
+xhttp.open(&quot;GET&quot;, &quot;localhost:8080/Tdemo/ajaxServlet&quot;);
+xhttp.send();
+//3.获取响应
+xhttp.onreadystatechange = function() &#123;
+    if (this.readyState == 4 &amp;&amp; this.status == 200) &#123;
+            alert(this.responseText);
+    &#125;
+&#125;;
+&lt;/script&gt;
+</code></pre></div>
+<h3 id="Axios异步框架"><a href="#Axios异步框架" class="headerlink" title="Axios异步框架"></a>Axios异步框架</h3><p>Axios对原生的AJAX进行封装，简化书写</p>
+<p>官网<br><a target="_blank" rel="noopener" href="https://www.axios-http.cn/">https://www.axios-http.cn</a></p>
+<p>1、引入axios的js文件<br>2、使用axios发送请求，并获取响应结果  </p>
+<div class="hljs code-wrapper"><pre><code>&lt;script src=&quot;js/axios-0.18.0.js&quot;&gt;&lt;/script&gt;
+
+axios(&#123;
+    method:&quot;get&quot;,
+    url:&quot;http://localhost:8080/Tdemo/axiosServlet?username=111&quot;,
+&#125;).then(function(resp)&#123;
+    alert(resp.data);
+&#125;)
+
+axios(&#123;
+    method:&quot;post&quot;,
+    url:&quot;http://localhost:8080/Tdemo/axiosServlet&quot;,
+    data:&quot;username=1&quot;
+&#125;).then(function(resp)&#123;
+    alert(resp.data);
+&#125;)
+</code></pre></div>
+<p>then() 后为获取响应结果后的前端操作</p>
+<h3 id="Axios请求方式别名"><a href="#Axios请求方式别名" class="headerlink" title="Axios请求方式别名"></a>Axios请求方式别名</h3><p>axios.get()</p>
+<div class="hljs code-wrapper"><pre><code>axios.get(&quot;http://localhost:8080/Tdemo/axiosServlet&quot;)
+    .then(function(resp)&#123;
+    alert(resp.data);
+&#125;)
+</code></pre></div>
+<p>axios.post()</p>
+<div class="hljs code-wrapper"><pre><code>axios.post(&quot;http://localhost:8080/Tdemo/axiosServlet&quot;,&quot;username=1&quot;)
+    .then(function(resp)&#123;
+        alert(resp.data);
+    &#125;)
+</code></pre></div>
+<h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><p>JavaScript Object Notation </p>
+<p>JavaScript 对象表示法</p>
+<p>语法简单，层次结构鲜明，现多用于作为数据载体，在网络中进行数据传输</p>
+<h3 id="JSON基础语法"><a href="#JSON基础语法" class="headerlink" title="JSON基础语法"></a>JSON基础语法</h3><div class="hljs code-wrapper"><pre><code>var 变量名 = &#123;&quot;key1&quot;:value1,
+             &quot;key2&quot;:value2,
+             ...
+            &#125;;
+</code></pre></div>
+<p>键需要带””<br>值按照数据类型带</p>
+<p>value 数据类型</p>
+<ul>
+<li>数字（整数或者浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true或false）</li>
+<li>数组（在方括号中）</li>
+<li>对象（在花括号中）</li>
+<li>null</li>
+</ul>
+<h3 id="JSON数据和Java对象的相互转换"><a href="#JSON数据和Java对象的相互转换" class="headerlink" title="JSON数据和Java对象的相互转换"></a>JSON数据和Java对象的相互转换</h3><p>请求数据：JSON字符串转为Java对象</p>
+<p>响应数据：Java对象转为JSON字符串</p>
+<h5 id="Fastjson"><a href="#Fastjson" class="headerlink" title="Fastjson"></a>Fastjson</h5><p>阿里巴巴提供的一个Java语言编写的高性能功能完善的JSON库，是目前Java语言中最快的JSON库，可以实现Java对象和JSON字符串的相互转换</p>
+<p>使用</p>
+<p>1、导入坐标<br>2、Java对象转JSON<br>3、JSON字符串转Java对象  </p>
+<div class="hljs code-wrapper"><pre><code>String jsonStr = JSON.toJSONString(obj);
+
+User user = JSON.parseObject(jsonStr,User.class);
+</code></pre></div>
+<h3 id="服务端数据接收"><a href="#服务端数据接收" class="headerlink" title="服务端数据接收"></a>服务端数据接收</h3><p>不能用request.getParameter</p>
+<div class="hljs code-wrapper"><pre><code>    //获取请求数据
+    BufferedReader br = request.getReader();
+    String params = br.readLine();
+
+    //将JSON对象转换为Java对象
+    User user = JSON.parseObject(params,User.class);
+    System.out.println(user);
+</code></pre></div>
+<h3 id="AJAX-客户端数据上传"><a href="#AJAX-客户端数据上传" class="headerlink" title="AJAX - 客户端数据上传"></a>AJAX - 客户端数据上传</h3><div class="hljs code-wrapper"><pre><code>&lt;script&gt;
+//绑定单击事件
+document.getElementById(&quot;btn&quot;).onclick = function ()&#123;
+    //将表单数据转换为Json
+    var formData = &#123;
+      userid:&quot;&quot;,
+      username:&quot;&quot;,
+      password:&quot;&quot;,
+    &#125;;
+    //获取表单数据,设置数据
+    formData.userid = document.getElementById(&quot;userid&quot;).value();
+    formData.username = document.getElementById(&quot;username&quot;).value();
+    formData.password = document.getElementById(&quot;password&quot;).value();
+
+
+    //发送ajax请求
+    axios(&#123;
+        method:&quot;get&quot;,
+        url:&quot;http://localhost:8080/demo/servlet&quot;,
+        data:formData,
+    &#125;).then(function (resp)&#123;
+        if(resp.data==&quot;success&quot;)&#123;
+            //重新加载界面查询
+            location.href=&quot;http://localhost:8080/demo/servlet&quot;;
+        &#125;
+    &#125;)
+&#125;
+&lt;/script&gt;
+</code></pre></div>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><p>前端框架，免除原生JavaScript中的DOM操作，简化书写</p>
+<p>DOM document</p>
+<p>Vue是一套前端框架，免除原生JavaScript中的DOM操作，简化书写</p>
+<p>基于MVVM思想，实现数据的双向绑定，将编程的关注点放在数据上</p>
+<p>Model–View–ViewModel</p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org</a></p>
+<h3 id="MVVM-—-MVC"><a href="#MVVM-—-MVC" class="headerlink" title="MVVM — MVC"></a>MVVM — MVC</h3><p>MVC </p>
+<p>只能实现模型到视图的单向展示</p>
+<p>不能在更改模型数据之后，视图自动更改</p>
+<p>MVVM </p>
+<p>Model–View–ViewModel</p>
+<p>可以实现数据的双向绑定</p>
+<h3 id="Vue快速入门"><a href="#Vue快速入门" class="headerlink" title="Vue快速入门"></a>Vue快速入门</h3><p>1、新建HTML界面，引入Vue.js文件</p>
+<p>2、在JS代码区域，创建Vue核心对象，进行数据绑定</p>
+<p>3、编写视图</p>
+<div class="hljs code-wrapper"><pre><code>//创建Vue核心对象
+new Vue(&#123;
+    //el--指定作用范围
+    el:&quot;#app&quot;,
+    data:function ()&#123;
+        return &#123;
+            //数据类型
+            username:&quot;&quot;,
+        &#125;
+    &#125;
+&#125;)
+
+
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;input v-model=&quot;username&quot;&gt;
+    &lt;!--插值表达式--&gt;
+    &#123;&#123;username&#125;&#125;
+&lt;/div&gt;
+</code></pre></div>
+<h3 id="Vue常用指令"><a href="#Vue常用指令" class="headerlink" title="Vue常用指令"></a>Vue常用指令</h3><p>指令：</p>
+<p>HTML标签上带有v-前缀的特殊属性，不同指令具有不同含义</p>
+<p>常用指令</p>
+<p><img src="/2022/11/08/JavaWeb/javaweb-12.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>//创建双向数据绑定
+&lt;input v-model=&quot;username&quot;&gt;
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42839746/article/details/124377801">https://blog.csdn.net/qq_42839746/article/details/124377801</a></p>
+<h3 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h3><p>生命周期的八个阶段</p>
+<p>每触发一个生命周期事件，会自动执行一个生命周期方法（钩子）</p>
+<p>mounted 挂载完成，Vue初始化完成，HTML界面渲染成功<br>发送异步请求，加载数据</p>
+<div class="hljs code-wrapper"><pre><code>new Vue(&#123;
+    //el--指定作用范围
+    el:&quot;#app&quot;,
+    data()&#123;
+        return &#123;
+            username:&quot;&quot;,
+        &#125;
+    mounted()&#123;
+        alert(&quot;vue挂载完成，发送异步请求&quot;);
+    &#125;
+&#125;)
+</code></pre></div>
+<h3 id="Vue-客户端数据查询"><a href="#Vue-客户端数据查询" class="headerlink" title="Vue - 客户端数据查询"></a>Vue - 客户端数据查询</h3><div class="hljs code-wrapper"><pre><code>&lt;tr v-for=&quot;(TheData,i) in TheData&quot;&gt;
+    &lt;td&gt;&#123;&#123;i+1&#125;&#125;&lt;/td&gt;
+    &lt;td&gt;&#123;&#123;TheData.username&#125;&#125;&lt;/td&gt;
+    &lt;td&gt;&#123;&#123;TheData.password&#125;&#125;&lt;/td&gt;
+&lt;/tr&gt;    
+
+
+
+
+new Vue(&#123;
+    el:&quot;#app&quot;,
+    data()&#123;
+        return&#123;
+            TheData:[],
+        &#125;
+    &#125;,
+    mounted()&#123;
+        //提升了TheData的作用域--解决--在axios中的this.TheData为windows参数,无法访问到Vue的TheData
+        var _this= this;
+        axios(&#123;
+            method:&quot;get&quot;,
+            url:&quot;http://localhost:8080/demo/servlet&quot;,
+        &#125;).then(function (resp)&#123;
+            _this.TheData = resp.data;
+        &#125;)
+    &#125;
+&#125;)
+</code></pre></div>
+<h3 id="Vue-客户端数据添加–提交"><a href="#Vue-客户端数据添加–提交" class="headerlink" title="Vue - 客户端数据添加–提交"></a>Vue - 客户端数据添加–提交</h3><div class="hljs code-wrapper"><pre><code>&lt;div id=&quot;app&quot;&gt;
+    &lt;form action=&quot;&quot; method=&quot;get&quot;&gt;
+        用户名：&lt;input id=&quot;Username&quot;v-model=&quot;TheData.username&quot; name=&quot;username&quot;&gt;
+        密码：...
+        
+        &lt;input type=&quot;button&quot; id=&quot;btn&quot; @click=&quot;submitform&quot; value=&quot;提交&quot;&gt;
+    &lt;/form&gt;
+    
+&lt;/div&gt;
+
+
+new Vue(&#123;
+    el:&quot;#app&quot;,
+    data()&#123;
+        return&#123;
+            TheData:&#123;&#125;,
+        &#125;
+    &#125;,
+    mounted()&#123;
+        submitform()&#123;&#125;
+            //提升了TheData的作用域--解决--在axios中的this.TheData为windows参数,无法访问到Vue的TheData
+            var _this= this;
+            axios(&#123;
+                method:&quot;get&quot;,
+                url:&quot;http://localhost:8080/demo/servlet&quot;,
+                data:_this.formData,
+            &#125;).then(function (resp)&#123;
+                ...
+        &#125;)
+    &#125;
+&#125;
+&#125;)
+</code></pre></div>
+<h1 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h1><p>饿了么公司前端开发团队提供的一套基于Vue的网站组件库，用于快速构架网站</p>
+<p>组件：组成网页的部件  超链接、按钮、图片、表格等</p>
 
             </div>
             <hr>
