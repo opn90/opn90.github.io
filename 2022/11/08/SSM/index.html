@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3 字
+      435 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      5
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 个月前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
@@ -245,6 +245,64 @@
               <p>SSM框架</p>
 <span id="more"></span>
 
+<p><a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io</a></p>
+<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><p>Spring技术是JavaEE开发必备技能，企业开发技术选型命中率&gt;90%</p>
+<ul>
+<li>简化开发，降低企业级开发的复杂性</li>
+<li>框架整合，高效整合其他技术，提高企业级应用开发与运行效率</li>
+</ul>
+<p>简化开发</p>
+<p>IoC<br>AoP<br>（事务处理 ） </p>
+<p>框架整合</p>
+<p>MyBatis<br>……</p>
+<h1 id="Spring-Framework系统架构"><a href="#Spring-Framework系统架构" class="headerlink" title="Spring Framework系统架构"></a>Spring Framework系统架构</h1><p><img src="/2022/11/08/SSM/SSM-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="IoC-控制反转"><a href="#IoC-控制反转" class="headerlink" title="IoC 控制反转"></a>IoC 控制反转</h3><ul>
+<li>Inversion of Control 控制反转</li>
+</ul>
+<p>对象的创建控制权由程序转移到外部，这种思想称之为控制反转</p>
+<p>使用对象时，由主动new产生对象转换为由外部提供对象</p>
+<ul>
+<li>IoC容器</li>
+</ul>
+<p>IoC容器，充当IoC思想中的—外部</p>
+<ul>
+<li>Bean</li>
+</ul>
+<p>IoC容器负责对象的创建，初始化等一系列工作，被创建或者被管理的对象在IoC容器中统称为—Bean</p>
+<h3 id="DI-依赖注入"><a href="#DI-依赖注入" class="headerlink" title="DI 依赖注入"></a>DI 依赖注入</h3><ul>
+<li>Dependency Injection 依赖注入</li>
+</ul>
+<p>在容器中建立bean与bean之间的依赖关系的整个过程，称之为依赖注入</p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p>使用对象时，不仅可以直接从IoC容器中获取，并且获取到的bean已经绑定了所有的依赖关系</p>
+<h3 id="IoC入门案例"><a href="#IoC入门案例" class="headerlink" title="IoC入门案例"></a>IoC入门案例</h3><p>1、导入Spring坐标</p>
+<p>pom.xml</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p>2、定义Spring管理的类（接口）</p>
+<div class="hljs code-wrapper"><pre><code>..........
+
+public class BookDaoImpl implements BookDao&#123;
+    public void save()&#123;
+        sout(&quot;...&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>3、创建Spring配置文件（applicationContext.xml），配置对应类作为Spring管理的bean</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;bookDao&quot; class=&quot;com.opn.xxx.xxx.BookDaoImpl&quot;&gt;&lt;/bean&gt;
+</code></pre></div>
+<p>4、初始化IoC容器，通过容器获取bean</p>
+<div class="hljs code-wrapper"><pre><code>//获取IoC容器
+ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+
+//获取资源
+BookDao bookdao = (BookDao)ctx.getBean(&quot;bookDao&quot;);
+
+bookdao.save();
+</code></pre></div>
 
             </div>
             <hr>
