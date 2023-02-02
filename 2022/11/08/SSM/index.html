@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      435 字
+      716 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 分钟前
+                  本文最后更新于：2 分钟前
                 
               </p>
             
@@ -283,25 +283,80 @@
 &lt;/dependency&gt;
 </code></pre></div>
 <p>2、定义Spring管理的类（接口）</p>
-<div class="hljs code-wrapper"><pre><code>..........
+<div class="hljs code-wrapper"><pre><code>两个接口iocdemo1，iocdemo2
+仅包含save方法的声明
+两个实现类，iocdemo1_1,iocdemo2_1
 
-public class BookDaoImpl implements BookDao&#123;
+..........
+
+public class iocdemo1_1 implements iocdemo1 &#123;
     public void save()&#123;
-        sout(&quot;...&quot;);
+        System.out.println(&quot;this is demo1-1&quot;);
+    &#125;
+&#125;
+
+public class iocdemo2_1 implements iocdemo2 &#123;
+    iocdemo1_1 demo1 = new iocdemo1_1();
+    public void save()&#123;
+        System.out.println(&quot;this is demo2-1&quot;);
+        demo1.save();
     &#125;
 &#125;
 </code></pre></div>
-<p>3、创建Spring配置文件（applicationContext.xml），配置对应类作为Spring管理的bean</p>
-<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;bookDao&quot; class=&quot;com.opn.xxx.xxx.BookDaoImpl&quot;&gt;&lt;/bean&gt;
+<p>3、在resources中，新建xml配置文件，Spring配置，（applicationContext.xml），配置对应类作为Spring管理的bean</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;demo2&quot; class=&quot;com.opn.web.iocdemo2_1&quot;&gt;&lt;/bean&gt;
 </code></pre></div>
 <p>4、初始化IoC容器，通过容器获取bean</p>
-<div class="hljs code-wrapper"><pre><code>//获取IoC容器
-ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+<div class="hljs code-wrapper"><pre><code>//效果相同
 
-//获取资源
-BookDao bookdao = (BookDao)ctx.getBean(&quot;bookDao&quot;);
+    iocdemo2_1 demo2 = new iocdemo2_1();
+    demo2.save();
 
-bookdao.save();
+    System.out.println(&quot;--------------------------&quot;);
+
+    //获取IoC容器
+    ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+
+    //获取资源
+    iocdemo2_1 demo2_2 = (iocdemo2_1)ctx.getBean(&quot;demo2&quot;);
+
+    demo2_2.save();
+</code></pre></div>
+<h3 id="DI入门案例"><a href="#DI入门案例" class="headerlink" title="DI入门案例"></a>DI入门案例</h3><p>1、删除业务层中使用new的方式创建的对象</p>
+<p>2、提供对应的set方法</p>
+<p>3、在配置中构建关系</p>
+<div class="hljs code-wrapper"><pre><code>public class iocdemo2_1 implements iocdemo2 &#123;
+    //删除业务层中使用new的方式创建的对昂
+    iocdemo1_1 demo1;
+    public void save()&#123;
+        System.out.println(&quot;this is demo2-1&quot;);
+        demo1.save();
+    &#125;
+    //提供对应的set方法
+    public void setDemo1(iocdemo1_1 demo)&#123;
+        this.demo1 = demo;
+    &#125;
+&#125;
+
+
+
+&lt;bean id=&quot;demo2&quot; class=&quot;com.opn.web.iocdemo2_1&quot;&gt;
+    &lt;!--配置iocdemo1_1和iocdemo2_1的关系
+        name属性表示配置哪一个具体的属性
+        ref属性表示参照哪一个bean--&gt;
+    &lt;property name=&quot;demo1&quot; ref=&quot;demo1&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;demo1&quot; class=&quot;com.opn.web.iocdemo1_1&quot;&gt;&lt;/bean&gt;
+
+
+
+//获取IoC容器
+    ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+
+    //获取资源
+    iocdemo2_1 demo2_2 = (iocdemo2_1)ctx.getBean(&quot;demo2&quot;);
+    demo2_2.save();
 </code></pre></div>
 
             </div>
