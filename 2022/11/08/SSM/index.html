@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      716 字
+      3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      40
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
@@ -255,7 +255,7 @@
 <p>IoC<br>AoP<br>（事务处理 ） </p>
 <p>框架整合</p>
 <p>MyBatis<br>……</p>
-<h1 id="Spring-Framework系统架构"><a href="#Spring-Framework系统架构" class="headerlink" title="Spring Framework系统架构"></a>Spring Framework系统架构</h1><p><img src="/2022/11/08/SSM/SSM-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Spring-Framework系统架构"><a href="#Spring-Framework系统架构" class="headerlink" title="Spring Framework系统架构"></a>Spring Framework系统架构</h1><p><img src="/2022/11/08/SSM/ssm-1.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="IoC-控制反转"><a href="#IoC-控制反转" class="headerlink" title="IoC 控制反转"></a>IoC 控制反转</h3><ul>
 <li>Inversion of Control 控制反转</li>
 </ul>
@@ -358,7 +358,351 @@ public class iocdemo2_1 implements iocdemo2 &#123;
     iocdemo2_1 demo2_2 = (iocdemo2_1)ctx.getBean(&quot;demo2&quot;);
     demo2_2.save();
 </code></pre></div>
+<p><img src="/2022/11/08/SSM/ssm-2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h1><h3 id="bean基础配置"><a href="#bean基础配置" class="headerlink" title="bean基础配置"></a>bean基础配置</h3><ul>
+<li>别名</li>
+</ul>
+<p>name 可用,;(空格)多个间隔</p>
+<p>可用在ref上</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot; name=&quot;&quot;class=&quot;&quot;&gt;
+</code></pre></div>
+<ul>
+<li>单例</li>
+</ul>
+<p>多个对象地址相同—一个对象</p>
+<p>非单例</p>
+<p>地址不同多个对象</p>
+<div class="hljs code-wrapper"><pre><code>//单例（默认）
+&lt;bean ... scope=&quot;singleton&quot;&gt;
+//非单例
+&lt;bean ... scope=&quot;prototype&quot;&gt;
+</code></pre></div>
+<ul>
+<li>适合交给容器进行管理的bean</li>
+</ul>
+<p>表现层对象<br>业务层对象<br>数据层对象<br>工具对象</p>
+<ul>
+<li>不适合交给容器进行管理的bean</li>
+</ul>
+<p>封装实体的域对象</p>
+<h1 id="实例化bean的三种方式"><a href="#实例化bean的三种方式" class="headerlink" title="实例化bean的三种方式"></a>实例化bean的三种方式</h1><h3 id="bean实例化-—-构造方法"><a href="#bean实例化-—-构造方法" class="headerlink" title="bean实例化 — 构造方法"></a>bean实例化 — 构造方法</h3><p>bean本质是对象，创建bean使用构造方法完成</p>
+<p><init>()</init></p>
+<p>spring创建bean的时候，调用的是无参数的构造方法</p>
+<p>没有无参构造方法报错</p>
+<div class="hljs code-wrapper"><pre><code>&lt;!--方式一：构造方法实例化bean--&gt;
 
+&lt;bean id=&quot;user&quot; class=&quot;com.opn.web.user&quot;/&gt;
+</code></pre></div>
+<h3 id="bean实例化-—-静态工厂"><a href="#bean实例化-—-静态工厂" class="headerlink" title="bean实例化 — 静态工厂"></a>bean实例化 — 静态工厂</h3><p>静态工厂</p>
+<p>不使用new</p>
+<p>在factory类中，定义getxxx()方法return new xxx类</p>
+<p>实例化时，类 实例名 = 类工厂.get类();</p>
+<div class="hljs code-wrapper"><pre><code>factory类
+
+public class userFactory&#123;
+    public static user getuser()&#123;
+        return new user();
+    &#125;
+&#125;
+
+实例化
+
+user user1 = userFactory.getuser();
+</code></pre></div>
+<hr>
+<div class="hljs code-wrapper"><pre><code>&lt;!--方式二：使用静态工厂实例化bean
+    factory-method，使用工厂的哪个类实例化对象
+--&gt;
+
+&lt;bean id=&quot;user&quot; class=&quot;com.opn.factory.userfactory&quot; factory-method=&quot;getuser&quot;/&gt;
+</code></pre></div>
+<h3 id="bean实例化-—-实例工厂"><a href="#bean实例化-—-实例工厂" class="headerlink" title="bean实例化 — 实例工厂"></a>bean实例化 — 实例工厂</h3><p>在factory类中，getxxx()方法 为非静态方法，</p>
+<p>创建对象时，需要先将工厂类实例化，再使用getxxx()方法，进行创建</p>
+<div class="hljs code-wrapper"><pre><code>factory类
+
+public class userFactory&#123;
+    public user getuser()&#123;
+        return new user();
+    &#125;
+&#125;
+
+实例化
+
+userFactory factory1 = new userFactory();
+user user1 = factory1.getuser();
+</code></pre></div>
+<hr>
+<div class="hljs code-wrapper"><pre><code>&lt;!--方式三：使用实例工厂实例化bean
+    先bean实例工厂
+    再bean对象，factory-method工厂方法，factory-bean工厂的bean
+--&gt;
+
+&lt;bean id=&quot;userfactory&quot; class=&quot;com.opn.factory.userfactory&quot;/&gt;
+
+&lt;bean id=&quot;userfactory&quot; factory-method=&quot;getuser&quot; factory-bean=&quot;userfactory&quot;/&gt;
+</code></pre></div>
+<h3 id="bean实例化-—-FactoryBean"><a href="#bean实例化-—-FactoryBean" class="headerlink" title="bean实例化 — FactoryBean"></a>bean实例化 — FactoryBean</h3><p>创建类FactoryBean</p>
+<div class="hljs code-wrapper"><pre><code>//&lt;T&gt; 泛型 中 填写 需要实例化的类
+public class iocdemo2_1FactoryBean implements FactoryBean&lt;iocdemo2_1&gt; &#123;
+
+    @Override
+    public iocdemo2_1 getObject() throws Exception &#123;
+        //返回需要实例化的类
+        return new iocdemo2_1();
+    &#125;
+
+    @Override
+    public Class&lt;?&gt; getObjectType() &#123;
+        //返回需要的类的类型
+        return iocdemo2_1.class;
+    &#125;
+
+    //改变方法的返回值，改变单例模式
+    @Override
+    public boolean isSingleton() &#123;
+        return FactoryBean.super.isSingleton();
+    &#125;
+
+&#125;
+</code></pre></div>
+<p>配置bean</p>
+<div class="hljs code-wrapper"><pre><code>&lt;!--方式四：使用FactoryBean实例化bean--&gt;
+
+&lt;bean id=&quot;iocdemo2_1&quot; class=&quot;com.opn.web.iocdemo2_1FactoryBean&quot;&gt;
+</code></pre></div>
+<h3 id="bean生命周期"><a href="#bean生命周期" class="headerlink" title="bean生命周期"></a>bean生命周期</h3><p>生命周期：从创建到消亡的完整过程</p>
+<p>bean生命周期：bean从创建到销毁的整体过程</p>
+<p>bean生命周期控制：在bean创建后到销毁前做一些事情</p>
+<p>初始化容器</p>
+<ol>
+<li>创建对象（内存分配）</li>
+<li>执行构造方法</li>
+<li>执行属性执行（set方法，为属性赋值）</li>
+<li>执行bean初始化方法</li>
+</ol>
+<hr>
+<p>bean配置方式</p>
+<div class="hljs code-wrapper"><pre><code>//初始化对应的的操作
+public void init()
+&#123;&#125;
+
+//销毁前对应的操作
+public void destory()
+&#123;&#125;
+
+
+&lt;bean id=&quot;&quot; class=&quot;&quot; init-method=&quot;init&quot; destory-method=&quot;destory&quot;&gt;
+</code></pre></div>
+<p>如果需要执行销毁方法，要关闭容器</p>
+<p>close()/registerShutdownHook()</p>
+<p>关闭容器(父类–ConfigurableApplicationContext)/关闭钩子</p>
+<hr>
+<p>接口方式</p>
+<p>官方接口 InitializingBean, DisposableBean</p>
+<div class="hljs code-wrapper"><pre><code>public class iocdemo2_1 implements iocdemo , InitializingBean, DisposableBean &#123;
+
+    ......
+
+    //销毁
+    @Override
+    public void destroy() throws Exception &#123;
+    &#125;
+    
+    //初始化 --- 属性初始化之后运行
+    @Override
+    public void afterPropertiesSet() throws Exception &#123;
+    &#125;
+&#125;
+</code></pre></div>
+<hr>
+<h1 id="DI注入方式"><a href="#DI注入方式" class="headerlink" title="DI注入方式"></a>DI注入方式</h1><p>注入方式—</p>
+<p>setter注入</p>
+<p>构造器注入/构造方法注入</p>
+<p>对象关联的属性—</p>
+<p>引用类型</p>
+<p>简单类型</p>
+<p><img src="/2022/11/08/SSM/SSM-3.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="setter注入"><a href="#setter注入" class="headerlink" title="setter注入"></a>setter注入</h3><p>用set方法为变量赋值</p>
+<div class="hljs code-wrapper"><pre><code>public class booker&#123;
+    private book b;
+    public setbooker()
+    &#123;
+        b = new book();
+    &#125;
+&#125;
+</code></pre></div>
+<ul>
+<li>引用类型</li>
+</ul>
+<p>在bean中定义引用类型属性并提供可访问的set方法</p>
+<p>配置中使用property标签ref属性注入引用类型对象</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot;    class=&quot;&quot;&gt;
+    //实参b
+    &lt;property name=&quot;实参名&quot; ref=&quot;&quot;/&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<ul>
+<li>简单类型</li>
+</ul>
+<p>在bean中定义简单类型属性并提供可访问的set方法</p>
+<p>配置中使用property标签value属性注入简单类型数据</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot;    class=&quot;&quot;&gt;
+    //实参b
+    &lt;property name=&quot;实参名&quot; value=&quot;&quot;/&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<h3 id="构造器注入"><a href="#构造器注入" class="headerlink" title="构造器注入"></a>构造器注入</h3><h5 id="标准书写"><a href="#标准书写" class="headerlink" title="标准书写"></a>标准书写</h5><p>用构造方法为变量赋值</p>
+<div class="hljs code-wrapper"><pre><code>public class booker&#123;
+    private book b;
+    public booker(book a)
+    &#123;
+        this.b = a;
+    &#125;
+&#125;
+</code></pre></div>
+<ul>
+<li>引用类型</li>
+</ul>
+<p>在bean中不定义set方法</p>
+<p>配置中使用property标签ref属性注入引用类型对象</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot;    class=&quot;&quot;&gt;
+    //形参a
+    &lt;constructor-arg name=&quot;形参名&quot; ref=&quot;&quot;/&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<ul>
+<li>简单类型</li>
+</ul>
+<p>在bean中定义简单类型属性并提供可访问的set方法</p>
+<p>配置中使用property标签value属性注入简单类型数据</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot;    class=&quot;&quot;&gt;
+    //形参a
+    &lt;constructor-arg name=&quot;形参名&quot; value=&quot;&quot;/&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<hr>
+<h5 id="参数适配"><a href="#参数适配" class="headerlink" title="参数适配"></a>参数适配</h5><p>type属性设置形参类型注入</p>
+<div class="hljs code-wrapper"><pre><code>&lt;constructor-arg type=&quot;int&quot; value=&quot;&quot;/&gt;
+</code></pre></div>
+<p>index属性设置形参位置注入</p>
+<div class="hljs code-wrapper"><pre><code>&lt;constructor-arg index=&quot;0&quot; value=&quot;&quot;/&gt;
+</code></pre></div>
+<h3 id="依赖注入方式选择"><a href="#依赖注入方式选择" class="headerlink" title="依赖注入方式选择"></a>依赖注入方式选择</h3><p>强制依赖使用构造器进行，使用setter注入有概率不进行注入导致null对象出现</p>
+<p>可选依赖使用setter注入进行，灵活性强</p>
+<p>Spring框架倡导使用构造器，第三方框架内部大多数采用构造器注入的形式进行数据初始化，相对严谨</p>
+<p>如果有必要可以两者同时使用，使用构造器注入完成强制依赖的注入，使用setter注入完成可选依赖的注入</p>
+<p>实际开发过程中还要根据实际情况分析，如果受控对象没有提供setter方法就必须使用构造器注入</p>
+<p>自己开发的模块推荐使用setter注入</p>
+<h3 id="依赖自动装配"><a href="#依赖自动装配" class="headerlink" title="依赖自动装配"></a>依赖自动装配</h3><p>IoC容器根据bean所依赖的资源在容器中自动查找并注入到bean中的过程称之为自动装配</p>
+<p>自动装配方法</p>
+<p>按类型</p>
+<div class="hljs code-wrapper"><pre><code>提供set方法，bean唯一 
+
+autowire=&quot;byType&quot;
+</code></pre></div>
+<p>按名称</p>
+<div class="hljs code-wrapper"><pre><code>提供set方法，bean指定名称
+
+autowire=&quot;byName&quot;
+</code></pre></div>
+<p>特征</p>
+<p>自动装配用于引用类型依赖注入，不能对简单类型进行操作</p>
+<p>使用按类型装配时（ byType )必须保障容器中相同类型的bean唯一，推荐使用</p>
+<p>使用按名称装配时 ( byName )必须保障容器中具有指定名称的bean，因变量名与配置耦合，不推荐使用</p>
+<p>自动装配优先级低于setter注入与构造器注入，同时出现时自动装配配置失效</p>
+<h3 id="集合注入"><a href="#集合注入" class="headerlink" title="集合注入"></a>集合注入</h3><p>数组array、列表list、集合set、</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+    //(变量名)
+    &lt;property name=&quot;array/list/set&quot;&gt;
+        //(数据类型)
+        &lt;array/list/set&gt;
+            &lt;value&gt;...&lt;/value&gt;
+        &lt;/array/list/set&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<p>字典map</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+    //(变量名)
+    &lt;property name=&quot;map&quot;&gt;
+        //(数据类型)
+        &lt;map&gt;
+            &lt;entry key=&quot;&quot; value=&quot;&quot;/&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<p>属性文件/配置文件properties</p>
+<div class="hljs code-wrapper"><pre><code>&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;
+    //(变量名)
+    &lt;property name=&quot;properties&quot;&gt;
+        //(数据类型)
+        &lt;props&gt;
+            &lt;prop key=&quot;&quot;&gt;--(value)--&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre></div>
+<h3 id="管理第三方bean-—-数据源对象管理"><a href="#管理第三方bean-—-数据源对象管理" class="headerlink" title="管理第三方bean — 数据源对象管理"></a>管理第三方bean — 数据源对象管理</h3><p>查找其构造、set方法，赋相应值</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=17">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=17</a></p>
+<h3 id="使用Spring加载properties文件"><a href="#使用Spring加载properties文件" class="headerlink" title="使用Spring加载properties文件"></a>使用Spring加载properties文件</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=18">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=18</a></p>
+<p><img src="/2022/11/08/SSM/ssm-4.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h3 id="加载配置文件方式"><a href="#加载配置文件方式" class="headerlink" title="加载配置文件方式"></a>加载配置文件方式</h3><p>1、类路径加载配置文件</p>
+<div class="hljs code-wrapper"><pre><code>ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+</code></pre></div>
+<p>2、文件路径加载配置文件</p>
+<div class="hljs code-wrapper"><pre><code>//绝对路径
+ApplicationContext ctx2 = new FileSystemXmlApplicationContext(&quot;&quot;);
+</code></pre></div>
+<p>3、加载多个配置文件</p>
+<div class="hljs code-wrapper"><pre><code>ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;bean1.xml&quot;,&quot;bean2.xml&quot;);
+</code></pre></div>
+<h3 id="加载bean的方式"><a href="#加载bean的方式" class="headerlink" title="加载bean的方式"></a>加载bean的方式</h3><div class="hljs code-wrapper"><pre><code>1、使用bean名称获取
+
+User user1 = (User) ctx.getBean(&quot;user&quot;);
+
+2、使用bean名称获取并指定类型
+    
+User user1 = ctx.getBean(&quot;user&quot;,User.class);
+
+3、使用bean类型获取    
+
+//按类型区分，该类型只能存在一个bean
+User user1 = ctx.getBean(User.class);
+</code></pre></div>
+<h3 id="BeanFactory创建容器"><a href="#BeanFactory创建容器" class="headerlink" title="BeanFactory创建容器"></a>BeanFactory创建容器</h3><p>过时技术…</p>
+<p>BeanFactory创建完毕后，所有的bean均为延迟加载</p>
+<h3 id="容器类层次结构图"><a href="#容器类层次结构图" class="headerlink" title="容器类层次结构图"></a>容器类层次结构图</h3><p><img src="/2022/11/08/SSM/ssm-5.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="核心容器总结"><a href="#核心容器总结" class="headerlink" title="核心容器总结"></a>核心容器总结</h1><p>BeanFactory是IoC容器的顶层接口，初始化BeanFactory对象时，加载的bean延迟加载</p>
+<p>ApplicationContext接口是Spring容器的核心接口，初始化时bean立即加载</p>
+<p>ApplicationContext接口提供基础的bean操作相关方法，通过其他接口扩展其功能ApplicationContext接口常用初始化类</p>
+<p>classPathXmlApplicationContext</p>
+<p>FileSystemXmlApplicationContext</p>
+<h1 id="bean相关总结"><a href="#bean相关总结" class="headerlink" title="bean相关总结"></a>bean相关总结</h1><p><img src="/2022/11/08/SSM/ssm-6.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="依赖注入相关总结"><a href="#依赖注入相关总结" class="headerlink" title="依赖注入相关总结"></a>依赖注入相关总结</h1><p><img src="/2022/11/08/SSM/ssm-7.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h1><h3 id="注解开发定义bean"><a href="#注解开发定义bean" class="headerlink" title="注解开发定义bean"></a>注解开发定义bean</h3><p>@Component</p>
+<div class="hljs code-wrapper"><pre><code>在类前，加注解指定名称/id
+
+@Component(&quot;user&quot;)
+
+在配置文件中，扫描文件夹中的类，子类
+
+&lt;context:component-scan base-package=&quot;com.opn&quot;&gt;
+</code></pre></div>
+<p>@Controller<br>@Service<br>@Repository  </p>
+<h3 id="纯注解开发"><a href="#纯注解开发" class="headerlink" title="纯注解开发"></a>纯注解开发</h3><p>Spring3.0升级了纯注解开发模式，使用]ava类替代配置文件，开启了Spring快速开发赛道</p>
+<p>使用Java类代替Spring核心配置文件</p>
+<p>@Configuration注解用于设定当前类为配置类</p>
+<p>@ComponentScan注解用于设定扫描路径，此注解只能添加一次，多个数据用数组格式</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&quot;com.opn&quot;)
+public class SpringConfig &#123;
+&#125;
+</code></pre></div>
+<p>从读取配置文件—&gt; 读取配置类</p>
+<div class="hljs code-wrapper"><pre><code>ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class)
+</code></pre></div>
+<h3 id="bean管理"><a href="#bean管理" class="headerlink" title="bean管理"></a>bean管理</h3>
             </div>
             <hr>
             <div>
