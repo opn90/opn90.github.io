@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-11-08 11:11" pubdate>
-        2022年11月8日 上午
+      <time datetime="2023-01-27 11:11" pubdate>
+        2023年1月27日 上午
       </time>
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：16 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -255,7 +255,7 @@
 <p>IoC<br>AoP<br>（事务处理 ） </p>
 <p>框架整合</p>
 <p>MyBatis<br>……</p>
-<h1 id="Spring-Framework系统架构"><a href="#Spring-Framework系统架构" class="headerlink" title="Spring Framework系统架构"></a>Spring Framework系统架构</h1><p><img src="/2022/11/08/SSM/ssm-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Spring-Framework系统架构"><a href="#Spring-Framework系统架构" class="headerlink" title="Spring Framework系统架构"></a>Spring Framework系统架构</h1><p><img src="/2023/01/27/SSM/ssm-1.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="IoC-控制反转"><a href="#IoC-控制反转" class="headerlink" title="IoC 控制反转"></a>IoC 控制反转</h3><ul>
 <li>Inversion of Control 控制反转</li>
 </ul>
@@ -358,7 +358,7 @@ public class iocdemo2_1 implements iocdemo2 &#123;
     iocdemo2_1 demo2_2 = (iocdemo2_1)ctx.getBean(&quot;demo2&quot;);
     demo2_2.save();
 </code></pre></div>
-<p><img src="/2022/11/08/SSM/ssm-2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/01/27/SSM/ssm-2.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h1><h3 id="bean基础配置"><a href="#bean基础配置" class="headerlink" title="bean基础配置"></a>bean基础配置</h3><ul>
 <li>别名</li>
 </ul>
@@ -521,7 +521,7 @@ public void destory()
 <p>对象关联的属性—</p>
 <p>引用类型</p>
 <p>简单类型</p>
-<p><img src="/2022/11/08/SSM/SSM-3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/01/27/SSM/SSM-3.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="setter注入"><a href="#setter注入" class="headerlink" title="setter注入"></a>setter注入</h3><p>用set方法为变量赋值</p>
 <div class="hljs code-wrapper"><pre><code>public class booker&#123;
     private book b;
@@ -646,7 +646,7 @@ autowire=&quot;byName&quot;
 <h3 id="管理第三方bean-—-数据源对象管理"><a href="#管理第三方bean-—-数据源对象管理" class="headerlink" title="管理第三方bean — 数据源对象管理"></a>管理第三方bean — 数据源对象管理</h3><p>查找其构造、set方法，赋相应值</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=17">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=17</a></p>
 <h3 id="使用Spring加载properties文件"><a href="#使用Spring加载properties文件" class="headerlink" title="使用Spring加载properties文件"></a>使用Spring加载properties文件</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=18">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=18</a></p>
-<p><img src="/2022/11/08/SSM/ssm-4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/01/27/SSM/ssm-4.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h3 id="加载配置文件方式"><a href="#加载配置文件方式" class="headerlink" title="加载配置文件方式"></a>加载配置文件方式</h3><p>1、类路径加载配置文件</p>
 <div class="hljs code-wrapper"><pre><code>ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
 </code></pre></div>
@@ -672,14 +672,14 @@ User user1 = ctx.getBean(User.class);
 </code></pre></div>
 <h3 id="BeanFactory创建容器"><a href="#BeanFactory创建容器" class="headerlink" title="BeanFactory创建容器"></a>BeanFactory创建容器</h3><p>过时技术…</p>
 <p>BeanFactory创建完毕后，所有的bean均为延迟加载</p>
-<h3 id="容器类层次结构图"><a href="#容器类层次结构图" class="headerlink" title="容器类层次结构图"></a>容器类层次结构图</h3><p><img src="/2022/11/08/SSM/ssm-5.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="容器类层次结构图"><a href="#容器类层次结构图" class="headerlink" title="容器类层次结构图"></a>容器类层次结构图</h3><p><img src="/2023/01/27/SSM/ssm-5.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="核心容器总结"><a href="#核心容器总结" class="headerlink" title="核心容器总结"></a>核心容器总结</h1><p>BeanFactory是IoC容器的顶层接口，初始化BeanFactory对象时，加载的bean延迟加载</p>
 <p>ApplicationContext接口是Spring容器的核心接口，初始化时bean立即加载</p>
 <p>ApplicationContext接口提供基础的bean操作相关方法，通过其他接口扩展其功能ApplicationContext接口常用初始化类</p>
 <p>classPathXmlApplicationContext</p>
 <p>FileSystemXmlApplicationContext</p>
-<h1 id="bean相关总结"><a href="#bean相关总结" class="headerlink" title="bean相关总结"></a>bean相关总结</h1><p><img src="/2022/11/08/SSM/ssm-6.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="依赖注入相关总结"><a href="#依赖注入相关总结" class="headerlink" title="依赖注入相关总结"></a>依赖注入相关总结</h1><p><img src="/2022/11/08/SSM/ssm-7.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="bean相关总结"><a href="#bean相关总结" class="headerlink" title="bean相关总结"></a>bean相关总结</h1><p><img src="/2023/01/27/SSM/ssm-6.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="依赖注入相关总结"><a href="#依赖注入相关总结" class="headerlink" title="依赖注入相关总结"></a>依赖注入相关总结</h1><p><img src="/2023/01/27/SSM/ssm-7.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h1><h3 id="注解开发定义bean"><a href="#注解开发定义bean" class="headerlink" title="注解开发定义bean"></a>注解开发定义bean</h3><p>@Component</p>
 <div class="hljs code-wrapper"><pre><code>在类前，加注解指定名称/id
 
@@ -762,7 +762,7 @@ private String username;
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=25">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=25</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=26">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=26</a></p>
 <h3 id="注解开发总结"><a href="#注解开发总结" class="headerlink" title="注解开发总结"></a>注解开发总结</h3><p>xml配置和注解配置</p>
-<p><img src="/2022/11/08/SSM/ssm-8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/01/27/SSM/ssm-8.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="Spring整合MyBatis"><a href="#Spring整合MyBatis" class="headerlink" title="Spring整合MyBatis"></a>Spring整合MyBatis</h1><h3 id="MyBatis基础流程"><a href="#MyBatis基础流程" class="headerlink" title="MyBatis基础流程"></a>MyBatis基础流程</h3><div class="hljs code-wrapper"><pre><code>//1、创建SqlSessionFactoryBuilder对象
 SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
 
@@ -810,18 +810,12 @@ sqlSession.close();
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/21/JavaWeb-Verification-code/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaWeb--Verification code</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/08/JavaWeb/">
-                        <span class="hidden-mobile">JavaWeb</span>
+                      <a href="/2022/12/16/JavaWeb-Verification-code/">
+                        <span class="hidden-mobile">JavaWeb--Verification code</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
