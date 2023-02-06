@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      44
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 分钟前
+                  本文最后更新于：16 分钟前
                 
               </p>
             
@@ -694,15 +694,96 @@ User user1 = ctx.getBean(User.class);
 <p>使用Java类代替Spring核心配置文件</p>
 <p>@Configuration注解用于设定当前类为配置类</p>
 <p>@ComponentScan注解用于设定扫描路径，此注解只能添加一次，多个数据用数组格式</p>
-<div class="hljs code-wrapper"><pre><code>@Configuration
+<div class="hljs code-wrapper"><pre><code>//配置类
+
+@Configuration
 @ComponentScan(&quot;com.opn&quot;)
 public class SpringConfig &#123;
 &#125;
 </code></pre></div>
 <p>从读取配置文件—&gt; 读取配置类</p>
-<div class="hljs code-wrapper"><pre><code>ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class)
+<div class="hljs code-wrapper"><pre><code>//实现
+
+ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class)
 </code></pre></div>
-<h3 id="bean管理"><a href="#bean管理" class="headerlink" title="bean管理"></a>bean管理</h3>
+<h3 id="bean管理"><a href="#bean管理" class="headerlink" title="bean管理"></a>bean管理</h3><p>单例模式</p>
+<div class="hljs code-wrapper"><pre><code>@Scope(&quot;singleton&quot;)
+</code></pre></div>
+<p>非单例模式</p>
+<div class="hljs code-wrapper"><pre><code>@Scpoe(&quot;prototype&quot;)
+</code></pre></div>
+<p>生命周期</p>
+<p>构造方法后—构造方法</p>
+<div class="hljs code-wrapper"><pre><code>@PostConstruct
+public void init()  &#123;
+&#125;
+</code></pre></div>
+<p>销毁前—销毁构造方法</p>
+<div class="hljs code-wrapper"><pre><code>@PreDestroy
+public void destory() &#123;
+&#125;
+</code></pre></div>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><h5 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h5><p>默认按照类型装配，类内仅仅存在一个关系</p>
+<p>写在类中</p>
+<p>@Autowired</p>
+<div class="hljs code-wrapper"><pre><code>@Autowired
+private User user;
+</code></pre></div>
+<p>指定对应bean的名称</p>
+<p>@Qualifier</p>
+<div class="hljs code-wrapper"><pre><code>@Autowired
+@Qualifier(&quot;UserService&quot;)
+private User user;
+</code></pre></div>
+<p>@Qualifier注解无法单独使用，必须配合@Autowired注解使用</p>
+<h5 id="简单类型注入"><a href="#简单类型注入" class="headerlink" title="简单类型注入"></a>简单类型注入</h5><p>@Value()</p>
+<div class="hljs code-wrapper"><pre><code>@Value(&quot;909090&quot;)
+private String username;
+</code></pre></div>
+<h5 id="加载外部properties文件"><a href="#加载外部properties文件" class="headerlink" title="加载外部properties文件"></a>加载外部properties文件</h5><p>@PropertySource(“jdbc.properties”)</p>
+<div class="hljs code-wrapper"><pre><code>jdbc.properties
+
+username=this_is_username
+
+配置类
+
+@Configuration
+@ComponentScan(&quot;com.opn&quot;)
+@PropertySource(&quot;jdbc.properties&quot;)
+public class SpringConfig &#123;
+&#125;
+
+bean类
+
+@Value(&quot;$&#123;username&#125;&quot;)
+private String username;
+</code></pre></div>
+<h3 id="第三方bean管理"><a href="#第三方bean管理" class="headerlink" title="第三方bean管理"></a>第三方bean管理</h3><p>@Bean</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=25">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=25</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=26">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=26</a></p>
+<h3 id="注解开发总结"><a href="#注解开发总结" class="headerlink" title="注解开发总结"></a>注解开发总结</h3><p>xml配置和注解配置</p>
+<p><img src="/2022/11/08/SSM/ssm-8.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Spring整合MyBatis"><a href="#Spring整合MyBatis" class="headerlink" title="Spring整合MyBatis"></a>Spring整合MyBatis</h1><h3 id="MyBatis基础流程"><a href="#MyBatis基础流程" class="headerlink" title="MyBatis基础流程"></a>MyBatis基础流程</h3><div class="hljs code-wrapper"><pre><code>//1、创建SqlSessionFactoryBuilder对象
+SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+
+//2、加载SqlMapConfig.xml配置文件
+InputStream inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);
+
+//3、创建SqlSessionFactory对象
+SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);
+
+//4、获取SqlSession
+SqlSession sqlSession = sqlSessionFactory.openSession();
+    
+//5、执行SqlSession对象执行查询，获取结果User
+User user = sqlSession.getMapper(User.class);
+
+...
+
+//6、释放资源
+sqlSession.close();
+</code></pre></div>
+
             </div>
             <hr>
             <div>
