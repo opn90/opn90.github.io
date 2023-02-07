@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="SSM框架">
+  <meta name="description" content="SSM框架 - Spring">
   <meta name="author" content="OPN">
   <meta name="keywords" content="">
   
-  <title>SSM - OPN&#39;S BLOG</title>
+  <title>SSM - Spring - OPN&#39;S BLOG</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="SSM">
+            <span class="h2" id="subtitle" title="SSM - Spring">
               
             </span>
 
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      5.8k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      62
+      77
        分钟
     </span>
   
@@ -233,7 +233,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SSM</h1>
+            <h1 style="display: none">SSM - Spring</h1>
             
               <p class="note note-info">
                 
@@ -242,7 +242,7 @@
               </p>
             
             <div class="markdown-body">
-              <p>SSM框架</p>
+              <p>SSM框架 - Spring</p>
 <span id="more"></span>
 
 <p><a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io</a></p>
@@ -958,15 +958,22 @@ sqlSession.close();
 <p>通知类—定义通知方法的类</p>
 <p>切面—配置通知和切入点的关系</p>
 <h3 id="AOP入门案例"><a href="#AOP入门案例" class="headerlink" title="AOP入门案例"></a>AOP入门案例</h3><ol>
-<li>导入坐标</li>
-<li>制造连接点方法(原始操作，Dao接口，实现类)</li>
-<li>制造共性功能(通知类和通知)</li>
-<li>定义切入点</li>
-<li>绑定切入点和通知关系</li>
+<li><p>导入坐标</p>
+</li>
+<li><p>制造连接点方法(原始操作，Dao接口，实现类)</p>
+</li>
+<li><p>制造共性功能(通知类和通知)</p>
+</li>
+<li><p>定义切入点<br>切入点定义依托一个不具有实际意义的方法进行，即无参数，无返回值，方法体无实际逻辑</p>
+</li>
+<li><p>绑定切入点和通知关系，并指定通知添加到原始连接点的具体执行位置</p>
+</li>
+<li><p>@Aspect 定义通知类受Spring容器管理，并定义当前类为切面类</p>
+</li>
+<li><p>@EnableAspectJAutoProxy 开启spring对AOP注解驱动支持</p>
+</li>
 </ol>
-<ul>
-<li>pom.xml</li>
-</ul>
+<p>pom.xml</p>
 <p>导入springframework自动导入aop相关包</p>
 <div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
   &lt;groupId&gt;org.springframework&lt;/groupId&gt;
@@ -980,34 +987,33 @@ sqlSession.close();
   &lt;version&gt;1.9.4&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre></div>
-<ul>
-<li><p>接口、实现类</p>
-<p>  public interface dao {</p>
-<div class="hljs code-wrapper"><pre><code>  void save();
-  void update();
-</code></pre></div>
-<p>  }</p>
-<p>  @Component()<br>  public class daoimpl implements dao {</p>
-<div class="hljs code-wrapper"><pre><code>  public void save() &#123;
-      System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
-      System.out.println(&quot;dao save&quot;);
-  &#125;
+<p>接口、实现类</p>
+<div class="hljs code-wrapper"><pre><code>public interface dao &#123;
+    void save();
+    void update();
+&#125;
 
-  public void update() &#123;
-      System.out.println(&quot;dao update&quot;);
-  &#125;
+@Component()
+public class daoimpl implements dao &#123;
+
+    public void save() &#123;
+        System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+        System.out.println(&quot;dao save&quot;);
+    &#125;
+
+    public void update() &#123;
+        System.out.println(&quot;dao update&quot;);
+    &#125;
+&#125;
 </code></pre></div>
-<p>  }</p>
-</li>
-<li><p>共性功能（通知和通知类）</p>
-</li>
-</ul>
+<p>共性功能（通知和通知类）</p>
 <p>@Component — Spring bean<br>@Aspect — 当AOP处理</p>
+<p>定义切入点：<br>切入点定义依托一个不具有实际意义的方法进行，即无参数，无返回值，方法体无实际逻辑</p>
 <div class="hljs code-wrapper"><pre><code>@Component
 @Aspect
 public class MyAdvice &#123;
 
-    //绑定切入点和共性功能
+    //定义切入点和共性功能
 
     @Pointcut(&quot;execution(void com.opn.dao.dao.update())&quot;)
     private void pp()&#123;&#125;
@@ -1020,9 +1026,7 @@ public class MyAdvice &#123;
     &#125;
 &#125;
 </code></pre></div>
-<ul>
-<li>配置类</li>
-</ul>
+<p>配置类</p>
 <p>@EnableAspectJAutoProxy — 启动配置中的@Aspect</p>
 <p>告知Spring存在AOP编程</p>
 <div class="hljs code-wrapper"><pre><code>@Configuration
@@ -1031,9 +1035,7 @@ public class MyAdvice &#123;
 public class SpringConfig &#123;
 &#125;
 </code></pre></div>
-<ul>
-<li>实现</li>
-</ul>
+<p>实现</p>
 <div class="hljs code-wrapper"><pre><code>    public static void main(String[] args) &#123;
     ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 
@@ -1044,12 +1046,152 @@ public class SpringConfig &#123;
     ddd.update();
     &#125;
 </code></pre></div>
-<ul>
-<li><p>结果</p>
-<p>  Start this is AOP ~~~~~~~~~~<br>  dao save<br>  Start this is AOP ~~~~~~~~~~<br>  dao update</p>
-</li>
-</ul>
-<h3 id="AOP入门案例-—-操作"><a href="#AOP入门案例-—-操作" class="headerlink" title="AOP入门案例 — 操作"></a>AOP入门案例 — 操作</h3>
+<p>结果</p>
+<div class="hljs code-wrapper"><pre><code>Start this is AOP ~~~~~~~~~~ 
+dao save
+Start this is AOP ~~~~~~~~~~ 
+dao update
+</code></pre></div>
+<h3 id="AOP入门案例-—-编写的代码-实际进行的操作"><a href="#AOP入门案例-—-编写的代码-实际进行的操作" class="headerlink" title="AOP入门案例 — 编写的代码/实际进行的操作"></a>AOP入门案例 — 编写的代码/实际进行的操作</h3><ol>
+<li>编写通知类</li>
+<li>在Spring配置类添加@EnableAspectJAutoProxy注解</li>
+</ol>
+<p>通知类</p>
+<p>定义切入点：<br>切入点定义依托一个不具有实际意义的方法进行，即无参数，无返回值，方法体无实际逻辑</p>
+<div class="hljs code-wrapper"><pre><code>@Component  //Spring bean处理
+@Aspect        //Spring AOP操作
+public class MyAdvice &#123;            //定义通知类
+
+    //定义切入点
+    @Pointcut(&quot;execution(void com.opn.dao.dao.update())&quot;)
+    private void pp()&#123;&#125;
+
+    //定义共性方法，绑定切入点和共性功能
+    //@Before告知在切入点前执行共性方法
+
+    @Before(&quot;pp()&quot;)
+    public void method()&#123;
+        System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>Spring配置类</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&quot;com.opn&quot;)
+@EnableAspectJAutoProxy
+public class SpringConfig &#123;
+&#125;
+</code></pre></div>
+<h3 id="AOP工作流程"><a href="#AOP工作流程" class="headerlink" title="AOP工作流程"></a>AOP工作流程</h3><ol>
+<li>Spring容器启动</li>
+<li>读取所有切面配置中的切入点</li>
+<li>初始化bean，判定bean对应的类中的方法是否匹配到任意切入点<br>匹配失败，创建对象<br>匹配成功，创建原始对象（目标对象）的代理对象  </li>
+<li>获取bean执行方法<br>获取bean，调用方法并执行，完成操作<br>获取的bean是代理对象时，根据代理对象的运行模式运行原始方法与增强的内容，完成操作</li>
+</ol>
+<p>SpringAOP本质:代理模式</p>
+<h3 id="AOP核心概念-1"><a href="#AOP核心概念-1" class="headerlink" title="AOP核心概念"></a>AOP核心概念</h3><p>目标对象（ Target ):原始功能去掉共性功能对应的类产生的对象，这种对象是无法直接完成最终工作的</p>
+<p>代理（ Proxy )∶目标对象无法直接完成工作，需要对其进行功能回填，通过原始对象的代理对象实现</p>
+<h3 id="AOP切入点表达式"><a href="#AOP切入点表达式" class="headerlink" title="AOP切入点表达式"></a>AOP切入点表达式</h3><p>切入点∶要进行增强的方法</p>
+<p>切入点表达式︰要进行增强的方法的描述方式</p>
+<h5 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h5><p>切入点表达式标准格式︰动作关键字（访问修饰符﹐返回值﹐包名.类/接口名.方法名（参数）异常名)</p>
+<p>…</p>
+<h5 id="描述方式一-描述接口方法"><a href="#描述方式一-描述接口方法" class="headerlink" title="描述方式一:描述接口方法"></a>描述方式一:描述接口方法</h5><p>执行com.opn.dao包下的Dao接口中的无参数update方法</p>
+<div class="hljs code-wrapper"><pre><code>execution(void com.opn.dao.Dao.update())
+</code></pre></div>
+<h5 id="描述方式二-描述实现类方法"><a href="#描述方式二-描述实现类方法" class="headerlink" title="描述方式二:描述实现类方法"></a>描述方式二:描述实现类方法</h5><p>执行com.opn.dao.impl包下的DaoImpl类中的无参数update方法</p>
+<div class="hljs code-wrapper"><pre><code>execution(void com.opn.dao.impl.DaoImpl.update())
+</code></pre></div>
+<h5 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h5><p>*︰单个独立的任意符号，可以独立出现，也可以作为前缀或者后缀的匹配符出现</p>
+<p>必有一个参数</p>
+<div class="hljs code-wrapper"><pre><code>execution(void com.opn.dao.Dao.*())
+</code></pre></div>
+<p>..:多个连续的任意符号，可以独立出现，常用于简化包名与参数的书写</p>
+<p>有或没有参数</p>
+<div class="hljs code-wrapper"><pre><code>execution(void com.opn..*(..))
+</code></pre></div>
+<p>+∶专用于匹配子类类型</p>
+<p>…</p>
+<h5 id="书写技巧"><a href="#书写技巧" class="headerlink" title="书写技巧"></a>书写技巧</h5><p><img src="/2023/01/27/SSM/ssm-10.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="AOP通知类型"><a href="#AOP通知类型" class="headerlink" title="AOP通知类型"></a>AOP通知类型</h3><p>AOP通知描述了抽取的共性功能，根据共性功能抽取的位置不同，最终运行代码时要将其加入到合理的位置</p>
+<p>前置通知</p>
+<p>后置通知</p>
+<p>环绕通知（重点)</p>
+<p>返回后通知（了解)</p>
+<p>抛出异常后通知（了解)</p>
+<p>前置</p>
+<p>@Before()</p>
+<p>后置</p>
+<p>@After()</p>
+<p>环绕</p>
+<p>@Around()</p>
+<p>原始方法无返回值</p>
+<div class="hljs code-wrapper"><pre><code>@Around(&quot;pp()&quot;)
+public void method(ProceedingJoinPoint pjp) throws Throwable &#123;
+    System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+
+    //表示对原始操作的调用
+    pjp.proceed();
+
+    System.out.println(&quot;End this is AOP ~~~~~~~~~~ &quot;);
+&#125;
+</code></pre></div>
+<p><img src="/2023/01/27/SSM/ssm-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>原始方法有返回值</p>
+<div class="hljs code-wrapper"><pre><code>@Around(&quot;pp()&quot;)
+public Object method(ProceedingJoinPoint pjp) throws Throwable &#123;
+    System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+
+    //表示对原始操作的调用
+    Object ret = pjp.proceed();
+
+    System.out.println(&quot;End this is AOP ~~~~~~~~~~ &quot;);
+
+    //返回原始方法的返回对象
+    return ret;
+&#125;
+</code></pre></div>
+<p>返回后通知/不抛出异常才通知</p>
+<p>@AfterReturning()</p>
+<p>抛出异常后通知</p>
+<p>@AfterThrowing()</p>
+<h3 id="AOP通知获取数据"><a href="#AOP通知获取数据" class="headerlink" title="AOP通知获取数据"></a>AOP通知获取数据</h3><p>@Before()、@After()、@AfterReturning()、@AfterThrowing()</p>
+<div class="hljs code-wrapper"><pre><code>@Before(&quot;pp()&quot;)
+public void method1(JoinPoint jp)&#123;
+    Object[] args = jp.getArgs();
+    System.out.println(Arrays.toString(args));
+&#125;
+</code></pre></div>
+<p>@Around</p>
+<div class="hljs code-wrapper"><pre><code>@Around(&quot;pp()&quot;)
+public Object method(ProceedingJoinPoint pjp) throws Throwable &#123;
+
+    Object[] args = pjp.getArgs();
+    System.out.println(Arrays.toString(args));
+
+    //可在此处理数据
+    //args[0]=&quot;...&quot;;
+
+    Object ret = pjp.proceed(args);
+
+    return ret;
+&#125;
+</code></pre></div>
+<h3 id="AOP总结"><a href="#AOP总结" class="headerlink" title="AOP总结"></a>AOP总结</h3><p>概念:AOP(Aspect Oriented Programming)面向切面编程，一种编程范式</p>
+<p>作用:在不惊动原始设计的基础上为方法进行功能增强</p>
+<p>核心概念</p>
+<p>代理、连接点、切入点、通知、切面、目标对象</p>
+<p>切入点表达式</p>
+<p>通知类型</p>
+<p>环绕通知</p>
+<p>环绕通知依赖形参ProceedingJoinPoint才能实现对原始方法的调用</p>
+<p>环绕通知可以隔离原始方法的调用执行</p>
+<p>环绕通知返回值设置为0bject类型</p>
+<p>环绕通知中可以对原始方法调用过程中出现的异常进行处理</p>
+<p>获取切入点方法的参数</p>
+<p>JoinPoint</p>
+<p>获取切入点方法返回值</p>
+<p>获取切入点方法运行异常信息</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1>
             </div>
             <hr>
             <div>
