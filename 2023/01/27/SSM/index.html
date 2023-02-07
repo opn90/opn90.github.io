@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.9k 字
+      4.5k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      53
+      62
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -925,7 +925,131 @@ sqlSession.close();
 </code></pre></div>
 <h3 id="整合JUnit"><a href="#整合JUnit" class="headerlink" title="整合JUnit"></a>整合JUnit</h3><p>测试</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=30">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=30</a></p>
-<h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3>
+<h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>OOP<br>Object Oriented Programming<br>面向对象编程</p>
+<p>AOP<br>Aspect Oriented Programming<br>面向切面编程<br>一种编程范式，指导开发者如何组织程序结构</p>
+<ul>
+<li>作用：  在不惊动原始设计/不改变原始代码的基础上，进行功能增强</li>
+</ul>
+<p>Spring理念—无入侵式/无侵入式</p>
+<h3 id="AOP核心概念"><a href="#AOP核心概念" class="headerlink" title="AOP核心概念"></a>AOP核心概念</h3><p>连接点、切入点、通知、切面、通知类</p>
+<p><img src="/2023/01/27/SSM/ssm-9.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>连接点 ( JoinPoint )：程序执行过程中的任意位置，粒度为执行方法、抛出异常、设置变量等</li>
+</ul>
+<p>在SpringAOP中，理解为方法的执行</p>
+<ul>
+<li>切入点（ Pointcut ) ：匹配连接点的式子</li>
+</ul>
+<p>在SpringAoP中，一个切入点可以只描述一个具体方法，也可以匹配多个方法</p>
+<ul>
+<li>通知( Advice )：在切入点处执行的操作，也就是共性功能</li>
+</ul>
+<p>在SpringAOP中，功能最终以方法的形式呈现</p>
+<ul>
+<li>通知类：定义通知的类</li>
+</ul>
+<ul>
+<li>切面( Aspect )︰描述通知与切入点的对应关系</li>
+</ul>
+<p>见解：</p>
+<p>连接点—所有的方法</p>
+<p>切入点—执行通知的方法</p>
+<p>通知—在切入点处执行的操作，包含共性语句的方法</p>
+<p>通知类—定义通知方法的类</p>
+<p>切面—配置通知和切入点的关系</p>
+<h3 id="AOP入门案例"><a href="#AOP入门案例" class="headerlink" title="AOP入门案例"></a>AOP入门案例</h3><ol>
+<li>导入坐标</li>
+<li>制造连接点方法(原始操作，Dao接口，实现类)</li>
+<li>制造共性功能(通知类和通知)</li>
+<li>定义切入点</li>
+<li>绑定切入点和通知关系</li>
+</ol>
+<ul>
+<li>pom.xml</li>
+</ul>
+<p>导入springframework自动导入aop相关包</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+  &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+  &lt;version&gt;1.9.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<ul>
+<li><p>接口、实现类</p>
+<p>  public interface dao {</p>
+<div class="hljs code-wrapper"><pre><code>  void save();
+  void update();
+</code></pre></div>
+<p>  }</p>
+<p>  @Component()<br>  public class daoimpl implements dao {</p>
+<div class="hljs code-wrapper"><pre><code>  public void save() &#123;
+      System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+      System.out.println(&quot;dao save&quot;);
+  &#125;
+
+  public void update() &#123;
+      System.out.println(&quot;dao update&quot;);
+  &#125;
+</code></pre></div>
+<p>  }</p>
+</li>
+<li><p>共性功能（通知和通知类）</p>
+</li>
+</ul>
+<p>@Component — Spring bean<br>@Aspect — 当AOP处理</p>
+<div class="hljs code-wrapper"><pre><code>@Component
+@Aspect
+public class MyAdvice &#123;
+
+    //绑定切入点和共性功能
+
+    @Pointcut(&quot;execution(void com.opn.dao.dao.update())&quot;)
+    private void pp()&#123;&#125;
+
+    //@Before告知在切入点前执行共性方法
+
+    @Before(&quot;pp()&quot;)
+    public void method()&#123;
+        System.out.println(&quot;Start this is AOP ~~~~~~~~~~ &quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<ul>
+<li>配置类</li>
+</ul>
+<p>@EnableAspectJAutoProxy — 启动配置中的@Aspect</p>
+<p>告知Spring存在AOP编程</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&quot;com.opn&quot;)
+@EnableAspectJAutoProxy
+public class SpringConfig &#123;
+&#125;
+</code></pre></div>
+<ul>
+<li>实现</li>
+</ul>
+<div class="hljs code-wrapper"><pre><code>    public static void main(String[] args) &#123;
+    ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+
+    dao ddd =  ctx.getBean(dao.class);
+
+    ddd.save();
+
+    ddd.update();
+    &#125;
+</code></pre></div>
+<ul>
+<li><p>结果</p>
+<p>  Start this is AOP ~~~~~~~~~~<br>  dao save<br>  Start this is AOP ~~~~~~~~~~<br>  dao update</p>
+</li>
+</ul>
+<h3 id="AOP入门案例-—-操作"><a href="#AOP入门案例-—-操作" class="headerlink" title="AOP入门案例 — 操作"></a>AOP入门案例 — 操作</h3>
             </div>
             <hr>
             <div>
