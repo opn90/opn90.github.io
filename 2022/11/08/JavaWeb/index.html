@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.2k 字
+      9.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      126
+      128
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：15 小时前
+                  本文最后更新于：2 小时前
                 
               </p>
             
@@ -660,6 +660,25 @@ sqlSession.close()
 &lt;/mappers&gt;
 </code></pre></div>
 <h3 id="Mybatis核心配置文件"><a href="#Mybatis核心配置文件" class="headerlink" title="Mybatis核心配置文件"></a>Mybatis核心配置文件</h3><p>environments:<br>配置数据库连按环境信息。可以配置多个environment，通过defqult属性切换不同的environment</p>
+<h3 id="配置文件开发"><a href="#配置文件开发" class="headerlink" title="配置文件开发"></a>配置文件开发</h3><p>…</p>
+<h3 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h3><p>@Select()  </p>
+<p>@Insert()</p>
+<p>@Update()</p>
+<p>@Delete()</p>
+<hr>
+<p>@Param</p>
+<p>为SQL语句中参数赋值</p>
+<div class="hljs code-wrapper"><pre><code>public interface UserMapper &#123;
+    @Select(&quot;select * from tb_user where username = #&#123;username&#125; and password = #&#123;password&#125;&quot;)
+    User select(@Param(&quot;username&quot;) String username, @Param(&quot;password&quot;) String password);
+
+    @Select(&quot;select * from tb_user where username = #&#123;username&#125;&quot;)
+    User selectUsername(String username);
+
+    @Insert(&quot;insert into tb_user values (null,#&#123;username&#125;,#&#123;password&#125;)&quot;)
+    void add(@Param(&quot;username&quot;) String username, @Param(&quot;password&quot;) String password);
+&#125;
+</code></pre></div>
 <h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><h2 id="Apache-Tomcat"><a href="#Apache-Tomcat" class="headerlink" title="Apache Tomcat"></a>Apache Tomcat</h2><p>开源免费轻量级的 web 服务器</p>
 <p>tomcat.apache.org</p>
 <h3 id="Tomcat-基本使用"><a href="#Tomcat-基本使用" class="headerlink" title="Tomcat 基本使用"></a>Tomcat 基本使用</h3><div class="hljs code-wrapper"><pre><code>bin/startup.bat 启动

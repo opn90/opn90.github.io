@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.8k 字
+      6.1k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      77
+      81
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：9 分钟前
                 
               </p>
             
@@ -846,7 +846,12 @@ User user = sqlSession.getMapper(User.class);
 //6、释放资源
 sqlSession.close();
 </code></pre></div>
-<h3 id="整合Druid-MyBatis"><a href="#整合Druid-MyBatis" class="headerlink" title="整合Druid,MyBatis"></a>整合Druid,MyBatis</h3><p>所用Maven</p>
+<p><img src="/2023/01/27/SSM/ssm-12.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Spring-MyBatis注解-没有实现类"><a href="#Spring-MyBatis注解-没有实现类" class="headerlink" title="Spring+MyBatis注解 没有实现类"></a>Spring+MyBatis注解 没有实现类</h3><p><a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/QW5YWKD9zm/">https://www.bbsmax.com/A/QW5YWKD9zm/</a></p>
+<p><img src="/2023/01/27/SSM/ssm-13.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="整合Druid-MyBatis"><a href="#整合Druid-MyBatis" class="headerlink" title="整合Druid,MyBatis"></a>整合Druid,MyBatis</h3><p><img src="/2023/01/27/SSM/ssm-14.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/01/27/SSM/ssm-15.png" srcset="/img/loading.gif" lazyload></p>
+<p>所用Maven</p>
 <div class="hljs code-wrapper"><pre><code>    &lt;dependency&gt;
         &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
         &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
@@ -1191,7 +1196,40 @@ public Object method(ProceedingJoinPoint pjp) throws Throwable &#123;
 <p>JoinPoint</p>
 <p>获取切入点方法返回值</p>
 <p>获取切入点方法运行异常信息</p>
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>事务作用︰在数据层保障一系列的数据库操作同成功同失败</p>
+<p>Spring事务作用∶在数据层或业务层保障一系列的数据库操作同成功同失败</p>
+<p>PlatformTransactionManager 接口</p>
+<p>DatasourceTransactionManager 实现类</p>
+<h3 id="案例-账户转账业务"><a href="#案例-账户转账业务" class="headerlink" title="案例 账户转账业务"></a>案例 账户转账业务</h3><p>1、在业务层接口上添加Spring事务管理</p>
+<p>2、设置事务管理器</p>
+<p>3、开启注解式事件驱动</p>
+<hr>
+<p>1、在业务层接口上添加Spring事务管理</p>
+<p>注解式事务可以添加到业务方法上表示当前方法开启事务，也可以添加到接口上表示当前接口所有方法开启事务</p>
+<div class="hljs code-wrapper"><pre><code>public interface AccountService &#123;
+    @Transactional
+    public void transfer(String out,String in ,Integer money) ;
+&#125;
+</code></pre></div>
+<p>2、设置事务管理器</p>
+<p>在JdbcConfig中</p>
+<div class="hljs code-wrapper"><pre><code>//配置事务管理器，mybatis使用的是jdbc事务
+@Bean
+public PlatformTransactionManager transactionManager(DataSource dataSource)&#123;
+    DataSourceTransactionManager ptm = new DataSourceTransactionManager();
+    ptm.setDataSource(dataSource);
+    return ptm;
+&#125;
+</code></pre></div>
+<p>3、开启注解式事件驱动</p>
+<div class="hljs code-wrapper"><pre><code>@EnableTransactionManagement
+</code></pre></div>
+<h3 id="Spring事务角色"><a href="#Spring事务角色" class="headerlink" title="Spring事务角色"></a>Spring事务角色</h3><p>事务管理员:发起事务方，在Spring中通常指代业务层开启事务的方法</p>
+<p>事务协调员︰加入事务方，在Spring中通常指代数据层方法，也可以是业务层方法</p>
+<p>事务管理和JDBC用同一个datasource</p>
+<h3 id="Spring事务属性"><a href="#Spring事务属性" class="headerlink" title="Spring事务属性"></a>Spring事务属性</h3><p><img src="/2023/01/27/SSM/ssm-16.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="事务传播行为"><a href="#事务传播行为" class="headerlink" title="事务传播行为"></a>事务传播行为</h3><p><img src="/2023/01/27/SSM/ssm-17.png" srcset="/img/loading.gif" lazyload></p>
+
             </div>
             <hr>
             <div>
@@ -1217,6 +1255,12 @@ public Object method(ProceedingJoinPoint pjp) throws Throwable &#123;
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/02/08/SSM-SpringMVC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSM - SpringMVC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
