@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      3.5k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      50
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 分钟前
+                  本文最后更新于：23 分钟前
                 
               </p>
             
@@ -245,7 +245,7 @@
               <p>SSM框架 - SpringMVC</p>
 <span id="more"></span>
 
-<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>SpringMVC是一种基于Java实现MVC模型的轻量级web框架</p>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h1 id="简介-入门"><a href="#简介-入门" class="headerlink" title="简介-入门"></a>简介-入门</h1><p>SpringMVC是一种基于Java实现MVC模型的轻量级web框架</p>
 <p>SpringMVC技术与Servlet技术功能等同，均属于web层开发技术</p>
 <p>优点</p>
 <p>使用简单，开发便捷（相比于servlet)</p>
@@ -333,7 +333,7 @@ public class ServletContainersInitConfig extends AbstractDispatcherServletInitia
 <ul>
 <li>@ResponseBody</li>
 </ul>
-<p>设置当前控制器相应内容为返回值</p>
+<p>设置当前控制器方法响应内容为当前返回值</p>
 <p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-4.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="SpringMVC-Servlet容器配置类"><a href="#SpringMVC-Servlet容器配置类" class="headerlink" title="SpringMVC Servlet容器配置类"></a>SpringMVC Servlet容器配置类</h3><p>AbstractDispatcherServletInitializer类是SpringMVc提供的快速初始化web3.0容器的抽象类</p>
 <p>AbstractDispatcherServletInitializer提供三个接口方法供用户实现</p>
@@ -683,6 +683,7 @@ public String JSON3(@RequestBody List&lt;User&gt; likes)&#123;
 <p>@EnableWebMvc</p>
 <p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-19.png" srcset="/img/loading.gif" lazyload></p>
 <p>@RequestBody</p>
+<p>接收方法体中的json数据</p>
 <p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-20.png" srcset="/img/loading.gif" lazyload></p>
 <hr>
 <p>@RequestParam 与 @RequestBody 区别</p>
@@ -707,7 +708,273 @@ public String date(Date date,
 <p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-22.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h1><p>响应界面</p>
 <p>响应数据</p>
+<p>@ResponseBody</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-23.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>响应页面</li>
+</ul>
+<p>页面</p>
+<p>没有@ResponseBody（作用-设置当前控制器方法响应内容为当前返回值）</p>
+<div class="hljs code-wrapper"><pre><code>@RequestMapping(&quot;/response&quot;)
+public String response()&#123;
+    System.out.println(&quot;跳转页面&quot;);
+    return &quot;/index.jsp&quot;;
+&#125;
+</code></pre></div>
+<ul>
+<li>响应文本数据</li>
+</ul>
+<p>文本数据</p>
+<p>+@ResponseBody 直接返回字符串<br>不+@ResponseBody 程序会查询response text的文件</p>
+<div class="hljs code-wrapper"><pre><code>@RequestMapping(&quot;/response2&quot;)
+@ResponseBody
+public String response2()&#123;
+    System.out.println(&quot;返回纯文本数据&quot;);
+    return &quot;response text&quot;;
+&#125;
+</code></pre></div>
+<ul>
+<li>响应json对象</li>
+</ul>
+<p>+@ResponseBody</p>
+<div class="hljs code-wrapper"><pre><code>@RequestMapping(&quot;/response3&quot;)
+@ResponseBody
+public User response3()&#123;
+    System.out.println(&quot;返回json数据&quot;);
+    User user = new User();
+    user.setName(&quot;111&quot;);
+    user.setAge(33);
+    return user;
+&#125;
+</code></pre></div>
+<ul>
+<li>响应json对象集合</li>
+</ul>
+<p>+@ResponseBody</p>
+<div class="hljs code-wrapper"><pre><code>@RequestMapping(&quot;/response4&quot;)
+@ResponseBody
+public List&lt;User&gt; response4()&#123;
+    System.out.println(&quot;返回json数据集合&quot;);
+    User user1 = new User();
+    user1.setName(&quot;111&quot;);
+    user1.setAge(33);
 
+    User user2 = new User();
+    user2.setName(&quot;333&quot;);
+    user2.setAge(11);
+
+    List&lt;User&gt; userList = new ArrayList&lt;User&gt;();
+    userList.add(user1);
+    userList.add(user2);
+    return userList;
+&#125;
+</code></pre></div>
+<h1 id="REST风格"><a href="#REST风格" class="headerlink" title="REST风格"></a>REST风格</h1><h3 id="REST简介"><a href="#REST简介" class="headerlink" title="REST简介"></a>REST简介</h3><p>REST (Representational State Transfer)，表现形式状态转换</p>
+<p>隐藏资源的访问行为，无法通过地址得知对资源是何种操作</p>
+<p>书写简化</p>
+<ul>
+<li>访问网络资源的格式—url的格式设定</li>
+</ul>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-24.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>按照REST风格访问资源时使用行为动作区分对资源进行了何种操作</li>
+</ul>
+<ul>
+<li>按照不同的请求方式，进行不同的操作</li>
+</ul>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-25.png" srcset="/img/loading.gif" lazyload></p>
+<p>GET/POST/PUT/DELETE</p>
+<p>上述行为是约定方式，约定不是规范，可以打破，所以称REST风格，而不是REST规范</p>
+<p>描述模块的名称通常使用复数，也就是加s的格式描述，表示此类资源，而非单个资源，例如:users、books、account ….</p>
+<ul>
+<li>根据REST风格对资源进行访问称为RESTful</li>
+</ul>
+<h3 id="REST入门案例"><a href="#REST入门案例" class="headerlink" title="REST入门案例"></a>REST入门案例</h3><ul>
+<li>使用实例</li>
+</ul>
+<p>传参 – 在添加@RequestBody后，只能接收请求体中的json数据</p>
+<p>postman - 选择请求方式 - Body - raw - JSON - 添加数据</p>
+<p>{“name”:”56”}…</p>
+<div class="hljs code-wrapper"><pre><code>//查询全部
+
+@RequestMapping(value = &quot;/users&quot;,method = RequestMethod.GET)
+@ResponseBody
+public String selectall()&#123;
+    return &quot;user select &quot;;
+&#125;
+
+//查询单个
+
+@RequestMapping(value = &quot;/users/&#123;id&#125;&quot;,method = RequestMethod.GET)
+@ResponseBody
+public String selectbyid(@PathVariable Integer id)&#123;
+    return &quot;user select &quot; + id;
+&#125;
+
+//添加
+
+@RequestMapping(value = &quot;/users&quot;,method = RequestMethod.POST)
+@ResponseBody
+public String add(@RequestBody User user)&#123;
+    System.out.println(user);
+    return &quot;this is user ==&gt; &quot;+ user;
+&#125;
+
+//修改
+
+@RequestMapping(value = &quot;/users&quot;,method = RequestMethod.PUT)
+@ResponseBody
+public String update(@RequestBody User user)&#123;
+    return &quot;user update &quot; + user;
+&#125;
+
+//删除
+
+@RequestMapping(value = &quot;/users/&#123;id&#125;&quot;,method = RequestMethod.DELETE)
+@ResponseBody
+public String delete(@PathVariable Integer id)&#123;
+    return &quot;user delete &quot; + id;
+&#125;
+</code></pre></div>
+<ul>
+<li>步骤</li>
+</ul>
+<p>1、设定http请求动作（动词)</p>
+<p>设置相应的method</p>
+<p>2、设定请求参数（路径变量)</p>
+<p>/user/{id} – 路径参数定位</p>
+<p>@PathVariable – 从路径中取参数</p>
+<ul>
+<li>注解</li>
+</ul>
+<p>@RequestMapping </p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-26.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h3 id="注解分析"><a href="#注解分析" class="headerlink" title="注解分析"></a>注解分析</h3><p>@RequestBody</p>
+<p>接收方法体中的json数据</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-20.png" srcset="/img/loading.gif" lazyload></p>
+<p>@RequestParam</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-18.png" srcset="/img/loading.gif" lazyload></p>
+<p>@PathVariable</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-27.png" srcset="/img/loading.gif" lazyload></p>
+<p>注解分析</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-28.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h3 id="REST快速开发"><a href="#REST快速开发" class="headerlink" title="REST快速开发"></a>REST快速开发</h3><ul>
+<li>路径</li>
+</ul>
+<p>将方法的重复路径注解放到类的注解中</p>
+<p>能删的删，其他保存路径参数</p>
+<ul>
+<li>@RequestBody </li>
+</ul>
+<p>提到类上</p>
+<ul>
+<li>@RestController</li>
+</ul>
+<p>简化，</p>
+<p>@RestController = @Controller + @ResponseBody</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-29.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>@xxxMapping</li>
+</ul>
+<p>@GetMapping、@PostMapping、@PutMapping、@DeleteMapping</p>
+<p>再加路径变量</p>
+<p>@GetMapping(“/{id}”)</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-30.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>@RestController
+@RequestMapping(&quot;/users&quot;)
+
+public class RESTController &#123;
+    @GetMapping
+    public String selectall()&#123;
+        return &quot;user select &quot;;
+    &#125;
+
+    @GetMapping(&quot;/&#123;id&#125;&quot;)
+    public String selectbyid(@PathVariable Integer id)    &#123;
+        return &quot;user select &quot; + id;
+    &#125;
+&#125;
+</code></pre></div>
+<hr>
+<h3 id="REST案例-基于REST风格的数据交互"><a href="#REST案例-基于REST风格的数据交互" class="headerlink" title="REST案例 - 基于REST风格的数据交互"></a>REST案例 - 基于REST风格的数据交互</h3><ul>
+<li>对于静态资源的访问</li>
+</ul>
+<p>问题：</p>
+<p>在加载前端界面时，服务器查找mapper（走了SpringMvcConfig）</p>
+<p>解决：</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+public class SpringMvcSupport extends WebMvcConfigurationSupport &#123;
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) &#123;
+        //当访问/page下的文件时，不走MVC，走page目录下的内容
+        registry.addResourceHandler(&quot;/pages/**&quot;).addResourceLocations(&quot;/pages/&quot;);
+        registry.addResourceHandler(&quot;/js/**&quot;).addResourceLocations(&quot;/js/&quot;);
+        registry.addResourceHandler(&quot;/css/**&quot;).addResourceLocations(&quot;/css/&quot;);
+        registry.addResourceHandler(&quot;/plugins/**&quot;).addResourceLocations(&quot;/plugins/&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>在SpringMvcConfig添加搜索</p>
+<div class="hljs code-wrapper"><pre><code>@ComponentScan(&#123;&quot;com.opn.controller&quot;,&quot;com.opn.config&quot;&#125;)
+</code></pre></div>
+<ul>
+<li>步骤</li>
+</ul>
+<p>先做后台功能，开发接口并调通接口</p>
+<p>再做页面异步调用，确认功能可以正常访问</p>
+<p>最后完成页面数据展示</p>
+<p>补充:放行静态资源访问</p>
+<ul>
+<li>案例代码</li>
+</ul>
+<p>前端<br>vue</p>
+<p>看不懂…</p>
+<div class="hljs code-wrapper"><pre><code>        //添加
+            saveBook () &#123;
+                axios.post(&quot;../books&quot;,this.formData).then((res)=&gt;&#123;
+
+                &#125;);
+            &#125;,
+
+            //主页列表查询
+            getAll() &#123;
+                axios.get(&quot;../books&quot;).then((res)=&gt;&#123;
+                    this.dataList = res.data;
+                &#125;);
+            &#125;,
+</code></pre></div>
+<p>后端</p>
+<div class="hljs code-wrapper"><pre><code>@RestController
+@RequestMapping(&quot;/books&quot;)
+public class BookController &#123;
+
+    @PostMapping
+    public String save(@RequestBody Book book)&#123;
+        System.out.println(&quot;book save ...&quot; + book);
+        return &quot;&#123;&#39;model&#39;:&#39;booksave &#39;&#125;&quot; + book;
+    &#125;
+
+    @GetMapping
+    public List&lt;Book&gt; getALL()&#123;
+        System.out.println(&quot;success&quot;);
+        Book book1 = new Book();
+        book1.setId(1);
+        book1.setName(&quot;大学&quot;);
+        book1.setType(&quot;internet&quot;);
+        book1.setDescription(&quot;lll&quot;);
+    
+        List&lt;Book&gt; list = new ArrayList&lt;Book&gt;();
+        list.add(book1);
+
+        System.out.println(&quot;book getAll ...&quot;+list);
+        return list;
+    &#125;
+&#125;
+</code></pre></div>
+<h1 id="SSM整合"><a href="#SSM整合" class="headerlink" title="SSM整合"></a>SSM整合</h1>
             </div>
             <hr>
             <div>
