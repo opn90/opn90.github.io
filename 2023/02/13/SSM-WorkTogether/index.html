@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="SSM框架 - 整合">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>SSM_WorkTogether - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SSM_WorkTogether">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-02-13 14:37" pubdate>
+        2023年2月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSM_WorkTogether</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>SSM框架 - 整合</p>
+<span id="more"></span>
+
+
+
+<h1 id="SSM整合"><a href="#SSM整合" class="headerlink" title="SSM整合"></a>SSM整合</h1><h1 id="整合配置"><a href="#整合配置" class="headerlink" title="整合配置"></a>整合配置</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=59">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=59</a></p>
+<p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><p>新建-Maven-maven-archetype-webapp</p>
+<p>添加目录-在main下-java，resources</p>
+<h3 id="导入坐标"><a href="#导入坐标" class="headerlink" title="导入坐标"></a>导入坐标</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>3个spring坐标，3个spring整合mybatis坐标，druid数据源，junit，servletweb容器，jackson</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependencies&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+  &lt;version&gt;3.5.6&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+  &lt;version&gt;1.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;version&gt;5.1.47&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+  &lt;artifactId&gt;druid&lt;/artifactId&gt;
+  &lt;version&gt;1.1.16&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;4.12&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+  &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+  &lt;version&gt;3.1.0&lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+  &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+  &lt;version&gt;2.9.0&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre></div>
+<h3 id="创建包层次结构"><a href="#创建包层次结构" class="headerlink" title="创建包层次结构"></a>创建包层次结构</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>config - 配置文件</p>
+<p>controller - 控制器</p>
+<p>dao - 数据层接口</p>
+<p>与数据库交互的代码，自动代理，无需实现类</p>
+<p>domain - 存放实体类</p>
+<p>service - 业务层接口</p>
+<p>service.impl - 业务层实现类</p>
+<p>（test - 测试）</p>
+<h3 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-5.png" srcset="/img/loading.gif" lazyload><br><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-6.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>config</li>
+</ul>
+<p>JdbcConfig</p>
+<div class="hljs code-wrapper"><pre><code>public class JdbcConfig &#123;
+    @Value(&quot;$&#123;jdbc.driver&#125;&quot;)
+    private String driver;
+    @Value(&quot;$&#123;jdbc.url&#125;&quot;)
+    private String url;
+    @Value(&quot;$&#123;jdbc.username&#125;&quot;)
+    private String username;
+    @Value(&quot;$&#123;jdbc.password&#125;&quot;)
+    private String password;
+
+    @Bean
+    public DataSource dataSource()&#123;
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setDriverClassName(driver);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    &#125;
+
+    @Bean
+    public PlatformTransactionManager transactionManager(DataSource dataSource)&#123;
+        DataSourceTransactionManager ds = new DataSourceTransactionManager();
+        ds.setDataSource(dataSource);
+        return ds;
+    &#125;
+&#125;
+</code></pre></div>
+<p>MyBatisConfig</p>
+<div class="hljs code-wrapper"><pre><code>public class MyBatisConfig &#123;
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource)&#123;
+        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        factoryBean.setTypeAliasesPackage(&quot;com.opn.domain&quot;);
+        return factoryBean;
+    &#125;
+
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer()&#123;
+        MapperScannerConfigurer msc = new MapperScannerConfigurer();
+        msc.setBasePackage(&quot;com.opn.dao&quot;);
+        return msc;
+    &#125;
+&#125;
+</code></pre></div>
+<p>ServletConfig</p>
+<div class="hljs code-wrapper"><pre><code>public class ServletConfig extends     AbstractAnnotationConfigDispatcherServletInitializer &#123;
+    protected Class&lt;?&gt;[] getRootConfigClasses() &#123;
+        return new Class[]&#123;SpringConfig.class&#125;;
+    &#125;
+
+    protected Class&lt;?&gt;[] getServletConfigClasses() &#123;
+        return new Class[]&#123;SpringMvcConfig.class&#125;;
+    &#125;
+
+    protected String[] getServletMappings() &#123;
+        return new String[]&#123;&quot;/&quot;&#125;;
+    &#125;
+&#125;
+</code></pre></div>
+<p>SpringConfig</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&#123;&quot;com.opn.service&quot;&#125;)
+@PropertySource(&quot;jdbc.properties&quot;)
+@Import(&#123;JdbcConfig.class,MyBatisConfig.class&#125;)
+public class SpringConfig &#123;
+&#125;
+</code></pre></div>
+<p>SpringMvcConfig</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&quot;com.opn.controller&quot;)
+public class SpringMvcConfig &#123;
+&#125;
+</code></pre></div>
+<p>resources - jdbc.properties</p>
+<div class="hljs code-wrapper"><pre><code>jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/...
+jdbc.username=root
+jdbc.password=...
+</code></pre></div>
+<h1 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h1><p>表 - 实体类 - dao - service - controller</p>
+<h3 id="表"><a href="#表" class="headerlink" title="表"></a>表</h3><p>forssm - tb_user</p>
+<p>username password money</p>
+<h3 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-7.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>public class User &#123;
+    private String username;
+    private String password;
+    private Integer money;
+    
+    get/set/tostring...
+
+&#125;
+</code></pre></div>
+<h3 id="dao"><a href="#dao" class="headerlink" title="dao"></a>dao</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-8.png" srcset="/img/loading.gif" lazyload></p>
+<div class="hljs code-wrapper"><pre><code>public interface UserDao &#123;
+
+    @Insert(&quot;insert into tb_user values(#&#123;username&#125;,#&#123;password&#125;,#&#123;money&#125;)&quot;)
+    public void save(User user);
+
+    @Update(&quot;update tb_user set username=#&#123;username&#125;,password=#&#123;password&#125;,money=#&#123;money&#125; where username=#&#123;username&#125;&quot;)
+    public void update(User user);
+
+    @Delete(&quot;delete from tb_user where username = #&#123;username&#125;&quot;)
+    public void delete(String username);
+
+    //表里没设id...先用username
+    @Select(&quot;select * from tb_user where username= #&#123;username&#125;&quot;)
+    public User getById(String username);
+
+    @Select(&quot;select * from tb_user&quot;)
+    public List&lt;User&gt; getAll();
+&#125;
+</code></pre></div>
+<h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-9.png" srcset="/img/loading.gif" lazyload></p>
+<p>业务层接口</p>
+<div class="hljs code-wrapper"><pre><code>public interface UserService &#123;
+
+    /* 需要添加相应的文档注释 */
+
+    public boolean save(User user);
+
+    public boolean update(User user);
+
+    public boolean delete(String username);
+
+    public User getById(String username);
+
+    public List&lt;User&gt; getAll();
+&#125;
+</code></pre></div>
+<p>业务层实现类</p>
+<div class="hljs code-wrapper"><pre><code>@Service
+public class UserServiceImpl implements UserService &#123;
+
+    @Autowired
+    private UserDao userDao;
+
+    public boolean save(User user) &#123;
+        userDao.save(user);
+        return true;
+    &#125;
+
+    public boolean update(User user) &#123;
+        userDao.update(user);
+        return true;
+    &#125;
+
+    public boolean delete(String username) &#123;
+        userDao.delete(username);
+        return true;
+    &#125;
+
+    public User getById(String username) &#123;
+        return userDao.getById(username);
+    &#125;
+
+    public List&lt;User&gt; getAll() &#123;
+        return userDao.getAll();
+    &#125;
+&#125;
+</code></pre></div>
+<h3 id="自动装配时报错，修改报错类型设置"><a href="#自动装配时报错，修改报错类型设置" class="headerlink" title="自动装配时报错，修改报错类型设置"></a>自动装配时报错，修改报错类型设置</h3><div class="hljs code-wrapper"><pre><code>@Autowired
+private UserDao userDao;    
+</code></pre></div>
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-10.png" srcset="/img/loading.gif" lazyload></p>
+<p>表现层</p>
+<div class="hljs code-wrapper"><pre><code>@RestController
+@RequestMapping(&quot;/users&quot;)
+public class UserController &#123;
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping
+    public boolean save(@RequestBody User user) &#123;
+        userService.save(user);
+        return true;
+    &#125;
+
+    @PutMapping
+    public boolean update(@RequestBody User user) &#123;
+        userService.update(user);
+        return true;
+    &#125;
+
+    @DeleteMapping(&quot;/&#123;username&#125;&quot;)
+    public boolean delete(@PathVariable String username) &#123;
+        userService.delete(username);
+        return true;
+    &#125;
+
+    @GetMapping(&quot;/&#123;username&#125;&quot;)
+    public User getById(@PathVariable String username) &#123;
+        return userService.getById(username);
+    &#125;
+
+    @GetMapping
+    public List&lt;User&gt; getAll() &#123;
+        return userService.getAll();
+    &#125;
+&#125;
+</code></pre></div>
+<h1 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/08/SSM-SpringMVC/">
+                        <span class="hidden-mobile">SSM - SpringMVC</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
