@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      22
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：几秒前
+                  本文最后更新于：15 小时前
                 
               </p>
             
@@ -249,6 +249,10 @@
 
 <h1 id="SSM整合"><a href="#SSM整合" class="headerlink" title="SSM整合"></a>SSM整合</h1><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="整合配置"><a href="#整合配置" class="headerlink" title="整合配置"></a>整合配置</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=59">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=59</a></p>
+<p>整合MyBatis</p>
+<p><a href="https://opn90.top/2023/01/27/SSM/#Spring%E6%95%B4%E5%90%88MyBatis">https://opn90.top/2023/01/27/SSM/#Spring%E6%95%B4%E5%90%88MyBatis</a></p>
+<p>整合SpringMvc</p>
+<p><a href="https://opn90.top/2023/02/08/SSM-SpringMVC/#SpringMVC%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B">https://opn90.top/2023/02/08/SSM-SpringMVC/#SpringMVC%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B</a></p>
 <h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><p>新建-Maven-maven-archetype-webapp</p>
 <p>添加目录-在main下-java，resources</p>
 <h3 id="导入坐标"><a href="#导入坐标" class="headerlink" title="导入坐标"></a>导入坐标</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-2.png" srcset="/img/loading.gif" lazyload></p>
@@ -330,7 +334,9 @@
 <ul>
 <li>config</li>
 </ul>
-<h5 id="JdbcConfig"><a href="#JdbcConfig" class="headerlink" title="JdbcConfig"></a>JdbcConfig</h5><div class="hljs code-wrapper"><pre><code>public class JdbcConfig &#123;
+<h5 id="JdbcConfig"><a href="#JdbcConfig" class="headerlink" title="JdbcConfig"></a>JdbcConfig</h5><div class="hljs code-wrapper"><pre><code>import javax.sql.DataSource;
+
+public class JdbcConfig &#123;
     @Value(&quot;$&#123;jdbc.driver&#125;&quot;)
     private String driver;
     @Value(&quot;$&#123;jdbc.url&#125;&quot;)
@@ -358,7 +364,9 @@
     &#125;
 &#125;
 </code></pre></div>
-<h5 id="MyBatisConfig"><a href="#MyBatisConfig" class="headerlink" title="MyBatisConfig"></a>MyBatisConfig</h5><div class="hljs code-wrapper"><pre><code>public class MyBatisConfig &#123;
+<h5 id="MyBatisConfig"><a href="#MyBatisConfig" class="headerlink" title="MyBatisConfig"></a>MyBatisConfig</h5><div class="hljs code-wrapper"><pre><code>import javax.sql.DataSource;    
+
+public class MyBatisConfig &#123;
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource)&#123;
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
@@ -375,7 +383,7 @@
     &#125;
 &#125;
 </code></pre></div>
-<h5 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h5><div class="hljs code-wrapper"><pre><code>public class ServletConfig extends     AbstractAnnotationConfigDispatcherServletInitializer &#123;
+<h5 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h5><div class="hljs code-wrapper"><pre><code>public class ServletConfig extends AbstractAnnotationConfigDispatcherServletInitializer &#123;
     protected Class&lt;?&gt;[] getRootConfigClasses() &#123;
         return new Class[]&#123;SpringConfig.class&#125;;
     &#125;
@@ -418,6 +426,7 @@ jdbc.password=...
     private Integer money;
     
     get/set/tostring...
+    (fn + alt + insert)
 
 &#125;
 </code></pre></div>
@@ -443,7 +452,8 @@ jdbc.password=...
 </code></pre></div>
 <h3 id="service"><a href="#service" class="headerlink" title="service"></a>service</h3><p><img src="/2023/02/13/SSM-WorkTogether/SSM-WorkTogether-9.png" srcset="/img/loading.gif" lazyload></p>
 <p>业务层接口</p>
-<div class="hljs code-wrapper"><pre><code>public interface UserService &#123;
+<div class="hljs code-wrapper"><pre><code>@Transactional
+public interface UserService &#123;
 
     /* 需要添加相应的文档注释 */
 
@@ -552,6 +562,7 @@ public class UserServiceTest &#123;
 <ul>
 <li>表现层实现类测试</li>
 </ul>
+<p>编辑配置 - 添加Tomcat本地服务器 - 部署标记工件（+ war）- 应用确定</p>
 <p>postman</p>
 <p>…</p>
 <h1 id="事务处理"><a href="#事务处理" class="headerlink" title="事务处理"></a>事务处理</h1><p>SpringConfig中添加注解</p>

@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      3.7k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      50
+      52
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 天前
+                  本文最后更新于：12 分钟前
                 
               </p>
             
@@ -974,7 +974,25 @@ public class BookController &#123;
     &#125;
 &#125;
 </code></pre></div>
-
+<h1 id="SSM整合"><a href="#SSM整合" class="headerlink" title="SSM整合"></a>SSM整合</h1><p><a href="https://opn90.top/2023/02/13/SSM-WorkTogether/">https://opn90.top/2023/02/13/SSM-WorkTogether/</a></p>
+<h3 id="表现层数据封装"><a href="#表现层数据封装" class="headerlink" title="表现层数据封装"></a>表现层数据封装</h3><p>前端接收数据格式————创建结果模型类，封装数据到data属性中</p>
+<p>前端接收数据格式————封装操作结果到code属性中</p>
+<p>前端接收数据格式————封装特殊消息到message(msg)属性中</p>
+<div class="hljs code-wrapper"><pre><code>&#123;    
+    &quot;code&quot;:200xx,
+    &quot;data&quot;:true,
+    &quot;message&quot;:&quot;数据查询失败，请重试！&quot;
+&#125;
+</code></pre></div>
+<p>设置统一数据返回结果类（前后端交互）</p>
+<div class="hljs code-wrapper"><pre><code>public class Result&#123;
+    private Object data;
+    private Integer code;
+    private String msg;
+&#125;
+</code></pre></div>
+<p>Result类中的字段并不是固定的，可以根据需要自行增减<br>提供若干个构造方法，方便操作</p>
+<h3 id="表现层与前端数据传输协议-实现"><a href="#表现层与前端数据传输协议-实现" class="headerlink" title="表现层与前端数据传输协议-实现"></a>表现层与前端数据传输协议-实现</h3>
             </div>
             <hr>
             <div>
