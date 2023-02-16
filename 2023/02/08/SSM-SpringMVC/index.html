@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      4.6k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      66
+      67
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 分钟前
+                  本文最后更新于：23 分钟前
                 
               </p>
             
@@ -1206,7 +1206,23 @@ public class ProjectExceptionAdvice &#123;
 <ul>
 <li>返回的是Result的数据</li>
 </ul>
-<h1 id="SSM整合-前后台通信"><a href="#SSM整合-前后台通信" class="headerlink" title="SSM整合 - 前后台通信"></a>SSM整合 - 前后台通信</h1><h3 id="前后台协议联调"><a href="#前后台协议联调" class="headerlink" title="前后台协议联调"></a>前后台协议联调</h3>
+<h1 id="SSM整合-前后台通信"><a href="#SSM整合-前后台通信" class="headerlink" title="SSM整合 - 前后台通信"></a>SSM整合 - 前后台通信</h1><h3 id="前后台协议联调"><a href="#前后台协议联调" class="headerlink" title="前后台协议联调"></a>前后台协议联调</h3><h3 id="静态资源放行"><a href="#静态资源放行" class="headerlink" title="静态资源放行"></a>静态资源放行</h3><p>com.opn.config.SpringMvcSupport</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+public class SpringMvcSupport extends WebMvcConfigurationSupport &#123;
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) &#123;
+        registry.addResourceHandler(&quot;/pages/**&quot;).addResourceLocations(&quot;/pages/&quot;);
+        registry.addResourceHandler(&quot;/css/**&quot;).addResourceLocations(&quot;/css/&quot;);
+        registry.addResourceHandler(&quot;/js/**&quot;).addResourceLocations(&quot;/js/&quot;);
+        registry.addResourceHandler(&quot;/plugins/**&quot;).addResourceLocations(&quot;/plugins/&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>在SpringMvcConfig中添加路径</p>
+<h3 id="前端界面修改"><a href="#前端界面修改" class="headerlink" title="前端界面修改"></a>前端界面修改</h3><p>仿写…看不懂</p>
+<p>前后端数据绑定，界面数据绑定，界面操作<br>…</p>
+<p>参考代码，进行修改</p>
+
             </div>
             <hr>
             <div>
