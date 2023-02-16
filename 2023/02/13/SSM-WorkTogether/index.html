@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.6k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26
+      29
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：7 分钟前
+                  本文最后更新于：31 分钟前
                 
               </p>
             
@@ -383,7 +383,7 @@ public class MyBatisConfig &#123;
     &#125;
 &#125;
 </code></pre></div>
-<h5 id="ServletConfig"><a href="#ServletConfig" class="headerlink" title="ServletConfig"></a>ServletConfig</h5><div class="hljs code-wrapper"><pre><code>public class ServletConfig extends AbstractAnnotationConfigDispatcherServletInitializer &#123;
+<h5 id="ServletConfig-ServletContainersInitConfig"><a href="#ServletConfig-ServletContainersInitConfig" class="headerlink" title="ServletConfig/ServletContainersInitConfig"></a>ServletConfig/ServletContainersInitConfig</h5><div class="hljs code-wrapper"><pre><code>public class ServletConfig extends AbstractAnnotationConfigDispatcherServletInitializer &#123;
     protected Class&lt;?&gt;[] getRootConfigClasses() &#123;
         return new Class[]&#123;SpringConfig.class&#125;;
     &#125;
@@ -394,6 +394,13 @@ public class MyBatisConfig &#123;
 
     protected String[] getServletMappings() &#123;
         return new String[]&#123;&quot;/&quot;&#125;;
+    &#125;
+
+    //乱码处理
+    protected Filter[] getServletFilters() &#123;
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding(&quot;UTF-8&quot;);
+        return new Filter[]&#123;filter&#125;;
     &#125;
 &#125;
 </code></pre></div>
@@ -597,7 +604,38 @@ public class SpringMvcSupport extends WebMvcConfigurationSupport &#123;
 <p>在SpringMvcConfig中添加路径</p>
 <div class="hljs code-wrapper"><pre><code>@ComponentScan(&#123;&quot;com.opn.controller&quot;,&quot;com.opn.config&quot;&#125;)
 </code></pre></div>
-<h1 id="前后端数据交互"><a href="#前后端数据交互" class="headerlink" title="前后端数据交互"></a>前后端数据交互</h1><p><a href="https://opn90.top/2023/02/08/SSM-SpringMVC/#SSM%E6%95%B4%E5%90%88-%E5%89%8D%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92">https://opn90.top/2023/02/08/SSM-SpringMVC/#SSM%E6%95%B4%E5%90%88-%E5%89%8D%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92</a></p>
+<h1 id="前后端数据交互"><a href="#前后端数据交互" class="headerlink" title="前后端数据交互"></a>前后端数据交互</h1><p>Result类，Code类，静态资源访问类</p>
+<p>静态界面</p>
+<p><a href="https://opn90.top/2023/02/08/SSM-SpringMVC/#SSM%E6%95%B4%E5%90%88-%E5%89%8D%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92">https://opn90.top/2023/02/08/SSM-SpringMVC/#SSM%E6%95%B4%E5%90%88-%E5%89%8D%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92</a></p>
+<h1 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h1><p>com.opn.interceptor</p>
+<p>ProjectInterceptor配置类</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+public class ProjectInterceptor implements HandlerInterceptor &#123;
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
+        System.out.println(&quot;preHandle&quot;);
+        return true;
+    &#125;
+
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception &#123;
+        System.out.println(&quot;postHandle&quot;);
+    &#125;
+
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
+        System.out.println(&quot;afterCompletion&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>com.opn.config</p>
+<p>SpringMvcSupport/就是静态资源访问通过的类 中添加 addInterceptors 方法</p>
+<p>配置具体的拦截路径</p>
+<div class="hljs code-wrapper"><pre><code>@Autowired
+private ProjectInterceptor projectInterceptor;
+
+@Override
+protected void addInterceptors(InterceptorRegistry registry) &#123;
+    registry.addInterceptor(projectInterceptor).addPathPatterns(&quot;/users&quot;);
+&#125;
+</code></pre></div>
 
             </div>
             <hr>

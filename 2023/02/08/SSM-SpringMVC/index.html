@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.6k 字
+      5.1k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      67
+      75
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：23 分钟前
+                  本文最后更新于：3 分钟前
                 
               </p>
             
@@ -1219,10 +1219,91 @@ public class SpringMvcSupport extends WebMvcConfigurationSupport &#123;
 &#125;
 </code></pre></div>
 <p>在SpringMvcConfig中添加路径</p>
-<h3 id="前端界面修改"><a href="#前端界面修改" class="headerlink" title="前端界面修改"></a>前端界面修改</h3><p>仿写…看不懂</p>
+<h3 id="前端界面功能"><a href="#前端界面功能" class="headerlink" title="前端界面功能"></a>前端界面功能</h3><p>仿写…看不懂</p>
 <p>前后端数据绑定，界面数据绑定，界面操作<br>…</p>
 <p>参考代码，进行修改</p>
+<h3 id="前端界面-添加、添加状态、修改、删除功能实现"><a href="#前端界面-添加、添加状态、修改、删除功能实现" class="headerlink" title="前端界面 - 添加、添加状态、修改、删除功能实现"></a>前端界面 - 添加、添加状态、修改、删除功能实现</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=67">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=67</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=68">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=68</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=69">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=69</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=70">https://www.bilibili.com/video/BV1Fi4y1S7ix/?p=70</a></p>
+<h1 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h1><p>拦截器(Interceptor)</p>
+<p>是一种动态拦截方法调用的机制，在springMC中动态拦截控制器方法的执行</p>
+<p>作用<br>在指定的方法调用前后执行预先设定的代码<br>阻止原始方法的执行</p>
+<h3 id="拦截器-过滤器区别"><a href="#拦截器-过滤器区别" class="headerlink" title="拦截器/过滤器区别"></a>拦截器/过滤器区别</h3><p>归属不同:Filter属于Servlet技术，Interceptor属于SpringMVC技术</p>
+<p>拦截内容不同:Filter对所有访问进行增强，Interceptor仅针对springMVc的访问进行增强</p>
+<h3 id="SpringMvc的访问范围"><a href="#SpringMvc的访问范围" class="headerlink" title="SpringMvc的访问范围"></a>SpringMvc的访问范围</h3><p>config.ServletConfig</p>
+<p>在此处进行设置</p>
+<div class="hljs code-wrapper"><pre><code>protected String[] getServletMappings() &#123;
+    return new String[]&#123;&quot;/&quot;&#125;;
+&#125;
+</code></pre></div>
+<h3 id="拦截器入门案例"><a href="#拦截器入门案例" class="headerlink" title="拦截器入门案例"></a>拦截器入门案例</h3><p>com.opn.interceptor</p>
+<p>ProjectInterceptor配置类</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+public class ProjectInterceptor implements HandlerInterceptor &#123;
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;
+        System.out.println(&quot;preHandle&quot;);
+        return true;
+    &#125;
 
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception &#123;
+        System.out.println(&quot;postHandle&quot;);
+    &#125;
+
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception &#123;
+        System.out.println(&quot;afterCompletion&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<p>配置类</p>
+<p>com.opn.config</p>
+<p>SpringMvcSupport/就是静态资源访问通过的类 中添加 addInterceptors 方法</p>
+<p>配置具体的拦截路径</p>
+<div class="hljs code-wrapper"><pre><code>@Autowired
+private ProjectInterceptor projectInterceptor;
+
+@Override
+protected void addInterceptors(InterceptorRegistry registry) &#123;
+    registry.addInterceptor(projectInterceptor).addPathPatterns(&quot;/users&quot;);
+&#125;
+</code></pre></div>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-36.png" srcset="/img/loading.gif" lazyload></p>
+<p>拦截前</p>
+<p>拦截后</p>
+<p>在post后的操作</p>
+<p>preHandle，true/false终止原始条件</p>
+<hr>
+<h3 id="拦截器简化开发"><a href="#拦截器简化开发" class="headerlink" title="拦截器简化开发"></a>拦截器简化开发</h3><p>使用标准接口webMvcConfigurer简化开发—侵入性较强</p>
+<p>com.opn.config</p>
+<p>SpringMvcConfig</p>
+<div class="hljs code-wrapper"><pre><code>@Configuration
+@ComponentScan(&#123;&quot;com.opn.controller&quot;,&quot;com.opn.config&quot;,&quot;com.opn.interceptor&quot;&#125;)
+@EnableWebMvc
+public class SpringMvcConfig implements WebMvcConfigurer &#123;
+    @Autowired
+    private ProjectInterceptor projectInterceptor;
+    
+    public void addInterceptors(InterceptorRegistry registry) &#123;
+        registry.addInterceptor(projectInterceptor).addPathPatterns(&quot;/users&quot;);
+    &#125;
+&#125;
+</code></pre></div>
+<h3 id="拦截器执行流程"><a href="#拦截器执行流程" class="headerlink" title="拦截器执行流程"></a>拦截器执行流程</h3><p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-37.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="拦截器参数"><a href="#拦截器参数" class="headerlink" title="拦截器参数"></a>拦截器参数</h3><p>前置处理</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-38.png" srcset="/img/loading.gif" lazyload></p>
+<p>后置处理</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-39.png" srcset="/img/loading.gif" lazyload></p>
+<p>完成后处理</p>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-40.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="拦截器链配置"><a href="#拦截器链配置" class="headerlink" title="拦截器链配置"></a>拦截器链配置</h3><p>当配置多个拦截器时，形成拦截器链</p>
+<p>执行顺序</p>
+<p>拦截器链的运行顺序参照拦截器添加顺序为准</p>
+<p>false</p>
+<p>当拦截器中出现对原始处理器的拦截，后面的拦截器均终止运行</p>
+<p>当拦截器运行中断，仅运行配置在前面的拦截器的aftercompletion操作</p>
+<hr>
+<p><img src="/2023/02/08/SSM-SpringMVC/ssm-mvc-41.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1>
             </div>
             <hr>
             <div>
