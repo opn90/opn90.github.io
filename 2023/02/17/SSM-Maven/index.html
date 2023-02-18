@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="SSM框架 - Maven">
+  <meta name="author" content="OPN">
+  <meta name="keywords" content="">
+  
+  <title>SSM-Maven - OPN&#39;S BLOG</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"opn90.top","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong> OPN'S BLOG </strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="SSM-Maven">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-02-17 09:27" pubdate>
+        2023年2月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSM-Maven</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：5 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>SSM框架 - Maven</p>
+<span id="more"></span>
+
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h1 id="分模块开发与设计"><a href="#分模块开发与设计" class="headerlink" title="分模块开发与设计"></a>分模块开发与设计</h1><h3 id="分模块开发意义"><a href="#分模块开发意义" class="headerlink" title="分模块开发意义"></a>分模块开发意义</h3><p>将原始模块按照功能拆分成若干个子模块，方便模块间的相互调用，接口共享</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="分模块开发设计案例"><a href="#分模块开发设计案例" class="headerlink" title="分模块开发设计案例"></a>分模块开发设计案例</h3><p>创建全新的模块</p>
+<p>next</p>
+<p>父项:None，修改模块路径，至项目模块外</p>
+<p>完成</p>
+<p>完善目录结构</p>
+<p>完成工具/模块类</p>
+<p>在项目模块pom添加工具类pom配置</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p>重新加载项目Maven</p>
+<p>（查看缺失补充import）</p>
+<ul>
+<li>处理Maven报错</li>
+</ul>
+<p>报错信息</p>
+<div class="hljs code-wrapper"><pre><code>Failed to execute goal on project ssm_worktogether_demo: 
+Could not resolve dependencies for project org.example:ssm_worktogether_demo:war:1.0-SNAPSHOT: 
+Could not find artifact org.example:maven_pojo:jar:1.0-SNAPSHOT -&gt; [Help 1]
+</code></pre></div>
+<p>查看Maven本地仓</p>
+<p>${UserName}/.m2/repository</p>
+<p>工具类Maven - install 安装到本地仓库</p>
+<p>项目 - compile - BuildSuccess</p>
+<h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><p>依赖具有传递性</p>
+<p>直接依赖:在当前项目中通过依赖配置建立的依赖关系</p>
+<p>间接依赖:被资源的资源如果依赖其他资源，当前项目间接依赖其他资源</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-5.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="依赖冲突"><a href="#依赖冲突" class="headerlink" title="依赖冲突"></a>依赖冲突</h3><p>版本不同</p>
+<p>同一个坐标写了多次，最后配置的版本生效</p>
+<ul>
+<li><p>路径优先:当依赖中出现相同的资源时，层级越深，优先级越低，层级越浅，优先级越高</p>
+</li>
+<li><p>声明优先:当资源在相同层级被依赖时，配置顺序靠前的覆盖配置顺序靠后的</p>
+</li>
+<li><p>特殊优先:当同级配置了相同资源的不同版本，后配置的覆盖先配置的</p>
+</li>
+</ul>
+<p>Maven - Dependencies - 查看依赖</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>Maven - Show Dependcies - 查看依赖结构</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-3.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="可选依赖"><a href="#可选依赖" class="headerlink" title="可选依赖"></a>可选依赖</h3><p>可选依赖指对外隐藏当前所依赖的资源–不透明</p>
+<hr>
+<p>隐藏当前工程所依赖的资源，隐藏后对用资源不具有依赖传递性</p>
+<p>隐藏自己的依赖</p>
+<p>引用当前模块后，不会出现此依赖</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.example&lt;/groupId&gt;
+  &lt;artifactId&gt;maven_pojo&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<h3 id="排除依赖"><a href="#排除依赖" class="headerlink" title="排除依赖"></a>排除依赖</h3><p>排除依赖指主动断开依赖的资源，被排除的资源无需指定版本–不需要</p>
+<hr>
+<p>当前引用坐标中，将部分依赖排除</p>
+<p>排除依赖是隐藏当前资源对应的依赖关系</p>
+<p>引用第三方模块，无法对其pom进行修改</p>
+<p>使用排除依赖，在自己项目pom中，对其依赖进行隐藏，避免依赖冲突产生的影响</p>
+<div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.example&lt;/groupId&gt;
+  &lt;artifactId&gt;maven_pojo&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;exclusions&gt;
+    &lt;groupId&gt;log4j&lt;/groupId&gt;
+    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+  &lt;/exclusions&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>聚合:</p>
+<p>将多个模块组织成一个整体，同时进行项目构建的过程称为聚合</p>
+<p>聚合工程:</p>
+<p>通常是一个不具有业务功能的“空”工程（有且仅有一个pom文件)</p>
+<p>作用:</p>
+<p>使用聚合工程可以将多个工程编组，通过对聚合工程进行构建，实现对所包含的模块进行同步构建</p>
+<p>当工程中某个模块发生更新〈变更)时，必须保障工程中与已更新模块关联的模块同步更新，此时可以使用聚合工程来解决批量模块同步构建的问题</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-6.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="创建步骤"><a href="#创建步骤" class="headerlink" title="创建步骤"></a>创建步骤</h5><p>创建新模块</p>
+<p>改变打包方式</p>
+<div class="hljs code-wrapper"><pre><code>&lt;packaing&gt;pom&lt;/packaing&gt;
+</code></pre></div>
+<p>设置当前聚合工程所包含的子模块名称</p>
+<div class="hljs code-wrapper"><pre><code>&lt;modules&gt;
+    &lt;module&gt;../maven_demo2&lt;/module&gt;
+    &lt;module&gt;../maven_demo3&lt;/module&gt;
+    &lt;module&gt;../maven_demo4&lt;/module&gt;
+&lt;modules&gt;
+</code></pre></div>
+<p>不存在先后关系，总是先创建没有依赖的模块</p>
+<p>聚合工程中所包含的模块在进行构建时会根据模块间的依赖关系设置构建顺序，与聚合工程中模块的配置书写位置无关</p>
+<p>参与聚合的工程无法向上感知是否参与聚合，只能向下配置哪些模块参与本工程的聚合</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承:</p>
+<p>继承描述的是两个工程间的关系，与java中的继承相似，子工程可以继承父工程中的配置信息，常见于依赖关系的继承</p>
+<p>作用:<br>简化配置<br>减少版本冲突  </p>
+<div class="hljs code-wrapper"><pre><code>配置当前工程继承自parent工程
+
+&lt;parent&gt;
+  &lt;groupId&gt;org.example&lt;/groupId&gt;
+  &lt;artifactId&gt;maven_parent&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;relativePath&gt;../maven_parent/pom.xml&lt;/relativePath&gt;
+&lt;/parent&gt;
+
+将子工程的共有依赖复制到父工程
+
+保留子工程独用依赖
+
+修改父工程的依赖版本配置，子工程全部修改
+
+定义依赖管理
+
+(不是直接发给每个子工程同步使用，需要子工程pom声明)
+
+&lt;dependencyManagement&gt;    
+    &lt;dependency&gt;
+          &lt;groupId&gt;junit&lt;/groupId&gt;
+          &lt;artifactId&gt;junit&lt;/artifactId&gt;
+          &lt;version&gt;4.12&lt;/version&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencyManagement&gt;
+
+子工程pom声明
+
+（不能添加version，版本使用父工程所声明的版本）
+
+&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p>流程分析</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-7.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/02/17/SSM-Maven/maven-8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/02/17/SSM-Maven/maven-9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/02/17/SSM-Maven/maven-10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/02/17/SSM-Maven/maven-11.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="聚合与继承的区别"><a href="#聚合与继承的区别" class="headerlink" title="聚合与继承的区别"></a>聚合与继承的区别</h3><p><img src="/2023/02/17/SSM-Maven/maven-12.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>修改版本，手动修改，漏改</p>
+<p>设置属性，修改属性，统一修改</p>
+<div class="hljs code-wrapper"><pre><code>定义属性
+
+&lt;properties&gt;
+    &lt;spring_version&gt;5.2.10.RELEASE&lt;/spring_version&gt;
+  &lt;/properties&gt;
+
+使用属性
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+  &lt;version&gt;$&#123;spring_version&#125;&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<h3 id="配置文件加载属性"><a href="#配置文件加载属性" class="headerlink" title="配置文件加载属性"></a>配置文件加载属性</h3><p>pom.xml</p>
+<div class="hljs code-wrapper"><pre><code>&lt;properties&gt;
+    &lt;jdbc.username&gt;root&lt;/jdbc.username&gt;
+  &lt;/properties&gt;
+</code></pre></div>
+<p>jdbc.properties</p>
+<div class="hljs code-wrapper"><pre><code>jdbc.username=$&#123;jdbc.username&#125;
+</code></pre></div>
+<p>pom.xml</p>
+<p>配置关联/开启资源文件目录加载属性的过滤器</p>
+<div class="hljs code-wrapper"><pre><code>&lt;build&gt;
+    &lt;resources&gt;
+          &lt;resource&gt;
+            &lt;directory&gt;$&#123;project.basedir&#125;/src/main/resources&lt;/directory&gt;
+            &lt;filtering&gt;true&lt;/filtering&gt;
+          &lt;/resource&gt;
+    &lt;/resources&gt;
+  &lt;/build&gt;
+</code></pre></div>
+<p>war打包需要web.xml文件 – 直接在WEB-INF中创建空的web.xml</p>
+<h3 id="其他属性"><a href="#其他属性" class="headerlink" title="其他属性"></a>其他属性</h3><p><img src="/2023/02/17/SSM-Maven/maven-13.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h3><p><img src="/2023/02/17/SSM-Maven/maven-14.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="多环境配置与应用"><a href="#多环境配置与应用" class="headerlink" title="多环境配置与应用"></a>多环境配置与应用</h3><p>maven提供配置多种环境的设定，帮助开发者使用过程中快速切换环境</p>
+<p>多环境开发</p>
+<p>分组，起名</p>
+<p><img src="/2023/02/17/SSM-Maven/maven-15.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2023/02/17/SSM-Maven/maven-16.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="跳过测试"><a href="#跳过测试" class="headerlink" title="跳过测试"></a>跳过测试</h3><p><img src="/2023/02/17/SSM-Maven/maven-17.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>闪电符号</li>
+</ul>
+<ul>
+<li>命令</li>
+<li><img src="/2023/02/17/SSM-Maven/maven-18.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<ul>
+<li>细粒度控制</li>
+</ul>
+<p><img src="/2023/02/17/SSM-Maven/maven-19.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="私服"><a href="#私服" class="headerlink" title="私服"></a>私服</h3><h5 id="简介与安装"><a href="#简介与安装" class="headerlink" title="简介与安装"></a>简介与安装</h5><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=86">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=86</a></p>
+<h5 id="私服仓库分类"><a href="#私服仓库分类" class="headerlink" title="私服仓库分类"></a>私服仓库分类</h5><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=87">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=87</a></p>
+<h5 id="本地仓库访问私服配置"><a href="#本地仓库访问私服配置" class="headerlink" title="本地仓库访问私服配置"></a>本地仓库访问私服配置</h5><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=88">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=88</a></p>
+<h5 id="私服资源上传与下载"><a href="#私服资源上传与下载" class="headerlink" title="私服资源上传与下载"></a>私服资源上传与下载</h5><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fi4y1S7ix?p=89">https://www.bilibili.com/video/BV1Fi4y1S7ix?p=89</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/13/SSM-WorkTogether/">
+                        <span class="hidden-mobile">SSM - 整合</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">苏ICP备2021015436号-1</a>
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
