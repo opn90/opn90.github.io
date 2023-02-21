@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>SpringBoot2</title>
+    <link href="/2023/02/21/SpringBoot2/"/>
+    <url>/2023/02/21/SpringBoot2/</url>
+    
+    <content type="html"><![CDATA[<p>SpringBoot2</p><span id="more"></span><h1 id="实体类快速开发-lombok"><a href="#实体类快速开发-lombok" class="headerlink" title="实体类快速开发(lombok)"></a>实体类快速开发(lombok)</h1><p>Lombok，一个ava类库，提供了一组注解，简化PO30实体类开发</p><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><div class="hljs code-wrapper"><pre><code>&lt;dependency&gt;    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;    &lt;artifactId&gt;lombok&lt;/artifactId&gt;&lt;/dependency&gt;</code></pre></div><p>lombok版本由SpringBoot提供，无需指定版本</p><h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><p>@Data</p><p>大多数方法</p><p>@Getter<br>@Setter</p><p>get/set</p><p>@NoArgsConstructor</p><p>无参构造</p><p>@AllArgsConstructor</p><p>全参构造</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringBoot</title>
     <link href="/2023/02/18/SpringBoot/"/>
     <url>/2023/02/18/SpringBoot/</url>
