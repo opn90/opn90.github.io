@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.7k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29
+      30
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：5 天前
+                  本文最后更新于：10 天前
                 
               </p>
             
@@ -582,6 +582,17 @@
 &lt;/script&gt;
 
 &lt;/html&gt;
+</code></pre></div>
+<h1 id="Project-Analyse"><a href="#Project-Analyse" class="headerlink" title="Project-Analyse"></a>Project-Analyse</h1><h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><h3 id="InterceptorConfig"><a href="#InterceptorConfig" class="headerlink" title="InterceptorConfig"></a>InterceptorConfig</h3><div class="hljs code-wrapper"><pre><code>@Configuration
+public class InterceptorConfig implements WebMvcConfigurer &#123;
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) &#123;
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns(&quot;/**&quot;)
+                .excludePathPatterns(&quot;/page/login.html&quot;, &quot;/page/registration.html&quot;)
+                .excludePathPatterns(&quot;/css/**&quot;,&quot;/api/**&quot;,&quot;/images/**&quot;,&quot;/js/**&quot;,&quot;/lib/**&quot;)
+                .excludePathPatterns(&quot;/login&quot;, &quot;/registration&quot;);
+    &#125;
+&#125;
 </code></pre></div>
 
             </div>

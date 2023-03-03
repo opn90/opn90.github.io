@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      5.1k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      64
+      75
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 个月前
+                  本文最后更新于：7 天前
                 
               </p>
             
@@ -874,6 +874,108 @@ function startDH()&#123;
             &#125;)
         &#125;)
     &#125;
+</code></pre></div>
+<h3 id="模拟轨迹-官方"><a href="#模拟轨迹-官方" class="headerlink" title="模拟轨迹/官方"></a>模拟轨迹/官方</h3><div class="hljs code-wrapper"><pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, width=device-width&quot;&gt;
+    &lt;title&gt;轨迹回放&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css&quot;/&gt;
+    &lt;style&gt;
+        html, body, #container &#123;
+            height: 100%;
+            width: 100%;
+        &#125;
+
+        .input-card .btn&#123;
+            margin-right: 1.2rem;
+            width: 9rem;
+        &#125;
+
+        .input-card .btn:last-child&#123;
+            margin-right: 0;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;input-card&quot;&gt;
+    &lt;h4&gt;轨迹回放控制&lt;/h4&gt;
+    &lt;div class=&quot;input-item&quot;&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;开始动画&quot; id=&quot;start&quot; onclick=&quot;startAnimation()&quot;/&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;暂停动画&quot; id=&quot;pause&quot; onclick=&quot;pauseAnimation()&quot;/&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;input-item&quot;&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;继续动画&quot; id=&quot;resume&quot; onclick=&quot;resumeAnimation()&quot;/&gt;
+        &lt;input type=&quot;button&quot; class=&quot;btn&quot; value=&quot;停止动画&quot; id=&quot;stop&quot; onclick=&quot;stopAnimation()&quot;/&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var marker, lineArr = [[116.478935,39.997761],[116.478939,39.997825],[116.478912,39.998549],[116.478912,39.998549],[116.478998,39.998555],[116.478998,39.998555],[116.479282,39.99856],[116.479658,39.998528],[116.480151,39.998453],[116.480784,39.998302],[116.480784,39.998302],[116.481149,39.998184],[116.481573,39.997997],[116.481863,39.997846],[116.482072,39.997718],[116.482362,39.997718],[116.483633,39.998935],[116.48367,39.998968],[116.484648,39.999861]];
+
+    var map = new AMap.Map(&quot;container&quot;, &#123;
+        resizeEnable: true,
+        center: [116.397428, 39.90923],
+        zoom: 17
+    &#125;);
+
+    marker = new AMap.Marker(&#123;
+        map: map,
+        position: [116.478935,39.997761],
+        icon: &quot;https://webapi.amap.com/images/car.png&quot;,
+        offset: new AMap.Pixel(-26, -13),
+        autoRotation: true,
+        angle:-90,
+    &#125;);
+
+    // 绘制轨迹
+    var polyline = new AMap.Polyline(&#123;
+        map: map,
+        path: lineArr,
+        showDir:true,
+        strokeColor: &quot;#28F&quot;,  //线颜色
+        // strokeOpacity: 1,     //线透明度
+        strokeWeight: 6,      //线宽
+        // strokeStyle: &quot;solid&quot;  //线样式
+    &#125;);
+
+    var passedPolyline = new AMap.Polyline(&#123;
+        map: map,
+        // path: lineArr,
+        strokeColor: &quot;#AF5&quot;,  //线颜色
+        // strokeOpacity: 1,     //线透明度
+        strokeWeight: 6,      //线宽
+        // strokeStyle: &quot;solid&quot;  //线样式
+    &#125;);
+
+
+    marker.on(&#39;moving&#39;, function (e) &#123;
+        passedPolyline.setPath(e.passedPath);
+    &#125;);
+
+    map.setFitView();
+
+    function startAnimation () &#123;
+        marker.moveAlong(lineArr, 200);
+    &#125;
+
+    function pauseAnimation () &#123;
+        marker.pauseMove();
+    &#125;    
+
+    function resumeAnimation () &#123;
+        marker.resumeMove();
+    &#125;
+
+    function stopAnimation () &#123;
+        marker.stopMove();
+    &#125;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre></div>
 
             </div>
