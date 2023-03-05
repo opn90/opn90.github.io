@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Gantt</title>
+    <link href="/2023/03/03/Gantt/"/>
+    <url>/2023/03/03/Gantt/</url>
+    
+    <content type="html"><![CDATA[<p>About DHX Gantt </p><span id="more"></span><h1 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h1><p><a href="https://dhtmlx.com/">https://dhtmlx.com/</a></p><h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h3 id="必要属性"><a href="#必要属性" class="headerlink" title="必要属性"></a>必要属性</h3><p>| 属性名   | 数据类型  | 功能 |<br>|  —-  | —-  |<br>| ID   | String/number  | 任务ID |<br>| start_date  | Date | 计划开始任务的时间 |<br>| end_date  | Date | 计划完成任务的时间 |<br>| duration | number | 任务持续时间 |</p><h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p><img src="/2023/03/03/Gantt/gantt-1.png"></p><p>常用属性</p><p>| 属性名   | 数据类型  | 功能 |<br>|  —-  | —-  |<br>| text   | string/number/array  | 任务名称 |<br>| progress  | number | 任务进度（0-1） |<br>| end_date  | Date | 计划完成任务的时间 |<br>| duration | number | 任务持续时间 |<br>| parent | number/string | 父任务ID,不存在就不会在图中呈现该任务|<br>| open | boolean | 指定任务分支是否将首先打开（以显示子任务）|</p><h3 id="Readonly"><a href="#Readonly" class="headerlink" title="Readonly"></a>Readonly</h3><div class="hljs code-wrapper"><pre><code>gantt.config.readonly = true;</code></pre></div><h3 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h3><p>前端html</p><div class="hljs code-wrapper"><pre><code>&lt;button onclick=&quot;ganttinit();&quot;&gt;布置计划内容&lt;/button&gt;&lt;button onclick=&quot;ganttstart();&quot;&gt;开始任务&lt;/button&gt;&lt;script&gt;gantt.config.date_format = &quot;%Y/%m/%d %H:%i:%s&quot;;gantt.init(&quot;gantt_here&quot;);gantt.config.readonly = true;function ganttinit()&#123;    gantt.parse(getGantt());&#125;function ganttstart() &#123;    setInterval(() =&gt; &#123;        gantt.parse(getGantt());    &#125;, 1000);&#125;&lt;/script&gt;</code></pre></div><p>后端</p><div class="hljs code-wrapper"><pre><code>var GanttList = [];class Gantt &#123;    constructor(id, start_date, end_date, text, progress, parent, open) &#123;        this.id = id;        this.start_date = start_date;        this.end_date = end_date;        this.text = text;        this.progress = progress;        this.parent = parent;        this.open = open;    &#125;&#125;//父项目let gtemp = new Gantt(9999,new Date(PlanStartTime).toLocaleString(),new Date(PlanEndTime).toLocaleString(),Red_result[&#39;operationalPlanName&#39;],0,0,true);    GanttList.push(gtemp);//更新进度function GetProgress()&#123;    for(let gantt of GanttList)&#123;        for(let marker of RedMarkerList)&#123;            if(marker.getExtData().taskid === gantt.id &amp;&amp; gantt.id != 9999)&#123;                //计算当前距离目的地/总距离                let nowdis = AMap.GeometryUtil.distance(marker.getPosition(), marker.getExtData().end)*60*60;                let progress = NumFilter((marker.getExtData().dis-nowdis)/marker.getExtData().dis);                gantt.progress = progress;            &#125;        &#125;    &#125;    return GanttList;&#125;//添加子项目let gtemp = new Gantt(item.assignmentNumber,item.assignmentStartTime,item.assignmentEndTime,item.assignmentName,0,9999,true);    GanttList.push(gtemp);//返回gantt json数据function getGantt()&#123;    var GanttData = &#123;        data: GanttList,        links: [        ]&#125;    return GanttData;&#125;</code></pre></div>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringBoot+Layui</title>
     <link href="/2023/02/22/SpringBoot-Layui/"/>
     <url>/2023/02/22/SpringBoot-Layui/</url>
