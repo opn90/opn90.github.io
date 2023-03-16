@@ -17,32 +17,6 @@
   
   
   <entry>
-    <title>SpringBoot+Layui</title>
-    <link href="/2023/02/22/SpringBoot-Layui/"/>
-    <url>/2023/02/22/SpringBoot-Layui/</url>
-    
-    <content type="html"><![CDATA[<p>SpringBoot+Layui创建项目</p><span id="more"></span><h1 id="Layui"><a href="#Layui" class="headerlink" title="Layui"></a>Layui</h1><p><a href="http://layuimini.99php.cn/">http://layuimini.99php.cn/</a></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Project Analyse</title>
-    <link href="/2023/02/22/Project-Analyse/"/>
-    <url>/2023/02/22/Project-Analyse/</url>
-    
-    <content type="html"><![CDATA[<p>学习一下springboot项目系统构建</p><span id="more"></span><p>建议同CodeData，同步食用</p><h1 id="系统构建"><a href="#系统构建" class="headerlink" title="系统构建"></a>系统构建</h1><p><img src="/2023/02/22/Project-Analyse/project-2.png"></p><h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><h3 id="InterceptorConfig"><a href="#InterceptorConfig" class="headerlink" title="InterceptorConfig"></a>InterceptorConfig</h3><p><img src="/2023/02/22/Project-Analyse/project-3.png"></p><div class="hljs code-wrapper"><pre><code>registry.addInterceptor()方法添加了一个名为LoginInterceptor的自定义拦截器将其应用于所有的请求路径上（即 /**）使用excludePathPatterns()方法指定一些不需要拦截的路径，包括/page/login.html、/page/registration.html、/css/**、/api/**、/images/**、/js/**、/lib/**、/login 和 /registration，这些路径可以被直接访问而不需要进行身份验证这个拦截器的作用是对需要身份验证的请求进行拦截，判断用户是否已经登录，如果未登录则跳转到登录页面。因此，这个拦截器的作用是提供身份验证和会话管理的功能，保护应用程序的安全</code></pre></div><h2 id="entity"><a href="#entity" class="headerlink" title="entity"></a>entity</h2><h3 id="init-HomeInfo"><a href="#init-HomeInfo" class="headerlink" title="init.HomeInfo"></a>init.HomeInfo</h3><p><img src="/2023/02/22/Project-Analyse/project-4.png"></p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>SpringBoot2</title>
     <link href="/2023/02/21/SpringBoot2/"/>
     <url>/2023/02/21/SpringBoot2/</url>
@@ -609,6 +583,19 @@
       <tag>web ctfshow</tag>
       
     </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>operating</title>
+    <link href="/1023/03/16/operating/"/>
+    <url>/1023/03/16/operating/</url>
+    
+    <content type="html"><![CDATA[<h1 id="运维简学"><a href="#运维简学" class="headerlink" title="运维简学"></a>运维简学</h1><h1 id="运维职业规划"><a href="#运维职业规划" class="headerlink" title="运维职业规划"></a>运维职业规划</h1><p><img src="/1023/03/16/operating/operating-2.png"></p><p><img src="/1023/03/16/operating/operating-3.png"></p><h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><p>公有云 </p><p>私有云</p><p>混合云</p><h3 id="公有云"><a href="#公有云" class="headerlink" title="公有云"></a>公有云</h3><p>公有云是作为第三方云厂商所拥有和运营的，他们通过Internet提供计算资源，在公有云中，所有的硬件、软件和其他一些基础性的结构均由云提供商拥有和运营</p><h3 id="私有云"><a href="#私有云" class="headerlink" title="私有云"></a>私有云</h3><p>私有云一般都是企业或者组织来使用的，可以位于企业数据中心之上，在私有云中，有专门的网络维护功能和基础结构</p><h3 id="混合云"><a href="#混合云" class="headerlink" title="混合云"></a>混合云</h3><p>顾名思义，即同时使用公有云和私有云<br>从而允许公司将敏感数据保留私有云中（安全性)，同时使用公有云来运行应用程序（低成本)  </p><h1 id="云计算的服务模式"><a href="#云计算的服务模式" class="headerlink" title="云计算的服务模式"></a>云计算的服务模式</h1><p>IaaS 基础设施即服务</p><p>PaaS 平台即服务</p><p>SaaS 软件即服务</p><h3 id="IaaS-基础设施即服务"><a href="#IaaS-基础设施即服务" class="headerlink" title="IaaS 基础设施即服务"></a>IaaS 基础设施即服务</h3><p>提供按需付费的计算资源，包括服务器、网络、磁盘存储和数据中心等基础设施</p><h3 id="PaaS-平台即服务"><a href="#PaaS-平台即服务" class="headerlink" title="PaaS 平台即服务"></a>PaaS 平台即服务</h3><p>提供硬件和软件工具，使开发人员更轻松地快速创建web或移动应用</p><h3 id="SaaS-软件即服务"><a href="#SaaS-软件即服务" class="headerlink" title="SaaS 软件即服务"></a>SaaS 软件即服务</h3><p>Saas，基于云的应用，被授予的企业或个人通过网络访问使用</p><p>例如，百度云盘（个人级 SaaS)、钉钉(企业级 SqaS) 、 53KF客服系统〈企业级 SaaS)</p><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p><img src="/1023/03/16/operating/operating-1.png"></p><h1 id="Linux-学习"><a href="#Linux-学习" class="headerlink" title="Linux 学习"></a>Linux 学习</h1><h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>虚拟机/服务器</p><div class="hljs code-wrapper"><pre><code>ip addr 获取本机IP</code></pre></div><p>xshell</p><div class="hljs code-wrapper"><pre><code>ssh root@ip输入密码[root@opn90 ~]#输入命令并开始执行</code></pre></div><h3 id="文件目录管理系统"><a href="#文件目录管理系统" class="headerlink" title="文件目录管理系统"></a>文件目录管理系统</h3><p><a href="https://opn90.top/2021/10/27/PHP-ways/#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%88%E6%9A%82%EF%BC%89">https://opn90.top/2021/10/27/PHP-ways/#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%EF%BC%88%E6%9A%82%EF%BC%89</a></p><div class="hljs code-wrapper"><pre><code>ls        查看目录文件pwd        查看当前目录cd        进入相关目录rm         删除文件        -rf    递归，强制删除whoami     当前系统用户mkdir     创建文件夹    -p    递归创建父目录mv 原 新        修改文件名cat     查看文本内容</code></pre></div><hr><div class="hljs code-wrapper"><pre><code>文本编辑vi 文件名    vi打开文件i            输入指令，编辑内容，i编辑模式esc :wq！    写入内容，退出编辑器，强制退出</code></pre></div><h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3><p><a href="https://blog.csdn.net/wisdom_futrue/article/details/128654038">https://blog.csdn.net/wisdom_futrue/article/details/128654038</a></p><p><img src="/1023/03/16/operating/operating-4.png"></p><p><img src="/1023/03/16/operating/operating-5.png"></p><h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><div class="hljs code-wrapper"><pre><code>rwx读 写 运行--------4214 2 1 只读 只写 只运行7 6 5 3 全 读写 读运行 写运行7    7    7用户 用户所在组 其他</code></pre></div><h3 id="文件权限操作"><a href="#文件权限操作" class="headerlink" title="文件权限操作"></a>文件权限操作</h3><p>root/user</p><div class="hljs code-wrapper"><pre><code>useradd xxx    --passwordls    -l    列出文件详细信息（权限信息）chmod 777 文件名     改变自己的文件的权限</code></pre></div><h1 id="Linux软件安装"><a href="#Linux软件安装" class="headerlink" title="Linux软件安装"></a>Linux软件安装</h1><div class="hljs code-wrapper"><pre><code>windows        exemac            dmglinux        rpmyum install xx -y    自动化搜索xx软件包，并安装备份原配置文件cd /etc/yum.repos.d/mkdir repo-bakmv ./* ./repo-bak安装yum install xx -ysystemctl start xxx</code></pre></div><hr><div class="hljs code-wrapper"><pre><code>进程ps -ef         显示所有进程信息过滤命令/管道符ps -ef | grep &quot;xx&quot;         搜索xx相关信息</code></pre></div><hr><div class="hljs code-wrapper"><pre><code>端口netstat -tunlp | grep &quot;xx&quot;     </code></pre></div>]]></content>
+    
+    
     
   </entry>
   
