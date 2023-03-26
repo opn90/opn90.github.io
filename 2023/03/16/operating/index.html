@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      3.8k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36
+      44
        分钟
     </span>
   
@@ -237,7 +237,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：8 分钟前
+                  本文最后更新于：4 小时前
                 
               </p>
             
@@ -643,7 +643,128 @@ netstat -tunlp|grep xxx        查看端口号
 -c：每隔一个固定时间，执行该netstat命令
     
 </code></pre></div>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43642752/article/details/126289672">https://blog.csdn.net/weixin_43642752/article/details/126289672</a></p>
+<h2 id="关系型-非关系型"><a href="#关系型-非关系型" class="headerlink" title="关系型/非关系型"></a>关系型/非关系型</h2><p>关系型数据库，采用了关系模型来组织数据的存储，以行和列的形式存储数据并记录数据与数据之间的关系 —— 将数据存储在表格中，可以通过建立表格与表格之间的关联来维护数据与数据之间的关系</p>
+<p>非关系型数据库，采用键值对的模型来存储数据，只完成数据的记录，不会记录数据与数据之间的关系</p>
+<p>在非关系型数据库中基于其特定的存储结构来解决一些大数据应用的难题</p>
+<p>NoSQL(Not only SQL)数据库来指代非关系型数据库</p>
+<h2 id="MySql语法"><a href="#MySql语法" class="headerlink" title="MySql语法"></a>MySql语法</h2><div class="hljs code-wrapper"><pre><code>------------------- 库 ----------
 
+show databases
+
+create database if not exists 库名
+
+alter database 库名 character set 字符集
+
+drop database is exists 库名
+
+------------------- 表 ----------
+
+show tables
+
+desc 表名  查询指定表的表结构
+
+drop table if exists 表名 
+
+alter table 旧表名 rename to 新表名
+
+alter table 表名 add 列名 类型
+
+alter table 表名 change 旧列名 新列名 类型
+
+alter table 表名 modify 列名 类型
+
+alter table 表名 drop 列名
+
+------------------- 定义字段 ----------
+
+auto_increment     自增
+
+not null         非空
+
+unique             唯一
+
+primary key     主键————非空+唯一
+
+foreign key        外键
+
+------------------- 操纵字段 ----------
+
+insert into 表名(列名1,...) values (值1,...)
+
+delete from 表名 [where ...]
+
+update 表名 set 列名1=值1, ... where 
+
+------------------- 查询字段 ----------
+    
+select 列名1,.. from 表名 where 
+
+where ... like ...
+
+select 字段1 as 别名1 from 表
+
+select distinct 字段 from 表      消除重复行
+
+where ... order by 列 asc|desc    按照指定的值升序/降序排列
+
+------------------- 聚合函数 ----------
+
+count max min sum avg
+
+------------------- 字符串函数 ----------
+
+concat(colnum1,)    拼接多行
+
+upper(column)        将字段的值转换成大写
+
+lower(column)        将指定列的值转换成小写
+
+------------------- 排序/查询 ----------
+
+排序查询
+
+order by 字段名 排序方式
+
+分组查询    
+
+group by 字段名
+
+分页查询
+
+limit 
+
+------------------- 多表 ----------
+
+内连接
+
+inner join
+
+左连接：
+
+显示左表中的所有数据，如果在有右表中存在与左表记录满⾜匹配条件的数据，则进⾏匹配；如果右表中不存在匹配数据，则显⽰为null
+
+left join
+
+右连接：
+
+显⽰右表中的所有数据，如果在有左表中存在与右表记录满⾜匹配条件的数据，则进⾏匹配；如果左表中不存在匹配数据，则显⽰为null
+
+right join
+
+------------------- 嵌套查询 ----------
+
+select id from user where name = (select a from b where c=c)
+
+------------------- 事务 ----------
+
+程序中一系列严密的逻辑操作，而且所有操作必须全部成功完成，否则在每个操作中所作的所有更改都会被撤消。
+
+------------------- JDBC ----------
+
+JAVA......
+</code></pre></div>
+<h1 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h1>
             </div>
             <hr>
             <div>
